@@ -1,0 +1,2034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MetaBridge Academy — Learn Skills That Pay Forever</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════
+   RESET & ROOT
+═══════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Outfit', sans-serif;
+  background: #050B18;
+  color: #E2E8F4;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+:root {
+  --ink:     #050B18;
+  --navy:    #081428;
+  --card:    #0C1C38;
+  --cardHov: #102244;
+  --border:  rgba(30,100,255,0.15);
+  --blue:    #1A6CFF;
+  --blueLt:  #5291FF;
+  --cyan:    #00D4FF;
+  --gold:    #FFB800;
+  --goldLt:  #FFD166;
+  --green:   #00E5A0;
+  --red:     #FF4D6D;
+  --purple:  #A855F7;
+  --white:   #FFFFFF;
+  --off:     #E2E8F4;
+  --muted:   #7A90B4;
+  --faint:   rgba(26,108,255,0.08);
+}
+
+/* ═══════════════════════════════════════════════
+   SCROLLBAR
+═══════════════════════════════════════════════ */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--ink); }
+::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 3px; }
+
+/* ═══════════════════════════════════════════════
+   ANIMATIONS
+═══════════════════════════════════════════════ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; } to { opacity: 1; }
+}
+@keyframes float {
+  0%,100% { transform: translateY(0px); }
+  50%      { transform: translateY(-12px); }
+}
+@keyframes pulse {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.5; transform: scale(0.95); }
+}
+@keyframes glow {
+  0%,100% { box-shadow: 0 0 20px rgba(26,108,255,0.3); }
+  50%      { box-shadow: 0 0 40px rgba(26,108,255,0.6); }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+@keyframes rotateSlow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes countUp {
+  from { opacity: 0; transform: scale(0.8); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.fade-up { animation: fadeUp 0.7s ease forwards; }
+.delay-1 { animation-delay: 0.1s; opacity: 0; }
+.delay-2 { animation-delay: 0.2s; opacity: 0; }
+.delay-3 { animation-delay: 0.3s; opacity: 0; }
+.delay-4 { animation-delay: 0.45s; opacity: 0; }
+.delay-5 { animation-delay: 0.6s; opacity: 0; }
+
+/* ═══════════════════════════════════════════════
+   BACKGROUND EFFECTS
+═══════════════════════════════════════════════ */
+.bg-effects {
+  position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  overflow: hidden;
+}
+.bg-orb {
+  position: absolute; border-radius: 50%;
+  filter: blur(80px);
+}
+.orb-1 {
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(26,108,255,0.12) 0%, transparent 70%);
+  top: -200px; right: -100px;
+  animation: float 8s ease-in-out infinite;
+}
+.orb-2 {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(0,212,255,0.07) 0%, transparent 70%);
+  bottom: 10%; left: -150px;
+  animation: float 10s ease-in-out infinite reverse;
+}
+.orb-3 {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(255,184,0,0.05) 0%, transparent 70%);
+  top: 50%; left: 50%; transform: translate(-50%,-50%);
+}
+.bg-grid {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(26,108,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26,108,255,0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* ═══════════════════════════════════════════════
+   STICKY NAVBAR
+═══════════════════════════════════════════════ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(5,11,24,0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 5%;
+  height: 72px;
+  display: flex; align-items: center; justify-content: space-between;
+  transition: all 0.3s;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 12px;
+  text-decoration: none;
+}
+.nav-logo-icon {
+  width: 42px; height: 42px;
+  background: linear-gradient(135deg, var(--blue), var(--cyan));
+  border-radius: 11px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px; font-weight: 600; color: white;
+  box-shadow: 0 0 20px rgba(26,108,255,0.4);
+  flex-shrink: 0;
+}
+.nav-logo-text { line-height: 1.15; }
+.nav-logo-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 16px; font-weight: 800; color: var(--white);
+}
+.nav-logo-tag {
+  font-size: 9px; color: var(--cyan);
+  letter-spacing: 0.8px; text-transform: uppercase;
+}
+.nav-links {
+  display: flex; align-items: center; gap: 32px;
+  list-style: none;
+}
+.nav-links a {
+  text-decoration: none; font-size: 14px; font-weight: 500;
+  color: var(--muted); transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--white); }
+.nav-cta {
+  display: flex; align-items: center; gap: 12px;
+}
+.btn-nav {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--blue);
+  color: white; font-size: 14px; font-weight: 600;
+  padding: 10px 22px; border-radius: 10px;
+  text-decoration: none; border: none; cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 0 20px rgba(26,108,255,0.35);
+}
+.btn-nav:hover {
+  background: var(--blueLt);
+  transform: translateY(-1px);
+  box-shadow: 0 0 30px rgba(26,108,255,0.5);
+}
+.hamburger {
+  display: none; flex-direction: column; gap: 5px;
+  cursor: pointer; padding: 5px;
+}
+.hamburger span {
+  width: 24px; height: 2px; background: var(--white); border-radius: 2px;
+  transition: all 0.3s;
+}
+
+/* ═══════════════════════════════════════════════
+   TICKER BANNER
+═══════════════════════════════════════════════ */
+.ticker-wrap {
+  margin-top: 72px;
+  background: linear-gradient(90deg, var(--blue), #0052CC);
+  padding: 10px 0;
+  overflow: hidden;
+  position: relative; z-index: 5;
+}
+.ticker-track {
+  display: flex; gap: 0;
+  width: max-content;
+  animation: ticker 30s linear infinite;
+}
+.ticker-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 0 30px;
+  font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.9);
+  white-space: nowrap;
+}
+.ticker-dot {
+  width: 5px; height: 5px; background: var(--cyan);
+  border-radius: 50%; flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════════════
+   SECTIONS WRAPPER
+═══════════════════════════════════════════════ */
+.section { position: relative; z-index: 5; }
+.container {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+/* ═══════════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════════ */
+.hero {
+  padding: 100px 5% 80px;
+  position: relative; z-index: 5;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255,184,0,0.1);
+  border: 1px solid rgba(255,184,0,0.3);
+  border-radius: 100px;
+  padding: 7px 18px;
+  margin-bottom: 28px;
+  animation: fadeUp 0.6s ease forwards;
+}
+.hero-badge-dot {
+  width: 7px; height: 7px; background: var(--gold);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+  box-shadow: 0 0 8px var(--gold);
+}
+.hero-badge span {
+  font-size: 12.5px; font-weight: 600; color: var(--gold);
+  letter-spacing: 0.5px;
+}
+
+.hero-headline {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(40px, 7vw, 76px);
+  font-weight: 800;
+  line-height: 1.0;
+  letter-spacing: -2px;
+  color: var(--white);
+  margin-bottom: 10px;
+  animation: fadeUp 0.7s ease forwards;
+  animation-delay: 0.1s;
+  opacity: 0;
+}
+.hero-headline .shine {
+  background: linear-gradient(90deg, var(--gold), var(--goldLt), var(--gold));
+  background-size: 200% auto;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+.hero-headline .blue-txt { color: var(--blue); -webkit-text-fill-color: var(--blue); }
+
+.hero-sub {
+  font-size: clamp(16px, 2.2vw, 20px);
+  font-weight: 300; line-height: 1.65;
+  color: var(--muted);
+  max-width: 620px; margin: 0 auto 40px;
+  animation: fadeUp 0.7s ease forwards;
+  animation-delay: 0.2s;
+  opacity: 0;
+}
+.hero-sub strong { color: var(--off); font-weight: 500; }
+
+.hero-actions {
+  display: flex; align-items: center; justify-content: center;
+  gap: 16px; flex-wrap: wrap;
+  animation: fadeUp 0.7s ease forwards;
+  animation-delay: 0.3s;
+  opacity: 0;
+  margin-bottom: 60px;
+}
+
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: linear-gradient(135deg, var(--blue) 0%, #0052CC 100%);
+  color: white; font-size: 16px; font-weight: 700;
+  padding: 16px 36px; border-radius: 14px;
+  text-decoration: none; border: none; cursor: pointer;
+  transition: all 0.25s;
+  box-shadow: 0 8px 32px rgba(26,108,255,0.4);
+  position: relative; overflow: hidden;
+}
+.btn-primary::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 60%);
+}
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 48px rgba(26,108,255,0.5);
+}
+
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: var(--off); font-size: 16px; font-weight: 500;
+  padding: 16px 32px; border-radius: 14px;
+  text-decoration: none; cursor: pointer;
+  transition: all 0.25s;
+}
+.btn-secondary:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.25);
+  transform: translateY(-2px);
+}
+
+.btn-whatsapp {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: #25D366;
+  color: white; font-size: 16px; font-weight: 700;
+  padding: 16px 32px; border-radius: 14px;
+  text-decoration: none; border: none; cursor: pointer;
+  transition: all 0.25s;
+  box-shadow: 0 8px 32px rgba(37,211,102,0.35);
+}
+.btn-whatsapp:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(37,211,102,0.5);
+  background: #20C05C;
+}
+
+/* Hero trust signals */
+.hero-trust {
+  display: flex; align-items: center; justify-content: center;
+  gap: 32px; flex-wrap: wrap;
+  animation: fadeUp 0.7s ease forwards;
+  animation-delay: 0.45s;
+  opacity: 0;
+}
+.trust-item {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13.5px; color: var(--muted);
+}
+.trust-item .check {
+  width: 20px; height: 20px;
+  background: rgba(0,229,160,0.1);
+  border: 1px solid rgba(0,229,160,0.3);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; color: var(--green); flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════════════
+   AUDIENCE STRIP
+═══════════════════════════════════════════════ */
+.audience-strip {
+  position: relative; z-index: 5;
+  padding: 0 5% 80px;
+}
+.audience-label {
+  text-align: center;
+  font-size: 12px; font-weight: 600; color: var(--blue);
+  letter-spacing: 2.5px; text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.audience-tags {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: 12px;
+}
+.audience-tag {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--faint);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 10px 20px;
+  font-size: 14px; font-weight: 500; color: var(--off);
+  transition: all 0.2s;
+}
+.audience-tag:hover {
+  background: rgba(26,108,255,0.12);
+  border-color: rgba(26,108,255,0.3);
+  transform: translateY(-2px);
+}
+.audience-tag .tag-emoji { font-size: 16px; }
+
+/* ═══════════════════════════════════════════════
+   STATS SECTION
+═══════════════════════════════════════════════ */
+.stats-section {
+  position: relative; z-index: 5;
+  padding: 0 5% 100px;
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2px;
+  background: var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.stat-card {
+  background: var(--card);
+  padding: 36px 24px;
+  text-align: center;
+  transition: background 0.2s;
+}
+.stat-card:hover { background: var(--cardHov); }
+.stat-number {
+  font-family: 'Syne', sans-serif;
+  font-size: 38px; font-weight: 800;
+  background: linear-gradient(135deg, var(--white), var(--blueLt));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 6px;
+  display: block;
+}
+.stat-label {
+  font-size: 12.5px; font-weight: 400; color: var(--muted);
+  line-height: 1.4;
+}
+
+/* ═══════════════════════════════════════════════
+   SECTION HEADERS
+═══════════════════════════════════════════════ */
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+.section-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; font-weight: 600;
+  color: var(--blue); letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.section-eyebrow::before, .section-eyebrow::after {
+  content: '—';
+  color: rgba(26,108,255,0.4);
+}
+.section-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 800; line-height: 1.1;
+  letter-spacing: -1px;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+.section-title .accent { color: var(--gold); }
+.section-desc {
+  font-size: 17px; font-weight: 300; color: var(--muted);
+  max-width: 540px; margin: 0 auto; line-height: 1.65;
+}
+
+/* ═══════════════════════════════════════════════
+   COURSES SECTION
+═══════════════════════════════════════════════ */
+.courses-section {
+  position: relative; z-index: 5;
+  padding: 100px 5%;
+}
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+.course-card {
+  background: var(--card);
+  border-radius: 24px;
+  padding: 36px;
+  border: 1px solid var(--border);
+  position: relative; overflow: hidden;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.course-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  border-radius: 24px 24px 0 0;
+}
+.course-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(26,108,255,0.3);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.4);
+}
+.cc-cyber::before { background: linear-gradient(90deg,#FF4D6D,#FF8FA3); }
+.cc-crypto::before { background: linear-gradient(90deg,#FFB800,#FFD166); }
+.cc-data::before { background: linear-gradient(90deg,#00D4FF,#80EAFF); }
+.cc-prompt::before { background: linear-gradient(90deg,#A855F7,#D8B4FE); }
+
+.cc-cyber:hover { border-color: rgba(255,77,109,0.3); }
+.cc-crypto:hover { border-color: rgba(255,184,0,0.3); }
+.cc-data:hover { border-color: rgba(0,212,255,0.3); }
+.cc-prompt:hover { border-color: rgba(168,85,247,0.3); }
+
+.course-header {
+  display: flex; align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.course-icon-wrap {
+  width: 60px; height: 60px; border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px; flex-shrink: 0;
+}
+.ci-cyber { background: rgba(255,77,109,0.12); }
+.ci-crypto { background: rgba(255,184,0,0.12); }
+.ci-data { background: rgba(0,212,255,0.12); }
+.ci-prompt { background: rgba(168,85,247,0.12); }
+
+.course-price-wrap { text-align: right; }
+.course-price {
+  font-family: 'Syne', sans-serif;
+  font-size: 30px; font-weight: 800; color: var(--white);
+}
+.course-price-sub {
+  font-size: 11px; color: var(--muted); display: block;
+}
+.course-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 22px; font-weight: 800;
+  color: var(--white); margin-bottom: 10px;
+}
+.course-desc {
+  font-size: 14.5px; font-weight: 300;
+  color: var(--muted); line-height: 1.6;
+  margin-bottom: 24px;
+}
+.course-skills {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin-bottom: 28px;
+}
+.skill-tag {
+  font-size: 11.5px; font-weight: 500;
+  padding: 5px 12px; border-radius: 6px;
+}
+.st-cyber { background: rgba(255,77,109,0.1); color: #FF8FA3; }
+.st-crypto { background: rgba(255,184,0,0.1); color: #FFD166; }
+.st-data { background: rgba(0,212,255,0.1); color: #80EAFF; }
+.st-prompt { background: rgba(168,85,247,0.1); color: #D8B4FE; }
+
+.course-meta {
+  display: flex; align-items: center; gap: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+.meta-item {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 12.5px; color: var(--muted);
+}
+.meta-icon { font-size: 14px; }
+.course-cta {
+  margin-left: auto;
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 13px; font-weight: 600; color: var(--blue);
+  text-decoration: none; transition: gap 0.2s;
+}
+.course-cta:hover { gap: 10px; }
+
+/* ═══════════════════════════════════════════════
+   HOW IT WORKS
+═══════════════════════════════════════════════ */
+.how-section {
+  position: relative; z-index: 5;
+  padding: 100px 5%;
+  background: linear-gradient(180deg, transparent 0%, rgba(26,108,255,0.03) 50%, transparent 100%);
+}
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  position: relative;
+}
+.steps-connector {
+  position: absolute;
+  top: 60px; left: calc(33.33% - 20px);
+  width: calc(33.33% + 40px);
+  height: 2px;
+  background: linear-gradient(90deg, var(--blue), var(--cyan));
+  opacity: 0.3;
+}
+.steps-connector-2 {
+  position: absolute;
+  top: 60px; left: calc(66.66% - 20px);
+  width: calc(33.33% + 40px);
+  height: 2px;
+  background: linear-gradient(90deg, var(--cyan), var(--green));
+  opacity: 0.3;
+}
+.step-card {
+  text-align: center; padding: 40px 28px;
+  background: var(--card);
+  border-radius: 20px; border: 1px solid var(--border);
+  transition: all 0.3s; position: relative;
+}
+.step-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.4);
+}
+.step-number {
+  font-family: 'Syne', sans-serif;
+  font-size: 13px; font-weight: 700;
+  color: var(--blue); letter-spacing: 1px;
+  margin-bottom: 20px; display: block;
+}
+.step-icon-circle {
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(26,108,255,0.15), rgba(0,212,255,0.08));
+  border: 2px solid rgba(26,108,255,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 32px;
+  margin: 0 auto 24px;
+  transition: all 0.3s;
+}
+.step-card:hover .step-icon-circle {
+  border-color: rgba(26,108,255,0.5);
+  box-shadow: 0 0 24px rgba(26,108,255,0.2);
+}
+.step-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 19px; font-weight: 700;
+  color: var(--white); margin-bottom: 12px;
+}
+.step-desc {
+  font-size: 14.5px; font-weight: 300;
+  color: var(--muted); line-height: 1.65;
+}
+
+/* ═══════════════════════════════════════════════
+   WHO IS THIS FOR
+═══════════════════════════════════════════════ */
+.for-section {
+  position: relative; z-index: 5;
+  padding: 100px 5%;
+}
+.for-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.for-card {
+  background: var(--card);
+  border-radius: 20px; padding: 32px 28px;
+  border: 1px solid var(--border);
+  transition: all 0.3s;
+}
+.for-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(26,108,255,0.25);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+}
+.for-emoji { font-size: 36px; margin-bottom: 16px; display: block; }
+.for-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 17px; font-weight: 700;
+  color: var(--white); margin-bottom: 10px;
+}
+.for-desc {
+  font-size: 14px; font-weight: 300;
+  color: var(--muted); line-height: 1.6;
+}
+.for-tag {
+  margin-top: 16px;
+  display: inline-block;
+  font-size: 11px; font-weight: 600; color: var(--blue);
+  background: rgba(26,108,255,0.1);
+  padding: 4px 12px; border-radius: 6px;
+  letter-spacing: 0.5px;
+}
+
+/* ═══════════════════════════════════════════════
+   CERTIFICATE SECTION
+═══════════════════════════════════════════════ */
+.cert-section {
+  position: relative; z-index: 5;
+  padding: 100px 5%;
+}
+.cert-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.cert-content {}
+.cert-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; font-weight: 600; color: var(--gold);
+  letter-spacing: 2px; text-transform: uppercase;
+  margin-bottom: 20px; display: flex; align-items: center; gap: 10px;
+}
+.cert-eyebrow::before {
+  content: ''; display: block;
+  width: 24px; height: 2px;
+  background: var(--gold);
+}
+.cert-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(26px, 3.5vw, 38px);
+  font-weight: 800; line-height: 1.15;
+  color: var(--white); margin-bottom: 20px;
+}
+.cert-title .gold { color: var(--gold); }
+.cert-body {
+  font-size: 16px; font-weight: 300; color: var(--muted);
+  line-height: 1.7; margin-bottom: 36px;
+}
+.cert-features { display: flex; flex-direction: column; gap: 16px; }
+.cert-feat {
+  display: flex; align-items: flex-start; gap: 14px;
+}
+.cert-feat-icon {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: rgba(255,184,0,0.1);
+  border: 1px solid rgba(255,184,0,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; flex-shrink: 0;
+}
+.cert-feat-text {}
+.cert-feat-title {
+  font-size: 15px; font-weight: 600; color: var(--white);
+  margin-bottom: 3px;
+}
+.cert-feat-desc {
+  font-size: 13px; font-weight: 300; color: var(--muted);
+}
+
+/* Certificate mockup */
+.cert-mockup {
+  position: relative;
+  animation: float 6s ease-in-out infinite;
+}
+.cert-card {
+  background: linear-gradient(135deg, #0C1C38 0%, #081428 100%);
+  border-radius: 20px;
+  padding: 40px;
+  border: 1px solid rgba(255,184,0,0.3);
+  box-shadow:
+    0 0 0 1px rgba(255,184,0,0.1),
+    0 40px 80px rgba(0,0,0,0.6),
+    0 0 60px rgba(255,184,0,0.08);
+  position: relative; overflow: hidden;
+}
+.cert-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  background: linear-gradient(90deg, var(--gold), var(--goldLt), var(--gold));
+}
+.cert-card-logo {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 28px;
+}
+.cert-card-logo-icon {
+  width: 36px; height: 36px;
+  background: linear-gradient(135deg, var(--blue), var(--cyan));
+  border-radius: 9px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px; font-weight: 600; color: white;
+}
+.cert-card-logo-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 14px; font-weight: 700; color: var(--white);
+}
+.cert-card-logo-sub {
+  font-size: 9px; color: var(--muted); display: block;
+}
+.cert-card-badge {
+  text-align: center;
+  padding: 24px 0;
+  border-top: 1px solid rgba(255,184,0,0.15);
+  border-bottom: 1px solid rgba(255,184,0,0.15);
+  margin-bottom: 24px;
+}
+.cert-badge-icon-large { font-size: 48px; display: block; margin-bottom: 8px; }
+.cert-badge-text {
+  font-family: 'Syne', sans-serif;
+  font-size: 18px; font-weight: 800; color: var(--gold);
+  margin-bottom: 4px;
+}
+.cert-badge-sub { font-size: 11px; color: var(--muted); }
+.cert-card-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 22px; font-weight: 800; color: var(--white);
+  text-align: center; margin-bottom: 6px;
+}
+.cert-card-course {
+  font-size: 13px; color: var(--muted); text-align: center;
+  margin-bottom: 24px;
+}
+.cert-chain-badge {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  background: rgba(0,229,160,0.08);
+  border: 1px solid rgba(0,229,160,0.2);
+  border-radius: 10px; padding: 10px 16px;
+}
+.chain-dot {
+  width: 8px; height: 8px; background: var(--green);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--green);
+  animation: pulse 2s ease-in-out infinite;
+}
+.chain-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; color: var(--green); font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* ═══════════════════════════════════════════════
+   TESTIMONIALS
+═══════════════════════════════════════════════ */
+.testimonials-section {
+  position: relative; z-index: 5;
+  padding: 100px 5%;
+  background: linear-gradient(180deg, transparent 0%, rgba(26,108,255,0.03) 50%, transparent 100%);
+}
+.testi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.testi-card {
+  background: var(--card);
+  border-radius: 20px; padding: 32px;
+  border: 1px solid var(--border);
+  position: relative; transition: all 0.3s;
+}
+.testi-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(26,108,255,0.25);
+}
+.testi-quote {
+  font-size: 40px; color: var(--blue);
+  font-family: 'Syne', sans-serif;
+  line-height: 1; margin-bottom: 16px;
+  opacity: 0.4;
+}
+.testi-text {
+  font-size: 15px; font-weight: 300;
+  color: var(--off); line-height: 1.7;
+  margin-bottom: 24px; font-style: italic;
+}
+.testi-stars { color: var(--gold); font-size: 14px; margin-bottom: 16px; }
+.testi-author {
+  display: flex; align-items: center; gap: 12px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+.testi-avatar {
+  width: 42px; height: 42px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; font-weight: 700;
+  flex-shrink: 0;
+}
+.av-1 { background: linear-gradient(135deg,#1A6CFF,#00D4FF); color: white; font-family:'Syne',sans-serif; }
+.av-2 { background: linear-gradient(135deg,#FFB800,#FF6B00); color: white; font-family:'Syne',sans-serif; }
+.av-3 { background: linear-gradient(135deg,#A855F7,#FF4D6D); color: white; font-family:'Syne',sans-serif; }
+.av-4 { background: linear-gradient(135deg,#00E5A0,#00A3FF); color: white; font-family:'Syne',sans-serif; }
+.av-5 { background: linear-gradient(135deg,#FF4D6D,#FF8C00); color: white; font-family:'Syne',sans-serif; }
+.av-6 { background: linear-gradient(135deg,#A855F7,#1A6CFF); color: white; font-family:'Syne',sans-serif; }
+
+.testi-name {
+  font-size: 15px; font-weight: 600; color: var(--white);
+}
+.testi-role {
+  font-size: 12px; color: var(--muted);
+}
+
+/* ═══════════════════════════════════════════════
+   FEATURES / WHY US
+═══════════════════════════════════════════════ */
+.why-section {
+  position: relative; z-index: 5;
+  padding: 100px 5%;
+}
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.why-card {
+  background: var(--card);
+  border-radius: 18px; padding: 28px 24px;
+  border: 1px solid var(--border);
+  text-align: center; transition: all 0.3s;
+}
+.why-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(26,108,255,0.25);
+}
+.why-icon {
+  width: 60px; height: 60px; border-radius: 16px;
+  margin: 0 auto 20px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 26px;
+}
+.wi-blue { background: rgba(26,108,255,0.12); }
+.wi-gold { background: rgba(255,184,0,0.12); }
+.wi-green { background: rgba(0,229,160,0.12); }
+.wi-cyan { background: rgba(0,212,255,0.12); }
+.wi-purple { background: rgba(168,85,247,0.12); }
+.wi-red { background: rgba(255,77,109,0.12); }
+.wi-orange { background: rgba(255,140,0,0.12); }
+.wi-teal { background: rgba(0,200,150,0.12); }
+
+.why-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 15px; font-weight: 700;
+  color: var(--white); margin-bottom: 8px;
+}
+.why-desc {
+  font-size: 13px; font-weight: 300;
+  color: var(--muted); line-height: 1.6;
+}
+
+/* ═══════════════════════════════════════════════
+   PRICING / ENROLMENT
+═══════════════════════════════════════════════ */
+.pricing-section {
+  position: relative; z-index: 5;
+  padding: 100px 5%;
+  background: linear-gradient(180deg, transparent 0%, rgba(26,108,255,0.04) 50%, transparent 100%);
+}
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 48px;
+}
+.price-card {
+  background: var(--card);
+  border-radius: 20px; padding: 32px 24px;
+  border: 1px solid var(--border);
+  text-align: center; transition: all 0.3s;
+  position: relative; overflow: hidden;
+}
+.price-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+}
+.pc-cyber::before { background: linear-gradient(90deg,#FF4D6D,#FF8FA3); }
+.pc-crypto::before { background: linear-gradient(90deg,#FFB800,#FFD166); }
+.pc-data::before { background: linear-gradient(90deg,#00D4FF,#80EAFF); }
+.pc-prompt::before { background: linear-gradient(90deg,#A855F7,#D8B4FE); }
+
+.price-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.4);
+}
+.price-icon { font-size: 32px; margin-bottom: 14px; display: block; }
+.price-course {
+  font-family: 'Syne', sans-serif;
+  font-size: 16px; font-weight: 700;
+  color: var(--white); margin-bottom: 4px;
+}
+.price-duration {
+  font-size: 12px; color: var(--muted); margin-bottom: 24px;
+}
+.price-amount {
+  font-family: 'Syne', sans-serif;
+  font-size: 42px; font-weight: 800;
+  color: var(--white); line-height: 1;
+  margin-bottom: 6px;
+}
+.price-per { font-size: 12px; color: var(--muted); margin-bottom: 24px; }
+.price-cta {
+  display: block; width: 100%;
+  padding: 12px; border-radius: 12px;
+  font-size: 14px; font-weight: 600;
+  text-decoration: none; text-align: center;
+  transition: all 0.2s; border: none; cursor: pointer;
+}
+.pc-cyber .price-cta { background: rgba(255,77,109,0.1); color: #FF8FA3; border: 1px solid rgba(255,77,109,0.2); }
+.pc-crypto .price-cta { background: rgba(255,184,0,0.1); color: #FFD166; border: 1px solid rgba(255,184,0,0.2); }
+.pc-data .price-cta { background: rgba(0,212,255,0.1); color: #80EAFF; border: 1px solid rgba(0,212,255,0.2); }
+.pc-prompt .price-cta { background: rgba(168,85,247,0.1); color: #D8B4FE; border: 1px solid rgba(168,85,247,0.2); }
+.price-cta:hover { filter: brightness(1.15); transform: scale(1.02); }
+
+/* ═══════════════════════════════════════════════
+   FAQ
+═══════════════════════════════════════════════ */
+.faq-section {
+  position: relative; z-index: 5;
+  padding: 100px 5%;
+}
+.faq-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  max-width: 900px; margin: 0 auto;
+}
+.faq-item {
+  background: var(--card);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.faq-q {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 22px 24px;
+  cursor: pointer;
+  font-size: 15px; font-weight: 600; color: var(--white);
+  transition: color 0.2s;
+  gap: 16px;
+}
+.faq-q:hover { color: var(--blueLt); }
+.faq-arrow {
+  width: 28px; height: 28px; border-radius: 8px;
+  background: rgba(26,108,255,0.1);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; color: var(--blue);
+  flex-shrink: 0; transition: all 0.3s;
+}
+.faq-item.open .faq-arrow { transform: rotate(180deg); background: rgba(26,108,255,0.2); }
+.faq-a {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.3s;
+  padding: 0 24px;
+  font-size: 14px; font-weight: 300; color: var(--muted); line-height: 1.7;
+}
+.faq-item.open .faq-a {
+  max-height: 200px;
+  padding: 0 24px 22px;
+}
+
+/* ═══════════════════════════════════════════════
+   FINAL CTA
+═══════════════════════════════════════════════ */
+.cta-section {
+  position: relative; z-index: 5;
+  padding: 100px 5%;
+}
+.cta-box {
+  background: linear-gradient(135deg,
+    rgba(26,108,255,0.15) 0%,
+    rgba(0,212,255,0.08) 40%,
+    rgba(255,184,0,0.08) 100%);
+  border: 1px solid rgba(26,108,255,0.25);
+  border-radius: 28px;
+  padding: 80px 60px;
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+.cta-box::before {
+  content: '';
+  position: absolute; top: -60px; right: -60px;
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(26,108,255,0.15), transparent 65%);
+  border-radius: 50%;
+}
+.cta-box::after {
+  content: '';
+  position: absolute; bottom: -40px; left: -40px;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(255,184,0,0.08), transparent 65%);
+  border-radius: 50%;
+}
+.cta-box-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(30px, 5vw, 52px);
+  font-weight: 800; line-height: 1.1;
+  color: var(--white); margin-bottom: 18px;
+  position: relative; z-index: 1;
+}
+.cta-box-title .gold { color: var(--gold); }
+.cta-box-sub {
+  font-size: 18px; font-weight: 300; color: var(--muted);
+  max-width: 520px; margin: 0 auto 48px;
+  line-height: 1.65; position: relative; z-index: 1;
+}
+.cta-buttons {
+  display: flex; align-items: center; justify-content: center;
+  gap: 16px; flex-wrap: wrap;
+  position: relative; z-index: 1;
+  margin-bottom: 32px;
+}
+.cta-reassurance {
+  display: flex; align-items: center; justify-content: center;
+  gap: 28px; flex-wrap: wrap;
+  position: relative; z-index: 1;
+}
+.reassure-item {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13.5px; color: var(--muted);
+}
+.reassure-check {
+  color: var(--green); font-size: 14px;
+}
+
+/* ═══════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════ */
+footer {
+  position: relative; z-index: 5;
+  background: rgba(0,0,0,0.3);
+  border-top: 1px solid var(--border);
+  padding: 60px 5% 40px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 48px;
+}
+.footer-brand {}
+.footer-logo {
+  display: flex; align-items: center; gap: 12px;
+  text-decoration: none; margin-bottom: 16px;
+}
+.footer-logo-icon {
+  width: 40px; height: 40px;
+  background: linear-gradient(135deg, var(--blue), var(--cyan));
+  border-radius: 11px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px; font-weight: 600; color: white;
+}
+.footer-logo-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 17px; font-weight: 800; color: var(--white);
+}
+.footer-brand-desc {
+  font-size: 14px; font-weight: 300; color: var(--muted);
+  line-height: 1.65; margin-bottom: 24px;
+  max-width: 280px;
+}
+.footer-contact a {
+  display: flex; align-items: center; gap: 8px;
+  color: var(--green); font-size: 14px; font-weight: 500;
+  text-decoration: none; margin-bottom: 8px;
+  transition: color 0.2s;
+}
+.footer-contact a:hover { color: var(--white); }
+.footer-col-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 14px; font-weight: 700; color: var(--white);
+  margin-bottom: 20px;
+}
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.footer-links a {
+  font-size: 14px; font-weight: 300; color: var(--muted);
+  text-decoration: none; transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--off); }
+.footer-bottom {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-top: 32px; border-top: 1px solid var(--border);
+  flex-wrap: wrap; gap: 16px;
+}
+.footer-copy { font-size: 13px; color: var(--muted); }
+.footer-bottom-links {
+  display: flex; gap: 24px;
+}
+.footer-bottom-links a {
+  font-size: 13px; color: var(--muted); text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-bottom-links a:hover { color: var(--off); }
+.footer-chain {
+  display: flex; align-items: center; gap: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; color: var(--green);
+}
+.footer-chain-dot {
+  width: 6px; height: 6px; background: var(--green);
+  border-radius: 50;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* ═══════════════════════════════════════════════
+   FLOATING WHATSAPP BUTTON
+═══════════════════════════════════════════════ */
+.float-wa {
+  position: fixed; bottom: 28px; right: 28px; z-index: 1000;
+  display: flex; align-items: center; gap: 12px;
+  background: #25D366;
+  color: white; font-size: 15px; font-weight: 700;
+  padding: 14px 22px; border-radius: 100px;
+  text-decoration: none; cursor: pointer;
+  box-shadow:
+    0 0 0 4px rgba(37,211,102,0.2),
+    0 8px 32px rgba(37,211,102,0.4);
+  animation: glow 3s ease-in-out infinite;
+  transition: all 0.25s;
+}
+.float-wa:hover {
+  transform: scale(1.05) translateY(-2px);
+  box-shadow:
+    0 0 0 6px rgba(37,211,102,0.25),
+    0 16px 48px rgba(37,211,102,0.5);
+}
+.float-wa-icon { font-size: 22px; }
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .nav-links, .nav-cta { display: none; }
+  .hamburger { display: flex; }
+  .courses-grid, .for-grid, .testi-grid, .cert-inner { grid-template-columns: 1fr; }
+  .steps-grid, .why-grid, .pricing-grid, .footer-grid { grid-template-columns: 1fr 1fr; }
+  .faq-grid { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: repeat(3, 1fr); }
+  .hero-headline { letter-spacing: -1px; }
+  .cta-box { padding: 48px 28px; }
+  .steps-connector, .steps-connector-2 { display: none; }
+  .float-wa span { display: none; }
+  .float-wa { padding: 14px; border-radius: 50%; }
+}
+@media (max-width: 480px) {
+  .steps-grid, .why-grid, .pricing-grid, .footer-grid { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- BACKGROUND EFFECTS -->
+<div class="bg-effects">
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-orb orb-3"></div>
+</div>
+<div class="bg-grid"></div>
+
+<!-- FLOATING WHATSAPP -->
+<a class="float-wa" href="https://wa.me/2347034357206" target="_blank">
+  <span class="float-wa-icon">💬</span>
+  <span>Enrol via WhatsApp</span>
+</a>
+
+<!-- ═══════════════ NAVBAR ═══════════════ -->
+<nav>
+  <a class="nav-logo" href="#">
+    <div class="nav-logo-icon">MB</div>
+    <div class="nav-logo-text">
+      <div class="nav-logo-name">MetaBridge Academy</div>
+      <div class="nav-logo-tag">Blockchain EdTech</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#courses">Courses</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#certificate">Certificate</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <div class="nav-cta">
+    <a class="btn-nav" href="https://wa.me/2347034357206" target="_blank">
+      💬 Enrol Now
+    </a>
+  </div>
+  <div class="hamburger" onclick="this.classList.toggle('active')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ═══════════════ TICKER ═══════════════ -->
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <div class="ticker-item"><div class="ticker-dot"></div> 🔐 Cybersecurity — $75</div>
+    <div class="ticker-item"><div class="ticker-dot"></div> ₿ Cryptocurrency — $35</div>
+    <div class="ticker-item"><div class="ticker-dot"></div> 📊 Data Analytics — $50</div>
+    <div class="ticker-item"><div class="ticker-dot"></div> 🤖 Prompt Engineering — $20</div>
+    <div class="ticker-item"><div class="ticker-dot"></div> 🏆 Blockchain Verified Certificate</div>
+    <div class="ticker-item"><div class="ticker-dot"></div> 💼 Job-Ready Skills</div>
+    <div class="ticker-item"><div class="ticker-dot"></div> 🌍 100% Online</div>
+    <div class="ticker-item"><div class="ticker-dot"></div> ⚡ 12 Weeks to Transform Your Career</div>
+    <!-- duplicate for seamless loop -->
+    <div class="ticker-item"><div class="ticker-dot"></div> 🔐 Cybersecurity — $75</div>
+    <div class="ticker-item"><div class="ticker-dot"></div> ₿ Cryptocurrency — $35</div>
+    <div class="ticker-item"><div class="ticker-dot"></div> 📊 Data Analytics — $50</div>
+    <div class="ticker-item"><div class="ticker-dot"></div> 🤖 Prompt Engineering — $20</div>
+    <div class="ticker-item"><div class="ticker-dot"></div> 🏆 Blockchain Verified Certificate</div>
+    <div class="ticker-item"><div class="ticker-dot"></div> 💼 Job-Ready Skills</div>
+    <div class="ticker-item"><div class="ticker-dot"></div> 🌍 100% Online</div>
+    <div class="ticker-item"><div class="ticker-dot"></div> ⚡ 12 Weeks to Transform Your Career</div>
+  </div>
+</div>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<section class="section hero">
+  <div class="hero-badge">
+    <div class="hero-badge-dot"></div>
+    <span>Nigeria's Next-Generation Blockchain EdTech Platform</span>
+  </div>
+  <h1 class="hero-headline fade-up delay-1">
+    Learn Skills That<br>
+    <span class="shine">Pay Forever.</span>
+  </h1>
+  <p class="hero-sub fade-up delay-2">
+    Master <strong>Cybersecurity, Cryptocurrency, Data Analytics & AI Prompt Engineering</strong> — earn a blockchain-verified certificate that employers trust worldwide. 100% online. Job-ready in 12 weeks.
+  </p>
+  <div class="hero-actions fade-up delay-3">
+    <a class="btn-primary" href="#courses">
+      🚀 View All Courses
+    </a>
+    <a class="btn-whatsapp" href="https://wa.me/2347034357206" target="_blank">
+      💬 Enrol on WhatsApp
+    </a>
+    <a class="btn-secondary" href="#how">
+      How It Works →
+    </a>
+  </div>
+  <div class="hero-trust fade-up delay-4">
+    <div class="trust-item">
+      <div class="check">✓</div>
+      <span>No experience required</span>
+    </div>
+    <div class="trust-item">
+      <div class="check">✓</div>
+      <span>Blockchain certificate included</span>
+    </div>
+    <div class="trust-item">
+      <div class="check">✓</div>
+      <span>Learn from anywhere</span>
+    </div>
+    <div class="trust-item">
+      <div class="check">✓</div>
+      <span>Starting from just $20</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ AUDIENCE ═══════════════ -->
+<section class="section audience-strip">
+  <div class="audience-label">This programme is designed for</div>
+  <div class="audience-tags">
+    <div class="audience-tag"><span class="tag-emoji">🎓</span> University Students</div>
+    <div class="audience-tag"><span class="tag-emoji">👨‍🎓</span> Fresh Graduates</div>
+    <div class="audience-tag"><span class="tag-emoji">🪖</span> NYSC Members</div>
+    <div class="audience-tag"><span class="tag-emoji">💼</span> Working Professionals</div>
+    <div class="audience-tag"><span class="tag-emoji">🔄</span> Career Switchers</div>
+    <div class="audience-tag"><span class="tag-emoji">🌍</span> Diaspora Members</div>
+    <div class="audience-tag"><span class="tag-emoji">👨‍💻</span> Entrepreneurs</div>
+    <div class="audience-tag"><span class="tag-emoji">📈</span> Anyone 18–45</div>
+  </div>
+</section>
+
+<!-- ═══════════════ STATS ═══════════════ -->
+<section class="section stats-section">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <span class="stat-number">4</span>
+        <div class="stat-label">In-Demand<br>Courses</div>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number">72h</span>
+        <div class="stat-label">Hours of<br>Content</div>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number">100%</span>
+        <div class="stat-label">Online &<br>Flexible</div>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number">₿</span>
+        <div class="stat-label">Blockchain<br>Certified</div>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number">$20</span>
+        <div class="stat-label">Starting<br>Price</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ COURSES ═══════════════ -->
+<section class="section courses-section" id="courses">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">What We Train</div>
+      <h2 class="section-title">Four Courses. <span class="accent">One Future.</span></h2>
+      <p class="section-desc">Every course is built for real-world results — from zero experience to job-ready skills in 12 weeks.</p>
+    </div>
+    <div class="courses-grid">
+
+      <!-- Cybersecurity -->
+      <div class="course-card cc-cyber">
+        <div class="course-header">
+          <div class="course-icon-wrap ci-cyber">🔐</div>
+          <div class="course-price-wrap">
+            <div class="course-price">$75</div>
+            <span class="course-price-sub">Full Course</span>
+          </div>
+        </div>
+        <h3 class="course-title">Cybersecurity</h3>
+        <p class="course-desc">From network fundamentals to ethical hacking. CompTIA Security+ SY0-701 aligned. Learn to protect systems, detect threats, and respond to incidents — the skills every organisation desperately needs.</p>
+        <div class="course-skills">
+          <span class="skill-tag st-cyber">Network Security</span>
+          <span class="skill-tag st-cyber">Ethical Hacking</span>
+          <span class="skill-tag st-cyber">Cryptography</span>
+          <span class="skill-tag st-cyber">SOC Operations</span>
+          <span class="skill-tag st-cyber">Kali Linux</span>
+          <span class="skill-tag st-cyber">CompTIA Aligned</span>
+        </div>
+        <div class="course-meta">
+          <div class="meta-item"><span class="meta-icon">📅</span> 12 Weeks</div>
+          <div class="meta-item"><span class="meta-icon">⏱️</span> 72 Hours</div>
+          <div class="meta-item"><span class="meta-icon">🧪</span> 13 Labs</div>
+          <a class="course-cta" href="https://wa.me/2347034357206" target="_blank">Enrol Now →</a>
+        </div>
+      </div>
+
+      <!-- Cryptocurrency -->
+      <div class="course-card cc-crypto">
+        <div class="course-header">
+          <div class="course-icon-wrap ci-crypto">₿</div>
+          <div class="course-price-wrap">
+            <div class="course-price">$35</div>
+            <span class="course-price-sub">Full Course</span>
+          </div>
+        </div>
+        <h3 class="course-title">Cryptocurrency</h3>
+        <p class="course-desc">Blockchain, Bitcoin, Ethereum, DeFi, NFTs, trading, wallets, and regulation. Go from complete beginner to confident investor and trader. The most comprehensive crypto course available at this price.</p>
+        <div class="course-skills">
+          <span class="skill-tag st-crypto">Bitcoin & Ethereum</span>
+          <span class="skill-tag st-crypto">DeFi & NFTs</span>
+          <span class="skill-tag st-crypto">Technical Analysis</span>
+          <span class="skill-tag st-crypto">Wallets & Security</span>
+          <span class="skill-tag st-crypto">Portfolio Building</span>
+          <span class="skill-tag st-crypto">Trading Strategies</span>
+        </div>
+        <div class="course-meta">
+          <div class="meta-item"><span class="meta-icon">📅</span> 12 Weeks</div>
+          <div class="meta-item"><span class="meta-icon">⏱️</span> 72 Hours</div>
+          <div class="meta-item"><span class="meta-icon">🧪</span> 12 Practicals</div>
+          <a class="course-cta" href="https://wa.me/2347034357206" target="_blank">Enrol Now →</a>
+        </div>
+      </div>
+
+      <!-- Data Analytics -->
+      <div class="course-card cc-data">
+        <div class="course-header">
+          <div class="course-icon-wrap ci-data">📊</div>
+          <div class="course-price-wrap">
+            <div class="course-price">$50</div>
+            <span class="course-price-sub">Full Course</span>
+          </div>
+        </div>
+        <h3 class="course-title">Data Analytics</h3>
+        <p class="course-desc">Excel, SQL, Python, Power BI — the complete data analyst toolkit. Learn to collect, clean, analyse, and visualise data. Build dashboards that drive decisions. One of the most in-demand careers globally.</p>
+        <div class="course-skills">
+          <span class="skill-tag st-data">Excel & SQL</span>
+          <span class="skill-tag st-data">Python & pandas</span>
+          <span class="skill-tag st-data">Power BI</span>
+          <span class="skill-tag st-data">Data Visualisation</span>
+          <span class="skill-tag st-data">Machine Learning</span>
+          <span class="skill-tag st-data">Statistics</span>
+        </div>
+        <div class="course-meta">
+          <div class="meta-item"><span class="meta-icon">📅</span> 12 Weeks</div>
+          <div class="meta-item"><span class="meta-icon">⏱️</span> 72 Hours</div>
+          <div class="meta-item"><span class="meta-icon">🧪</span> 12 Labs</div>
+          <a class="course-cta" href="https://wa.me/2347034357206" target="_blank">Enrol Now →</a>
+        </div>
+      </div>
+
+      <!-- Prompt Engineering -->
+      <div class="course-card cc-prompt">
+        <div class="course-header">
+          <div class="course-icon-wrap ci-prompt">🤖</div>
+          <div class="course-price-wrap">
+            <div class="course-price">$20</div>
+            <span class="course-price-sub">Full Course</span>
+          </div>
+        </div>
+        <h3 class="course-title">Prompt Engineering</h3>
+        <p class="course-desc">Master ChatGPT, Claude, Gemini, Midjourney, and AI automation tools. Learn to direct AI for 10× productivity — in writing, research, coding, and business. The most affordable AI course with the highest ROI.</p>
+        <div class="course-skills">
+          <span class="skill-tag st-prompt">ChatGPT & Claude</span>
+          <span class="skill-tag st-prompt">Midjourney</span>
+          <span class="skill-tag st-prompt">AI Automation</span>
+          <span class="skill-tag st-prompt">Make & Zapier</span>
+          <span class="skill-tag st-prompt">Advanced Prompting</span>
+          <span class="skill-tag st-prompt">AI Agents</span>
+        </div>
+        <div class="course-meta">
+          <div class="meta-item"><span class="meta-icon">📅</span> 12 Weeks</div>
+          <div class="meta-item"><span class="meta-icon">⏱️</span> 72 Hours</div>
+          <div class="meta-item"><span class="meta-icon">🧪</span> 12 Projects</div>
+          <a class="course-cta" href="https://wa.me/2347034357206" target="_blank">Enrol Now →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ HOW IT WORKS ═══════════════ -->
+<section class="section how-section" id="how">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Simple Process</div>
+      <h2 class="section-title">From <span class="accent">Zero</span> to Certified in 3 Steps</h2>
+      <p class="section-desc">Getting started takes less than 5 minutes. Your new career begins today.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="steps-connector"></div>
+      <div class="steps-connector-2"></div>
+      <div class="step-card">
+        <span class="step-number">STEP 01</span>
+        <div class="step-icon-circle">💬</div>
+        <h3 class="step-title">Message Us on WhatsApp</h3>
+        <p class="step-desc">Send "ENROL" to 07034357206. Our team will respond instantly with course details, payment options, and enrolment instructions.</p>
+      </div>
+      <div class="step-card">
+        <span class="step-number">STEP 02</span>
+        <div class="step-icon-circle">📚</div>
+        <h3 class="step-title">Start Learning Immediately</h3>
+        <p class="step-desc">Access your course materials on any device — laptop, tablet, or phone. Learn at your own pace with expert instructor support throughout.</p>
+      </div>
+      <div class="step-card">
+        <span class="step-number">STEP 03</span>
+        <div class="step-icon-circle">🏆</div>
+        <h3 class="step-title">Earn Your Blockchain Certificate</h3>
+        <p class="step-desc">Complete your course and receive a blockchain-verified certificate that employers can instantly verify. Your credential lives on-chain — permanent, tamper-proof, globally trusted.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ WHO IS IT FOR ═══════════════ -->
+<section class="section for-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Is This For You?</div>
+      <h2 class="section-title">Built for <span class="accent">Real People</span> with Real Goals</h2>
+      <p class="section-desc">No matter where you are starting from, MetaBridge Academy has a path for you.</p>
+    </div>
+    <div class="for-grid">
+      <div class="for-card">
+        <span class="for-emoji">🎓</span>
+        <h3 class="for-title">University Students</h3>
+        <p class="for-desc">Still in school and want to graduate with a skill advantage? Build a portfolio and earn a credential that makes you stand out from thousands of graduates applying for the same jobs.</p>
+        <span class="for-tag">Start While in School</span>
+      </div>
+      <div class="for-card">
+        <span class="for-emoji">👨‍🎓</span>
+        <h3 class="for-title">Fresh Graduates & NYSC</h3>
+        <p class="for-desc">Just graduated and not sure what's next? Use your NYSC year to earn a globally-recognised digital skill. Employers hire certified analysts, security professionals, and AI experts daily.</p>
+        <span class="for-tag">Most Common Profile</span>
+      </div>
+      <div class="for-card">
+        <span class="for-emoji">💼</span>
+        <h3 class="for-title">Working Professionals</h3>
+        <p class="for-desc">Already employed but want to earn more, do more, and grow faster? Add data analytics or cybersecurity skills to your existing experience. Our students average 30–50% salary increases after certification.</p>
+        <span class="for-tag">Highest ROI Group</span>
+      </div>
+      <div class="for-card">
+        <span class="for-emoji">🔄</span>
+        <h3 class="for-title">Career Switchers</h3>
+        <p class="for-desc">Done with your current field and ready for something that pays better and has a future? Every course is designed to take you from zero — no prior technical experience needed. Just commitment.</p>
+        <span class="for-tag">No Experience Needed</span>
+      </div>
+      <div class="for-card">
+        <span class="for-emoji">🌍</span>
+        <h3 class="for-title">Diaspora Members</h3>
+        <p class="for-desc">Living abroad and want to invest in skills that work everywhere? Or want to upskill family members back home? Our globally-recognised blockchain certificates are valued in every market.</p>
+        <span class="for-tag">Global Recognition</span>
+      </div>
+      <div class="for-card">
+        <span class="for-emoji">🚀</span>
+        <h3 class="for-title">Entrepreneurs</h3>
+        <p class="for-desc">Running a business and want to use AI, data, or crypto to grow it? Our Prompt Engineering and Data Analytics courses are designed to give business owners a massive competitive advantage.</p>
+        <span class="for-tag">Business Edge</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ CERTIFICATE ═══════════════ -->
+<section class="section cert-section" id="certificate">
+  <div class="container">
+    <div class="cert-inner">
+      <div class="cert-content">
+        <div class="cert-eyebrow">Blockchain Technology</div>
+        <h2 class="cert-title">A Certificate That Can't Be <span class="gold">Faked.</span></h2>
+        <p class="cert-body">MetaBridge Academy is a next-generation blockchain-based EdTech platform. Every certificate we issue is recorded on the blockchain — creating a permanent, tamper-proof, instantly verifiable credential that employers can trust completely.</p>
+        <div class="cert-features">
+          <div class="cert-feat">
+            <div class="cert-feat-icon">🔗</div>
+            <div class="cert-feat-text">
+              <div class="cert-feat-title">On-Chain Verification</div>
+              <div class="cert-feat-desc">Your certificate is recorded on the blockchain — permanent and publicly verifiable by any employer globally.</div>
+            </div>
+          </div>
+          <div class="cert-feat">
+            <div class="cert-feat-icon">🛡️</div>
+            <div class="cert-feat-text">
+              <div class="cert-feat-title">Tamper-Proof Credential</div>
+              <div class="cert-feat-desc">No one can forge, alter, or revoke your certificate once issued. Your achievement is yours forever.</div>
+            </div>
+          </div>
+          <div class="cert-feat">
+            <div class="cert-feat-icon">🌐</div>
+            <div class="cert-feat-text">
+              <div class="cert-feat-title">Globally Recognised</div>
+              <div class="cert-feat-desc">Accepted by employers in Nigeria, the UK, UAE, USA, and across Africa's growing tech ecosystem.</div>
+            </div>
+          </div>
+          <div class="cert-feat">
+            <div class="cert-feat-icon">⚡</div>
+            <div class="cert-feat-text">
+              <div class="cert-feat-title">Instant Verification</div>
+              <div class="cert-feat-desc">Employers verify your certificate in seconds — no phone calls, no paperwork, no delays.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cert-mockup">
+        <div class="cert-card">
+          <div class="cert-card-logo">
+            <div class="cert-card-logo-icon">MB</div>
+            <div>
+              <div class="cert-card-logo-name">MetaBridge Academy</div>
+              <div class="cert-card-logo-sub">Next-Generation Blockchain EdTech</div>
+            </div>
+          </div>
+          <div class="cert-card-badge">
+            <span class="cert-badge-icon-large">🏆</span>
+            <div class="cert-badge-text">Certificate of Completion</div>
+            <div class="cert-badge-sub">This is to certify that</div>
+          </div>
+          <div class="cert-card-name">Amara Okonkwo</div>
+          <div class="cert-card-course">has successfully completed<br><strong style="color:var(--white)">Data Analytics — Full Course</strong></div>
+          <div class="cert-chain-badge">
+            <div class="chain-dot"></div>
+            <span class="chain-text">VERIFIED ON BLOCKCHAIN · 0x4f2a...8c91</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ TESTIMONIALS ═══════════════ -->
+<section class="section testimonials-section" id="testimonials">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Student Reviews</div>
+      <h2 class="section-title">Real Students. <span class="accent">Real Results.</span></h2>
+      <p class="section-desc">Don't take our word for it — here's what our students say about MetaBridge Academy.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">I enrolled in the Cybersecurity course during my NYSC year. Within 3 months of completing it, I landed a Junior SOC Analyst role paying ₦350,000 monthly. The course content was incredibly practical — I used Kali Linux and Wireshark from Week 2.</p>
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-author">
+          <div class="testi-avatar av-1">AO</div>
+          <div>
+            <div class="testi-name">Abiodun Ogundimu</div>
+            <div class="testi-role">SOC Analyst, Lagos · NYSC Corps Member</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">As a fresh Economics graduate, I had no technical background. The Data Analytics course took me step by step through Excel, SQL, and Python. I now work as a Business Intelligence Analyst at a fintech company. MetaBridge changed my life completely.</p>
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-author">
+          <div class="testi-avatar av-2">CE</div>
+          <div>
+            <div class="testi-name">Chidera Ezenwachi</div>
+            <div class="testi-role">BI Analyst, Abuja · Economics Graduate</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">I took the Prompt Engineering course and now run an AI content agency. In my first month using the skills, I earned ₦280,000 from 4 clients. The ROI on $20 is insane. I recommend this to every creative professional I know.</p>
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-author">
+          <div class="testi-avatar av-3">FD</div>
+          <div>
+            <div class="testi-name">Fatima Danladi</div>
+            <div class="testi-role">AI Content Entrepreneur, Kano</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">I was working in banking for 8 years and felt stuck. The Cryptocurrency course opened my eyes to DeFi and trading. I now manage a small crypto portfolio and have tripled my initial investment. The blockchain certificate gave my knowledge instant credibility.</p>
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-author">
+          <div class="testi-avatar av-4">KA</div>
+          <div>
+            <div class="testi-name">Kayode Adeyemi</div>
+            <div class="testi-role">Crypto Investor & Trader, Port Harcourt</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">Taking MetaBridge from the UK was seamless — everything online, instructors available on WhatsApp. The blockchain certificate was important to me because it's verifiable from anywhere. My Nigerian employer recognised it immediately.</p>
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-author">
+          <div class="testi-avatar av-5">NA</div>
+          <div>
+            <div class="testi-name">Ngozi Adaeze-Brown</div>
+            <div class="testi-role">Remote Data Analyst · Nigerian Diaspora, UK</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">I'm a 200 Level Computer Science student and completed the Cybersecurity course alongside my studies. The material is deeper and more practical than anything in my university curriculum. I already have an internship offer because of this certificate.</p>
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-author">
+          <div class="testi-avatar av-6">TO</div>
+          <div>
+            <div class="testi-name">Tunde Olawale</div>
+            <div class="testi-role">CS Student, University of Lagos</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ WHY US ═══════════════ -->
+<section class="section why-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Why MetaBridge</div>
+      <h2 class="section-title">Not Just Another <span class="accent">Online Course.</span></h2>
+      <p class="section-desc">We built MetaBridge Academy because existing training is too expensive, too generic, and doesn't verify credentials. We fixed all of that.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon wi-blue">🌐</div>
+        <h3 class="why-title">100% Online</h3>
+        <p class="why-desc">Learn from anywhere in the world — your bedroom, your office, a café. All you need is a phone or laptop and internet connection.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon wi-gold">🏆</div>
+        <h3 class="why-title">Blockchain Certificate</h3>
+        <p class="why-desc">The only EdTech platform in Nigeria issuing blockchain-verified credentials. Your certificate is tamper-proof and instantly verifiable.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon wi-green">💼</div>
+        <h3 class="why-title">Job-Ready Skills</h3>
+        <p class="why-desc">Every module is built around real workplace tasks. You graduate with a portfolio of actual projects — not just a PDF certificate.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon wi-cyan">👨‍🏫</div>
+        <h3 class="why-title">Expert Instructors</h3>
+        <p class="why-desc">Learn from industry professionals with real-world experience — not academics reading from textbooks. Applied knowledge only.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon wi-purple">💰</div>
+        <h3 class="why-title">Incredibly Affordable</h3>
+        <p class="why-desc">Starting at just $20. Comparable courses cost $500–$2,000 elsewhere. We believe access to quality training should not depend on your income.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon wi-red">🔥</div>
+        <h3 class="why-title">In-Demand Skills</h3>
+        <p class="why-desc">All four courses address global skill shortages. Cybersecurity, data analytics, and AI prompt engineering are among the fastest-growing jobs on Earth.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon wi-orange">💬</div>
+        <h3 class="why-title">WhatsApp Support</h3>
+        <p class="why-desc">Direct access to instructors and support via WhatsApp. No support tickets, no waiting 48 hours. Real humans who actually help.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon wi-teal">🇳🇬</div>
+        <h3 class="why-title">Built for Nigeria</h3>
+        <p class="why-desc">Examples, case studies, and context are Nigerian and African. We understand your market, your employers, and your opportunities.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ PRICING ═══════════════ -->
+<section class="section pricing-section" id="pricing">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Pricing</div>
+      <h2 class="section-title">Transparent Pricing. <span class="accent">Zero Hidden Costs.</span></h2>
+      <p class="section-desc">Every price includes full course access, live instructor support, and your blockchain-verified certificate. No extras. No surprises.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card pc-cyber">
+        <span class="price-icon">🔐</span>
+        <div class="price-course">Cybersecurity</div>
+        <div class="price-duration">12 Weeks · 72 Hours</div>
+        <div class="price-amount">$75</div>
+        <div class="price-per">Full course + certificate</div>
+        <a class="price-cta" href="https://wa.me/2347034357206" target="_blank">Enrol on WhatsApp</a>
+      </div>
+      <div class="price-card pc-crypto">
+        <span class="price-icon">₿</span>
+        <div class="price-course">Cryptocurrency</div>
+        <div class="price-duration">12 Weeks · 72 Hours</div>
+        <div class="price-amount">$35</div>
+        <div class="price-per">Full course + certificate</div>
+        <a class="price-cta" href="https://wa.me/2347034357206" target="_blank">Enrol on WhatsApp</a>
+      </div>
+      <div class="price-card pc-data">
+        <span class="price-icon">📊</span>
+        <div class="price-course">Data Analytics</div>
+        <div class="price-duration">12 Weeks · 72 Hours</div>
+        <div class="price-amount">$50</div>
+        <div class="price-per">Full course + certificate</div>
+        <a class="price-cta" href="https://wa.me/2347034357206" target="_blank">Enrol on WhatsApp</a>
+      </div>
+      <div class="price-card pc-prompt">
+        <span class="price-icon">🤖</span>
+        <div class="price-course">Prompt Engineering</div>
+        <div class="price-duration">12 Weeks · 72 Hours</div>
+        <div class="price-amount">$20</div>
+        <div class="price-per">Full course + certificate</div>
+        <a class="price-cta" href="https://wa.me/2347034357206" target="_blank">Enrol on WhatsApp</a>
+      </div>
+    </div>
+    <div style="text-align:center;">
+      <p style="font-size:14px; color:var(--muted); margin-bottom:20px;">All courses include: Full lesson content · Expert instructor access · Hands-on labs · Blockchain certificate · WhatsApp support</p>
+      <a class="btn-primary" href="https://wa.me/2347034357206" target="_blank" style="display:inline-flex;">
+        💬 Message Us to Discuss Payment Plans
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ FAQ ═══════════════ -->
+<section class="section faq-section" id="faq">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Common Questions</div>
+      <h2 class="section-title">Everything You <span class="accent">Need to Know</span></h2>
+    </div>
+    <div class="faq-grid">
+
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">Do I need any prior experience or technical background?<div class="faq-arrow">▼</div></div>
+        <div class="faq-a">No prior experience is required for any of our courses. Every course is designed to start from absolute zero and take you to job-ready level. All you need is a smartphone or laptop, internet access, and the commitment to learn.</div>
+      </div>
+
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">How long does each course take to complete?<div class="faq-arrow">▼</div></div>
+        <div class="faq-a">Every course is structured as 12 weeks, requiring approximately 6 hours per week. However, you can move faster or slower depending on your schedule. Content is available 24/7 so you learn at your own pace.</div>
+      </div>
+
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">What exactly is a blockchain-verified certificate?<div class="faq-arrow">▼</div></div>
+        <div class="faq-a">When you complete a course, your certificate is recorded on the blockchain — a permanent, decentralised ledger. This means any employer anywhere in the world can instantly verify your credential without contacting us. It cannot be forged, altered, or lost. It exists on-chain forever.</div>
+      </div>
+
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">Can I take more than one course at the same time?<div class="faq-arrow">▼</div></div>
+        <div class="faq-a">Yes — you can enrol in multiple courses simultaneously. Many students combine Data Analytics with Prompt Engineering, or Cybersecurity with Data Analytics for maximum career impact. Message us on WhatsApp to discuss bundle pricing.</div>
+      </div>
+
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">How do I pay? Is payment in Naira available?<div class="faq-arrow">▼</div></div>
+        <div class="faq-a">We accept multiple payment methods including bank transfer, card payment, and cryptocurrency. Naira equivalent pricing is available. Message us on WhatsApp at 07034357206 and we will share the current Naira rates and payment details.</div>
+      </div>
+
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">What happens after I enrol? How does it work?<div class="faq-arrow">▼</div></div>
+        <div class="faq-a">After enrolment and payment, you receive immediate access to your course materials. You are added to a WhatsApp group with your instructor and fellow students. Weekly live sessions are held, and you can ask questions at any time via WhatsApp. Labs and assignments are submitted through the provided platform.</div>
+      </div>
+
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">I live outside Nigeria — can I still enrol?<div class="faq-arrow">▼</div></div>
+        <div class="faq-a">Absolutely. MetaBridge Academy is 100% online and open to students worldwide. We have students in the UK, USA, UAE, Canada, and across Africa. The blockchain certificate is globally recognised and verifiable from anywhere.</div>
+      </div>
+
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">What support will I have during the course?<div class="faq-arrow">▼</div></div>
+        <div class="faq-a">You get direct WhatsApp access to your instructor, a student community group, weekly live Q&A sessions, and a dedicated support line. We believe learning should not be done alone — we are with you every step of the way.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ FINAL CTA ═══════════════ -->
+<section class="section cta-section">
+  <div class="container">
+    <div class="cta-box">
+      <div class="cta-box-title">
+        Your Career Transformation<br>Starts <span class="gold">Right Now.</span>
+      </div>
+      <p class="cta-box-sub">
+        Thousands of people are waiting for the "right time." The right time is now. Send us a WhatsApp and begin your journey to a skill that pays for life.
+      </p>
+      <div class="cta-buttons">
+        <a class="btn-primary" href="#courses" style="font-size:17px; padding:18px 40px;">
+          🚀 Browse All Courses
+        </a>
+        <a class="btn-whatsapp" href="https://wa.me/2347034357206" target="_blank" style="font-size:17px; padding:18px 36px;">
+          💬 WhatsApp: 07034357206
+        </a>
+      </div>
+      <div class="cta-reassurance">
+        <div class="reassure-item"><span class="reassure-check">✓</span> No experience needed</div>
+        <div class="reassure-item"><span class="reassure-check">✓</span> Starting from $20</div>
+        <div class="reassure-item"><span class="reassure-check">✓</span> Blockchain certificate included</div>
+        <div class="reassure-item"><span class="reassure-check">✓</span> 100% online</div>
+        <div class="reassure-item"><span class="reassure-check">✓</span> WhatsApp support</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="footer-logo" href="#">
+          <div class="footer-logo-icon">MB</div>
+          <div class="footer-logo-name">MetaBridge Academy</div>
+        </a>
+        <p class="footer-brand-desc">Nigeria's next-generation blockchain-based EdTech platform. We believe every Nigerian deserves access to world-class digital skills training — at a price they can afford.</p>
+        <div class="footer-contact">
+          <a href="https://wa.me/2347034357206" target="_blank">💬 WhatsApp: 07034357206</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Courses</div>
+        <ul class="footer-links">
+          <li><a href="#courses">🔐 Cybersecurity — $75</a></li>
+          <li><a href="#courses">₿ Cryptocurrency — $35</a></li>
+          <li><a href="#courses">📊 Data Analytics — $50</a></li>
+          <li><a href="#courses">🤖 Prompt Engineering — $20</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Company</div>
+        <ul class="footer-links">
+          <li><a href="#how">How It Works</a></li>
+          <li><a href="#certificate">Blockchain Certificate</a></li>
+          <li><a href="#testimonials">Student Reviews</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">For</div>
+        <ul class="footer-links">
+          <li><a href="#">University Students</a></li>
+          <li><a href="#">NYSC Members</a></li>
+          <li><a href="#">Working Professionals</a></li>
+          <li><a href="#">Diaspora</a></li>
+          <li><a href="#">Career Switchers</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 MetaBridge Academy. All rights reserved.</div>
+      <div class="footer-chain">
+        <div class="footer-chain-dot"></div>
+        Blockchain Verified Credentials
+      </div>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="https://wa.me/2347034357206" target="_blank">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Intersection Observer for scroll animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.course-card, .step-card, .for-card, .testi-card, .why-card, .price-card, .stat-card').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(24px)';
+  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+  observer.observe(el);
+});
+
+// Navbar scroll effect
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('nav');
+  if (window.scrollY > 50) {
+    nav.style.background = 'rgba(5,11,24,0.98)';
+    nav.style.boxShadow = '0 4px 32px rgba(0,0,0,0.4)';
+  } else {
+    nav.style.background = 'rgba(5,11,24,0.85)';
+    nav.style.boxShadow = 'none';
+  }
+});
+
+// Smooth FAQ toggle
+document.querySelectorAll('.faq-item').forEach(item => {
+  item.addEventListener('click', () => {
+    document.querySelectorAll('.faq-item').forEach(other => {
+      if (other !== item) other.classList.remove('open');
+    });
+  });
+});
+</script>
+</body>
+</html>
