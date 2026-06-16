@@ -53,7 +53,7 @@ const paidPrograms = [
     duration: '6 Weeks Intensive',
     cert: 'Certificate of Achievement',
     verified: 'QR-Verified Certificate',
-    price: '$4 (NGN 5,000) — Textbook Included',
+    price: '$75 (NGN 100,000)',
     outcomes: [
       'Understand cryptographic principles and how blockchain security works',
       'Identify and defend against the most common cyberattacks',
@@ -72,7 +72,7 @@ const paidPrograms = [
     duration: '6 Weeks Intensive',
     cert: 'Certificate of Achievement',
     verified: 'QR-Verified Certificate',
-    price: '$4 (NGN 5,000) — Textbook Included',
+    price: '$50 (NGN 75,000)',
     outcomes: [
       'Clean, analyse, and visualize data using industry-standard tools',
       'Build dashboards that communicate insights to decision-makers',
@@ -91,7 +91,7 @@ const paidPrograms = [
     duration: '6 Weeks Intensive',
     cert: 'Certificate of Achievement',
     verified: 'QR-Verified Certificate',
-    price: '$2.50 (NGN 3,000) — Textbook Included',
+    price: '$20 (NGN 30,000)',
     outcomes: [
       'Write high-performance prompts for any AI model',
       'Automate professional workflows using AI tools',
@@ -110,7 +110,7 @@ const paidPrograms = [
     duration: '6 Weeks Intensive',
     cert: 'Certificate of Achievement',
     verified: 'QR-Verified Certificate',
-    price: '$2.50 (NGN 3,000) — Textbook Included',
+    price: '$35 (NGN 50,000)',
     outcomes: [
       'Understand how blockchain technology works at a technical level',
       'Evaluate cryptocurrencies, DeFi protocols, and digital assets',
