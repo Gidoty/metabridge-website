@@ -1,115 +1,115 @@
 export const testimonials = [
   {
-    name: 'Chukwuemeka Obi',
-    role: 'Cybersecurity Analyst',
-    location: 'Lagos, Nigeria',
+    name: 'Prince Nweke',
+    role: 'Credit and Payments Analyst',
+    location: 'Port Harcourt, Nigeria',
+    programme: 'Blockchain & Cryptocurrency',
     quote:
-      'Metabridge Academy completely changed my career trajectory. The cybersecurity programme gave me practical skills I applied on my very first day at my new job. The Nigerian context throughout the course made it feel real — not abstract.',
+      "I almost didn't mention my Metabridge training during my bank interview. But when the panel asked about digital payment systems and blockchain reconciliation, something clicked — I didn't just answer the question, I owned it. Three days later, I got the offer. My manager told me afterward that my depth of understanding around blockchain technology was the deciding factor. Metabridge Academy didn't just teach me crypto — it gave me an edge that made employers choose me over candidates with years more experience.",
+  },
+  {
+    name: 'Victoria Amadi',
+    role: 'Data Analyst, FMCG Sector',
+    location: 'Lagos, Nigeria',
+    programme: 'Data Analytics',
+    quote:
+      "Before Metabridge, I was sending applications and receiving silence. Six weeks after completing the Data Analytics training, I was sitting in a corner office at one of Lagos's fastest-growing consumer goods companies, presenting a sales performance dashboard to the executive team. I had gone from rejected applicant to Data Analyst in under two months. The return on this investment was the best financial decision I have made in my career.",
+  },
+  {
+    name: 'Chukwuma Obi',
+    role: 'Cybersecurity Analyst (Remote, UK Contract)',
+    location: 'Port Harcourt, Nigeria',
     programme: 'Cybersecurity',
+    quote:
+      "When I enrolled in the Metabridge Cybersecurity training, I genuinely did not know if anything would come of it. Four months later, I was negotiating a remote contract with a cybersecurity firm in the United Kingdom — from Port Harcourt. The first month's pay arrived in pounds sterling. I sat there and cried. My family cried. Metabridge Academy didn't just give me a skill. It gave me a life I had stopped believing I could have.",
+  },
+  {
+    name: 'Favour Eze',
+    role: 'Health Data Analyst, Private Healthcare Group',
+    location: 'Port Harcourt, Nigeria',
+    programme: 'Data Analytics',
+    quote:
+      "I enrolled in the Metabridge Data Analytics training while between jobs, uncertain what direction to take. Within three months of completing the programme, I was hired by a private hospital group as a Health Data Analyst — a role I didn't even know existed before Metabridge opened my eyes to how wide the field is. Worth every naira, and then some.",
+  },
+  {
+    name: 'Charles Obiora',
+    role: 'AI Marketing Strategist, Real Estate',
+    location: 'Lagos, Nigeria',
+    programme: 'Artificial Intelligence',
+    quote:
+      "Real estate in Lagos is brutally competitive. When I joined Metabridge's AI training, I learned to use artificial intelligence to write compelling property listings and personalise client outreach at scale. Within my first 60 days at my current company, our lead conversion rate increased by 34%. My manager assumed I had hired an external marketing agency. I told him: I learned this from Metabridge Academy.",
+  },
+  {
+    name: 'Precious Akamudo',
+    role: 'Cryptocurrency Research Analyst (International, Remote)',
+    location: 'Abuja, Nigeria',
+    programme: 'Blockchain & Cryptocurrency',
+    quote:
+      'I started the Blockchain training at Metabridge genuinely unsure whether crypto was a real, sustainable career path. Within weeks of completing the programme, I had my first international client — a crypto investment firm looking for research analysts with a strong understanding of African blockchain markets. The technical foundation Metabridge gave me holds up in any global conversation. That is a rare thing.',
   },
   {
     name: 'Adaeze Nwosu',
-    role: 'Data Analyst',
+    role: 'Strategy and Data Analyst, Financial Services',
     location: 'Abuja, Nigeria',
-    quote:
-      'I had tried online courses before and never finished them. Metabridge was different — the instruction was direct, the examples were local, and within six weeks I had a portfolio I could show employers. I got hired within a month of finishing.',
     programme: 'Data Analytics',
-  },
-  {
-    name: 'Kingsley Eze',
-    role: 'Blockchain Consultant',
-    location: 'Port Harcourt, Nigeria',
     quote:
-      'The Blockchain & Cryptocurrency programme was unlike anything I found elsewhere. It did not just explain what blockchain is — it explained what it means for Nigerians specifically, with the regulatory and market context I actually needed.',
-    programme: 'Blockchain',
+      "I almost talked myself out of enrolling because I thought — how valuable can a course this accessible actually be? That was the most expensive assumption of my career. I later compared notes with a colleague who had paid three times the price for an overseas programme, and I was covering more practical, applicable ground. Value for money doesn't capture it. This is value that repositions your entire career.",
   },
   {
-    name: 'Fatima Al-Hassan',
-    role: 'AI Prompt Engineer',
-    location: 'Kano, Nigeria',
-    quote:
-      'The AI Sefer book and programme opened my eyes to what AI can actually do in a professional context. I now build automation tools for small businesses and earn significantly more than I did before.',
-    programme: 'Artificial Intelligence',
-  },
-  {
-    name: 'Emeka Okoro',
-    role: 'Remote Security Consultant',
-    location: 'London, UK (originally Port Harcourt)',
-    quote:
-      'I took the cybersecurity course while still in Nigeria. The QR-verified certificate was accepted by my UK employer without question. Metabridge delivered on its promise of global recognition.',
-    programme: 'Cybersecurity',
-  },
-  {
-    name: 'Blessing Udoh',
-    role: 'Business Intelligence Specialist',
-    location: 'Accra, Ghana',
-    quote:
-      'I moved to Ghana for work and brought my Metabridge certificate with me. My employer here knew the quality immediately. The data analytics skills I learned have made me one of the most valuable members of my team.',
-    programme: 'Data Analytics',
-  },
-  {
-    name: 'Tunde Adeyemi',
-    role: 'Web3 Developer',
+    name: 'Emmanuel Taiwo',
+    role: 'Cybersecurity Associate, Fintech',
     location: 'Lagos, Nigeria',
-    quote:
-      'After completing the Blockchain programme, I joined a DeFi startup in Lagos. The depth of the content — especially on Nigerian regulations and wallet security — gave me confidence that most of my peers simply do not have.',
-    programme: 'Blockchain',
-  },
-  {
-    name: 'Ngozi Okafor',
-    role: 'Content Strategist (AI-assisted)',
-    location: 'Port Harcourt, Nigeria',
-    quote:
-      'The AI course is what I was looking for — not just a list of tools, but a system for using them professionally. My productivity tripled and I now train other professionals in AI tools.',
-    programme: 'Artificial Intelligence',
-  },
-  {
-    name: 'Suleiman Ibrahim',
-    role: 'Data Scientist',
-    location: 'Kaduna, Nigeria',
-    quote:
-      'What sets Metabridge apart is that the content feels like it was written by someone who understands Nigeria. The datasets, the examples, the challenges — all of it made sense in my professional context. Highest quality training I have experienced.',
-    programme: 'Data Analytics',
-  },
-  {
-    name: 'Chiamaka Eze',
-    role: 'SOC Analyst',
-    location: 'Port Harcourt, Nigeria',
-    quote:
-      'I enrolled in the cybersecurity course as a complete beginner. By the end I could conduct a vulnerability assessment and write a professional incident response report. The learning curve was steep but the support was excellent.',
     programme: 'Cybersecurity',
+    quote:
+      "Two years of applications. Two years of rejection emails and silence. I enrolled in Metabridge's Cybersecurity programme out of sheer determination to change something. It turned out to be the pivot that changed everything. I now work with one of Lagos's growing fintech companies as a Cybersecurity Associate, protecting real financial infrastructure for real people.",
   },
   {
-    name: 'David Abiodun',
-    role: 'Freelance AI Consultant',
-    location: 'Ibadan, Nigeria',
+    name: 'Ngozi Okonkwo',
+    role: 'Web3 Consultant (Remote, USA)',
+    location: 'Formerly Enugu, Nigeria',
+    programme: 'Blockchain & Cryptocurrency',
     quote:
-      'The The Complete AI Sefer textbook alone was worth more than any online subscription I have ever paid for. When you add the live programme on top of that, it is unbeatable value for Nigerian professionals.',
-    programme: 'Artificial Intelligence',
+      'From Enugu to Houston. That is my Metabridge story. I enrolled in the Blockchain programme while working a local retail job with no obvious path forward. Twelve months later, I was consulting for a US-based Web3 startup, remotely, earning in dollars. If you are in Nigeria wondering whether Web3 is a real career, I am sitting proof that it is real.',
   },
   {
-    name: 'Esther Musa',
-    role: 'Risk Analyst (Crypto)',
-    location: 'Abuja, Nigeria',
-    quote:
-      'I work in financial services and the Blockchain programme gave me the credibility to advise my firm on digital asset strategy. My manager now consults me specifically on crypto regulations. This was absolutely life-changing.',
-    programme: 'Blockchain',
-  },
-  {
-    name: 'Ifeanyi Nwokocha',
-    role: 'Data Engineer',
-    location: 'Houston, USA',
-    quote:
-      'I completed the Data Analytics programme remotely from the US. The quality matched anything offered by American bootcamps, but with context that actually applied to the African projects I was consulting on. Outstanding.',
+    name: 'Blessing Okafor',
+    role: 'Data Analyst, Oil and Gas Services',
+    location: 'Port Harcourt, Nigeria',
     programme: 'Data Analytics',
+    quote:
+      'I am a single mother. Every investment I make has to be justified. Within six months of the Metabridge Data Analytics training, I moved from an administrative position into a junior data analyst role at an oil and gas services company — with a salary increase that covered the full cost of the training within my first week. My children now watch their mother build something.',
   },
   {
-    name: 'Amina Sani',
-    role: 'Cybersecurity Trainer',
-    location: 'Abuja, Nigeria',
+    name: 'David Mensah',
+    role: 'Business Intelligence Analyst',
+    location: 'Accra, Ghana',
+    programme: 'Data Analytics',
     quote:
-      'I now use the Metabridge curriculum to train corporate clients. The programme gave me not just the knowledge but the confidence and credentials to become a trainer myself. This is the power of quality education.',
+      'I found Metabridge Academy through a Nigerian colleague. As someone based in Ghana, I was initially unsure whether the content would translate across borders — I was completely wrong. The curriculum is genuinely global in its framework while grounded in the African business context I work in daily. I have recommended it to five colleagues. Three are already enrolled.',
+  },
+  {
+    name: 'Sandrine Nkemdirim',
+    role: 'Communications and AI Consultant',
+    location: 'Douala, Cameroon',
+    programme: 'Artificial Intelligence',
+    quote:
+      'In Cameroon, finding quality tech education in English that is genuinely practical is not straightforward. The AI training was more structured and more immediately applicable than courses I had taken on platforms far larger and more expensive. Metabridge proved to me that geography is no longer a barrier to world-class learning. I am the evidence.',
+  },
+  {
+    name: 'Arjun Patel',
+    role: 'Blockchain Researcher',
+    location: 'Bangalore, India',
+    programme: 'Blockchain & Cryptocurrency',
+    quote:
+      'I discovered Metabridge Academy while researching blockchain education programmes with a focus on African market applications. What I found was one of the most clearly structured blockchain programmes I have encountered anywhere internationally. I subsequently referenced several frameworks from the curriculum in a published research paper on emerging market crypto adoption.',
+  },
+  {
+    name: 'Amaka Ihejirika',
+    role: 'Cybersecurity Practitioner',
+    location: 'London, United Kingdom',
     programme: 'Cybersecurity',
+    quote:
+      'I was born in Owerri and built my career in London. Every cybersecurity course I found was either too expensive, too generic, or disconnected from the African digital landscape I understand. Metabridge was everything the expensive courses were not. I passed my first professional cybersecurity certification three months after completing the programme.',
   },
 ]
 
