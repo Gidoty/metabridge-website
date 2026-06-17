@@ -50,7 +50,7 @@ const paidPrograms = [
     id: 'cybersecurity',
     icon: '🛡️',
     title: 'Cybersecurity',
-    duration: '6 Weeks Intensive',
+    duration: '14 Weeks Intensive',
     cert: 'Certificate of Achievement',
     verified: 'QR-Verified Certificate',
     price: '$75 (NGN 100,000)',
@@ -69,7 +69,7 @@ const paidPrograms = [
     id: 'data-analytics',
     icon: '📊',
     title: 'Data Analytics',
-    duration: '6 Weeks Intensive',
+    duration: '12 Weeks Intensive',
     cert: 'Certificate of Achievement',
     verified: 'QR-Verified Certificate',
     price: '$50 (NGN 75,000)',
@@ -88,7 +88,7 @@ const paidPrograms = [
     id: 'artificial-intelligence',
     icon: '🤖',
     title: 'Artificial Intelligence',
-    duration: '6 Weeks Intensive',
+    duration: '5 Weeks Intensive',
     cert: 'Certificate of Achievement',
     verified: 'QR-Verified Certificate',
     price: '$20 (NGN 30,000)',
@@ -246,6 +246,12 @@ export default function CoursesPage() {
                       </span>
                       <span className="inline-flex items-center gap-1.5 text-sm text-gray-500">
                         🔐 {prog.verified}
+                      </span>
+                      <span className="inline-flex items-center gap-1.5 text-sm text-gray-500">
+                        🎯 Capstone Project
+                      </span>
+                      <span className="inline-flex items-center gap-1.5 text-sm text-gray-500">
+                        💼 Build Portfolio
                       </span>
                     </div>
 
