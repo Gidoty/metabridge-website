@@ -7,9 +7,9 @@ import {
   FaLinkedinIn,
   FaInstagram,
   FaWhatsapp,
-  FaEnvelope,
   FaLocationDot,
 } from 'react-icons/fa6'
+import { FiMail, FiHelpCircle, FiUserPlus } from 'react-icons/fi'
 
 export const metadata: Metadata = {
   title: 'Contact Us',
@@ -72,7 +72,7 @@ export default function ContactPage() {
       {/* CONTACT CARDS */}
       <section className="section-padding bg-light-bg">
         <div className="container-custom">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
             {/* WhatsApp */}
             <FadeInSection>
               <div className="bg-white rounded-2xl p-7 shadow-sm hover:shadow-md transition-shadow border-t-4 border-green-500 text-center h-full">
@@ -95,15 +95,15 @@ export default function ContactPage() {
               </div>
             </FadeInSection>
 
-            {/* Email */}
+            {/* General Inquiries */}
             <FadeInSection delay={100}>
               <div className="bg-white rounded-2xl p-7 shadow-sm hover:shadow-md transition-shadow border-t-4 border-teal text-center h-full">
                 <div className="w-14 h-14 bg-teal rounded-2xl flex items-center justify-center mx-auto mb-5">
-                  <FaEnvelope size={24} color="white" />
+                  <FiMail size={24} color="white" />
                 </div>
-                <h3 className="font-heading text-lg font-bold text-navy mb-2">Email Us</h3>
+                <h3 className="font-heading text-lg font-bold text-navy mb-2">General Inquiries</h3>
                 <p className="text-gray-500 text-sm mb-4 leading-relaxed">
-                  For detailed enquiries, course applications, and business partnerships
+                  For general questions about Metabridge Academy
                 </p>
                 <a
                   href="mailto:info@metabridgeacademy.com"
@@ -111,21 +111,73 @@ export default function ContactPage() {
                 >
                   Send Email
                 </a>
-                <p className="text-gray-400 text-xs mt-3">info@metabridgeacademy.com</p>
+                <p className="text-gray-400 text-xs mt-3">
+                  <a href="mailto:info@metabridgeacademy.com" className="hover:text-teal transition-colors">
+                    info@metabridgeacademy.com
+                  </a>
+                </p>
               </div>
             </FadeInSection>
 
-            {/* Location */}
+            {/* Support */}
+            <FadeInSection delay={150}>
+              <div className="bg-white rounded-2xl p-7 shadow-sm hover:shadow-md transition-shadow border-t-4 border-purple-500 text-center h-full">
+                <div className="w-14 h-14 bg-purple-500 rounded-2xl flex items-center justify-center mx-auto mb-5">
+                  <FiHelpCircle size={24} color="white" />
+                </div>
+                <h3 className="font-heading text-lg font-bold text-navy mb-2">Support</h3>
+                <p className="text-gray-500 text-sm mb-4 leading-relaxed">
+                  For technical issues or certificate verification help
+                </p>
+                <a
+                  href="mailto:support@metabridgeacademy.com"
+                  className="inline-block bg-purple-500 text-white font-semibold px-6 py-2.5 rounded-xl hover:bg-purple-600 transition-colors text-sm"
+                >
+                  Get Support
+                </a>
+                <p className="text-gray-400 text-xs mt-3">
+                  <a href="mailto:support@metabridgeacademy.com" className="hover:text-purple-500 transition-colors">
+                    support@metabridgeacademy.com
+                  </a>
+                </p>
+              </div>
+            </FadeInSection>
+
+            {/* Admissions */}
             <FadeInSection delay={200}>
               <div className="bg-white rounded-2xl p-7 shadow-sm hover:shadow-md transition-shadow border-t-4 border-orange text-center h-full">
                 <div className="w-14 h-14 bg-orange rounded-2xl flex items-center justify-center mx-auto mb-5">
+                  <FiUserPlus size={24} color="white" />
+                </div>
+                <h3 className="font-heading text-lg font-bold text-navy mb-2">Admissions</h3>
+                <p className="text-gray-500 text-sm mb-4 leading-relaxed">
+                  For course enrollment and admission enquiries
+                </p>
+                <a
+                  href="mailto:admissions@metabridgeacademy.com"
+                  className="inline-block bg-orange text-white font-semibold px-6 py-2.5 rounded-xl hover:bg-orange/90 transition-colors text-sm"
+                >
+                  Apply Now
+                </a>
+                <p className="text-gray-400 text-xs mt-3">
+                  <a href="mailto:admissions@metabridgeacademy.com" className="hover:text-orange transition-colors">
+                    admissions@metabridgeacademy.com
+                  </a>
+                </p>
+              </div>
+            </FadeInSection>
+
+            {/* Location — spans full width on md */}
+            <FadeInSection delay={250} className="md:col-span-2">
+              <div className="bg-white rounded-2xl p-7 shadow-sm hover:shadow-md transition-shadow border-t-4 border-navy text-center h-full">
+                <div className="w-14 h-14 bg-navy rounded-2xl flex items-center justify-center mx-auto mb-5">
                   <FaLocationDot size={24} color="white" />
                 </div>
                 <h3 className="font-heading text-lg font-bold text-navy mb-2">Our Location</h3>
                 <p className="text-gray-500 text-sm mb-4 leading-relaxed">
                   Proudly based in Nigeria&apos;s oil capital — serving professionals across Africa and beyond
                 </p>
-                <div className="bg-orange/10 text-orange font-semibold px-6 py-2.5 rounded-xl text-sm inline-block">
+                <div className="bg-navy/10 text-navy font-semibold px-6 py-2.5 rounded-xl text-sm inline-block">
                   🇳🇬 Port Harcourt, Nigeria
                 </div>
               </div>

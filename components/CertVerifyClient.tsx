@@ -47,7 +47,7 @@ export default function CertVerifyClient({ initialCode }: CertVerifyClientProps)
 
       if (dbError || !data) {
         setError(
-          'No certificate found with this code. Please check the code and try again. If you believe this is an error, contact info@metabridgeacademy.com.'
+          'No certificate found with this code. Please check the code and try again. If you believe this is an error, contact our support team.'
         )
       } else {
         setResult(data as Certificate)
@@ -69,7 +69,6 @@ export default function CertVerifyClient({ initialCode }: CertVerifyClientProps)
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
     verify(code)
-    // Update URL without full navigation
     if (typeof window !== 'undefined') {
       window.history.pushState({}, '', `/verify/${encodeURIComponent(code.trim())}`)
     }
@@ -189,7 +188,13 @@ export default function CertVerifyClient({ initialCode }: CertVerifyClientProps)
             </div>
           </div>
           <div className="p-8">
-            <p className="text-gray-500 leading-relaxed text-sm">{error}</p>
+            <p className="text-gray-500 leading-relaxed text-sm mb-3">{error}</p>
+            <a
+              href="mailto:support@metabridgeacademy.com"
+              className="text-teal font-medium text-sm hover:underline"
+            >
+              support@metabridgeacademy.com
+            </a>
           </div>
         </div>
       )}

@@ -7,6 +7,7 @@ import {
   FaWhatsapp,
   FaLocationDot,
 } from 'react-icons/fa6'
+import { FiMail } from 'react-icons/fi'
 
 const socialLinks = [
   { icon: FaFacebook, href: 'https://www.facebook.com/share/1BLRau146A/', label: 'Facebook' },
@@ -110,8 +111,9 @@ export default function Footer() {
               <li>
                 <a
                   href="mailto:info@metabridgeacademy.com"
-                  className="text-white/60 hover:text-orange text-sm transition-colors duration-200"
+                  className="flex items-center gap-2 text-white/60 hover:text-orange text-sm transition-colors duration-200"
                 >
+                  <FiMail size={14} className="flex-shrink-0" />
                   info@metabridgeacademy.com
                 </a>
               </li>
