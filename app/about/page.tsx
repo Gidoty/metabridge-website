@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import FadeInSection from '@/components/FadeInSection'
 
 export const metadata: Metadata = {
@@ -17,6 +18,7 @@ const team = [
     name: 'Gideon Owhonda',
     title: 'Founder & CEO, Metabridge Academy',
     initials: 'GO',
+    photo: '/team/gideon-owhonda.jpg',
     color: '#1B2A4A',
     bio: `Gideon Owhonda is a Chemical Engineer and Certified Environmental Specialist (NREP, USA), holding an MSc in Gas, Refining & Petrochemical Engineering from the University of Port Harcourt, where he is currently pursuing a PhD in Chemical Engineering.
 
@@ -31,6 +33,7 @@ A Tony Elumelu Foundation alumnus, Agip Oil Company Scholar, YALI alumnus, and d
     name: 'Bright G. O',
     title: 'Lead Instructor, Metabridge Academy',
     initials: 'BG',
+    photo: '/team/bright-go.jpg',
     color: '#2B8A9C',
     bio: `Bright G. O. is a Data Analytics professional and Business Intelligence specialist, a graduate of the University of Port Harcourt currently advancing her expertise through an MBA programme at Miva Open University, where her research sits at the intersection of data analytics and the oil and gas sector.
 
@@ -136,8 +139,14 @@ export default function AboutPage() {
                     className="p-8 flex items-center gap-5"
                     style={{ background: `linear-gradient(135deg, ${member.color} 0%, ${member.color}CC 100%)` }}
                   >
-                    <div className="w-20 h-20 rounded-2xl bg-white/20 flex items-center justify-center text-white font-heading font-bold text-2xl flex-shrink-0">
-                      {member.initials}
+                    <div className="w-20 h-20 rounded-2xl overflow-hidden flex-shrink-0">
+                      <Image
+                        src={member.photo}
+                        alt={`${member.name}, ${member.title}`}
+                        width={200}
+                        height={200}
+                        className="object-cover w-full h-full"
+                      />
                     </div>
                     <div>
                       <h3 className="font-heading text-xl font-bold text-white">{member.name}</h3>
