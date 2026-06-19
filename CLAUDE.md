@@ -55,6 +55,17 @@ All colours are defined as CSS variables on `:root` at the top of `<style>`:
 
 Course-specific colour variants follow a consistent pattern: `.cc-cyber` (red), `.cc-crypto` (gold), `.cc-data` (cyan), `.cc-prompt` (purple) — applied to both cards and skill tags via `.st-*` / `.ci-*` / `.pc-*` prefixes.
 
+### Responsive breakpoints
+
+Two breakpoints are defined at the bottom of `<style>`:
+
+- **`≤768px`** — hides nav links/CTA (shows hamburger), collapses courses/testimonials/certificate to 1 col, most other grids to 2 col, and hides the WhatsApp button label.
+- **`≤480px`** — collapses remaining 2-col grids (steps, why, pricing, footer) to 1 col; stats grid goes 2-col.
+
+### Animation helper classes
+
+Hero elements use CSS-only entrance animations. To animate a new element: add `fade-up` plus one of `delay-1` through `delay-5` (delays: 0.1 s → 0.6 s). These classes set `opacity: 0` and use `@keyframes fadeUp`. The JS `IntersectionObserver` handles the same effect for card elements below the fold (it directly sets `opacity` and `transform` via inline style rather than using the CSS classes).
+
 ### Enrolment flow
 
 All CTAs point to `https://wa.me/2347034357206`. There is no form, no backend, and no payment integration in the HTML — enrolment happens entirely via WhatsApp.
