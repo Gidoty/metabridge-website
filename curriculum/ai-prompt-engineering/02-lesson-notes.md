@@ -186,6 +186,240 @@ You are here because you have chosen to be builders."
 
 ---
 
+### LESSON SECTION 5: MAJOR TECHNOLOGY ERAS (15 minutes)
+
+**Teaching Script:**
+
+"Before we talk about AI, I want to zoom out. Way out.
+
+I want to ask you a question: when in human history was the last time a technology changed everything — not just one industry, not just one country — but fundamentally changed how all humans live and work?
+
+*[Pause for chat responses]*
+
+You might say the internet. You might say electricity. You might say the printing press. You are all correct. And that is the point.
+
+Here is what I want you to see. Human history has had seven of these moments. Seven times where a technology — one breakthrough — removed a fundamental constraint on what humans could do.
+
+The Agricultural Revolution, ten thousand years ago. Before farming, humans spent every day chasing food. After farming, food became predictable. Which meant humans could settle in one place. Which meant specialisation — you do the farming, I will do the pottery. Which meant cities. Which meant writing. Which meant everything that followed.
+
+Writing itself. Three thousand BC. Before writing, human knowledge was limited to what fit in someone's memory. When that person died, the knowledge died with them. Writing created the first external hard drive. Knowledge became cumulative across generations. Science became possible. Religion became codified. Commerce became scalable.
+
+The printing press. 1440. One German craftsman — Gutenberg — reduces the cost of a book from twenty years of monastic labour to a few weeks of mechanical printing. Within fifty years: twenty million books in circulation. The Renaissance. The Reformation. The Scientific Revolution. Ideas spread faster than authorities could suppress them.
+
+The Industrial Revolution. 1760. For the first time in history, machines replaced human muscle at scale. One steam engine could do the work of fifty labourers. Britain went from 80% rural to 50% urban in sixty years. GDP doubled, then doubled again.
+
+Electricity and communication. 1820 to 1950. Your great-great-grandmother could only communicate with someone as far as a horse could travel in a day. By 1950, a telephone call could cross continents in real time. Distance collapsed as a constraint.
+
+The computing and internet era. 1940 to the 2010s. Information processing went from human brains and filing cabinets to machines that could store and retrieve all of human knowledge instantly. Then the internet connected all those machines. Five billion people — networked.
+
+Now. Right now. The seventh era. Artificial Intelligence.
+
+Here is what makes the seventh era different from all the others. Every previous era augmented something physical — food production, physical labour, communication speed, information storage. This era augments something cognitive. Human thinking. Human reasoning. Human creativity.
+
+For the first time in history, machines are generating original content, solving novel problems, and producing outputs that cannot be distinguished from those of expert humans.
+
+*[Pause]*
+
+And here is the most important pattern I want you to see.
+
+The Agricultural Revolution took thousands of years to spread globally.
+The printing press: a hundred years.
+The Industrial Revolution: eighty years.
+The internet: ten years.
+ChatGPT: reached 100 million users in 60 days.
+
+Each era is arriving faster than the last. Because each era builds on the infrastructure of everything that came before it. AI runs on the internet. The internet runs on computing. Computing runs on electricity. And so on.
+
+You are living through the fastest technological transition in human history. And you are in class right now — which means you have chosen to be a builder of this transition, not a spectator of it.
+
+That is the correct choice."
+
+---
+
+### LESSON SECTION 6: EMERGING AI CATEGORIES (10 minutes)
+
+**Teaching Script:**
+
+"Now I want to update your mental map of AI. We talked about Narrow AI, General AI, and Superintelligence — those are the capability levels. But AI is also categorised by what it does.
+
+Six categories you need to know:
+
+**Generative AI** — this is the category most of you associate with AI right now. ChatGPT, Claude, Gemini, Midjourney, ElevenLabs. These systems generate new content — text, images, audio, video, code. They don't just classify or predict from existing data. They create. This is the dominant commercial AI paradigm of the 2020s, and it is what you will spend most of this course mastering.
+
+**Multimodal AI** — the latest generation of AI systems process multiple types of data in a single interaction. You can show GPT-4o a photograph and have a conversation about it. You can give Gemini 1.5 Pro a one-hour video and ask it to summarise the key points. Text plus images plus audio plus video — all at once. This is how humans communicate, so this is the direction AI is going.
+
+**Agentic AI — this one is critical for understanding the next two years.** Today's AI is reactive — you ask it something and it answers. Agentic AI is proactive — you give it a goal and it figures out how to achieve that goal, step by step, using tools: browsing the web, writing and executing code, reading files, making API calls. OpenAI's Operator can book your flight, not just tell you how to book it. This is the most transformative shift on the near horizon.
+
+**Foundation Models** — GPT-4, Claude 3.5, Llama 3 — these are the base models. They are trained on enormous amounts of data, they are general purpose, and the entire AI application economy is built on top of them. Think of them like the internet infrastructure — not what you see, but what everything else runs on.
+
+**Small Language Models** — this one matters specifically for Nigeria. Not every AI application needs a billion-dollar data centre. Compact models — 3 billion parameters, 7 billion parameters — can run on consumer hardware, on mobile phones, even offline. For Nigerian healthcare applications, Nigerian agricultural tools, Nigerian enterprise software where data cannot leave the country — small models are the solution.
+
+**Embodied AI** — AI inside robots. Tesla is building humanoid robots that will work in factories. Amazon has warehouses that are largely automated with robotic AI. This matters for Nigeria's manufacturing and agricultural sectors.
+
+Now — the most important distinction: AI Assistants versus AI Agents.
+
+Right now, you are mostly using AI Assistants. You ask a question; the AI answers. Reactive.
+
+An AI Agent is different. You say: 'Book the cheapest flight to Abuja next Friday, under ₦80,000, and add it to my calendar.' The agent opens your browser, searches flight options, compares prices, selects the best option, completes the booking, and adds the calendar event — without you touching the keyboard.
+
+That is where we are going. Rapidly.
+
+The question for your career: how do you position yourself to be valuable in a world where AI agents handle more and more routine knowledge work? The answer is what you are learning in this course: the judgment, the strategy, and the prompt engineering skill to direct AI effectively toward high-value outcomes."
+
+---
+
+### LESSON SECTION 7: TECHNOLOGY ADOPTION LIFECYCLE (10 minutes)
+
+**Teaching Script:**
+
+"I want to give you a framework that will help you understand not just AI — but any technology you encounter in your career.
+
+In 1962, a sociologist named Everett Rogers published a book called Diffusion of Innovations. He studied hundreds of technologies — agricultural tools, medical devices, consumer products — and found that every single one followed the same adoption pattern.
+
+He called it the Technology Adoption Lifecycle. And it looks like a bell curve.
+
+*[Draw or show: Innovators → Early Adopters → Early Majority → Late Majority → Laggards]*
+
+On the left — Innovators. Two and a half percent of any population. These are the people who try everything first. They are not necessarily the richest or the most educated. They are the most curious, the most risk-tolerant, the ones who will work with unfinished products and figure things out themselves.
+
+Next — Early Adopters. Thirteen and a half percent. Opinion leaders. People whose professional networks trust their judgment. When an Early Adopter says 'this works,' the rest of their network starts paying attention.
+
+Then — the Early Majority. Thirty four percent. These are the deliberate people. They wait for proof. They wait for case studies. They wait until enough of their peers have adopted before they move. But once they move, the market shifts.
+
+Late Majority. Another thirty four percent. Sceptical. They adopt when the alternative — not adopting — becomes more painful than adapting.
+
+Laggards. Sixteen percent. They will use a typewriter until it literally falls apart. And some of them will fall out of the economy as a result.
+
+Geoffrey Moore — a business consultant — added something important to this model. He identified a 'Chasm' between Early Adopters and the Early Majority. Most technologies fall into this chasm and never cross it. They stay niche. Technologies that cross the chasm achieve mass adoption.
+
+ChatGPT crossed the chasm in 2023.
+
+Now — where does this put you?
+
+If you are in this class in 2025, actively learning AI, you are at the Early Adopter to Early Majority boundary. And I want you to understand why that is the best possible strategic position.
+
+Early adopters shape the tools. They provide the feedback that determines how products evolve. They build the first professional use cases. They establish the standards. They command the premium compensation — because they have skills that the majority of the market does not yet have.
+
+By the time the Late Majority arrives — and they are coming — the tools will be commoditised, the market will be saturated, and the window for capturing disproportionate value will have closed.
+
+Right now, in Nigeria, the proportion of professionals with serious AI skills is still very small. The demand for those skills is growing rapidly. That gap — between supply and demand — is your opportunity.
+
+And one more thing about Nigeria specifically. Nigeria has done this before.
+
+Nigeria leapfrogged landlines. Went straight to mobile.
+Nigeria leapfrogged traditional banking for a huge portion of the population. Went straight to OPay, PalmPay, Kuda.
+
+You can do it again with AI. The question is whether you choose to."
+
+---
+
+### LESSON SECTION 8: INTRODUCTION TO PROMPT ENGINEERING (10 minutes)
+
+**Teaching Script:**
+
+"We have two more foundational concepts before we close today. And these are the ones that will matter most to your daily professional life starting immediately.
+
+Prompt Engineering.
+
+I am going to give you the definition, and then I am going to show you why this is the most practically important skill you will develop in this course.
+
+**Definition: Prompt Engineering is the practice of designing, structuring, and optimising the instructions you give to AI systems to produce higher-quality, more accurate, and more useful outputs.**
+
+Here is a simpler way to think about it: the way you talk to AI determines what AI gives you back.
+
+Let me show you.
+
+*[In ChatGPT, type:] 'Write me an email.'*
+
+*[Wait for output. It will be generic.]*
+
+Now watch.
+
+*[Type:] 'You are a professional business communicator at a Lagos-based tech company. Write a polite but firm payment follow-up email to Eze Okoro, CEO of Apex Logistics, for invoice INV-2024-047 of ₦850,000, now 21 days overdue. Tone: professional, not threatening. Length: under 150 words. Include a payment portal link and offer a 15-minute call to resolve any issues. No legal language.'*
+
+*[Wait for output. Show the quality difference.]*
+
+Same AI. Same model. Dramatically different output.
+
+That difference — that is prompt engineering.
+
+Now. Why does this matter for your career?
+
+By 2025, virtually every professional has access to ChatGPT, Claude, and Gemini. The competitive advantage no longer comes from having access to AI. Everyone does. The advantage comes from knowing how to direct AI effectively. That is the skill that separates the people who use AI to do mediocre work quickly from the people who use AI to do exceptional work efficiently.
+
+Research from Stanford found that optimised prompts improve AI task performance by 30 to 90 percent compared to basic prompts — without changing the AI itself. The same model. Better prompt. 90 percent better output.
+
+And here is what I love about prompt engineering for Nigerian professionals. It is a language-first skill. You do not need to know Python. You do not need to understand machine learning. If you can communicate clearly and precisely in English — and most of you can — you have the core capability.
+
+Prompt engineering is also a compounding skill. Good prompts become templates. Templates become systems. Systems scale across your team. Every hour you invest in developing your prompt engineering skill delivers returns for the rest of your career.
+
+We will go very deep on this in Module 3 and Module 4. Today I want to give you two things: the anatomy of a professional prompt, and the eight principles that make any prompt work better."
+
+---
+
+### LESSON SECTION 9: ANATOMY OF A PROMPT & CORE PRINCIPLES (15 minutes)
+
+**Teaching Script:**
+
+"A professional prompt has six components. I am going to teach you these now, and I want you to start applying them immediately — even before we reach Module 3.
+
+**Component 1: ROLE.**
+Who do you want the AI to be? The role you assign determines the expertise, the tone, the vocabulary, and the reasoning pattern of the response.
+
+'You are a senior Nigerian tax consultant with 15 years of experience advising SMEs.'
+'You are a clinical pharmacist reviewing medication dosages for elderly patients.'
+'You are a Goldman Sachs equity analyst covering West African telecoms.'
+
+When you assign a specific, credible role, you get domain-expert-level output. Without a role, you get a generic response that sounds like it was written for nobody.
+
+**Component 2: CONTEXT.**
+What is the situation? The AI knows nothing about your specific project, your specific client, your specific constraints — unless you tell it. The more relevant context you provide, the more tailored the output.
+
+*[Instructor writes on screen:] 'The reader is a Board of Directors. The company is a Lagos-based e-commerce startup with ₦450M GMV in Q3 2024, underperforming Q2 by 18%. The board are non-technical business executives aged 45 to 60.'*
+
+That context changes everything about what the AI produces.
+
+**Component 3: TASK.**
+What exactly do you want done? Be explicit. Be unambiguous.
+
+'Write a 3-paragraph executive summary' is a task.
+'Help me with this' is not.
+'Analyse the financial implications' is vague.
+'Calculate the percentage change in gross margin between Q2 and Q3 and identify the three largest contributing factors' is a task.
+
+The rule: your task statement should be clear enough that a competent human assistant could execute it without asking you any clarifying questions.
+
+**Component 4: FORMAT.**
+If you do not specify the format, the AI will choose one that may or may not suit your needs. Specify: bullet points or paragraphs? Table or prose? How many words? Headers or no headers? Markdown or plain text?
+
+**Component 5: CONSTRAINTS.**
+What should the AI avoid? What must it include? Constraints prevent the most common AI errors.
+
+'Only use information I have provided — do not add facts from your training data.'
+'Do not use technical jargon.'
+'All monetary values in Nigerian naira.'
+'If you are uncertain about a fact, say so rather than guessing.'
+
+**Component 6: EXAMPLES.**
+This is optional but powerful. Instead of trying to describe what you want in words, show it. Paste an example of a previous email in the style you want. Show a report in the format you need. One example is worth a hundred adjectives.
+
+Now. Eight principles. I am going to go through these quickly — you have the full notes in your course portal.
+
+*[Show the Quick Reference Card on screen]*
+
+One: Specificity. Vague in, vague out.
+Two: Context. Brief the AI completely — it just walked in the room.
+Three: Role-framing. Name the expert, get expert output.
+Four: Format. Always specify structure.
+Five: Constraints. Prevent hallucinations with explicit limits.
+Six: Iteration. First output is a draft. Refine it.
+Seven: Examples. Show it, don't just describe it.
+Eight: Decompose. Complex tasks need multiple focused prompts.
+
+These eight principles will become second nature to you by Module 3. Start applying them from tomorrow's practice sessions."
+
+---
+
 ### MODULE 1 CLOSING SCRIPT (5 minutes)
 
 "Let me summarise what we have covered today.
@@ -202,14 +436,24 @@ See you next week. Questions in the WhatsApp group. Study hard."
 
 ### INSTRUCTOR NOTES FOR MODULE 1
 
-**Pacing guide:**
+**Pacing guide (Session 1 — 90 min):**
 - Opening script: 5 min
 - Section 1 (What is AI): 20 min
 - Section 2 (History): 25 min
 - Section 3 (Types/Hierarchy): 15 min
 - Section 4 (Nigeria context): 15 min
 - Closing + Q&A: 10 min
-- **Total: 90 minutes**
+- **Session 1 Total: 90 minutes**
+
+**Pacing guide (Session 2 — 90 min):**
+- Section 5 (Technology Eras): 15 min
+- Section 6 (Emerging AI Categories): 10 min
+- Section 7 (Technology Adoption Lifecycle): 10 min
+- Section 8 (Intro to Prompt Engineering): 10 min
+- Section 9 (Anatomy + Core Principles): 15 min
+- Labs 1.1–1.3 (facilitated): 20 min
+- Q&A + Assignment preview: 10 min
+- **Session 2 Total: 90 minutes**
 
 **Common student misconceptions to address:**
 1. "AI is just automation" — No. Traditional automation follows explicit rules. AI learns from data.

@@ -218,6 +218,102 @@
 
 ---
 
+## MODULE 1 BONUS QUESTIONS — NEW FOUNDATIONS TOPICS
+### Use these as a second Kahoot session or mixed into the main Module 1 quiz
+
+---
+
+**Q1-B** [CONCEPT] | Time: 45s | Points: Standard
+
+**Which technology era first allowed human knowledge to accumulate across generations rather than being lost when individuals died?**
+
+- A) The Industrial Revolution
+- B) The Printing Press
+- C) ✓ Writing and Record-Keeping (~3,100 BC)
+- D) The Computing Era
+
+*Instructor Note: Writing = humanity's first external memory. All scientific progress since depends on it. Sets up the "AI as cognitive augmentation" framing.*
+
+---
+
+**Q2-B** [CONCEPT] | Time: 45s | Points: Standard
+
+**The Printing Press (1440) triggered the Renaissance and Reformation because:**
+
+- A) It allowed monks to copy books faster
+- B) It reduced the cost of paper manufacturing
+- C) ✓ It democratised knowledge — ideas spread faster than authorities could suppress them
+- D) It created the first global communication network
+
+*Instructor Note: Gutenberg's press: 300× cost reduction for books. Parallel to AI reducing cost of knowledge work by 80–90%. The disruption pattern is identical.*
+
+---
+
+**Q3-B** [RECALL] | Time: 30s | Points: Standard
+
+**In Rogers' Diffusion of Innovation, which adopter group makes up approximately 34% of the population and waits for "proven value" before adopting a new technology?**
+
+- A) Innovators
+- B) Early Adopters
+- C) ✓ Early Majority
+- D) Laggards
+
+*Instructor Note: The Early Majority is the mass market. Once they adopt, the technology has crossed the Chasm. AI crossed in 2023 with ChatGPT.*
+
+---
+
+**Q4-B** [CONCEPT] | Time: 45s | Points: Standard
+
+**Which emerging AI category can autonomously browse the web, execute code, and complete multi-step tasks without continuous human instruction?**
+
+- A) Generative AI
+- B) Multimodal AI
+- C) Small Language Models
+- D) ✓ Agentic AI (AI Agents)
+
+*Instructor Note: The shift from AI Assistants (reactive) to AI Agents (proactive) is the most transformative near-term development. Agents do it FOR you; assistants tell you HOW to do it.*
+
+---
+
+**Q5-B** [SCENARIO] | Time: 60s | Points: Double
+
+**A professional types: "Write me a business proposal." The AI produces a generic 3-paragraph document that doesn't match their industry, tone, or client. Which prompting components are MISSING from this request?**
+
+- A) Only Format is missing
+- B) Task and Examples are missing
+- C) ✓ Role, Context, Format, and Constraints are all missing — only Task is present
+- D) Nothing is missing — the AI should know what a business proposal looks like
+
+*Instructor Note: Perfect anatomy demonstration. The complete prompt would add: Role (industry expert), Context (client background, deal value, industry), Format (length, structure), Constraints (tone, what to exclude). Double points — high-difficulty synthesis question.*
+
+---
+
+**Q6-B** [CONCEPT] | Time: 45s | Points: Standard
+
+**Small Language Models (SLMs) are particularly valuable for Nigerian AI deployment because:**
+
+- A) They are more accurate than large models on all tasks
+- B) They require less electricity to operate
+- C) ✓ They can run offline, on-device, without requiring cloud infrastructure — critical in low-bandwidth environments
+- D) They are free to use and have no licensing restrictions
+
+*Instructor Note: Nigeria-specific — rural healthcare AI, enterprise data sovereignty, offline agricultural tools. SLMs make AI accessible where cloud is expensive or unreliable.*
+
+---
+
+**Q7-B** [CRITICAL] | Time: 60s | Points: Standard
+
+**Nigeria "leapfrogged" landlines to go directly to mobile telephony. How does this apply to AI adoption strategy for Nigerian businesses in 2025?**
+
+- A) Nigerian businesses should wait until landline-era AI infrastructure is built before adopting
+- B) Nigeria cannot leapfrog in AI because it requires advanced computing infrastructure
+- C) ✓ Nigerian businesses can build AI-native operations without transitioning from legacy systems — gaining a structural advantage over economies managing legacy-to-AI transitions
+- D) Leapfrogging only applies to telecommunications, not AI
+
+*Instructor Note: This is the strategic heart of the "Nigerian leapfrog opportunity." No legacy ERP systems, no entrenched workflows to break — build AI-native from day one. This is an actual competitive advantage.*
+
+---
+
 ## MODULE 2 QUIZ — LARGE LANGUAGE MODELS & GENERATIVE AI ARCHITECTURE
 ### Theme: How Does the AI Brain Actually Work?
 

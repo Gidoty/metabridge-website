@@ -48,14 +48,53 @@ Upon completion, students will be able to:
 ## MODULE 1: INTRODUCTION, HISTORY & FOUNDATIONS OF ARTIFICIAL INTELLIGENCE
 
 ### 1.1 Learning Objectives
-- Define AI with academic and practical precision
-- Trace the complete history of AI from 1943 to 2025
-- Distinguish Narrow AI, General AI, and Superintelligence
-- Explain the AI → Machine Learning → Deep Learning hierarchy
-- Describe how neural networks learn through training
-- Identify AI's role in Nigeria, Africa, and the global economy
+- Identify the seven major technology eras in human history and explain AI's position as the seventh and fastest era
+- Define AI with academic and practical precision, tracing its three core components: perception, reasoning, and action
+- Trace the complete history of AI from 1943 to 2025, including the two AI winters and pivotal breakthroughs
+- Distinguish Narrow AI, General AI, and Superintelligence by capability level
+- Classify AI by functional category: Generative, Multimodal, Agentic, Foundation Models, Small Language Models, and Embodied AI
+- Explain the AI → Machine Learning → Deep Learning → LLM → Generative AI hierarchy
+- Describe how neural networks learn through training and backpropagation
+- Apply the Technology Adoption Lifecycle (Rogers' Diffusion of Innovation) to assess where AI stands today and your strategic position
+- Identify AI's current role in Nigeria, Africa, and the global economy, including the leapfrog opportunity
+- Write effective basic prompts using the six-component anatomy: Role, Context, Task, Format, Constraints, and Examples
+- Apply the eight core prompting principles to any professional communication task
 
 ### 1.2 Key Concepts
+
+**1.2.0 Major Technology Eras in Human History**
+
+To understand why AI is the most consequential technology in human history, we must understand what came before it. Each era eliminated a fundamental bottleneck on human progress — and each arrived faster than the last.
+
+| Era | Period | Core Shift | What It Removed |
+|-----|--------|-----------|-----------------|
+| **Agricultural Revolution** | ~10,000 BC | Predictable food → settlement → civilisation | Food unpredictability |
+| **Writing & Record-Keeping** | ~3,100 BC | Externalised memory → cumulative knowledge | Memory limits |
+| **Printing Press** | 1440 AD | Mass distribution → democratised knowledge | Knowledge scarcity |
+| **Industrial Revolution** | 1760–1840 | Machine power → factories → urbanisation | Physical labour bottleneck |
+| **Electricity & Mass Communication** | 1820–1950 | Instant long-distance communication | Geographic isolation |
+| **Computing & Internet Era** | 1940s–2010s | Digital processing → global data network | Information access lag |
+| **Artificial Intelligence Era** | 2017–present | Cognitive augmentation → automated reasoning | Mental/cognitive bottlenecks |
+
+**Key analysis across all seven eras:**
+
+1. **Each era built on all previous eras.** AI runs on the internet (Era 6), which runs on computing (Era 6), which runs on electricity (Era 5), which built on industrial infrastructure (Era 4).
+2. **Adoption speed is accelerating.** Agricultural Revolution: thousands of years to spread globally. Internet: ~10 years. ChatGPT: reached 100 million users in 60 days.
+3. **Displacement + creation pattern is consistent.** Every era destroyed old jobs and created new ones in greater number — but the transition is painful for those who don't adapt.
+4. **Early adopters in each era captured disproportionate value.** The engineers of the Industrial Revolution, the developers of the Internet Era, and the AI practitioners of today occupy equivalent strategic positions.
+
+**The printing press parallel:**
+In 1440, Gutenberg's press reduced the cost of book production by ~300×. Within 50 years, 20 million books were in circulation — triggering the Renaissance, the Reformation, and the Scientific Revolution. Ideas spread too fast for authorities to control. AI is doing the same to knowledge work: compressing the cost of high-quality writing, analysis, research, and coding by 90%+, triggering a similar wave of disruption across every professional field.
+
+**Nigerian Context — The Leapfrog Opportunity:**
+Nigeria has a documented history of technology leapfrogging — skipping slower stages to adopt advanced technology directly:
+- Skipped landlines → went straight to mobile (200M+ subscribers)
+- Partially skipped traditional banking → went mobile-first (OPay, PalmPay, Kuda process billions monthly)
+- Now positioned to skip legacy AI infrastructure → build AI-native workflows from day one
+
+The AI era creates Nigeria's third major leapfrog opportunity. Nigerian professionals who build AI skills today compete on equal terms with European and American counterparts — without the switching costs and institutional inertia that slow adoption in legacy economies.
+
+---
 
 **1.2.1 What Is Artificial Intelligence?**
 
@@ -151,6 +190,238 @@ A neural network is mathematically modelled on the human brain:
 **Challenges:** Data infrastructure gaps, power supply inconsistency, limited GPU access, digital literacy, brain drain
 **Opportunities:** 200M+ population as data source, young digitally-native demographic, fintech/agritech/healthtech sectors primed for AI
 
+---
+
+**1.2.7 Emerging AI Categories**
+
+Beyond the ANI/AGI/ASI classification (capability level), AI is also categorised by *functional type*. Understanding these categories is essential for choosing the right tool and navigating the AI landscape as it evolves.
+
+**Generative AI**
+*Definition:* AI that creates new, original content — text, images, audio, video, code — rather than only classifying or predicting.
+*Examples:* ChatGPT, Claude, Gemini (text) | DALL-E 3, Midjourney (images) | Sora, Runway (video) | ElevenLabs (audio) | GitHub Copilot (code)
+*Relevance:* The dominant commercial AI paradigm of the 2020s. Every student in this course primarily works with Generative AI.
+
+**Multimodal AI**
+*Definition:* AI that processes and generates across multiple data types — text, images, audio, video — within a single integrated system.
+*Examples:* GPT-4o (text + vision + voice), Gemini 1.5 Pro (text + image + video + audio), Claude 3.5 Sonnet (text + images)
+*Relevance:* Mirrors how humans naturally communicate — multi-sensory and contextual. More natural, more powerful, and the direction all major AI systems are moving.
+
+**Agentic AI (AI Agents)**
+*Definition:* AI systems that pursue goals autonomously over multiple steps — using tools, making decisions, and taking actions without continuous human instruction.
+*Examples:* OpenAI Operator, Anthropic Claude Computer Use, Google Gemini with tools, AutoGPT
+*Key capabilities:* Web browsing, executing code, file management, API calls, multi-step task planning
+*Relevance:* The next major leap beyond chatbots. An assistant *tells* you how to do something; an agent *does it for you*. This is the most transformative AI capability on the near horizon.
+
+**Foundation Models**
+*Definition:* Large AI models trained on broad general data, adaptable to many tasks through prompting, fine-tuning, or retrieval augmentation.
+*Examples:* GPT-4, Claude 3.5, Gemini 1.5 Pro, Llama 3 (405B)
+*Relevance:* The entire AI application economy is built on top of foundation models. They are the "operating system" of the AI era.
+
+**Small Language Models (SLMs)**
+*Definition:* Compact AI models (1B–13B parameters) designed to run efficiently on consumer hardware, mobile devices, or in low-connectivity environments.
+*Examples:* Microsoft Phi-3, Google Gemma, Meta Llama 3.2 (3B/11B), Apple on-device models
+*Relevance:* Critical for Nigerian rural deployment, privacy-sensitive applications, and enterprise environments where data cannot leave the organisation. SLMs enable AI where cloud connectivity is unreliable.
+
+**Embodied AI**
+*Definition:* AI integrated into physical robotic systems that perceive and act in the physical world.
+*Examples:* Boston Dynamics Spot, Tesla Optimus, Figure 01, Amazon warehouse robots
+*Relevance:* Manufacturing, agriculture, healthcare, and logistics — sectors Nigeria is developing — will be significantly transformed by physical AI systems within the next decade.
+
+**AI Assistants vs AI Agents — A Critical Distinction**
+
+| Dimension | AI Assistant (Today) | AI Agent (Emerging) |
+|-----------|---------------------|-------------------|
+| Behaviour | Reactive — answers questions | Proactive — pursues goals |
+| Scope | Single conversation | Multi-step, multi-day tasks |
+| Tools available | Text generation only | Browser, code, APIs, files |
+| Oversight required | You direct every step | You define goal; agent decides steps |
+| Example | "Tell me how to book a flight" | "Book cheapest flight to Abuja next Friday under ₦80,000 and add to calendar" |
+
+*Trajectory:* 2022 = AI Assistants → 2024 = Early Agents → 2026+ = Autonomous Agent workflows managing complex business processes.
+
+---
+
+**1.2.8 Technology Adoption Lifecycle**
+
+Understanding how new technologies spread through society is strategic intelligence — it lets you position yourself, your organisation, and your career at the leading edge of the AI transition rather than following it.
+
+**Rogers' Diffusion of Innovation (1962)**
+
+Everett Rogers studied thousands of technology adoptions and identified a consistent bell-curve pattern:
+
+```
+Innovators (2.5%) → Early Adopters (13.5%) → Early Majority (34%) → Late Majority (34%) → Laggards (16%)
+```
+
+| Adopter Group | % | Characteristics | AI Parallel (2023–2026) |
+|---------------|---|-----------------|------------------------|
+| **Innovators** | 2.5% | Tech-obsessed, high risk tolerance | AI researchers, developers building with LLM APIs in 2020–2022 |
+| **Early Adopters** | 13.5% | Opinion leaders, willing to invest time before mass adoption | Professionals using AI daily in 2023–2024; MetaBridge Academy students |
+| **Early Majority** | 34% | Deliberate, wait for proven value and peer endorsement | Mainstream professionals adopting AI as "the new normal" in 2024–2026 |
+| **Late Majority** | 34% | Sceptical, adopt when job pressure forces them | Workers who only use AI when their employer mandates it |
+| **Laggards** | 16% | Tradition-bound, actively resist change | Professionals who refuse AI — highest displacement risk |
+
+**Geoffrey Moore's Chasm (1991)**
+
+Moore identified a critical gap — the "Chasm" — between Early Adopters and the Early Majority where most technologies fail. ChatGPT crossed this chasm in 2023. AI is now firmly in the Early Majority phase globally, with adoption speed varying by geography and sector.
+
+**Your Strategic Position in 2025**
+
+Early adopters shape the tools, set professional standards, and command the highest compensation. By the time the Late Majority arrives, the market is saturated and competitive advantage from AI proficiency is greatly diminished.
+
+*Nigerian professionals building AI skills today occupy the Early Adopter → Early Majority boundary* — the maximum-value strategic position. The combination of skill scarcity (few people have these skills in Nigeria) and growing demand (every organisation needs AI capability) creates exceptional career and business opportunity.
+
+**The Productivity Premium**
+
+Research from McKinsey (2024) found that professionals using AI effectively complete knowledge work tasks 40–60% faster with equal or higher quality. The gap between AI-proficient and AI-unaware professionals is the largest productivity gap since the adoption of personal computers in the 1990s.
+
+---
+
+**1.2.9 Introduction to Prompt Engineering**
+
+*This section provides foundational orientation. Deep technical training follows in Module 3 (Fundamentals) and Module 4 (Advanced Techniques).*
+
+**Definition**
+
+**Prompt Engineering** is the practice of designing, structuring, and optimising the instructions (prompts) you give to AI systems to produce higher-quality, more accurate, and more practically useful outputs.
+
+Simpler statement: *the way you communicate with AI determines what AI gives you back.*
+
+**Why Prompt Engineering Is a Career-Critical Skill**
+
+1. **Performance gains are substantial:** Optimised prompts improve LLM task performance by 30–90% compared to basic prompts on the same model — without changing the AI itself (Stanford AI Lab, 2023). You don't always need a better model; you need a better prompt.
+
+2. **Access is democratised; skill is not:** By 2025, virtually every professional has ChatGPT, Claude, and Gemini. Competitive advantage no longer comes from *having* AI access — everyone does. It comes from *directing AI effectively*. Prompt engineering is that advantage.
+
+3. **Language-first:** Unlike programming (requiring syntax and logic mastery), prompt engineering requires clear professional communication — articulating context, defining tasks precisely, and structuring requirements. Nigerian professionals already have this foundation.
+
+4. **It compounds:** Good prompts become templates. Templates become workflows. Workflows scale. Every hour invested in prompt engineering delivers permanent returns.
+
+**The Prompt Engineering Spectrum — From Basic to Expert**
+
+| Level | Type | Example | Output Quality |
+|-------|------|---------|---------------|
+| 1 | Direct Request | "Summarise this document" | Low — AI makes all assumptions |
+| 2 | Contextual | "Summarise in 3 bullets for a non-technical Nigerian CFO" | Better |
+| 3 | Structured Professional | Role + Context + Task + Format + Constraints | High — immediately usable |
+| 4 | Few-Shot | Provide examples of desired output style | Very High |
+| 5 | Chain of Thought | Guide step-by-step reasoning process | Very High |
+| 6 | Advanced Frameworks | COSTAR, RCTF, Agent workflows (Modules 3–4) | Expert |
+
+---
+
+**1.2.10 Anatomy of a Prompt**
+
+A professional prompt is a structured communication with six components. Mastering all six is the difference between "average AI output" and "expert AI output."
+
+**The Six Components**
+
+**1. ROLE** — Who should the AI be?
+Sets expertise, tone, vocabulary, and reasoning pattern.
+- Weak: *(no role specified)*
+- Strong: `"You are a senior Nigerian tax consultant with 15 years of experience advising SMEs."`
+
+**2. CONTEXT** — What is the situation?
+Background the AI cannot infer without your telling it.
+- Weak: `"Write a report."`
+- Strong: `"I am preparing a Q3 performance review for the Board of a Lagos-based e-commerce startup with ₦450M GMV."`
+
+**3. TASK** — What exactly do you want done?
+The explicit, unambiguous instruction.
+- Weak: `"Help me with this."`
+- Strong: `"Write a 3-paragraph executive summary comparing Q3 vs Q2, highlighting 3 improvements and 2 areas underperforming."`
+
+**4. FORMAT** — How should the output look?
+If unspecified, AI chooses format randomly — often unusably.
+- Examples: `"Respond in bullet points."` | `"Create a comparison table."` | `"Use headers for each section."` | `"Keep under 150 words."` | `"Use Markdown."`
+
+**5. CONSTRAINTS** — What should the AI avoid or include?
+Explicit boundaries prevent the most common AI errors.
+- `"Do not use technical jargon — the audience are non-technical."`
+- `"Only use information I have provided; do not add external facts."`
+- `"All monetary values in Nigerian naira (₦)."`
+- `"If uncertain, say so rather than guessing."`
+
+**6. EXAMPLES** — Show what "good" looks like. *(Optional but highly effective)*
+One example is worth a hundred descriptive adjectives.
+- `"Here is a previous report in the style I want: [paste example]. Create a new one for [new content] in the same style."`
+
+**Before and After — Anatomy in Action**
+
+*Task: Write a payment follow-up email.*
+
+**Weak Prompt:** `"Write an email about late payment."`
+→ Generic, wrong tone, missing key details, requires complete rewriting before use.
+
+**Professional Prompt:**
+`"You are a professional business communicator at a Nigerian tech company. Write a polite but firm payment follow-up email to Eze Okoro (CEO, Apex Logistics Ltd) for invoice INV-2024-047 of ₦850,000, now 21 days overdue. Tone: professional and respectful — not threatening. Length: under 150 words. Include the payment portal link and offer a 15-minute call to resolve any issues. Do not use legal language."`
+→ Send-ready email requiring only minor personalisation.
+
+**The Professional Standard:** Your prompt should be clear enough that a competent human assistant could execute it without asking clarifying questions.
+
+---
+
+**1.2.11 Core Prompting Principles**
+
+Eight principles that underpin all effective prompting — from a single-sentence request to a complex multi-agent workflow. These are the mental framework that Modules 3 and 4 build upon.
+
+**Principle 1 — Specificity Over Vagueness**
+Every vague word in your prompt produces a vague word in the output. Precision in → precision out.
+- *Vague:* `"Tell me about cybersecurity."`
+- *Specific:* `"Explain the three most common ways Nigerian bank customers lose money to cybercrime, with one prevention step each, in language a non-technical bank teller can understand."`
+
+**Principle 2 — Context Enables Accuracy**
+AI models know nothing about your specific situation unless you tell them.
+- *Rule:* Treat the AI like a brilliant expert who just walked in the room with no prior knowledge of your project. Brief them completely.
+
+**Principle 3 — Role-Framing Unlocks Expertise**
+Assigning a specific, credible role consistently produces higher-quality, domain-appropriate responses.
+- `"You are a McKinsey consultant specialising in West African retail markets..."`
+- `"You are a Lagos secondary school teacher preparing a lesson for SS3 students..."`
+
+**Principle 4 — Format Controls Usability**
+Unformatted output requires reformatting — wasted time. Specifying format makes outputs immediately usable.
+- Always specify: length, structure (bullets/paragraphs/table), headers, tone level, and any special formatting.
+
+**Principle 5 — Constraints Prevent Hallucinations**
+Unconstrained prompts allow AI to fill gaps with plausible-sounding but potentially false information. Explicit constraints reduce this risk significantly.
+- `"Only use information I have provided."` | `"If uncertain, state it rather than guessing."` | `"Do not cite statistics I haven't given you."`
+
+**Principle 6 — Iteration Is the Method**
+The first output is a draft, not a final product. Professional results come from targeted refinement.
+- Round 1: Initial output
+- Round 2: "Good start. Now make the tone more formal and add a Nigerian regulatory example to point 2."
+- Round 3: "Shorten the introduction by 40% and add a clear call to action at the end."
+- *Rule:* When output is close, refine — don't restart.
+
+**Principle 7 — Examples Accelerate Alignment**
+Showing the AI what "good" looks like is faster than trying to describe it in words.
+- *Rule:* One example > one hundred adjectives.
+
+**Principle 8 — Decompose Complex Tasks**
+For multi-part tasks, a single prompt rarely achieves the best result. Sequential, focused prompts produce far superior output.
+- *Single prompt (weak):* `"Create a complete 12-month marketing strategy for my Nigerian fintech."`
+- *Sequential (strong):*
+  - Step 1: Analyse target market from provided description
+  - Step 2: Generate 5 positioning strategies based on that analysis
+  - Step 3: Select the strongest strategy and build a 90-day plan
+  - Step 4: Convert the 90-day plan into an actionable team brief
+
+**Quick Reference Card**
+
+| Principle | One-Line Rule |
+|-----------|--------------|
+| Specificity | Vague in → vague out |
+| Context | Brief the AI as if it just walked in the room |
+| Role-Framing | Name the expert; get expert-level output |
+| Format | Unspecified = random structure |
+| Constraints | Every assumption = potential hallucination |
+| Iteration | First draft is the starting point |
+| Examples | Show it; don't just describe it |
+| Decompose | Complex task = multiple focused prompts |
+
+---
+
 ### 1.3 Tools & Platforms
 
 | Tool | Purpose | URL |
@@ -219,7 +490,7 @@ Document what AI handled well vs. where it struggled.
 
 ### 1.8 Module Summary
 
-Artificial Intelligence is not a future possibility — it is the operating system of the present. From Alan Turing's 1950 question about machine thought, through decades of breakthroughs and winters, to ChatGPT's historic 2022 launch, AI has become the most consequential general-purpose technology since the internet. Its hierarchy — AI → Machine Learning → Deep Learning → LLMs → Generative AI — provides the conceptual scaffolding for everything that follows in this course. Nigeria and Africa stand at a critical inflection point: the infrastructure challenges are real, but so is the opportunity. Whether you are a student, professional, or entrepreneur, AI literacy is now a non-negotiable professional skill. This module is your foundation. *(158 words)*
+This module established the complete foundation for your AI journey. We traced seven major technology eras — from the Agricultural Revolution to the present AI Era — identifying the consistent pattern: each era removes a fundamental human bottleneck and arrives faster than the last. AI is the seventh and fastest era, compressing in years what prior eras took decades to achieve. Nigeria's leapfrog position across multiple eras simultaneously is a strategic advantage, not a disadvantage. We defined AI through perception, reasoning, and action; traced 75 years of history including two AI winters and the 2017 Transformer breakthrough; and distinguished the three capability levels (Narrow/General/Superintelligence) plus six functional categories — Generative, Multimodal, Agentic, Foundation Models, Small Language Models, and Embodied AI. We applied Rogers' Technology Adoption Lifecycle to establish that Nigerian professionals building AI skills today occupy the Early Adopter–Early Majority boundary — the maximum-value strategic position. Finally, we introduced Prompt Engineering as a foundational professional skill: the six-component anatomy (Role, Context, Task, Format, Constraints, Examples) and eight core principles that underpin every effective AI interaction. This foundation supports everything in Modules 2 through 8 — from LLM architecture to advanced prompt frameworks to real-world AI deployment. *(203 words)*
 
 ### 1.9 Critical Thinking Questions
 
