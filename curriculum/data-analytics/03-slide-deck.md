@@ -1235,7 +1235,7 @@ A. BI DASHBOARD          B. END-TO-END ANALYSIS
 C. PREDICTIVE MODEL      D. DATA JOURNALISM
    Regression analysis      Story using public data
    Hypothesis testing       Publish a data-driven article
-   Python optional          Datawrapper/Flourish charts
+   AI-assisted analysis     Datawrapper/Flourish charts
 
 E. ORGANISATIONAL        
    STRATEGY               
@@ -1457,7 +1457,7 @@ IN THE NEXT 30 DAYS:
 
 IN 3–6 MONTHS:
 □ Your first analyst role (or promotion)
-□ Consider Python as your next skill addition
+□ Deepen Power BI skills: custom visuals, Power Automate integration, Azure integration
 □ Mentor someone newer than you — it cements your knowledge
 
 WHERE TO FIND DATA TO PRACTICE:

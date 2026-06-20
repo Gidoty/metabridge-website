@@ -1355,7 +1355,7 @@ Translation:
 - β₃: Revenue boost from promotions
 - ε: Error term — what the model can't explain
 
-You build this model in Excel (Data Analysis ToolPak → Regression) or Python (scikit-learn). The model gives you β values. Then you plug in new inputs to predict revenue.
+You build this model in Excel using the Data Analysis ToolPak → Regression tool. The model gives you β values. Then you plug in new inputs to predict revenue.
 
 **R² (R-squared):** How well the model fits. R² = 0.85 means the model explains 85% of the variation in revenue. The remaining 15% is unexplained by your variables.
 

@@ -507,7 +507,7 @@ By the end of this module, students will be able to:
 - Apply time intelligence functions (SAMEPERIODLASTYEAR, DATEADD, TOTALYTD)
 - Build dynamic titles and conditional formatting
 - Use advanced features: bookmarks, drill-through, decomposition tree
-- Integrate Python/R scripts within Power BI
+- Apply AI-assisted analytics features in Power BI (Decomposition Tree, Q&A visual, Key Influencers)
 
 ### Core Concepts
 
@@ -670,7 +670,7 @@ DIVIDE(
 1. **DAX Challenge:** Write DAX measures for: (a) Customer Lifetime Value (total spend per customer), (b) Product profitability ranking using RANKX, (c) Dynamic top N customers based on a slicer selection, (d) Cohort retention rate for each monthly new customer cohort
 2. **Financial Dashboard with Time Intelligence:** Build a full financial performance dashboard using all time intelligence functions covered. Should show: YTD, SPLY, MoM growth, and a forecast for the next 3 months using linear trend.
 3. **Report Story:** Using Power BI bookmarks, create a 5-step presentation story within a Power BI report that walks a CEO through Nigeria-specific insights, click by click.
-4. **Python Integration:** Enable Python visuals in Power BI. Connect to Python to generate a matplotlib chart within Power BI. Use this to create a correlation matrix heatmap.
+4. **AI-Assisted Analytics:** Using Power BI's built-in AI visuals: (a) Use the Decomposition Tree to identify the top drivers of revenue variance across states, product categories, and time periods; (b) Use the Q&A visual to explore your retail dataset using natural language — ask "top 10 customers by revenue this year" and "revenue by state as a map"; (c) Use the Key Influencers visual to identify which customer or product attributes most strongly predict high transaction values. Write a 400-word analysis report comparing insights discovered through AI-assisted exploration versus manual analysis — what did the AI surface that you might have missed?
 5. **Model Optimisation:** Given a slow Power BI file (>100MB), diagnose the performance issues using Performance Analyzer and DAX Studio. Apply optimisation techniques.
 
 ---
@@ -807,183 +807,6 @@ Interpretation:
 - NCDC: Disease outbreak prediction from symptoms and geographic spread
 - MTN Nigeria: Churn prediction from usage patterns
 
----
-
-**11.6 Python for Data Analysis — Core Skills**
-
-Python is the world's most widely used data analysis language. Every leading data analytics certification (Google, IBM, Coursera) and every tier-1 employer (banks, fintechs, consulting firms, NGOs) expects Python fluency. This section introduces the essential Python workflow used by professional data analysts.
-
-**Why Python for Data Analysts?**
-- Automates repetitive tasks that would take hours in Excel
-- Handles datasets with millions of rows that crash Excel
-- Integrates data cleaning, analysis, visualisation, and ML in one environment
-- Free, open-source, and runs on any computer including low-spec laptops
-
-**11.6.1 Jupyter Notebook — The Analyst's IDE**
-
-Jupyter Notebook is the standard environment for data analysis. It combines code, visualisations, and written explanation in a single document — perfect for analysis that must be shared and reproduced.
-
-```python
-# Install in terminal: pip install jupyter pandas matplotlib numpy
-# Launch: jupyter notebook
-# Each cell can be: Code (Python) or Markdown (documentation)
-# Run a cell: SHIFT + ENTER
-```
-
-**Typical Jupyter workflow for a data project:**
-1. Import libraries and load data
-2. Explore data structure
-3. Clean data
-4. Analyse and aggregate
-5. Visualise findings
-6. Write conclusions in Markdown cells
-
-**11.6.2 pandas — Data Manipulation**
-
-pandas is the foundation of Python data analysis. It works with DataFrames — two-dimensional tables with rows and columns (similar to Excel).
-
-```python
-import pandas as pd
-
-# Load data
-df = pd.read_csv('nigerian_sales_2024.csv')
-df = pd.read_excel('bank_transactions.xlsx', sheet_name='Q1')
-
-# First exploration — ALWAYS do these first
-df.head()           # First 5 rows
-df.tail()           # Last 5 rows
-df.shape            # (rows, columns)
-df.info()           # Column names, data types, non-null counts
-df.describe()       # Statistical summary of numerical columns
-df.dtypes           # Data types per column
-
-# Column operations
-df['state'].value_counts()          # Frequency count per state
-df['amount'].mean()                 # Average transaction amount
-df['amount'].median()               # Median (robust to outliers)
-df[df['state'] == 'Lagos']          # Filter rows: Lagos only
-df[df['amount'] > 100000]           # Filter rows: transactions above ₦100K
-
-# Grouping and aggregation
-df.groupby('state')['amount'].sum()       # Total revenue by state
-df.groupby('state')['amount'].mean()      # Average by state
-df.groupby(['state','month'])['amount'].count()  # Multi-level groupby
-
-# Handling missing values
-df.isnull().sum()                   # Count missing values per column
-df['age'].fillna(df['age'].median(), inplace=True)   # Impute with median
-df.dropna(subset=['customer_id'], inplace=True)       # Drop rows missing key field
-
-# Merging datasets (equivalent to SQL JOIN / Excel VLOOKUP)
-merged = pd.merge(df_transactions, df_customers, on='customer_id', how='left')
-```
-
-**11.6.3 matplotlib — Data Visualisation**
-
-```python
-import matplotlib.pyplot as plt
-
-# Bar chart — sales by region
-region_sales = df.groupby('region')['amount'].sum()
-plt.figure(figsize=(10, 6))
-region_sales.plot(kind='bar', color='#1A6CFF')
-plt.title('Total Sales by Region — Q1 2024', fontsize=14)
-plt.xlabel('Region')
-plt.ylabel('Revenue (₦)')
-plt.xticks(rotation=45)
-plt.tight_layout()
-plt.savefig('sales_by_region.png', dpi=150)
-plt.show()
-
-# Line chart — monthly trend
-monthly = df.groupby('month')['amount'].sum()
-plt.figure(figsize=(12, 5))
-plt.plot(monthly.index, monthly.values, marker='o', color='#00D4FF', linewidth=2)
-plt.title('Monthly Revenue Trend')
-plt.xlabel('Month')
-plt.ylabel('Revenue (₦)')
-plt.grid(True, alpha=0.3)
-plt.show()
-
-# Histogram — distribution of transaction amounts
-plt.figure(figsize=(10, 5))
-plt.hist(df['amount'], bins=50, color='#FFB800', edgecolor='black')
-plt.title('Distribution of Transaction Amounts')
-plt.xlabel('Amount (₦)')
-plt.ylabel('Frequency')
-plt.show()
-
-# Scatter plot — relationship between two variables
-plt.figure(figsize=(8, 6))
-plt.scatter(df['income'], df['spending'], alpha=0.5, color='#1A6CFF')
-plt.title('Customer Income vs Spending')
-plt.xlabel('Annual Income (₦)')
-plt.ylabel('Annual Spending (₦)')
-plt.show()
-```
-
-**11.6.4 A Complete Mini-Analysis (Nigerian Example)**
-
-```python
-import pandas as pd
-import matplotlib.pyplot as plt
-
-# Step 1: Load and explore
-df = pd.read_csv('nigerian_ecommerce_2024.csv')
-print(df.shape)       # How many rows and columns?
-print(df.isnull().sum())  # Any missing values?
-
-# Step 2: Clean
-df['order_date'] = pd.to_datetime(df['order_date'])
-df['month'] = df['order_date'].dt.month
-df.dropna(subset=['customer_id', 'amount'], inplace=True)
-
-# Step 3: Analyse
-top_states = df.groupby('state')['amount'].sum().sort_values(ascending=False).head(10)
-monthly_trend = df.groupby('month')['amount'].sum()
-avg_order_by_category = df.groupby('category')['amount'].mean()
-
-# Step 4: Visualise
-fig, axes = plt.subplots(1, 2, figsize=(16, 6))
-
-top_states.plot(kind='barh', ax=axes[0], color='#1A6CFF')
-axes[0].set_title('Top 10 States by Revenue')
-axes[0].set_xlabel('Revenue (₦)')
-
-monthly_trend.plot(kind='line', ax=axes[1], marker='o', color='#00D4FF')
-axes[1].set_title('Monthly Revenue Trend')
-axes[1].set_xlabel('Month')
-
-plt.tight_layout()
-plt.savefig('nigeria_ecommerce_analysis.png', dpi=150)
-plt.show()
-
-# Step 5: Export findings
-summary = df.groupby('state').agg(
-    total_revenue=('amount', 'sum'),
-    order_count=('order_id', 'count'),
-    avg_order_value=('amount', 'mean')
-).round(2)
-summary.to_csv('state_summary.csv')
-print("Analysis complete. Summary exported.")
-```
-
-**Python vs Excel — When to Use Which**
-
-| Task | Excel | Python |
-|------|-------|--------|
-| Dataset size | Up to ~100K rows reliably | Millions of rows |
-| One-off analysis | Faster to set up | Overkill |
-| Repeatable/automated | Needs VBA macros | Natural — re-run instantly |
-| Visualisation | Good for simple charts | Full control, publication quality |
-| Statistical tests | ToolPak handles basics | Full statistical library (scipy) |
-| Sharing analysis | .xlsx file | Jupyter Notebook (.ipynb) or PDF export |
-| Learning curve | Lower | Moderate investment; high return |
-
-**Professional guidance:** Use Excel for quick, ad hoc analysis and stakeholder-facing tables. Use Python for any analysis you need to repeat, any dataset over 100K rows, and any project requiring advanced statistics or ML.
-
----
-
 ### Labs — Module 11
 
 **Lab 11.1: Statistical Analysis in Excel**
@@ -992,18 +815,17 @@ print("Analysis complete. Summary exported.")
 - Task: Run descriptive statistics, build a histogram, identify distribution shape, run correlation analysis between spending variables, run a t-test comparing male vs female spending
 - Deliverable: Statistical analysis report with interpretations
 
-**Lab 11.2: Python Regression Analysis (Jupyter Notebook)**
-- Tool: Python (Jupyter Notebook) — primary tool; Excel permitted as fallback if Python not yet installed
-- Setup: `pip install pandas matplotlib scipy numpy` then launch `jupyter notebook`
-- Dataset: Nigerian state education and economic data (CSV provided by instructor)
-- Task: Load data with pandas, check for missing values, run descriptive statistics with `.describe()`, run multiple regression with literacy rate as outcome and predictors: education spending per capita, urban population %, poverty rate, female school enrollment. Use `scipy.stats.pearsonr()` for correlation. Produce a matplotlib chart showing the strongest predictor. Interpret each coefficient in a Markdown cell.
-- Deliverable: Jupyter Notebook (.ipynb) with code + written interpretation in Markdown cells
+**Lab 11.2: Regression Analysis in Excel**
+- Tool: Excel (Data Analysis ToolPak → Regression)
+- Dataset: Nigerian state education and economic data (Excel file provided by instructor)
+- Task: Run a multiple regression with literacy rate as the outcome variable and predictors: education spending per capita, urban population %, poverty rate, female school enrollment. Interpret each coefficient. Calculate R² and note its meaning. Identify which predictors are statistically significant (p < 0.05). Create a scatter plot for the strongest predictor.
+- Deliverable: Excel workbook with regression output table + 300-word written interpretation
 
-**Lab 11.3: Python Customer Segmentation**
-- Tool: Python (Jupyter Notebook) with pandas and matplotlib
-- Dataset: Nigerian e-commerce customer data (recency, frequency, monetary) provided as CSV
-- Task: Load and explore with pandas. Perform RFM analysis — score each customer 1–5 on each dimension using pandas `pd.cut()`. Create customer segments (Champions, Loyal, At Risk, Lost, New). Produce a bar chart showing segment sizes. Export the final segmented DataFrame to CSV.
-- Deliverable: Jupyter Notebook with complete analysis + exported customer_segments.csv
+**Lab 11.3: Customer Segmentation — RFM Analysis in Excel**
+- Tool: Excel
+- Dataset: Nigerian e-commerce customer data (recency, frequency, monetary values) — Excel file provided by instructor
+- Task: Perform RFM analysis using Excel. Score each customer 1–5 on each dimension using PERCENTILE and IF formulas. Combine scores to create RFM segments: Champions (555), Loyal (4xx), At Risk (2xx), Lost (1xx), New (x1x). Build a pivot table showing the count and average monetary value per segment. Create a bar chart showing segment sizes.
+- Deliverable: Excel workbook with RFM scoring formulas + pivot table + segment bar chart
 
 ### Assignments — Module 11
 
@@ -1135,7 +957,7 @@ Students choose ONE option and execute it as a professional analytics deliverabl
 **Deliverable:** A supervised machine learning model with full analysis and business interpretation.
 
 **Requirements:**
-- Python Jupyter Notebook (required — see Module 11.6 for setup and pandas/matplotlib foundations)
+- Excel or Power BI (primary tool for analysis and modelling)
 - Train/test split with proper evaluation
 - Minimum: logistic regression or decision tree model
 - Model evaluation: accuracy, precision, recall, confusion matrix
@@ -1218,7 +1040,7 @@ Students choose ONE option and execute it as a professional analytics deliverabl
 - Modules 6–7: SQL — SELECT, WHERE, GROUP BY, JOINs, window functions (8 questions)
 - Module 8: Visualisation principles, chart selection (4 questions)
 - Modules 9–10: Power BI, DAX measures (6 questions)
-- Module 11: Statistics, regression, correlation, Python/pandas basics (6 questions)
+- Module 11: Statistics, regression, correlation, AI-assisted analytics (4 questions)
 - Module 12: Analytics communication, ethics (2 questions)
 
 ---

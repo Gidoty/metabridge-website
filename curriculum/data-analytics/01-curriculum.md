@@ -48,7 +48,7 @@ Upon completing this course, students will be able to:
 |--------|-------|----------|-------------|
 | 1 | Introduction to Data Analytics: The Data-Driven World | 6 hrs | Conceptual + exploration |
 | 2 | Data Collection, Sources & the Data Lifecycle | 6 hrs | Google Sheets, web scraping concepts |
-| 3 | Data Cleaning & Preparation | 6 hrs | Excel, Python (intro) |
+| 3 | Data Cleaning & Preparation | 6 hrs | Excel |
 | 4 | Excel for Data Analysis I — Foundations | 6 hrs | Microsoft Excel |
 | 5 | Excel for Data Analysis II — Advanced Functions | 6 hrs | Microsoft Excel |
 | 6 | Introduction to SQL & Database Queries | 6 hrs | MySQL / PostgreSQL / SQLiteOnline |
@@ -56,12 +56,25 @@ Upon completing this course, students will be able to:
 | 8 | Data Visualisation Principles | 6 hrs | Excel charts, Datawrapper, Flourish |
 | 9 | Power BI I — Building Dashboards | 6 hrs | Microsoft Power BI Desktop |
 | 10 | Power BI II — DAX, Measures & Advanced Analytics | 6 hrs | Microsoft Power BI Desktop |
-| 11 | Statistical Analysis & Predictive Analytics | 6 hrs | Excel Stats, Python pandas/scipy |
+| 11 | Statistical Analysis & Predictive Analytics | 6 hrs | Excel Statistics, AI-assisted Analytics |
 | 12 | Analytics in Practice & Capstone Project | 6 hrs | Full stack |
 
 ---
 
-## MODULE 1: INTRODUCTION TO DATA ANALYTICS — THE DATA-DRIVEN WORLD
+## DIFFICULTY LEVEL CLASSIFICATION
+
+| Level | Modules | Skills Developed |
+|-------|---------|-----------------|
+| **Beginner** | M1–M3 | Understanding data analytics concepts, data collection and sources, data cleaning and preparation |
+| **Intermediate** | M4–M6 | Excel foundations and advanced functions, SQL basics and database querying |
+| **Advanced** | M7–M9 | Advanced SQL joins and aggregations, data visualisation principles, Power BI dashboard building |
+| **Professional** | M10–M12 | Power BI DAX and advanced analytics, statistics and predictive analytics, capstone project |
+
+*Students should complete each level before progressing to the next. Prior knowledge of the Beginner level is assumed before the Intermediate level begins.*
+
+---
+
+## MODULE 1 [BEGINNER]: INTRODUCTION TO DATA ANALYTICS — THE DATA-DRIVEN WORLD
 
 ### Module Learning Objectives
 By the end of this module, students will be able to:
@@ -210,7 +223,7 @@ Present to stakeholders. Recommendations must be actionable. Follow through to m
 
 ---
 
-## MODULE 2: DATA COLLECTION, SOURCES & THE DATA LIFECYCLE
+## MODULE 2 [BEGINNER]: DATA COLLECTION, SOURCES & THE DATA LIFECYCLE
 
 ### Module Learning Objectives
 By the end of this module, students will be able to:
