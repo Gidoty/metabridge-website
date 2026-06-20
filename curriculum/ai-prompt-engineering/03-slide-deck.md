@@ -14,11 +14,14 @@
 
 ---
 
-# MODULE 1 SLIDES: INTRODUCTION, HISTORY & FOUNDATIONS OF AI
+# MODULE 1 SLIDES [BEGINNER]: INTRODUCTION, HISTORY & FOUNDATIONS OF AI
 
 ---
 
 ## SLIDE 1 — TITLE SLIDE
+
+**Level Badge (Outfit 500, electric blue):**
+LEVEL: BEGINNER
 
 **Main Title (large, Syne 800, white):**
 ARTIFICIAL INTELLIGENCE
@@ -33,6 +36,27 @@ MetaBridge Academy | metabridgeacademy.com
 **Visual:** Full-bleed dark navy background. Glowing neural network node diagram (bright blue connecting lines, nodes pulsing softly). Bottom left: MetaBridge MB logo icon. Bottom right: "Blockchain Verified Education."
 
 **Speaker Note:** Welcome students warmly. Confirm everyone can see screen and hear audio. Run a quick chat check.
+
+---
+
+## SLIDE 1B — DIFFICULTY LEVEL OVERVIEW
+
+**Slide Header (Syne 700, white):**
+Your 8-Module Learning Journey — 4 Levels of Mastery
+
+**Four-level layout (horizontal bands, each with distinct accent colour):**
+
+BEGINNER        M1–M2    AI foundations & history · LLMs & generative AI architecture
+INTERMEDIATE    M3–M4    Prompt engineering fundamentals · Advanced prompting frameworks
+ADVANCED        M5–M6    AI tools ecosystem · AI for business & automation
+PROFESSIONAL    M7–M8    AI ethics, safety & governance · Capstone & professional deployment
+
+**Footer text (Outfit 300, muted):**
+Complete each level before advancing. Prior completion of the Beginner level is assumed before Intermediate begins.
+
+**Visual:** Stacked horizontal bands — blue (Beginner), cyan (Intermediate), gold (Advanced), white/bright (Professional). Progress arrow on right side pointing upward. Module number chips visible in each band.
+
+**Speaker Note:** Show students the full arc of the course before diving into Module 1. This gives them a map. Every module they complete moves them one step closer to Professional-level AI practitioner status.
 
 ---
 
@@ -278,30 +302,283 @@ Status badge: ⬜ THEORETICAL
 
 ---
 
-## SLIDE 9 — MODULE 1 KEY TAKEAWAYS
+## SLIDE 9 — THE SEVEN TECHNOLOGY ERAS
+
+**Slide Header:**
+AI Is the Seventh — and Fastest — Era of Human Progress
+
+**Visual:** Horizontal timeline sweeping left to right. Each era is a node connected by a rising line — showing acceleration. Nodes are colour-coded (ancient = grey, recent = blue, now = gold).
+
+**Seven era nodes (left to right):**
+
+[Grey node] **Agricultural Revolution** ~10,000 BC
+*Removed: food unpredictability*
+
+[Grey node] **Writing** ~3,100 BC
+*Removed: memory limits*
+
+[Faint blue node] **Printing Press** 1440
+*Removed: knowledge scarcity*
+
+[Blue node] **Industrial Revolution** 1760–1840
+*Removed: physical labour bottleneck*
+
+[Brighter blue node] **Electricity & Communication** 1820–1950
+*Removed: geographic isolation*
+
+[Cyan node] **Computing & Internet** 1940s–2010s
+*Removed: information access lag*
+
+[GOLD STAR — pulsing] **Artificial Intelligence** 2017–present
+*Removing: cognitive bottlenecks*
+
+**Bottom statement (white, bold):**
+Each era arrived faster than the last. AI is the fastest in history.
+
+**Right side annotation (Outfit 300, muted, stacked):**
+Agricultural Revolution → 3,000 years to spread
+Printing Press → 100 years to transform Europe
+Internet → 10 years to global mass adoption
+ChatGPT → 60 days to 100 million users
+
+**Speaker Note:** Ask: "Which era do you think was the most disruptive to the people living through it?" Get chat answers. Then: "Now you know why AI is the most discussed technology in history — we can see ourselves in the middle of one of these moments for the first time."
+
+---
+
+## SLIDE 10 — EMERGING AI CATEGORIES
+
+**Slide Header:**
+Beyond ANI/AGI/ASI: How AI Is Categorised by Function
+
+**Visual:** 3×2 grid of category cards. Each card has a distinct accent colour, icon, and short description.
+
+Card 1 [Electric blue — text icon]:
+**GENERATIVE AI**
+Creates original content:
+text, images, audio,
+video, code
+*ChatGPT | Midjourney | ElevenLabs*
+
+Card 2 [Cyan — multi-layer icon]:
+**MULTIMODAL AI**
+Processes text + images +
+audio + video simultaneously
+*GPT-4o | Gemini 2.0 Flash*
+
+Card 3 [Gold — robot/gear icon]:
+**AGENTIC AI**
+Pursues goals autonomously
+using tools & multi-step planning
+*OpenAI Operator | Claude Computer Use*
+
+Card 4 [Purple — foundation layer icon]:
+**FOUNDATION MODELS**
+Large base models powering
+the entire AI economy
+*GPT-4o | Claude Sonnet 4.6 | Llama 3*
+
+Card 5 [Green — mobile/edge icon]:
+**SMALL LANGUAGE MODELS**
+Compact, efficient, runs offline
+Critical for Nigeria deployment
+*Phi-3 | Gemma | Llama 3.2*
+
+Card 6 [Orange — robot body icon]:
+**EMBODIED AI**
+AI in physical systems:
+manufacturing, agriculture, healthcare
+*Tesla Optimus | Boston Dynamics*
+
+**Bottom bar (gold, bold):**
+Today you work with Generative AI. Tomorrow you will orchestrate Agentic AI.
+
+**Speaker Note:** Linger on Agentic AI — this is where most students' eyes widen. The shift from "AI tells me what to do" to "AI does it for me" is profound. And SLMs matter specifically for Nigeria — run AI without data leaving the country, without reliable internet.
+
+---
+
+## SLIDE 11 — TECHNOLOGY ADOPTION LIFECYCLE
+
+**Slide Header:**
+Where Are You on the AI Adoption Curve?
+
+**Visual:** Bell curve spanning the full width of the slide. Each segment labelled and colour-coded.
+
+Left → Right across the bell:
+[Dark blue] Innovators 2.5%
+[Blue] Early Adopters 13.5%
+[Cyan] Early Majority 34%
+[Lighter] Late Majority 34%
+[Grey] Laggards 16%
+
+**Below the curve — a gold vertical line** between Early Adopters and Early Majority, labelled:
+**"The Chasm"** ← (Geoffrey Moore, 1991)
+*Most technologies die here*
+
+**Gold star marker on the curve between Early Adopters and Early Majority:**
+**YOU ARE HERE (2025)**
+
+**Right side — two columns:**
+
+Column 1 (what Early Adopters get):
+• Shape the tools
+• Set professional standards
+• Command premium compensation
+• Capture first-mover advantage
+
+Column 2 (what Laggards get):
+• Commoditised skills
+• Replacement risk
+• Compressed margins
+• Reactive (not proactive) position
+
+**Bottom bar (cyan):**
+ChatGPT crossed the Chasm in 2023. AI is in mass adoption. Your window to lead — not follow — is now.
+
+**Speaker Note:** Ask: "Show of hands — metaphorically in the chat — which category were you in 12 months ago?" Many will say Early Majority or even Late Majority. Then: "You are in this class, which means you are making the transition to Early Adopter right now. That decision has real career value."
+
+---
+
+## SLIDE 12 — INTRODUCTION TO PROMPT ENGINEERING
+
+**Slide Header:**
+The Most Valuable AI Skill That Anyone Can Learn
+
+**Left half — Definition box (dark card, blue border):**
+**Prompt Engineering** is the practice of designing, structuring, and optimising the instructions you give to AI systems to produce higher-quality, more accurate, and more practically useful outputs.
+
+**Simple version (cyan, large):**
+*"How you talk to AI determines what AI gives you back."*
+
+**Right half — Three stats (vertical stack):**
+
+[Gold box]
+**30–90%**
+Performance improvement from
+optimised vs. basic prompts
+*(Stanford AI Lab, 2023)*
+
+[Blue box]
+**Same model**
+A better prompt — not a bigger AI —
+produces dramatically better output
+
+[Cyan box]
+**Language-first**
+If you can communicate clearly,
+you can master prompt engineering
+
+**Bottom bar (gold):**
+"By 2025, access to AI is universal. The competitive advantage belongs to those who direct it best."
+
+**Speaker Note:** Do the live demo right now — type a basic prompt, show the output. Then type the structured professional prompt, show the new output side by side. The "before and after" is worth more than ten minutes of lecture.
+
+---
+
+## SLIDE 13 — ANATOMY OF A PROMPT
+
+**Slide Header:**
+Six Components of a Professional Prompt
+
+**Visual:** Vertical stack of six labelled cards, each with a distinct colour-coded left border and an icon.
+
+[Blue border] **1. ROLE**
+Who should the AI be? Define expertise, tone, vocabulary.
+*"You are a senior Nigerian tax consultant with 15 years of SME experience."*
+
+[Cyan border] **2. CONTEXT**
+What is the situation? Background the AI cannot infer.
+*"The Board are non-technical executives; company has ₦450M GMV."*
+
+[Gold border] **3. TASK**
+What exactly do you want? Explicit and unambiguous.
+*"Write a 3-paragraph executive summary comparing Q3 vs Q2."*
+
+[Purple border] **4. FORMAT**
+How should the output look? Structure, length, style.
+*"Bullet points. Under 150 words. Use Markdown headers."*
+
+[Green border] **5. CONSTRAINTS**
+What to avoid or include? Prevent errors.
+*"No jargon. Values in ₦ only. State uncertainty; don't guess."*
+
+[Orange border] **6. EXAMPLES** *(optional but powerful)*
+Show what "good" looks like.
+*"Here is a previous report in my preferred style: [paste example]."*
+
+**Bottom bar (white on dark card, centred):**
+Without components: generic output · With all six: immediately usable professional output
+
+**Speaker Note:** Show the before/after email demo here (basic prompt vs full six-component prompt). Ask students: "Which components did the professional version use?" Walk through it together.
+
+---
+
+## SLIDE 14 — THE 8 CORE PROMPTING PRINCIPLES
+
+**Slide Header:**
+The Rules That Make Any Prompt Work Better
+
+**Visual:** 2×4 grid of principle cards. Each card: number (large, gold) + principle name + one-line rule.
+
+[1] **SPECIFICITY**
+Vague in → vague out
+
+[2] **CONTEXT**
+Brief the AI as if it just walked in the room
+
+[3] **ROLE-FRAMING**
+Name the expert; get expert-level output
+
+[4] **FORMAT**
+Unspecified = random structure
+
+[5] **CONSTRAINTS**
+Every assumption = potential hallucination
+
+[6] **ITERATION**
+First draft is the starting point, not the finish line
+
+[7] **EXAMPLES**
+Show it — don't just describe it
+
+[8] **DECOMPOSE**
+Complex task = multiple focused prompts
+
+**Bottom statement (gold, centred, bold):**
+Master these 8 principles and you have the foundation for everything in Modules 3 and 4.
+
+**Speaker Note:** Run a quick live exercise — give students a bad prompt, ask them to identify which principles it violates. Then rebuild it together applying the principles. Takes 5 minutes but cements the learning.
+
+---
+
+## SLIDE 15 — MODULE 1 KEY TAKEAWAYS
 
 **Slide Header:**
 What You Now Know
 
-**Five bullet points (large, Outfit 500, with cyan checkmarks):**
+**Ten bullet points (Outfit 500, with cyan checkmarks):**
+✓ AI is the seventh and fastest major technology era in human history
 ✓ AI simulates human perception, reasoning, and action
 ✓ AI has a 70-year history — with two winters and one revolution
 ✓ Everything today is Narrow AI — powerful within specific domains
+✓ Six functional AI categories: Generative, Multimodal, Agentic, Foundation Models, SLMs, Embodied
 ✓ The AI hierarchy: AI → ML → DL → LLMs → Generative AI
-✓ Nigeria is already an AI economy — and growing
+✓ Rogers' Adoption Lifecycle: MetaBridge graduates are at the Early Adopter–Early Majority boundary
+✓ Nigeria's leapfrog opportunity: three technology eras, AI-native positioning
+✓ Prompt Engineering: the professional skill that separates average from exceptional AI output
+✓ Six-component anatomy + 8 core principles = the foundation for every prompt
 
 **Bottom quote (gold, centred):**
 "AI literacy is no longer optional.
 It is the professional language of the future."
 — MetaBridge Academy
 
-**Visual:** Clean five-point layout with checkmark icons. MetaBridge logo bottom left.
+**Visual:** Clean layout. MetaBridge logo bottom left.
 
-**Speaker Note:** Pause. Ask students: "What is ONE thing from today that surprised you? Drop it in the chat."
+**Speaker Note:** Pause. Ask students: "What is ONE thing from today that surprised you? Drop it in the chat." Then preview Module 2 — next week we go inside the machine and understand exactly how ChatGPT works technically.
 
 ---
 
-## SLIDE 10 — THIS WEEK'S ASSIGNMENTS
+## SLIDE 16 — THIS WEEK'S ASSIGNMENTS
 
 **Slide Header:**
 Your Week 1 Work
@@ -322,11 +599,13 @@ metabridgeacademy.com
 
 ---
 
-# MODULE 2 SLIDES: LLMs & GENERATIVE AI ARCHITECTURE
+# MODULE 2 SLIDES [BEGINNER]: LLMs & GENERATIVE AI ARCHITECTURE
 
 ---
 
 ## SLIDE 11 — MODULE 2 TITLE
+
+**Level Badge:** LEVEL: BEGINNER
 
 **Title:** Inside the Machine: How AI Actually Works
 
@@ -504,15 +783,16 @@ The Major LLMs — Your Professional Toolkit
 | Model | Creator | Context Window | Best For |
 |-------|---------|---------------|---------|
 | GPT-4o | OpenAI | 128K tokens | Code, reasoning, multimodal |
-| Claude 3.5 | Anthropic | 200K tokens | Analysis, writing, long docs |
-| Gemini 1.5 Pro | Google | 1M tokens | Research, Google integration |
+| Claude Sonnet 4.6 | Anthropic | 200K tokens | Analysis, writing, long docs |
+| Gemini 2.0 Flash | Google | 1M+ tokens | Research, Google integration |
 | Llama 3 405B | Meta | 128K tokens | Open source, customisation |
 | Mistral Large | Mistral | 128K tokens | European/GDPR, efficiency |
 | Meta AI | Meta | — | Free, embedded in WhatsApp |
 
 **Bottom callout (gold):**
-Professional rule: Use Claude for analysis + long documents.
-Use GPT-4o for versatile tasks + coding. Use Gemini for research.
+Professional rule: Use Claude Sonnet 4.6 for analysis + long documents.
+Use GPT-4o for versatile tasks + coding. Use Gemini 2.0 Flash for research.
+*Note: AI model versions update quarterly — verify current releases.*
 
 ---
 
@@ -539,11 +819,13 @@ Treat AI output as a **first draft**, not a **final answer**.
 
 ---
 
-# MODULE 3 SLIDES: PROMPT ENGINEERING FUNDAMENTALS
+# MODULE 3 SLIDES [INTERMEDIATE]: PROMPT ENGINEERING FUNDAMENTALS
 
 ---
 
 ## SLIDE 19 — MODULE 3 TITLE
+
+**Level Badge:** LEVEL: INTERMEDIATE
 
 **Title:** The Skill That Multiplies Your Intelligence
 
@@ -681,11 +963,13 @@ Check every prompt before you submit.
 
 ---
 
-# MODULE 4 SLIDES: ADVANCED PROMPTING TECHNIQUES
+# MODULE 4 SLIDES [INTERMEDIATE]: ADVANCED PROMPTING TECHNIQUES
 
 ---
 
 ## SLIDE 24 — MODULE 4 TITLE
+
+**Level Badge:** LEVEL: INTERMEDIATE
 
 **Title:** From Prompts to AI Systems
 
@@ -843,11 +1127,13 @@ Sets:
 
 ---
 
-# MODULE 5 SLIDES: AI TOOLS ECOSYSTEM
+# MODULE 5 SLIDES [ADVANCED]: AI TOOLS ECOSYSTEM
 
 ---
 
 ## SLIDE 29 — MODULE 5 TITLE
+
+**Level Badge:** LEVEL: ADVANCED
 
 **Title:** The Complete AI Toolkit
 
@@ -865,8 +1151,8 @@ Text & Language AI — The Foundation
 **Six tool cards (3×2 grid):**
 
 Card 1 [OpenAI blue]: **ChatGPT (GPT-4o)** — Versatile, code, reasoning, multimodal | $0/$20
-Card 2 [Anthropic]: **Claude 3.5 Sonnet** — Analysis, safety, 200K context | $0/$20
-Card 3 [Google]: **Gemini 1.5 Pro** — Google integration, 1M context | $0/$20
+Card 2 [Anthropic]: **Claude Sonnet 4.6** — Analysis, safety, 200K+ context | $0/$20
+Card 3 [Google]: **Gemini 2.0 Flash** — Google integration, fast, multimodal | $0/$20
 Card 4 [Purple]: **Perplexity AI** — Research + live citations | $0/$20
 Card 5 [Meta blue]: **Meta AI** — Free, in WhatsApp | Free
 Card 6 [French blue]: **Mistral** — GDPR-friendly, efficient | Free/paid
@@ -952,11 +1238,13 @@ Start with free tools. Upgrade as you generate income from AI skills.
 
 ---
 
-# MODULE 6 SLIDES: AI FOR BUSINESS & AUTOMATION
+# MODULE 6 SLIDES [ADVANCED]: AI FOR BUSINESS & AUTOMATION
 
 ---
 
 ## SLIDE 34 — THE ROI OF AI AUTOMATION
+
+**Level Badge:** LEVEL: ADVANCED
 
 **Slide Header:**
 The Business Case: Every Minute Counts
@@ -1041,11 +1329,13 @@ Human role: Final approval only
 
 ---
 
-# MODULE 7 SLIDES: AI ETHICS & THE FUTURE
+# MODULE 7 SLIDES [PROFESSIONAL]: AI ETHICS & THE FUTURE
 
 ---
 
 ## SLIDE 37 — AI BIAS: THE INVISIBLE DISCRIMINATION
+
+**Level Badge:** LEVEL: PROFESSIONAL
 
 **Slide Header:**
 When AI Inherits Human Prejudice
@@ -1154,11 +1444,13 @@ It is the question of whether AI serves you or controls you.
 
 ---
 
-# MODULE 8 SLIDES: CAPSTONE
+# MODULE 8 SLIDES [PROFESSIONAL]: CAPSTONE
 
 ---
 
 ## SLIDE 41 — CAPSTONE: YOUR PROFESSIONAL DEBUT
+
+**Level Badge:** LEVEL: PROFESSIONAL
 
 **Slide Header:**
 Module 8: Build Something That Matters

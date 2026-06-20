@@ -3,7 +3,7 @@
 
 ---
 
-## MODULE 5: AI TOOLS ECOSYSTEM & PLATFORMS
+## MODULE 5 [ADVANCED]: AI TOOLS ECOSYSTEM & PLATFORMS
 
 ### 5.1 Learning Objectives
 - Operate the leading AI tools across text, image, code, audio, and video domains
@@ -23,8 +23,8 @@ The AI tools ecosystem in 2025 spans six functional domains. A professional AI p
 | Tool | Creator | Key Strength | Pricing |
 |------|---------|-------------|---------|
 | ChatGPT (GPT-4o) | OpenAI | Versatile; code + reasoning + multimodal | Free / $20/mo Pro |
-| Claude 3.5 Sonnet | Anthropic | Long context; safe; exceptional writing | Free / $20/mo Pro |
-| Gemini 1.5 Pro | Google | Google Workspace integration; 1M context | Free / $20/mo |
+| Claude Sonnet 4.6 | Anthropic | Long context (200K+); safety; exceptional writing | Free / $20/mo Pro |
+| Gemini 2.0 Flash | Google | Google Workspace integration; fast; multimodal | Free / $20/mo |
 | Perplexity AI | Perplexity | Research with live citations | Free / $20/mo |
 | Mistral Le Chat | Mistral AI | European/GDPR-compliant; fast | Free tier available |
 | Meta AI (Llama) | Meta | Free; open source; embedded in WhatsApp | Free |
@@ -211,7 +211,7 @@ The AI tools ecosystem of 2025 spans six professional domains — text, image, c
 
 ---
 
-## MODULE 6: AI FOR BUSINESS, PRODUCTIVITY & WORKFLOW AUTOMATION
+## MODULE 6 [ADVANCED]: AI FOR BUSINESS, PRODUCTIVITY & WORKFLOW AUTOMATION
 
 ### 6.1 Learning Objectives
 - Map AI applications across core business functions (marketing, HR, finance, operations, customer service)
@@ -416,7 +416,7 @@ AI's greatest near-term economic impact is not in exotic research — it is in t
 
 ---
 
-## MODULE 7: AI ETHICS, SAFETY, GOVERNANCE & THE FUTURE OF AI
+## MODULE 7 [PROFESSIONAL]: AI ETHICS, SAFETY, GOVERNANCE & THE FUTURE OF AI
 
 ### 7.1 Learning Objectives
 - Explain AI bias and its causes, effects, and mitigation strategies
@@ -629,7 +629,7 @@ AI's greatest risks are not science fiction scenarios — they are present reali
 
 ---
 
-## MODULE 8: CAPSTONE PROJECT & PROFESSIONAL DEPLOYMENT
+## MODULE 8 [PROFESSIONAL]: CAPSTONE PROJECT & PROFESSIONAL DEPLOYMENT
 
 ### 8.1 Learning Objectives
 - Integrate all course learnings into a complete AI project
