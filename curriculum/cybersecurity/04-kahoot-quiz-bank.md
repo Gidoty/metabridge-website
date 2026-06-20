@@ -41,8 +41,8 @@
 
 ---
 
-## MODULE 1: Introduction to Cybersecurity & the CIA Triad
-### Questions Q1–Q15
+## MODULE 1 [BEGINNER]: Introduction to Cybersecurity & the CIA Triad
+*Level: Beginner | Questions: Q1–Q15*
 
 ---
 
@@ -226,8 +226,8 @@
 
 ---
 
-## MODULE 2: Networking & Protocols
-### Questions Q16–Q30
+## MODULE 2 [BEGINNER]: Networking & Protocols
+*Level: Beginner | Questions: Q16–Q30*
 
 ---
 
@@ -411,8 +411,8 @@
 
 ---
 
-## MODULE 3: Linux & System Administration
-### Questions Q31–Q45
+## MODULE 3 [BEGINNER]: Linux & System Administration
+*Level: Beginner | Questions: Q31–Q45*
 
 ---
 
@@ -596,8 +596,8 @@
 
 ---
 
-## MODULE 4: Cryptography & PKI
-### Questions Q46–Q60
+## MODULE 4 [INTERMEDIATE]: Cryptography & PKI
+*Level: Intermediate | Questions: Q46–Q60*
 
 ---
 
@@ -781,8 +781,8 @@
 
 ---
 
-## MODULE 5: Network Security & Firewalls
-### Questions Q61–Q75
+## MODULE 5 [INTERMEDIATE]: Network Security & Firewalls
+*Level: Intermediate | Questions: Q61–Q75*
 
 ---
 
@@ -966,8 +966,8 @@
 
 ---
 
-## MODULE 6: Ethical Hacking & Penetration Testing
-### Questions Q76–Q90
+## MODULE 6 [INTERMEDIATE]: Ethical Hacking & Penetration Testing
+*Level: Intermediate | Questions: Q76–Q90*
 
 ---
 
@@ -1151,8 +1151,8 @@
 
 ---
 
-## MODULE 7: Web Application Security
-### Questions Q91–Q105
+## MODULE 7 [ADVANCED]: Web Application Security
+*Level: Advanced | Questions: Q91–Q105*
 
 ---
 
@@ -1377,8 +1377,8 @@
 
 ---
 
-## MODULE 8: Social Engineering & Phishing
-### Questions Q106–Q120
+## MODULE 8 [ADVANCED]: Social Engineering & Phishing
+*Level: Advanced | Questions: Q106–Q120*
 
 ---
 
@@ -1562,8 +1562,8 @@
 
 ---
 
-## MODULE 9: Malware Analysis
-### Questions Q121–Q135
+## MODULE 9 [ADVANCED]: Malware Analysis
+*Level: Advanced | Questions: Q121–Q135*
 
 ---
 
@@ -1747,8 +1747,8 @@
 
 ---
 
-## MODULE 10: Incident Response & Digital Forensics
-### Questions Q136–Q150
+## MODULE 10 [PROFESSIONAL]: Incident Response & Digital Forensics
+*Level: Professional | Questions: Q136–Q150*
 
 ---
 
@@ -1932,8 +1932,8 @@
 
 ---
 
-## MODULE 11: Cloud Security & Mobile Security
-### Questions Q151–Q165
+## MODULE 11 [PROFESSIONAL]: Cloud Security & Mobile Security
+*Level: Professional | Questions: Q151–Q165*
 
 ---
 
@@ -2117,8 +2117,8 @@
 
 ---
 
-## MODULE 12: GRC, Compliance & the Future of Cybersecurity
-### Questions Q166–Q180
+## MODULE 12 [PROFESSIONAL]: GRC, Compliance & the Future of Cybersecurity
+*Level: Professional | Questions: Q166–Q180*
 
 ---
 

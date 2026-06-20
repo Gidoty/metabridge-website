@@ -88,12 +88,34 @@ Lab Platforms: ANY.RUN · VirusTotal · Wireshark · Nmap ·
 
 ---
 
+## SLIDE 3B — DIFFICULTY LEVEL OVERVIEW
+
+**Visual:** Four horizontal bands stacked vertically, each in a distinct colour: blue (Beginner), cyan (Intermediate), gold (Advanced), red/white (Professional). Each band shows module numbers and a brief descriptor. Progress arrow pointing upward on the right side.
+
+**Content:**
+```
+YOUR LEARNING JOURNEY — 4 LEVELS OF MASTERY
+
+BEGINNER        M1–M3    Cybersecurity foundations · Networking for security · Linux & command line
+INTERMEDIATE    M4–M6    Cryptography & PKI · Network security · Ethical hacking methodology
+ADVANCED        M7–M9    Web app security (OWASP) · Social engineering · Malware analysis
+PROFESSIONAL   M10–M12   Incident response & forensics · Cloud security · GRC & compliance
+
+Complete each level before advancing to the next.
+```
+
+**Speaker notes:** This map shows students the full arc of the course. By the end of the Beginner level, they can think like a defender. By Intermediate, they can think like an attacker. Advanced adds real-world attack and malware analysis. Professional prepares them for enterprise roles with governance and forensics responsibilities.
+
+---
+
 ## SLIDE 4 — MODULE 1 OPENER: INTRODUCTION TO CYBERSECURITY
 
 **Visual:** Large "01" ghost number in red. Three shield icons representing the CIA Triad. Binary code watermark in background.
 
 **Content:**
 ```
+LEVEL: BEGINNER
+
 MODULE 01
 
 INTRODUCTION TO
@@ -234,6 +256,8 @@ Verifiable by any employer, instantly, globally.
 
 **Content:**
 ```
+LEVEL: BEGINNER
+
 MODULE 02
 
 NETWORKING
@@ -338,6 +362,8 @@ PORT    PROTOCOL    SECURITY NOTE
 
 **Content:**
 ```
+LEVEL: BEGINNER
+
 MODULE 03
 
 LINUX & COMMAND LINE
@@ -426,6 +452,8 @@ find / -perm -4000  # SUID files = privilege escalation risk
 
 **Content:**
 ```
+LEVEL: INTERMEDIATE
+
 MODULE 04
 
 CRYPTOGRAPHY
@@ -556,6 +584,8 @@ Certificate is what makes the padlock. Certificate Chain = Root CA → You.
 
 **Content:**
 ```
+LEVEL: INTERMEDIATE
+
 MODULE 05
 
 NETWORK SECURITY
@@ -642,6 +672,8 @@ Anything visible but unintended = immediate security action required.
 
 **Content:**
 ```
+LEVEL: INTERMEDIATE
+
 MODULE 06
 
 ETHICAL HACKING &
@@ -702,6 +734,8 @@ WITHOUT PHASE 1 PAPERWORK → PHASES 2–7 ARE CRIMINAL.
 
 **Content:**
 ```
+LEVEL: ADVANCED
+
 MODULE 07
 
 WEB APPLICATION
@@ -825,6 +859,8 @@ Tools: Snyk · Dependabot · OWASP Dependency-Check
 
 **Content:**
 ```
+LEVEL: ADVANCED
+
 MODULE 08
 
 SOCIAL ENGINEERING &
@@ -917,6 +953,8 @@ PREVENTION:
 
 **Content:**
 ```
+LEVEL: ADVANCED
+
 MODULE 09
 
 MALWARE ANALYSIS
@@ -1005,6 +1043,8 @@ WHY IT MATTERS:
 
 **Content:**
 ```
+LEVEL: PROFESSIONAL
+
 MODULE 10
 
 INCIDENT RESPONSE &
@@ -1104,6 +1144,8 @@ RAM → Network state → Running processes → Disk → Remote logs
 
 **Content:**
 ```
+LEVEL: PROFESSIONAL
+
 MODULE 11
 
 CLOUD SECURITY &
@@ -1192,6 +1234,8 @@ Found by security researcher. Could have been found by attacker first.
 
 **Content:**
 ```
+LEVEL: PROFESSIONAL
+
 MODULE 12
 
 GOVERNANCE, RISK &

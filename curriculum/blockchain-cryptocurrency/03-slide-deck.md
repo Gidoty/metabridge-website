@@ -20,7 +20,7 @@
 
 ---
 
-## MODULE 1 — BLOCKCHAIN FOUNDATIONS
+## MODULE 1 [BEGINNER] — BLOCKCHAIN FOUNDATIONS
 ### SLIDES 1–10
 
 ---
@@ -28,6 +28,8 @@
 **SLIDE 1 — COURSE TITLE SLIDE**
 
 *Content:*
+**LEVEL: BEGINNER**
+
 # BLOCKCHAIN & CRYPTOCURRENCY
 ## From Foundations to DeFi
 **MetaBridge Academy | MBA-BC-201**
@@ -39,6 +41,28 @@ Full-bleed dark navy background. A glowing chain of interconnected blocks flows 
 
 *Speaker Notes:*
 Welcome students to the course. Emphasise: this is not just theory — by the end, students will have deployed smart contracts, operated wallets, and interacted with live blockchain protocols. The certificate they earn will be blockchain-verified — verifiable by any employer globally, forever.
+
+---
+
+**SLIDE 1B — DIFFICULTY LEVEL OVERVIEW**
+
+*Content:*
+## Your 8-Module Learning Journey — 4 Levels of Mastery
+
+| Level | Modules | Focus |
+|-------|---------|-------|
+| **BEGINNER** | M1–M2 | Blockchain foundations · Bitcoin & cryptocurrency fundamentals |
+| **INTERMEDIATE** | M3–M4 | Ethereum & smart contracts · DeFi protocols |
+| **ADVANCED** | M5–M6 | NFTs & digital ownership · Blockchain in Africa & Nigeria |
+| **PROFESSIONAL** | M7–M8 | Crypto investment & risk management · Web3 & capstone |
+
+*Complete each level before advancing to the next.*
+
+*Visual:*
+Four horizontal bands in distinct colours (blue, cyan, gold, white/bright). Each band shows module numbers, level name, and a brief descriptor. A progress arrow points upward on the right side from Beginner to Professional.
+
+*Speaker Notes:*
+Before the first session begins, show students the full arc of the course. By Beginner level completion, students understand how blockchain works and can safely handle Bitcoin. By Intermediate, they can interact with Ethereum and DeFi protocols. Advanced adds NFTs and the African context. Professional level prepares students for investment decisions and real-world blockchain deployment.
 
 ---
 
@@ -277,12 +301,14 @@ Lab 1.3 often produces the most "wow" reactions. Seeing real transactions — re
 
 ---
 
-## MODULE 2 — BITCOIN & CRYPTOCURRENCY FUNDAMENTALS
+## MODULE 2 [BEGINNER] — BITCOIN & CRYPTOCURRENCY FUNDAMENTALS
 ### SLIDES 11–18
 
 ---
 
 **SLIDE 11 — BITCOIN'S MONETARY POLICY**
+
+*Level Badge: LEVEL: BEGINNER*
 
 *Content:*
 ## The Hardest Money Ever Created
@@ -502,12 +528,14 @@ Lab 2.1 is the most important hands-on exercise so far. Walking through wallet c
 
 ---
 
-## MODULE 3 — ETHEREUM & SMART CONTRACTS
+## MODULE 3 [INTERMEDIATE] — ETHEREUM & SMART CONTRACTS
 ### SLIDES 19–24
 
 ---
 
 **SLIDE 19 — ETHEREUM'S BIG IDEA**
+
+*Level Badge: LEVEL: INTERMEDIATE*
 
 *Content:*
 ## The World Computer
@@ -708,12 +736,14 @@ Walk through this live with the class. First time round, do it together — proj
 
 ---
 
-## MODULE 4 — DEFI: DECENTRALISED FINANCE
+## MODULE 4 [INTERMEDIATE] — DEFI: DECENTRALISED FINANCE
 ### SLIDES 25–30
 
 ---
 
 **SLIDE 25 — WHAT IS DEFI?**
+
+*Level Badge: LEVEL: INTERMEDIATE*
 
 *Content:*
 ## Finance Without Gatekeepers
@@ -895,7 +925,9 @@ End on a balanced note: DeFi's risks are real, but they are manageable with educ
 
 ---
 
-**SLIDE 31 — NFTs: WHAT YOU ACTUALLY OWN**
+**SLIDE 31 — NFTs: WHAT YOU ACTUALLY OWN** *(Module 5 [ADVANCED])*
+
+*Level Badge: LEVEL: ADVANCED*
 
 *Content:*
 ## Digital Ownership — Redefining "Mine"
@@ -953,7 +985,9 @@ Left: Split visual showing traditional gallery (muted, commission fees shown) vs
 
 ---
 
-**SLIDE 33 — NIGERIA'S CRYPTO STORY**
+**SLIDE 33 — NIGERIA'S CRYPTO STORY** *(Module 6 [ADVANCED])*
+
+*Level Badge: LEVEL: ADVANCED*
 
 *Content:*
 ## Africa's Crypto Capital
@@ -1014,7 +1048,9 @@ Left: eNaira logo and phone app mockup. Right: Two-column layout — "Promise" (
 
 ---
 
-**SLIDE 35 — CRYPTO INVESTING: THE FUNDAMENTALS**
+**SLIDE 35 — CRYPTO INVESTING: THE FUNDAMENTALS** *(Module 7 [PROFESSIONAL])*
+
+*Level Badge: LEVEL: PROFESSIONAL*
 
 *Content:*
 ## Analyse Before You Buy
@@ -1040,7 +1076,9 @@ Checklist layout with toggle/checkbox icons for each item. Each row has a colour
 
 ---
 
-**SLIDE 36 — WEB3: THE NEXT INTERNET**
+**SLIDE 36 — WEB3: THE NEXT INTERNET** *(Module 8 [PROFESSIONAL])*
+
+*Level Badge: LEVEL: PROFESSIONAL*
 
 *Content:*
 ## The Three Eras of the Internet

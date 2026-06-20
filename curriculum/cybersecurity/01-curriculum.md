@@ -28,7 +28,20 @@ This course builds professionals capable of identifying threats, assessing vulne
 
 ---
 
-## MODULE 1: INTRODUCTION TO CYBERSECURITY
+## DIFFICULTY LEVEL CLASSIFICATION
+
+| Level | Modules | Skills Developed |
+|-------|---------|-----------------|
+| **Beginner** | M1–M3 | Cybersecurity foundations and CIA Triad, networking fundamentals for security, Linux and command line skills |
+| **Intermediate** | M4–M6 | Cryptography and PKI, network security and firewalls, ethical hacking and penetration testing methodology |
+| **Advanced** | M7–M9 | Web application security (OWASP), social engineering and phishing defence, malware analysis |
+| **Professional** | M10–M12 | Incident response and digital forensics, cloud security, governance, risk and compliance (GRC) |
+
+*Students should complete each level before progressing to the next. Prior knowledge of the Beginner level is assumed before the Intermediate level begins.*
+
+---
+
+## MODULE 1 [BEGINNER]: INTRODUCTION TO CYBERSECURITY
 ### Foundations, Threat Landscape & the CIA Triad
 
 ---
@@ -210,7 +223,7 @@ Duration: 2 hours
 
 ---
 
-## MODULE 2: NETWORKING FUNDAMENTALS FOR SECURITY
+## MODULE 2 [BEGINNER]: NETWORKING FUNDAMENTALS FOR SECURITY
 ### How Networks Work & Where They Break
 
 ---
@@ -374,7 +387,7 @@ Duration: 90 minutes
 
 ---
 
-## MODULE 3: LINUX & COMMAND LINE FOR SECURITY
+## MODULE 3 [BEGINNER]: LINUX & COMMAND LINE FOR SECURITY
 ### The Operating System of Security Professionals
 
 ---
@@ -574,7 +587,7 @@ Duration: 30 minutes
 
 ---
 
-## MODULE 4: CRYPTOGRAPHY & PKI
+## MODULE 4 [INTERMEDIATE]: CRYPTOGRAPHY & PKI
 ### The Mathematics of Trust
 
 ---
@@ -736,7 +749,7 @@ Duration: 30 minutes
 
 ---
 
-## MODULE 5: NETWORK SECURITY
+## MODULE 5 [INTERMEDIATE]: NETWORK SECURITY
 ### Firewalls, IDS/IPS, VPNs & Wireless Security
 
 ---
@@ -913,7 +926,7 @@ Duration: 60 minutes
 
 ---
 
-## MODULE 6: ETHICAL HACKING & PENETRATION TESTING METHODOLOGY
+## MODULE 6 [INTERMEDIATE]: ETHICAL HACKING & PENETRATION TESTING METHODOLOGY
 ### Finding Vulnerabilities Before Attackers Do
 
 ---

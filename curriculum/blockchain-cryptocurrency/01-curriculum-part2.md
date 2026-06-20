@@ -3,7 +3,7 @@
 
 ---
 
-## MODULE 5: NFTs, DIGITAL OWNERSHIP & THE CREATOR ECONOMY
+## MODULE 5 [ADVANCED]: NFTs, DIGITAL OWNERSHIP & THE CREATOR ECONOMY
 
 ### Module Learning Objectives
 By the end of this module, students will be able to:
@@ -147,7 +147,7 @@ Nigerian and African creators have embraced NFTs:
 
 ---
 
-## MODULE 6: BLOCKCHAIN IN AFRICA & NIGERIA
+## MODULE 6 [ADVANCED]: BLOCKCHAIN IN AFRICA & NIGERIA
 
 ### Module Learning Objectives
 By the end of this module, students will be able to:
@@ -294,7 +294,7 @@ Blockchain solution: Immutable, transparent land registry — cannot be altered 
 
 ---
 
-## MODULE 7: CRYPTO INVESTMENT, TRADING & RISK MANAGEMENT
+## MODULE 7 [PROFESSIONAL]: CRYPTO INVESTMENT, TRADING & RISK MANAGEMENT
 
 ### Module Learning Objectives
 By the end of this module, students will be able to:
@@ -488,7 +488,7 @@ FIRS (Federal Inland Revenue Service) position (2024):
 
 ---
 
-## MODULE 8: WEB3, THE FUTURE OF BLOCKCHAIN & CAPSTONE
+## MODULE 8 [PROFESSIONAL]: WEB3, THE FUTURE OF BLOCKCHAIN & CAPSTONE
 
 ### Module Learning Objectives
 By the end of this module, students will be able to:

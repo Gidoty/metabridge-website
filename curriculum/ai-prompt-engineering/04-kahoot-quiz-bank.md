@@ -18,7 +18,8 @@
 
 ---
 
-## MODULE 1 QUIZ — AI INTRODUCTION, HISTORY & FOUNDATIONS
+## MODULE 1 QUIZ [BEGINNER] — AI INTRODUCTION, HISTORY & FOUNDATIONS
+*Level: Beginner | Questions: Q1–Q15*
 ### Theme: Where Did AI Come From?
 
 ---
@@ -218,7 +219,8 @@
 
 ---
 
-## MODULE 1 BONUS QUESTIONS — NEW FOUNDATIONS TOPICS
+## MODULE 1 BONUS QUESTIONS [BEGINNER] — NEW FOUNDATIONS TOPICS
+*Level: Beginner | Bonus questions for Module 1*
 ### Use these as a second Kahoot session or mixed into the main Module 1 quiz
 
 ---
@@ -314,7 +316,8 @@
 
 ---
 
-## MODULE 2 QUIZ — LARGE LANGUAGE MODELS & GENERATIVE AI ARCHITECTURE
+## MODULE 2 QUIZ [BEGINNER] — LARGE LANGUAGE MODELS & GENERATIVE AI ARCHITECTURE
+*Level: Beginner | Questions: Q16–Q30*
 ### Theme: How Does the AI Brain Actually Work?
 
 ---
@@ -514,7 +517,8 @@
 
 ---
 
-## MODULE 3 QUIZ — PROMPT ENGINEERING FUNDAMENTALS
+## MODULE 3 QUIZ [INTERMEDIATE] — PROMPT ENGINEERING FUNDAMENTALS
+*Level: Intermediate | Questions: Q31–Q45*
 ### Theme: Learning the Language of AI
 
 ---
@@ -714,7 +718,8 @@
 
 ---
 
-## MODULE 4 QUIZ — ADVANCED PROMPTING TECHNIQUES
+## MODULE 4 QUIZ [INTERMEDIATE] — ADVANCED PROMPTING TECHNIQUES
+*Level: Intermediate | Questions: Q46–Q60*
 ### Theme: Prompting Like a Pro
 
 ---
@@ -914,7 +919,8 @@
 
 ---
 
-## MODULE 5 QUIZ — AI TOOLS ECOSYSTEM
+## MODULE 5 QUIZ [ADVANCED] — AI TOOLS ECOSYSTEM
+*Level: Advanced | Questions: Q61–Q75*
 ### Theme: The Full AI Toolkit
 
 ---
@@ -1114,7 +1120,8 @@
 
 ---
 
-## MODULE 6 QUIZ — AI FOR BUSINESS & AUTOMATION
+## MODULE 6 QUIZ [ADVANCED] — AI FOR BUSINESS & AUTOMATION
+*Level: Advanced | Questions: Q76–Q90*
 ### Theme: Making AI Work for Your Bottom Line
 
 ---
@@ -1314,7 +1321,8 @@
 
 ---
 
-## MODULE 7 QUIZ — AI ETHICS, SAFETY, GOVERNANCE & THE FUTURE
+## MODULE 7 QUIZ [PROFESSIONAL] — AI ETHICS, SAFETY, GOVERNANCE & THE FUTURE
+*Level: Professional | Questions: Q91–Q105*
 ### Theme: AI That Doesn't Harm
 
 ---
@@ -1514,7 +1522,8 @@
 
 ---
 
-## MODULE 8 QUIZ — CAPSTONE & PROFESSIONAL AI PRACTICE
+## MODULE 8 QUIZ [PROFESSIONAL] — CAPSTONE & PROFESSIONAL AI PRACTICE
+*Level: Professional | Questions: Q106–Q120*
 ### Theme: Bringing It All Together
 
 ---

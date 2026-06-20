@@ -57,7 +57,20 @@ Upon completing this course, students will be able to:
 
 ---
 
-## MODULE 1: BLOCKCHAIN FOUNDATIONS — HISTORY, TECHNOLOGY & TRUST
+## DIFFICULTY LEVEL CLASSIFICATION
+
+| Level | Modules | Skills Developed |
+|-------|---------|-----------------|
+| **Beginner** | M1–M2 | Blockchain foundations and cryptographic principles, Bitcoin and cryptocurrency fundamentals |
+| **Intermediate** | M3–M4 | Ethereum architecture and smart contracts, DeFi protocols and decentralised finance |
+| **Advanced** | M5–M6 | NFTs and digital ownership, blockchain applications in Africa and Nigeria |
+| **Professional** | M7–M8 | Crypto investment, trading and risk management, Web3 architecture and capstone project |
+
+*Students should complete each level before progressing to the next. Prior knowledge of the Beginner level is assumed before the Intermediate level begins.*
+
+---
+
+## MODULE 1 [BEGINNER]: BLOCKCHAIN FOUNDATIONS — HISTORY, TECHNOLOGY & TRUST
 
 ### Module Learning Objectives
 By the end of this module, students will be able to:
@@ -257,7 +270,7 @@ Instead of computational work, validators lock up ("stake") cryptocurrency as co
 
 ---
 
-## MODULE 2: BITCOIN & CRYPTOCURRENCY FUNDAMENTALS
+## MODULE 2 [BEGINNER]: BITCOIN & CRYPTOCURRENCY FUNDAMENTALS
 
 ### Module Learning Objectives
 By the end of this module, students will be able to:
@@ -440,7 +453,7 @@ Nigeria is one of the world's largest crypto markets by peer-to-peer trading vol
 
 ---
 
-## MODULE 3: ETHEREUM & SMART CONTRACTS
+## MODULE 3 [INTERMEDIATE]: ETHEREUM & SMART CONTRACTS
 
 ### Module Learning Objectives
 By the end of this module, students will be able to:
@@ -641,7 +654,7 @@ Ethereum mainnet can process ~15–30 transactions per second (TPS). At peak dem
 
 ---
 
-## MODULE 4: DEFI — DECENTRALISED FINANCE
+## MODULE 4 [INTERMEDIATE]: DEFI — DECENTRALISED FINANCE
 
 ### Module Learning Objectives
 By the end of this module, students will be able to:

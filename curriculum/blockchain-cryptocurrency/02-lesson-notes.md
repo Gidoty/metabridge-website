@@ -16,8 +16,10 @@
 
 ---
 
-## MODULE 1: BLOCKCHAIN FOUNDATIONS — HISTORY, TECHNOLOGY & TRUST
+## MODULE 1 [BEGINNER]: BLOCKCHAIN FOUNDATIONS — HISTORY, TECHNOLOGY & TRUST
 ### Session Length: 6 hours | Recommended split: 3 hrs + 3 hrs
+
+> **Level: Beginner** | Estimated teaching time: 6 hours (2 sessions × 3 hours)
 
 ---
 
@@ -337,8 +339,10 @@ One question to think about before next class: Satoshi Nakamoto is anonymous. No
 
 ---
 
-## MODULE 2: BITCOIN & CRYPTOCURRENCY FUNDAMENTALS
+## MODULE 2 [BEGINNER]: BITCOIN & CRYPTOCURRENCY FUNDAMENTALS
 ### Session Length: 6 hours
+
+> **Level: Beginner** | Estimated teaching time: 6 hours (2 sessions × 3 hours)
 
 ---
 
@@ -455,8 +459,10 @@ The people who survived FTX had withdrawn their crypto to self-custody wallets w
 
 ---
 
-## MODULE 3: ETHEREUM & SMART CONTRACTS
+## MODULE 3 [INTERMEDIATE]: ETHEREUM & SMART CONTRACTS
 ### Session Length: 6 hours
+
+> **Level: Intermediate** | Estimated teaching time: 6 hours (2 sessions × 3 hours)
 
 ---
 
@@ -555,8 +561,10 @@ Use USDT on Etherscan as it's a clean, well-documented contract. The USDT contra
 
 ---
 
-## MODULE 4: DEFI — DECENTRALISED FINANCE
+## MODULE 4 [INTERMEDIATE]: DEFI — DECENTRALISED FINANCE
 ### Session Length: 6 hours
+
+> **Level: Intermediate** | Estimated teaching time: 6 hours (2 sessions × 3 hours)
 
 ---
 
@@ -683,7 +691,9 @@ This is why stablecoin mechanics matter. DAI (crypto-backed) survived fine. USDC
 
 ---
 
-### MODULE 5: NFTs, DIGITAL OWNERSHIP & THE CREATOR ECONOMY
+### MODULE 5 [ADVANCED]: NFTs, DIGITAL OWNERSHIP & THE CREATOR ECONOMY
+
+> **Level: Advanced** | Estimated teaching time: 6 hours (2 sessions × 3 hours)
 
 **Opening hook:** "A JPEG sold for $69 million. Either the world has lost its mind — or something genuinely fundamental changed about what 'ownership' means in the digital age. Today we figure out which."
 
@@ -700,7 +710,9 @@ Force students to think beyond "expensive profile pictures." The real blockchain
 
 ---
 
-### MODULE 6: BLOCKCHAIN IN AFRICA & NIGERIA
+### MODULE 6 [ADVANCED]: BLOCKCHAIN IN AFRICA & NIGERIA
+
+> **Level: Advanced** | Estimated teaching time: 6 hours (2 sessions × 3 hours)
 
 **Opening hook:** "Nigeria had one of the most aggressive crypto bans in the world in 2021. By 2023, the same CBN was issuing licenses for crypto businesses. What changed?"
 
@@ -714,7 +726,9 @@ Be honest about eNaira's adoption struggles. Ask: "What would make you use eNair
 
 ---
 
-### MODULE 7: CRYPTO INVESTMENT, TRADING & RISK MANAGEMENT
+### MODULE 7 [PROFESSIONAL]: CRYPTO INVESTMENT, TRADING & RISK MANAGEMENT
+
+> **Level: Professional** | Estimated teaching time: 6 hours (2 sessions × 3 hours)
 
 **Opening hook:** "There are two types of people in this room: those who have lost money in crypto, and those who will. But losing smart and losing dumb are very different things."
 
@@ -732,7 +746,9 @@ Have students identify red flags. Discuss why each appeal is psychologically eff
 
 ---
 
-### MODULE 8: WEB3, FUTURE & CAPSTONE
+### MODULE 8 [PROFESSIONAL]: WEB3, FUTURE & CAPSTONE
+
+> **Level: Professional** | Estimated teaching time: 6 hours (2 sessions × 3 hours)
 
 **Opening hook:** "You have spent 7 weeks learning the past and present of blockchain. Today we look at the future — and then you build it."
 

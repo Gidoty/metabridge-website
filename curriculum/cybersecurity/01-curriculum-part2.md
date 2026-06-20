@@ -7,7 +7,7 @@
 
 ---
 
-## MODULE 7: WEB APPLICATION SECURITY
+## MODULE 7 [ADVANCED]: WEB APPLICATION SECURITY
 ### OWASP Top 10 & Application Penetration Testing
 
 ---
@@ -199,7 +199,7 @@ Duration: 60 minutes
 
 ---
 
-## MODULE 8: SOCIAL ENGINEERING & PHISHING
+## MODULE 8 [ADVANCED]: SOCIAL ENGINEERING & PHISHING
 ### The Human Vulnerability
 
 ---
@@ -368,7 +368,7 @@ Duration: 45 minutes
 
 ---
 
-## MODULE 9: MALWARE ANALYSIS
+## MODULE 9 [ADVANCED]: MALWARE ANALYSIS
 ### Understanding What Attackers Deploy
 
 ---
@@ -539,7 +539,7 @@ Duration: 60 minutes
 
 ---
 
-## MODULE 10: INCIDENT RESPONSE & DIGITAL FORENSICS
+## MODULE 10 [PROFESSIONAL]: INCIDENT RESPONSE & DIGITAL FORENSICS
 ### When Breaches Happen — What to Do
 
 ---
@@ -748,7 +748,7 @@ Duration: 60 minutes
 
 ---
 
-## MODULE 11: CLOUD SECURITY & EMERGING TECHNOLOGIES
+## MODULE 11 [PROFESSIONAL]: CLOUD SECURITY & EMERGING TECHNOLOGIES
 ### Securing the Modern Infrastructure
 
 ---
@@ -905,7 +905,7 @@ Duration: 90 minutes
 
 ---
 
-## MODULE 12: GOVERNANCE, RISK & COMPLIANCE (GRC) AND FUTURE OF CYBERSECURITY
+## MODULE 12 [PROFESSIONAL]: GOVERNANCE, RISK & COMPLIANCE (GRC) AND FUTURE OF CYBERSECURITY
 ### The Business of Security
 
 ---

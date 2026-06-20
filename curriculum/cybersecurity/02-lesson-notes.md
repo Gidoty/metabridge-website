@@ -20,8 +20,10 @@ This is not just legal protection. It's professional formation.
 
 ---
 
-# MODULE 1: INTRODUCTION TO CYBERSECURITY
+# MODULE 1 [BEGINNER]: INTRODUCTION TO CYBERSECURITY
 ## Full Teaching Script
+
+> **Level: Beginner** | Estimated teaching time: 6 hours (2 sessions × 3 hours)
 
 ---
 
@@ -174,8 +176,10 @@ Module 2: We're going to dig into how networks work. Because you can't secure wh
 
 ---
 
-# MODULE 2: NETWORKING FUNDAMENTALS FOR SECURITY
+# MODULE 2 [BEGINNER]: NETWORKING FUNDAMENTALS FOR SECURITY
 ## Key Teaching Moments
+
+> **Level: Beginner** | Estimated teaching time: 6 hours (2 sessions × 3 hours)
 
 ---
 
@@ -234,8 +238,10 @@ Scanning someone else's network without permission is a criminal offence. Some p
 
 ---
 
-# MODULE 3: LINUX & COMMAND LINE
+# MODULE 3 [BEGINNER]: LINUX & COMMAND LINE
 ## Full Teaching Script for Key Sections
+
+> **Level: Beginner** | Estimated teaching time: 6 hours (2 sessions × 3 hours)
 
 ---
 
@@ -318,8 +324,10 @@ This is forensics. This is what you'll do in incident response."
 
 ---
 
-# MODULE 4: CRYPTOGRAPHY
+# MODULE 4 [INTERMEDIATE]: CRYPTOGRAPHY
 ## Full Teaching Script for Key Sections
+
+> **Level: Intermediate** | Estimated teaching time: 6 hours (2 sessions × 3 hours)
 
 ---
 
@@ -381,8 +389,10 @@ This is Diffie-Hellman key exchange in practice. The maths is elegant — you ca
 
 ---
 
-# MODULE 5: NETWORK SECURITY
+# MODULE 5 [INTERMEDIATE]: NETWORK SECURITY
 ## Key Teaching Moments
+
+> **Level: Intermediate** | Estimated teaching time: 6 hours (2 sessions × 3 hours)
 
 ---
 
@@ -430,8 +440,10 @@ Run this search on your employer's IP range after this course. Report what you f
 
 ---
 
-# MODULE 6: ETHICAL HACKING & PENETRATION TESTING
+# MODULE 6 [INTERMEDIATE]: ETHICAL HACKING & PENETRATION TESTING
 ## Key Teaching Moments
+
+> **Level: Intermediate** | Estimated teaching time: 6 hours (2 sessions × 3 hours)
 
 ---
 
@@ -471,8 +483,10 @@ Learn to write like the second. That's what clients pay for."
 
 ---
 
-# MODULE 7: WEB APPLICATION SECURITY
+# MODULE 7 [ADVANCED]: WEB APPLICATION SECURITY
 ## Full Teaching Script for OWASP Top 10
+
+> **Level: Advanced** | Estimated teaching time: 6 hours (2 sessions × 3 hours)
 
 ---
 
@@ -596,8 +610,10 @@ Remember this when someone tells you that keeping software updated is not a prio
 
 ---
 
-# MODULE 8: SOCIAL ENGINEERING
+# MODULE 8 [ADVANCED]: SOCIAL ENGINEERING
 ## Full Teaching Script
+
+> **Level: Advanced** | Estimated teaching time: 6 hours (2 sessions × 3 hours)
 
 ---
 
@@ -687,8 +703,10 @@ All your SMS OTPs now go to the attacker. They reset your banking app. By mornin
 
 ---
 
-# MODULE 9: MALWARE ANALYSIS
+# MODULE 9 [ADVANCED]: MALWARE ANALYSIS
 ## Key Teaching Moments
+
+> **Level: Advanced** | Estimated teaching time: 6 hours (2 sessions × 3 hours)
 
 ---
 
@@ -727,8 +745,10 @@ Now I have: The C2 IP address, the download URL, the file hash of the dropped pa
 
 ---
 
-# MODULE 10: INCIDENT RESPONSE
+# MODULE 10 [PROFESSIONAL]: INCIDENT RESPONSE
 ## Full Teaching Script
+
+> **Level: Professional** | Estimated teaching time: 6 hours (2 sessions × 3 hours)
 
 ---
 
@@ -775,8 +795,10 @@ This exercise surfaces the most important incident response lesson: incidents es
 
 ---
 
-# MODULE 11: CLOUD SECURITY
+# MODULE 11 [PROFESSIONAL]: CLOUD SECURITY
 ## Key Teaching Moments
+
+> **Level: Professional** | Estimated teaching time: 6 hours (2 sessions × 3 hours)
 
 ---
 
@@ -818,8 +840,10 @@ Never hardcode AWS credentials. Use IAM roles. Enable MFA on the root account. E
 
 ---
 
-# MODULE 12: GRC AND THE FUTURE
+# MODULE 12 [PROFESSIONAL]: GRC AND THE FUTURE
 ## Full Teaching Script
+
+> **Level: Professional** | Estimated teaching time: 6 hours (2 sessions × 3 hours)
 
 ---
 
