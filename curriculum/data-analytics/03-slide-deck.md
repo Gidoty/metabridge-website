@@ -443,8 +443,9 @@ EXCEL FUNDAMENTALS
  Professionals work at Level 6.
  This course gets you to Level 6."
 
-Logical functions · Lookup functions (3 ways)
-Pivot tables · Professional chart design
+Logical · Text · Date · Math · Statistical · Financial functions
+Lookup functions (VLOOKUP · INDEX-MATCH · XLOOKUP)
+Pivot Tables · Professional chart design
 ```
 
 **Speaker notes:** The "levels" framing is motivating. Students who already know Excel realise they have more to learn. Beginners feel like there's a clear path forward.
@@ -505,6 +506,132 @@ All from the same pivot table. Just drag different fields.
 ```
 
 **Speaker notes:** Some students will be amazed, others will say "I know pivots." Ask the latter: "Can you build a calculated field in a pivot? Can you create a pivot table from multiple data sources?" Usually silence.
+
+---
+
+## SLIDE 18B — EXCEL FORMULA REFERENCE: MATH & COUNTING
+
+**Visual:** Dark card with electric blue headers. Two-column layout: left = formula syntax, right = plain-English explanation. Reference-style — students photograph this slide.
+
+**Content:**
+```
+EXCEL FORMULAS: MATH & COUNTING
+
+AGGREGATION
+=SUM(range)                    → Total
+=SUMIF(range, criteria, sum)   → Total where one condition is met
+=SUMIFS(sum, r1, c1, r2, c2)  → Total where multiple conditions are met
+=SUMPRODUCT(array1, array2)    → Multiply pairs, then sum (weighted totals)
+
+COUNTING
+=COUNT(range)                  → Count cells containing numbers
+=COUNTA(range)                 → Count non-empty cells (any type)
+=COUNTBLANK(range)             → Count empty cells
+=COUNTIF(range, criteria)      → Count where one condition is true
+=COUNTIFS(r1,c1,r2,c2)        → Count where multiple conditions are true
+
+ROUNDING & MATH
+=ROUND(number, digits)         → Round to N decimal places
+=ROUNDUP(number, digits)       → Always round up
+=ROUNDDOWN(number, digits)     → Always round down
+=ABS(number)                   → Remove negative sign
+=MOD(number, divisor)          → Remainder after division
+
+AVERAGES
+=AVERAGEIF(range,criteria,avg) → Average where condition is met
+=AVERAGEIFS(avg,r1,c1,r2,c2)  → Average with multiple conditions
+```
+
+**Speaker notes:** Print this as a single A4 reference sheet for students — one per student. The most-used formulas in this column are SUMIFS and COUNTIFS. Emphasise that combining criteria (multiple conditions) is what separates beginner from professional Excel.
+
+---
+
+## SLIDE 18C — EXCEL FORMULA REFERENCE: TEXT & DATE
+
+**Visual:** Two-panel card. Left panel = Text Functions (cyan heading). Right panel = Date Functions (gold heading).
+
+**Content:**
+```
+TEXT FUNCTIONS                          DATE FUNCTIONS
+──────────────────────────────────      ──────────────────────────────────
+
+CLEANING                                GETTING DATES
+=TRIM(text)    Remove extra spaces      =TODAY()        Today's date
+=CLEAN(text)   Remove non-printables    =NOW()          Date + current time
+=UPPER(text)   ALL CAPS
+=LOWER(text)   all lowercase            EXTRACTING PARTS
+=PROPER(text)  Title Case               =YEAR(date)     Extract year
+                                        =MONTH(date)    Extract month (1–12)
+EXTRACTING                              =DAY(date)      Extract day (1–31)
+=LEFT(text,n)  First N chars            =WEEKDAY(d,2)   Day of week (Mon=1)
+=RIGHT(text,n) Last N chars
+=MID(text,s,n) N chars from position s  DATE DIFFERENCES
+=LEN(text)     Character count          =DATEDIF(s,e,"Y")  Complete years
+=FIND(x,text)  Position (case-exact)    =DATEDIF(s,e,"M")  Complete months
+=SEARCH(x,txt) Position (any case)      =TODAY()-date       Days elapsed
+                                        =NETWORKDAYS(s,e)   Working days only
+COMBINING
+=A2&" "&B2     Join with &              DATE NAVIGATION
+=CONCAT(A:C)   Join a range             =EDATE(date, n)    N months forward
+=TEXTJOIN(     Join with separator,      =EOMONTH(date,0)  Last day of month
+  ", ",TRUE,   skipping empty cells
+  A2:A10)
+                                        BUILDING DATES
+REPLACING                               =DATE(yr,mo,day)  From components
+=SUBSTITUTE(   Replace every
+  text,"old",  occurrence of old
+  "new")       with new
+=VALUE(text)   Convert text to number
+=TEXT(num,fmt) Format number as text
+```
+
+**Speaker notes:** Date functions catch students off guard. Always demonstrate DATEDIF — it's undocumented but essential. The NETWORKDAYS function is loved by every analyst who has ever had to count 'business days to deadline' — build a formula live: `=NETWORKDAYS(TODAY(), deadline_date)`.
+
+---
+
+## SLIDE 18D — EXCEL FORMULA REFERENCE: STATISTICAL & FINANCIAL
+
+**Visual:** Two-panel card. Left = Statistical Functions (cyan heading). Right = Financial Functions (gold heading).
+
+**Content:**
+```
+STATISTICAL FUNCTIONS                   FINANCIAL FUNCTIONS
+──────────────────────────────────      ──────────────────────────────────
+
+DESCRIPTIVE STATS                       LOAN & PAYMENT
+=AVERAGE(range)    Mean                 =PMT(rate,nper,pv)
+=MEDIAN(range)     Middle value           Monthly payment on a loan
+=MODE(range)       Most frequent          =PMT(22%/12,36,-5000000)
+=MODE.MULT(range)  All modes (array)      → ₦192,664/month on a 36-month
+                                              ₦5M loan at 22% p.a.
+
+SPREAD                                  FUTURE & PRESENT VALUE
+=STDEV(range)      Sample std deviation =FV(rate,nper,pmt)
+=VAR(range)        Sample variance        What is an investment worth later?
+=MAX()-MIN()       Simple range         =PV(rate,nper,pmt)
+                                          What is a future payment worth today?
+PERCENTILES
+=PERCENTILE(r,0.9) 90th percentile      INVESTMENT ANALYSIS
+=QUARTILE(r,1)     Q1 (25th pct)        =NPV(rate,cf1,cf2,...)
+=QUARTILE(r,3)     Q3 (75th pct)          Net Present Value of cash flows
+IQR = Q3 – Q1                             NPV > 0 → accept investment
+Outlier: below Q1-(1.5×IQR)               NPV < 0 → reject at this rate
+         above Q3+(1.5×IQR)
+                                        =IRR(values)
+CORRELATION                               Internal Rate of Return
+=CORREL(range1,r2) -1 to +1               IRR > cost of capital → accept
+  +1 = perfect positive
+  -1 = perfect negative                 =RATE(nper,pmt,pv)
+  0  = no linear relationship             Find the interest rate per period
+
+RANKING                                 EXAMPLE
+=RANK(val,range,0) Rank descending      Invest ₦2M now,
+=LARGE(range, n)   Nth largest value    earn ₦600K,₦800K,₦900K,₦1M:
+=SMALL(range, n)   Nth smallest value   =IRR({-2000000,600000,800000,
+                                              900000,1000000}) → 22.4%
+```
+
+**Speaker notes:** For statistical functions — always calculate BOTH mean and median. If they differ significantly, there's skew or outliers. For financial functions — PMT and NPV are the most relevant for Nigerian business contexts. Build a ₦5M loan amortisation schedule live; students see how interest front-loads early payments. This is one of the most practical 'aha' moments of the course.
 
 ---
 

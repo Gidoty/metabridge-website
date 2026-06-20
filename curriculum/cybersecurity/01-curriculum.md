@@ -80,21 +80,37 @@ The three related terms students often confuse:
 Every security decision, policy, and control can be evaluated against the CIA Triad:
 
 **CONFIDENTIALITY:** Information is accessible only to those authorised to have it.
-- Examples: Encrypting customer data, password-protecting files, role-based access control
 - Threat: A bank employee leaks customer account data to fraudsters (confidentiality breach)
-- Control: Encryption, access controls, need-to-know policy
+- **Controls and tools:**
+  - **Encryption at rest:** AES-256 (BitLocker, VeraCrypt, FileVault) — data unreadable without the decryption key
+  - **Encryption in transit:** TLS 1.3 (HTTPS, VPN, email encryption) — protects data moving across networks
+  - **Access controls:** RBAC (Role-Based Access Control) — users access only what their role requires; DAC (Discretionary) — resource owners set permissions; MAC (Mandatory) — system enforces classification-level access
+  - **Multi-Factor Authentication (MFA):** TOTP apps (Google Authenticator, Authy), hardware keys (YubiKey), biometrics — requires 2+ factor types to verify identity
+  - **Data Classification:** Public / Internal / Confidential / Restricted — determines which controls are applied to which data
+  - **Need-to-Know Policy:** Least Privilege principle — grant minimum access required for the job function
 
 **INTEGRITY:** Information is accurate and has not been tampered with (by accident or maliciously).
-- Examples: File hash verification, digital signatures, database change logs
 - Threat: An attacker modifies financial transaction records to redirect funds
-- Control: Hashing (SHA-256), digital signatures, audit logs, change management
+- **Controls and tools:**
+  - **Hashing:** SHA-256, SHA-3 — creates a unique fingerprint; any change to the data produces a completely different hash
+  - **Digital signatures:** RSA-PSS, ECDSA — proves the sender's identity and that content was not altered after signing
+  - **Checksums:** CRC32, Adler-32 — fast verification of accidental transmission errors
+  - **Version control:** Git with signed commits — full audit trail of who changed what, when; enables rollback
+  - **WORM storage (Write Once, Read Many):** AWS S3 Object Lock, NetApp SnapLock — prevents modification or deletion of records for a retention period
+  - **Immutable audit logs:** Security event logs that cannot be modified or deleted, satisfying regulatory requirements
 
 **AVAILABILITY:** Systems and data are accessible when legitimate users need them.
-- Examples: Server uptime, backup systems, DDoS protection
-- Threat: A ransomware attack encrypts all hospital records; doctors can't access patient data (availability attack)
-- Control: Redundancy, backups, DDoS mitigation, business continuity planning
+- Threat: A ransomware attack encrypts all hospital records; doctors can't access patient data
+- **Controls and tools:**
+  - **Redundancy:** RAID arrays (RAID 1/5/6), server clustering (active-active, active-passive), N+1 components — eliminates single points of failure
+  - **Geographic redundancy:** Multiple data centres in different locations; cloud Availability Zones (AWS AZs) ensure a regional failure doesn't cause total outage
+  - **Load balancing:** HAProxy, NGINX, AWS Elastic Load Balancer — distributes traffic across servers; removes failed servers from rotation automatically
+  - **Disaster Recovery (DR):** Hot site (minutes RTO), warm site (hours RTO), cold site (days RTO); defined RPO (maximum data loss) and RTO (maximum downtime)
+  - **DDoS mitigation:** Cloudflare, AWS Shield (Standard free / Advanced paid), Akamai Kona — scrubs attack traffic before it reaches the origin server
+  - **Regular backups:** 3-2-1 Rule (3 copies, 2 media, 1 offsite); full/incremental/differential; air-gapped backups unreachable by ransomware
+  - **Business Continuity Planning (BCP):** Organisation-wide plan for operations during a disaster; DR is the IT component inside the BCP
 
-**The trade-off:** Security controls often create tension between these three. Maximum confidentiality (encrypt everything, restrict all access) can hurt availability (employees can't get their data). Security professionals constantly balance the triad.
+**The trade-off:** Security controls often create tension between these three. Maximum confidentiality (encrypt everything, restrict all access) can hurt availability (employees can't get their data). Security professionals constantly balance the triad for each specific risk context.
 
 #### 1.3 Threat Actors and Motivations
 Understanding who is attacking and why determines how you defend.

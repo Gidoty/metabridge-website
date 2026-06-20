@@ -118,6 +118,147 @@ A bank: All three at the highest level. No compromise."
 
 ---
 
+### SECTION 2B: CIA TRIAD — CONTROLS, TOOLS & TECHNOLOGIES (25 minutes)
+
+"Now that you understand WHAT the CIA Triad means, let's talk about HOW professionals protect each pillar. This is the practical half — the tools that appear in every security job description.
+
+---
+
+**CONFIDENTIALITY CONTROLS**
+
+*1. Encryption — make data unreadable to unauthorised parties*
+
+- **AES-256 (Advanced Encryption Standard):** The global gold standard for data at rest. Used to encrypt hard drives (Windows BitLocker, macOS FileVault), database columns, and files (VeraCrypt, 7-Zip with AES). '256' = 256-bit key. Brute-forcing AES-256 would take longer than the age of the universe.
+- **TLS 1.3 (Transport Layer Security):** Protects data in transit. When you see HTTPS, TLS is running underneath. Every bank app, every login page must use TLS 1.2 or 1.3. TLS 1.0 and 1.1 are deprecated and must not be used.
+- **RSA & ECC (Elliptic Curve Cryptography):** Asymmetric algorithms for key exchange and certificates. RSA-2048 minimum; ECC-256 delivers equivalent strength at smaller key size — preferred for mobile and IoT.
+- **End-to-End Encryption (E2EE):** WhatsApp, Signal. Only sender and recipient can decrypt — even the platform operator cannot read messages.
+
+*2. Access Controls — who is allowed to see what*
+
+- **RBAC (Role-Based Access Control):** Permissions are attached to roles; users are assigned roles. A bank teller role sees customer account balances but not audit logs. A compliance officer role sees transaction logs but not system administration. Implementation: Active Directory groups, AWS IAM roles, database schemas.
+- **DAC (Discretionary Access Control):** Resource owners decide who gets access. Windows file permissions are DAC — you right-click a folder and set who can read/write. Flexible, but users can accidentally give away too much.
+- **MAC (Mandatory Access Control):** The system enforces access, owners cannot override. Used in classified government environments. A document classified SECRET can only be accessed by a user with SECRET clearance — no exceptions.
+- **Principle of Least Privilege (PoLP):** Every user and every process receives only the minimum access needed for their specific function. Not 'read/write/delete' — just 'read.' Not 'all database tables' — just the two tables their job requires. This limits blast radius when credentials are compromised.
+
+*3. Multi-Factor Authentication (MFA)*
+
+- **Something you know:** Password, PIN. Weakest factor — can be phished, guessed, or stolen in a breach.
+- **Something you have:** TOTP app (Google Authenticator, Authy — generates a new 6-digit code every 30 seconds using HMAC-TOTP), hardware security key (YubiKey — physical USB/NFC device; requires physical touch to authenticate), SMS OTP (weakest MFA option — vulnerable to SIM swap attacks).
+- **Something you are:** Fingerprint, face recognition, iris scan. Biometrics are convenient and strong, but cannot be 'changed' if compromised.
+- **True MFA requires 2+ factors from different categories.** Password + SMS OTP is weak (both can be intercepted by a SIM swap). Password + YubiKey is strong — an attacker who steals your password still cannot log in without your physical key.
+
+*4. Data Classification — know what you're protecting before you protect it*
+
+- **Public:** Press releases, marketing materials, public website content. No harm if disclosed to anyone.
+- **Internal:** Internal memos, org charts, employee directories. Not sensitive, but not intended for external parties.
+- **Confidential:** Customer PII (personally identifiable information), financial records, business plans, source code. Serious harm if disclosed — regulatory fines, competitive loss.
+- **Restricted / Top Secret:** State secrets, critical infrastructure access credentials, highly sensitive medical records. Maximum controls — encryption at rest and in transit, MFA, strict audit logging mandatory.
+- You cannot protect what you have not classified. Data classification drives every other security control decision.
+
+---
+
+**INTEGRITY CONTROLS**
+
+*1. Hashing — create a tamper-evident fingerprint of data*
+
+- **SHA-256 (Secure Hash Algorithm 256):** Industry standard for integrity verification. Takes any input, produces a fixed 256-bit (64-character hex) output. Change one character in a 1 GB file — the SHA-256 hash changes completely.
+- **SHA-3:** Alternative standard using a different mathematical construction (Keccak sponge). Immune to length-extension attacks that theoretically affect SHA-2.
+- **BLAKE3:** Extremely fast, modern, cryptographically secure. Increasingly used in software package managers.
+- **MD5:** Cryptographically broken — do NOT use for any security purpose. Still acceptable for non-security checksums (verifying file transfer completeness). A collision attack on MD5 takes seconds on modern hardware.
+- **Real-world use:** Download a Linux ISO from Ubuntu's website. Copy the SHA-256 checksum listed on the download page. Run `sha256sum ubuntu-24.04.iso` on your machine. If the hashes match, the file has not been tampered with in transit.
+
+*2. Digital Signatures — verify identity and detect tampering*
+
+- **How they work:** The sender hashes the document, then encrypts that hash with their private key. The result is the digital signature. Anyone with the sender's public key can decrypt the hash and compare it to their own hash of the document. Match = authentic, unmodified, from that private key holder.
+- **RSA-PSS and ECDSA:** Standard algorithms for digital signatures. Used in email signing (S/MIME, OpenPGP/GPG), code signing (software update publishers), PDF signing (legal contracts), and TLS certificates.
+- **Code Signing:** Why software has publisher verification. Apple signs every app in the App Store with a certificate tied to the developer's account. Microsoft Authenticode signs Windows updates. If the digital signature is invalid or absent, the OS warns you — or blocks execution entirely.
+- **Certificate Authorities (CAs):** Trusted third parties (DigiCert, Let's Encrypt, Comodo) that issue digital certificates, binding a public key to an identity. Your browser trusts HTTPS because it trusts the CA that signed the site's certificate.
+
+*3. Checksums — fast verification for transmission errors*
+
+- **CRC32 (Cyclic Redundancy Check):** Very fast, used in Ethernet frames, ZIP files, and network protocols. Detects accidental transmission errors. Not cryptographic — a determined attacker can craft a file that collides with a given CRC32.
+- **Adler-32:** Used in zlib/deflate compression. Even faster than CRC32, slightly weaker error detection.
+- **Key distinction:** Checksums detect accidental corruption. Cryptographic hashes detect intentional tampering. Never use CRC32 or Adler-32 to verify the integrity of security-sensitive files.
+
+*4. Version Control — full change audit trail*
+
+- **Git:** The universal standard. Every commit records: what changed, who changed it, when, and (with signed commits) proof that it was that specific committer. If malicious code is injected into a codebase, `git log` and `git diff` identify exactly when and by whom.
+- **Signed commits:** Developers can GPG-sign commits. GitHub, GitLab, and Bitbucket display a 'Verified' badge on signed commits, guaranteeing the commit came from the claimed identity.
+- **Compliance use:** Regulated industries (banking under CBN, healthcare, government) require change management logs — who made changes to systems, when, and why. Git-based workflows with mandatory peer review satisfy this requirement.
+
+*5. Write-Once Storage (WORM)*
+
+- **WORM = Write Once, Read Many:** Data written to WORM storage cannot be modified or deleted for a configured retention period. Used for financial transaction records, audit logs, legal documentation, and compliance evidence.
+- **Examples:** AWS S3 Object Lock (compliance mode), Azure Immutable Blob Storage, NetApp SnapLock, physical WORM optical media (used in archival).
+- **Why it matters for security:** Ransomware encrypts every file it can reach. It cannot encrypt an air-gapped or WORM-protected backup. Insider threats cannot delete audit evidence that is physically write-protected.
+
+---
+
+**AVAILABILITY CONTROLS**
+
+*1. Redundancy — eliminate every single point of failure*
+
+- **RAID (Redundant Array of Independent Disks):**
+  - RAID 1 (Mirroring): Two drives with identical data. One fails — the other keeps running. Zero data loss, zero downtime.
+  - RAID 5 (Distributed Parity): 3+ drives. Can survive one drive failure. Better storage efficiency than RAID 1.
+  - RAID 6: Survives two simultaneous drive failures. Used for high-availability storage.
+- **Server clustering:** Multiple servers handle the same workload. If one fails, the others absorb traffic. Active-active: all nodes run simultaneously, sharing load. Active-passive: standby server is on hot standby, takes over within seconds on failure.
+- **Geographic redundancy:** Data centres in multiple cities or countries. If one location is affected by power outage, fire, or flooding, the other continues serving users. AWS achieves this with Availability Zones (AZs) within each Region — physically separate data centres, connected by private fibre.
+- **N+1 Redundancy:** Always provision one more component than required. Two power supplies where one is sufficient. Three network cards where two would suffice. The spare exists only for failure scenarios.
+
+*2. Load Balancing — distribute traffic, prevent overload*
+
+- **What it does:** A load balancer sits in front of multiple servers and distributes incoming requests across them, so no single server becomes the bottleneck.
+- **Distribution algorithms:**
+  - *Round-Robin:* Requests go to servers in rotation: Server 1, Server 2, Server 3, Server 1... Simple. Works when all servers have equal capacity.
+  - *Least Connections:* New request goes to whichever server has the fewest active connections. Better for long-lived connections.
+  - *IP Hash:* The same client IP always routes to the same backend server. Useful when session state is stored server-side.
+- **Health checking:** Load balancers continuously probe backend servers. If a server stops responding, it is automatically removed from rotation. Traffic continues to healthy servers without manual intervention.
+- **Tools:** HAProxy (open-source, widely used in enterprise), NGINX (dual-role: web server and load balancer), AWS Elastic Load Balancer (ALB for HTTP, NLB for TCP), Cloudflare Load Balancing.
+
+*3. Disaster Recovery (DR)*
+
+- **RPO (Recovery Point Objective):** The maximum amount of data loss the organisation can tolerate, measured in time. RPO = 1 hour means: 'We can afford to lose at most the last hour of data.' This determines how frequently you must run backups.
+- **RTO (Recovery Time Objective):** The maximum tolerable downtime after a failure. RTO = 4 hours means: 'We must be fully operational within 4 hours of a disaster.' This determines the speed and sophistication of your failover infrastructure.
+- **DR Site types:**
+  - *Hot Site:* Fully operational mirror in a second location. Data is synchronised in real-time. Failover takes minutes. Most expensive — you're running two full environments simultaneously.
+  - *Warm Site:* Partially operational. Hardware is installed and powered on; data is synchronised on a schedule (e.g., every 15 minutes). Failover takes hours. Middle cost.
+  - *Cold Site:* Physical space, power, and connectivity are available, but no pre-installed hardware. In a disaster, you procure and install equipment. Failover takes days. Cheapest.
+- **BCP (Business Continuity Plan):** DR covers the IT systems. BCP covers the entire organisation — how do staff communicate, how do operations continue, how are customers notified? DR is a chapter inside a BCP.
+
+*4. DDoS Mitigation*
+
+- **What is a DDoS attack?** Distributed Denial of Service — thousands of compromised machines (a botnet) flood a target server with traffic until it collapses under the load and legitimate users cannot access it.
+- **Attack categories:**
+  - *Volumetric attacks:* Pure bandwidth flood — hundreds of Gbps aimed at exhausting the target's internet connection. Mitigation: upstream scrubbing by a high-capacity provider.
+  - *Protocol attacks:* Exploit TCP/IP weaknesses. SYN Flood — attacker sends thousands of TCP SYN packets but never completes the handshake, exhausting the server's connection table. Mitigation: SYN cookies, rate limiting.
+  - *Application Layer (Layer 7) attacks:* Target the web application itself with requests that look legitimate but consume heavy server resources — HTTP floods, Slowloris (keeps connections open indefinitely). Hardest to detect.
+- **Mitigation services:**
+  - *Cloudflare:* Routes all traffic through its global scrubbing network (300+ PoPs). Filters attack traffic before it reaches the origin server. Free tier provides basic DDoS protection. Pro and Business tiers give advanced WAF rules.
+  - *AWS Shield Standard:* Always-on, free, covers all AWS customers. Protects against most common DDoS vectors.
+  - *AWS Shield Advanced:* Paid tier — guaranteed SLA, 24/7 AWS DDoS Response Team (DRT), cost protection against scaling charges during attacks.
+  - *Akamai Kona Site Defender:* Enterprise-grade, used by major global banks and governments.
+  - *Rate Limiting:* At your own web server or CDN layer — limit the number of requests per IP address per second. Simple, free, effective against basic floods.
+  - *Anycast Diffusion:* Route traffic to multiple Points of Presence globally, diluting the attack volume across many locations instead of concentrating it at one target.
+
+*5. Regular Backups — the last line of defence after all other controls fail*
+
+- **The 3-2-1 Rule:** The industry standard backup strategy.
+  - **3** copies of data (original + 2 backups)
+  - **2** different storage media (e.g., SSD + cloud)
+  - **1** copy offsite (different physical location from the original)
+  - If ransomware hits your office network, you restore from the offsite copy. If the office burns down, the cloud copy survives.
+- **Backup types:**
+  - *Full Backup:* Copy every file. Slowest to create, fastest to restore. Run weekly.
+  - *Incremental Backup:* Copy only files changed since the last backup of any type. Fastest to create. To restore, you need the last full backup + every incremental since. Run daily.
+  - *Differential Backup:* Copy files changed since the last FULL backup. Slower than incremental to create, faster to restore (need only last full + last differential).
+- **Backup testing:** A backup you have never tested is not a backup — it is a false hope. Simulate a disaster quarterly. Wipe a test machine. Restore from backup. Confirm everything works. Many organisations discover their backup is corrupted during an actual emergency.
+- **Air-gapped backups:** Physically disconnected from the network. Ransomware can only encrypt what it can reach over a network connection. A tape drive in a locked safe, or an offline external drive, cannot be reached by malware running on a networked server.
+
+**[Class Exercise: Divide class into 3 groups — one per CIA pillar. Each group names 3 real tools from today's lesson for their pillar and explains HOW each tool protects it. 8 minutes, then present. Instructor correct any errors.]**"
+
+---
+
 ### SECTION 3: THE NIGERIAN THREAT LANDSCAPE (20 minutes)
 
 "Let me give you context on what we're dealing with.

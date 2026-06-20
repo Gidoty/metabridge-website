@@ -615,6 +615,231 @@ Example: Profit Margin = Revenue / (Revenue + Cost)"
 
 ---
 
+### SECTION 5: MATH & COUNTING FUNCTIONS (20 minutes)
+
+"These are the formulas that appear in every professional Excel workbook. Know them cold.
+
+**SUM and conditional aggregation:**
+```excel
+=SUM(B2:B100)                                          -- Total of a range
+=SUMIF(C2:C100, "Lagos", B2:B100)                      -- Sum where state = Lagos
+=SUMIFS(B2:B100, C2:C100, "Lagos", D2:D100, "Active") -- Sum with multiple criteria
+=SUMPRODUCT(B2:B100, C2:C100)                          -- Multiply pairs then sum (weighted totals)
+```
+
+SUMPRODUCT is underused and extremely powerful. To calculate weighted average revenue per unit:
+```excel
+=SUMPRODUCT(Units,Revenue)/SUM(Units)
+```
+
+**COUNT family:**
+```excel
+=COUNT(A2:A100)       -- Count cells containing numbers only
+=COUNTA(A2:A100)      -- Count non-empty cells (text, numbers, dates)
+=COUNTBLANK(A2:A100)  -- Count empty cells
+=COUNTIF(C2:C100, "Lagos")                            -- Count where one condition is true
+=COUNTIFS(C2:C100, "Lagos", D2:D100, "Active")        -- Count with multiple criteria
+```
+
+Practical use: `=COUNTA(A:A)-1` counts all filled rows in column A, minus the header.
+
+**Rounding:**
+```excel
+=ROUND(3.567, 2)      -- Returns 3.57 (rounds to 2 decimal places)
+=ROUNDUP(3.001, 0)    -- Returns 4 (always rounds up)
+=ROUNDDOWN(3.999, 0)  -- Returns 3 (always rounds down)
+=INT(3.9)             -- Returns 3 (drops the decimal, no rounding)
+=CEILING(3.1, 0.5)    -- Returns 3.5 (rounds up to nearest 0.5)
+=FLOOR(3.9, 0.5)      -- Returns 3.5 (rounds down to nearest 0.5)
+=ABS(-250)            -- Returns 250 (absolute value — removes negative sign)
+=MOD(17, 5)           -- Returns 2 (remainder after division — useful for alternating row logic)
+```
+
+**Named ranges make formulas readable:**
+Instead of `=SUMIF(C2:C100,'Lagos',B2:B100)`, define C2:C100 as 'State' and B2:B100 as 'Revenue', then write:
+```excel
+=SUMIF(State, 'Lagos', Revenue)
+```
+Data tab → Name Manager → New. Or: Select the range, type the name in the Name Box (left of the formula bar)."
+
+---
+
+### SECTION 6: TEXT FUNCTIONS (20 minutes)
+
+"Dirty data is often dirty because of text problems — extra spaces, inconsistent capitalisation, merged columns, numbers stored as text. These functions fix all of that.
+
+**Cleaning text:**
+```excel
+=TRIM(A2)              -- Removes leading, trailing, and extra internal spaces (most common clean-up)
+=CLEAN(A2)             -- Removes non-printable characters (line breaks, special chars from system exports)
+=UPPER(A2)             -- ALL CAPS
+=LOWER(A2)             -- all lowercase
+=PROPER(A2)            -- Title Case (first letter of each word capitalised)
+```
+
+Always TRIM before comparing text. 'Lagos' and 'Lagos ' (with trailing space) are NOT equal to Excel.
+
+**Extracting parts of text:**
+```excel
+=LEFT(A2, 3)                    -- First 3 characters from the left
+=RIGHT(A2, 4)                   -- Last 4 characters from the right
+=MID(A2, 5, 3)                  -- 3 characters starting from position 5
+=LEN(A2)                        -- Total character count (including spaces)
+=FIND("@", A2)                  -- Position of "@" in the string (case-sensitive)
+=SEARCH("@", A2)                -- Position of "@" (case-insensitive)
+```
+
+Real example — extract the domain from an email address:
+```excel
+=MID(A2, FIND("@",A2)+1, LEN(A2)-FIND("@",A2))
+```
+This finds the "@" position, then extracts everything to the right of it.
+
+**Combining text:**
+```excel
+=CONCATENATE(A2," ",B2)         -- Joins values (older syntax)
+=A2&" "&B2                      -- Same result with the & operator (preferred)
+=CONCAT(A2:C2)                  -- Joins a range without separator
+=TEXTJOIN(", ", TRUE, A2:A10)   -- Joins a range with a delimiter; TRUE skips empty cells
+```
+
+**Replacing and substituting:**
+```excel
+=SUBSTITUTE(A2, "Ltd", "Limited")   -- Replace every occurrence of 'Ltd' with 'Limited'
+=REPLACE(A2, 1, 3, "NGN")          -- Replace 3 characters starting at position 1 with 'NGN'
+```
+
+**Extracting numbers from text:**
+```excel
+=VALUE(A2)         -- Converts text '50000' to the number 50000 (fixes numbers stored as text)
+=TEXT(B2,"₦#,##0") -- Converts a number to formatted text: 50000 → ₦50,000
+```
+
+**[Live demo: Give students a dirty dataset with inconsistent company names, mixed case, trailing spaces. Students apply TRIM → PROPER → SUBSTITUTE in sequence. Compare before and after.]**"
+
+---
+
+### SECTION 7: DATE & TIME FUNCTIONS (20 minutes)
+
+"Dates are the most mishandled data type in Excel. Here's everything you need to work with dates professionally.
+
+**Getting today's date and time:**
+```excel
+=TODAY()     -- Today's date, updates daily (serial number formatted as date)
+=NOW()       -- Today's date + current time (serial number + decimal)
+```
+Note: These are volatile functions — they recalculate every time the workbook opens. Freeze a date by pasting as Value (Ctrl+Shift+V) if you need a permanent timestamp.
+
+**Building and extracting date parts:**
+```excel
+=DATE(2024, 12, 31)      -- Creates a date from year, month, day components
+=YEAR(A2)                -- Extracts the year (e.g., 2024)
+=MONTH(A2)               -- Extracts the month number (1–12)
+=DAY(A2)                 -- Extracts the day of the month (1–31)
+=WEEKDAY(A2, 2)          -- Day of week: 1=Monday ... 7=Sunday (mode 2 = ISO standard)
+=WEEKNUM(A2, 2)          -- Which week of the year (ISO week numbering)
+```
+
+**Calculating date differences:**
+```excel
+=DATEDIF(A2, TODAY(), "Y")   -- Complete years between two dates (age calculation)
+=DATEDIF(A2, TODAY(), "M")   -- Complete months between two dates
+=DATEDIF(A2, TODAY(), "D")   -- Days between two dates
+=TODAY()-A2                  -- Simple days between (subtract dates directly)
+=NETWORKDAYS(A2, B2)         -- Working days between two dates (excludes weekends)
+=NETWORKDAYS(A2, B2, Holidays) -- Working days excluding a list of holidays
+```
+
+DATEDIF is an undocumented legacy function — it still works but does not appear in autocomplete. Memorise the syntax: `=DATEDIF(start, end, unit)`.
+
+**Date navigation:**
+```excel
+=EDATE(A2, 3)          -- Date 3 months from a given date (useful for contract end dates)
+=EOMONTH(A2, 0)        -- Last day of the same month as A2 (0 = current month, 1 = next month)
+=EOMONTH(A2, -1)+1     -- First day of the same month as A2
+```
+
+**Formatting dates — important for Nigerian data:**
+Nigerian datasets often have dates in DD/MM/YYYY format. Excel may import them as text or interpret them as MM/DD/YYYY (US format). Always check:
+1. Is the column date-formatted? (Should show date in the format bar, not '44927')
+2. Does `=YEAR(A2)` return the correct year?
+If not: use `=DATE(RIGHT(A2,4), MID(A2,4,2), LEFT(A2,2))` to parse DD/MM/YYYY text into a real Excel date.
+
+**[Live demo: Sales data with transaction dates. Students calculate: days since last purchase, months of customer tenure, number of transactions in the last 30 days using COUNTIFS with TODAY()-30 as the start date.]**"
+
+---
+
+### SECTION 8: STATISTICAL FUNCTIONS (20 minutes)
+
+"Data analysis without statistics is just looking at numbers. These functions let you describe, compare, and understand distributions.
+
+**Descriptive statistics — the full toolkit:**
+```excel
+=AVERAGE(B2:B100)             -- Arithmetic mean (sum ÷ count)
+=MEDIAN(B2:B100)              -- Middle value (50th percentile — outlier-resistant)
+=MODE(B2:B100)                -- Most frequent value (legacy; works for one mode)
+=MODE.MULT(B2:B100)           -- Returns ALL modes as an array (use when data may be multimodal)
+```
+
+Always calculate BOTH mean and median. If they differ significantly, your data has skew or outliers. Report median for income and salary data — a few billionaires pull the mean far from the typical experience.
+
+**Spread and variability:**
+```excel
+=STDEV(B2:B100)              -- Standard deviation of a sample (use for sampled data)
+=STDEVP(B2:B100)             -- Standard deviation of a full population (rarely used)
+=VAR(B2:B100)                -- Variance of a sample (STDEV squared)
+=MAX(B2:B100)-MIN(B2:B100)   -- Range (simplest spread measure)
+```
+
+**Percentiles and quartiles:**
+```excel
+=PERCENTILE(B2:B100, 0.9)    -- 90th percentile (top 10% threshold)
+=PERCENTILE(B2:B100, 0.25)   -- 25th percentile (Q1)
+=PERCENTILE(B2:B100, 0.75)   -- 75th percentile (Q3)
+=QUARTILE(B2:B100, 1)        -- Q1 (same as 25th percentile)
+=QUARTILE(B2:B100, 2)        -- Q2 = Median
+=QUARTILE(B2:B100, 3)        -- Q3
+```
+
+IQR (Interquartile Range) = Q3 - Q1. Everything below Q1-(1.5×IQR) or above Q3+(1.5×IQR) is a statistical outlier.
+
+**Correlation — measuring relationships between variables:**
+```excel
+=CORREL(B2:B100, C2:C100)    -- Pearson correlation coefficient between two variables
+```
+- Result from -1 to +1
+- +1: Perfect positive relationship (as X rises, Y rises)
+- -1: Perfect negative relationship (as X rises, Y falls)
+- 0: No linear relationship
+- Rule of thumb: |r| < 0.3 = weak, 0.3–0.7 = moderate, > 0.7 = strong
+- Caution: Correlation ≠ causation. Ice cream sales correlate with drowning deaths — both are caused by summer heat.
+
+**Ranking:**
+```excel
+=RANK(B2, $B$2:$B$100, 0)    -- Rank of B2 in descending order (0=highest first)
+=RANK(B2, $B$2:$B$100, 1)    -- Rank in ascending order (1=lowest first)
+=LARGE($B$2:$B$100, 3)       -- 3rd largest value in the range
+=SMALL($B$2:$B$100, 3)       -- 3rd smallest value
+```
+
+**AVERAGEIF and AVERAGEIFS — conditional averages:**
+```excel
+=AVERAGEIF(C2:C100, 'Lagos', B2:B100)                     -- Avg revenue for Lagos only
+=AVERAGEIFS(B2:B100, C2:C100, 'Lagos', D2:D100, 'Active') -- Avg with multiple conditions
+```
+
+**Regression (Data Analysis ToolPak):**
+For relationships between variables, Excel's built-in regression analysis:
+1. File → Options → Add-ins → Analysis ToolPak → Go → Check Analysis ToolPak → OK
+2. Data tab → Data Analysis → Regression
+3. Set Y Range (dependent variable), X Range (independent variables), Output Range
+4. Excel generates: R², coefficients, p-values, standard errors
+This is the same output as professional statistical software — interpreted correctly, it answers real business questions.
+
+**[Live demo: Sales dataset with Region, Product Category, and Revenue. Students: (1) Calculate mean and median revenue — discuss skew. (2) Find the 90th percentile performer. (3) Identify which region has the highest AVERAGEIF revenue. (4) Run CORREL between marketing spend and revenue.]**"
+
+---
+
 # MODULE 5 [INTERMEDIATE]: ADVANCED EXCEL
 ## Key Teaching Moments
 
@@ -673,6 +898,84 @@ Data tab → What-If Analysis → Goal Seek. Set cell (the formula), to value (�
 **Scenario Manager:** Compare 3 different scenarios — pessimistic, realistic, optimistic. Each scenario has different assumptions. See all results side by side.
 
 **Data Tables:** Vary one or two inputs and see all outputs in a table. Perfect for 'what if price changes from ₦100 to ₦200 in ₦10 increments?'"
+
+---
+
+### Teaching Moment: Financial Functions (15 minutes)
+
+"As a data analyst, you will build financial models — loan calculators, ROI assessments, investment comparisons. These functions are the foundation.
+
+**PMT — calculating loan or lease payments:**
+```excel
+=PMT(rate, nper, pv, [fv], [type])
+```
+- `rate` = interest rate per period (annual rate ÷ 12 for monthly)
+- `nper` = total number of payment periods
+- `pv` = present value (the loan amount)
+- Result is negative (money going out)
+
+Real example — monthly repayment on a ₦5,000,000 car loan at 22% annual interest over 36 months:
+```excel
+=PMT(22%/12, 36, -5000000)
+```
+Result: ₦192,664 per month.
+
+**FV — future value (what is an investment worth at a future date?):**
+```excel
+=FV(rate, nper, pmt, [pv], [type])
+```
+Example — if you invest ₦50,000/month for 10 years at 12% annual return:
+```excel
+=FV(12%/12, 120, -50000)
+```
+Result: ₦11,501,476 — over ₦11.5M from ₦6M in contributions. This is compound interest made visible.
+
+**PV — present value (what is a future cash flow worth today?):**
+```excel
+=PV(rate, nper, pmt, [fv], [type])
+```
+Example — what is a ₦500,000/year annuity for 5 years worth today, at 15% discount rate?
+```excel
+=PV(15%, 5, 500000)
+```
+Use this to value contracts, pension promises, or business cash flows in today's money.
+
+**NPV — Net Present Value (is this investment worth making?):**
+```excel
+=NPV(rate, value1, value2, ...) + initial_investment
+```
+Important: Excel's NPV function assumes cash flows start ONE period from now, so add the initial (Year 0) cost separately.
+
+Example — invest ₦2,000,000 now, expect cash flows of ₦600K, ₦800K, ₦900K, ₦1M over 4 years, at 15% discount rate:
+```excel
+=NPV(15%, 600000, 800000, 900000, 1000000) - 2000000
+```
+If NPV > 0: investment creates value. Accept it.
+If NPV < 0: investment destroys value. Reject it (at this discount rate).
+
+**IRR — Internal Rate of Return (what return does this investment generate?):**
+```excel
+=IRR(values, [guess])
+```
+The `values` range must include the initial investment as a negative number (cash out) followed by expected returns.
+
+Example — invest ₦2,000,000 today, returns of ₦600K, ₦800K, ₦900K, ₦1M:
+```excel
+=IRR({-2000000, 600000, 800000, 900000, 1000000})
+```
+If the result is 22.4%, that means this investment generates 22.4% annual return. Compare to your cost of capital (e.g., 15%). 22.4% > 15% → accept the investment.
+
+**RATE — finding the interest rate:**
+```excel
+=RATE(nper, pmt, pv)
+```
+Example — you borrowed ₦1,000,000 and are paying ₦35,000 per month for 36 months. What is the true monthly interest rate?
+```excel
+=RATE(36, -35000, 1000000) * 12
+```
+Multiply by 12 to annualise. This reveals the true APR — useful for comparing financial products.
+
+**[Live demo: Build a loan amortisation schedule in Excel. Row 1 = opening balance, interest paid (balance × monthly rate), principal paid (PMT − interest), closing balance. Drag down 36 rows. Show how interest front-loads early payments.]**"
 
 ---
 

@@ -311,10 +311,10 @@ An API (Application Programming Interface) allows programmatic access to a platf
 
 Web scraping is programmatic extraction of data from websites.
 
-**Tools:**
-- Python: BeautifulSoup, Scrapy
-- Browser extensions: Web Scraper, Data Miner
-- No-code: Import.io, Octoparse
+**Tools (no-code and browser-based — no programming required):**
+- Browser extensions: Web Scraper (Chrome), Data Miner (Chrome/Edge)
+- No-code platforms: Import.io, Octoparse, ParseHub
+- Excel Power Query: Import from web using Data → Get Data → From Web (for simple HTML tables)
 
 **Ethical and legal considerations:**
 - Check robots.txt (website's scraping rules)
@@ -568,40 +568,147 @@ Professional analysts configure Excel for efficiency:
 =IF(AND(C2>0,D2="Active"),"Qualify","No")
 =IF(OR(B2="Lagos",B2="Abuja"),"Priority",IF(B2="PH","Secondary","Other"))
 =IFS(C2>=90,"A",C2>=80,"B",C2>=70,"C",C2>=60,"D",TRUE,"F")
+=IFERROR(VLOOKUP(A2,Table,2,0),"Not found")   → Suppress formula errors
 ```
 
 **Text Functions:**
 ```
-=LEFT(A2,3)         → First 3 characters
-=RIGHT(A2,4)        → Last 4 characters
-=MID(A2,4,6)        → 6 characters starting at position 4
-=LEN(A2)            → Count characters
-=FIND("@",A2)       → Position of @ symbol in email
-=SUBSTITUTE(A2,"Lagos","LG")   → Replace text
-=CONCATENATE(A2," ",B2)        → Join cells
-=TEXTJOIN(", ",TRUE,A2:A10)    → Join range with separator
+CLEANING
+=TRIM(A2)                       → Remove extra spaces (most common clean-up)
+=CLEAN(A2)                      → Remove non-printable characters
+=UPPER(A2)                      → Convert to ALL CAPS
+=LOWER(A2)                      → Convert to all lowercase
+=PROPER(A2)                     → Convert to Title Case
+
+EXTRACTING
+=LEFT(A2,3)                     → First 3 characters
+=RIGHT(A2,4)                    → Last 4 characters
+=MID(A2,4,6)                    → 6 characters starting at position 4
+=LEN(A2)                        → Character count (including spaces)
+=FIND("@",A2)                   → Position of character (case-sensitive)
+=SEARCH("@",A2)                 → Position of character (case-insensitive)
+
+COMBINING & REPLACING
+=A2&" "&B2                      → Join cells with & (preferred shorthand)
+=CONCATENATE(A2," ",B2)         → Join cells (older syntax)
+=TEXTJOIN(", ",TRUE,A2:A10)     → Join range with separator; skip blanks
+=SUBSTITUTE(A2,"Lagos","LG")    → Replace every occurrence
+=REPLACE(A2,1,3,"NGN")          → Replace at specific position
+
+CONVERTING
+=VALUE(A2)                      → Convert text-number to real number
+=TEXT(B2,"₦#,##0")              → Format number as text with currency
 ```
 
-**Date and Time:**
+**Date and Time Functions:**
 ```
-=TODAY()             → Current date
-=NOW()               → Current date and time
-=YEAR(A2)            → Extract year
-=MONTH(A2)           → Extract month (1-12)
-=DATEDIF(A2,B2,"D") → Days between dates
-=EOMONTH(A2,0)       → Last day of month in A2
-=WEEKDAY(A2,2)       → Day of week (1=Mon with type 2)
+CURRENT DATE/TIME
+=TODAY()                        → Today's date (updates daily)
+=NOW()                          → Today's date + current time
+
+EXTRACTING DATE PARTS
+=YEAR(A2)                       → Extract year (e.g., 2024)
+=MONTH(A2)                      → Extract month (1–12)
+=DAY(A2)                        → Extract day of month (1–31)
+=WEEKDAY(A2,2)                  → Day of week: 1=Monday … 7=Sunday
+=WEEKNUM(A2,2)                  → ISO week number of the year
+
+CALCULATING DATE DIFFERENCES
+=DATEDIF(A2,B2,"Y")             → Complete years between two dates
+=DATEDIF(A2,B2,"M")             → Complete months between two dates
+=DATEDIF(A2,B2,"D")             → Days between two dates
+=TODAY()-A2                     → Days elapsed since a date
+=NETWORKDAYS(A2,B2)             → Working days between two dates
+=NETWORKDAYS(A2,B2,Holidays)    → Working days excluding a holiday list
+
+DATE NAVIGATION
+=DATE(2024,12,31)               → Build a date from year/month/day
+=EDATE(A2,3)                    → Date 3 months from a given date
+=EOMONTH(A2,0)                  → Last day of the same month
+=EOMONTH(A2,-1)+1               → First day of the current month
+```
+
+**Math & Counting Functions:**
+```
+SUMMING
+=SUM(B2:B100)                                       → Total of a range
+=SUMIF(C2:C100,"Lagos",B2:B100)                     → Sum where one condition met
+=SUMIFS(B2:B100,C2:C100,"Lagos",D2:D100,"Active")   → Sum with multiple criteria
+=SUMPRODUCT(B2:B100,C2:C100)                        → Multiply pairs, then sum
+
+COUNTING
+=COUNT(A2:A100)                                     → Count numeric cells only
+=COUNTA(A2:A100)                                    → Count non-empty cells
+=COUNTBLANK(A2:A100)                                → Count empty cells
+=COUNTIF(B2:B100,"Lagos")                           → Count where one condition true
+=COUNTIFS(B2:B100,"Lagos",C2:C100,"Active")         → Count with multiple criteria
+
+AVERAGES
+=AVERAGEIF(B2:B100,"Lagos",D2:D100)                 → Average where condition met
+=AVERAGEIFS(B2:B100,C2:C100,"Lagos",D2:D100,">0")  → Average with multiple criteria
+
+ROUNDING & MATH
+=ROUND(A2,2)                    → Round to 2 decimal places
+=ROUNDUP(A2,0)                  → Always round up to nearest integer
+=ROUNDDOWN(A2,0)                → Always round down to nearest integer
+=INT(A2)                        → Truncate to integer (no rounding)
+=ABS(A2)                        → Absolute value (remove negative sign)
+=MOD(A2,5)                      → Remainder after dividing by 5
+=CEILING(A2,0.5)                → Round up to nearest 0.5
 ```
 
 **Statistical Functions:**
 ```
-=COUNT(A2:A100)       → Count cells with numbers
-=COUNTA(A2:A100)      → Count non-empty cells
-=COUNTIF(B2:B100,"Lagos")     → Count cells matching condition
-=COUNTIFS(B2:B100,"Lagos",C2:C100,"Active")  → Count with multiple conditions
-=SUMIF(B2:B100,"Lagos",D2:D100)              → Sum where condition met
-=SUMIFS(D2:D100,B2:B100,"Lagos",C2:C100,"Active")  → Sum with multiple conditions
-=AVERAGEIF(B2:B100,"Lagos",D2:D100)          → Average where condition
+DESCRIPTIVE STATISTICS
+=AVERAGE(B2:B100)               → Arithmetic mean
+=MEDIAN(B2:B100)                → Middle value (outlier-resistant)
+=MODE(B2:B100)                  → Most frequent value
+=MODE.MULT(B2:B100)             → All modes (array formula — for multimodal data)
+=STDEV(B2:B100)                 → Standard deviation of a sample
+=VAR(B2:B100)                   → Variance of a sample
+
+PERCENTILES & QUARTILES
+=PERCENTILE(B2:B100,0.9)        → 90th percentile (top 10% threshold)
+=PERCENTILE(B2:B100,0.25)       → 25th percentile (Q1)
+=PERCENTILE(B2:B100,0.75)       → 75th percentile (Q3)
+=QUARTILE(B2:B100,1)            → Q1 (25th percentile)
+=QUARTILE(B2:B100,3)            → Q3 (75th percentile)
+
+OUTLIER DETECTION
+IQR = Q3 - Q1
+Lower fence = Q1 - (1.5 × IQR)    → Below this = statistical outlier
+Upper fence = Q3 + (1.5 × IQR)    → Above this = statistical outlier
+
+Z-score formula: =(A2-AVERAGE($A$2:$A$1000))/STDEV($A$2:$A$1000)
+→ Values above +3 or below -3 are outliers
+
+CORRELATION & RANKING
+=CORREL(B2:B100,C2:C100)        → Pearson correlation (-1 to +1)
+=RANK(B2,$B$2:$B$100,0)         → Rank in descending order
+=LARGE($B$2:$B$100,3)           → 3rd largest value
+=SMALL($B$2:$B$100,3)           → 3rd smallest value
+```
+
+**Financial Functions:**
+```
+LOAN PAYMENTS
+=PMT(rate,nper,pv)
+→ Monthly payment on a loan
+→ =PMT(22%/12,36,-5000000) = ₦192,664/month (₦5M loan, 22% p.a., 36 months)
+
+FUTURE & PRESENT VALUE
+=FV(rate,nper,pmt)              → Future value of regular investments
+=PV(rate,nper,pmt)              → Present value of future cash flows
+=RATE(nper,pmt,pv)              → Find the interest rate per period
+
+INVESTMENT ANALYSIS
+=NPV(rate,cf1,cf2,…)+initial    → Net Present Value (NPV>0 = accept)
+=IRR(values)                    → Internal Rate of Return (compare to cost of capital)
+
+Example:
+→ Invest ₦2M, earn ₦600K/₦800K/₦900K/₦1M over 4 years:
+→ =IRR({-2000000,600000,800000,900000,1000000}) → 22.4% IRR
+→ =NPV(15%,600000,800000,900000,1000000)-2000000 → ₦510K+ NPV at 15% discount rate
 ```
 
 **4.3 Lookup Functions**

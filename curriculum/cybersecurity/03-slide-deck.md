@@ -162,6 +162,45 @@ Your job: find the right balance for the risk context
 
 ---
 
+## SLIDE 5B — CIA TRIAD: CONTROLS & TOOLS
+
+**Visual:** Three-column layout, one column per CIA pillar with matching colour scheme (blue/cyan/gold). Each column is a card with the pillar name at the top and bulleted tools below. Minimalist — icon-driven.
+
+**Content:**
+```
+HOW WE PROTECT EACH PILLAR
+
+┌─────────────────────┬──────────────────────┬─────────────────────┐
+│  CONFIDENTIALITY    │      INTEGRITY       │    AVAILABILITY     │
+│  ─────────────────  │  ──────────────────  │  ─────────────────  │
+│                     │                      │                     │
+│  🔒 ENCRYPTION      │  #  HASHING          │  🔁 REDUNDANCY      │
+│  AES-256 (at rest)  │  SHA-256 / SHA-3     │  RAID, Clustering   │
+│  TLS 1.3 (transit)  │                      │  Geographic         │
+│                     │  ✍  DIGITAL SIGS     │                     │
+│  👤 ACCESS CONTROL  │  RSA-PSS / ECDSA     │  ⚖  LOAD BALANCING │
+│  RBAC / DAC / MAC   │                      │  HAProxy, AWS ELB   │
+│  Least Privilege    │  ✓  CHECKSUMS        │  NGINX              │
+│                     │  CRC32 / Adler-32    │                     │
+│  🔑 MFA             │                      │  🚨 DDoS MITIGATION │
+│  TOTP (Authenticator│  📋 VERSION CONTROL  │  Cloudflare         │
+│  YubiKey / Hardware │  Git + Signed Commits│  AWS Shield         │
+│  Biometrics         │                      │  Akamai             │
+│                     │  🗄  WORM STORAGE    │                     │
+│  🏷  DATA CLASS.    │  S3 Object Lock      │  💾 BACKUPS         │
+│  Public→Restricted  │  Immutable Logs      │  3-2-1 Rule         │
+│                     │                      │  Air-gapped copies  │
+│                     │                      │                     │
+│                     │                      │  📋 DISASTER REC.   │
+│                     │                      │  Hot/Warm/Cold Site │
+│                     │                      │  RTO · RPO · BCP    │
+└─────────────────────┴──────────────────────┴─────────────────────┘
+```
+
+**Speaker notes:** This slide is the reference map. Every tool you teach in this course lives in one of these three columns. When students ask 'why are we learning X?' — point them here. SHA-256? Integrity. TLS? Confidentiality. Cloudflare? Availability. Return to this slide at the end of Module 1 and again at the end of the course.
+
+---
+
 ## SLIDE 6 — THREAT ACTORS
 
 **Visual:** Six cards arranged in a 2×3 grid. Each card has a dark background with a different icon and colour representing each threat actor type. Motivation and typical attack listed on each card.

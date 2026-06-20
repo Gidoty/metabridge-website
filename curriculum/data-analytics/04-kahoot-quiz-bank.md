@@ -609,7 +609,7 @@ D) **Investigate the missingness type first, acknowledge it may be a data collec
 ---
 
 ## MODULE 4 [INTERMEDIATE]: EXCEL FUNDAMENTALS
-*Level: Intermediate | Questions: Q46–Q60*
+*Level: Intermediate | Questions: Q46–Q60F (core Q46–Q60 + supplementary Q60A–Q60F)*
 
 ---
 
@@ -805,6 +805,84 @@ C) **When the return column is to the LEFT of the lookup column OR when columns 
 D) When the data contains blank cells
 
 *Instructor note: Two specific cases where INDEX-MATCH wins: left-lookups and column-insertion safety. Knowing when to use which tool is professional judgment.*
+
+---
+
+**Q60A** [RECALL] ⏱ 20s | Standard Points
+
+What does =SUMIFS(D2:D100, B2:B100, "Lagos", C2:C100, "Active") calculate?
+
+A) Count of rows where state is Lagos AND status is Active
+B) **Sum of column D for rows where state is Lagos AND status is Active ✓**
+C) Average of column D for Lagos Active rows
+D) Sum of all Lagos rows regardless of status
+
+*Instructor note: SUMIFS sums the first range (D) based on multiple condition pairs that follow. COUNTIFS counts instead of summing. Both require ALL conditions to be true.*
+
+---
+
+**Q60B** [CONCEPT] ⏱ 45s | Standard Points
+
+A dataset has revenue figures with a few extreme outliers. You need to report the "typical" revenue. Why should you use MEDIAN instead of AVERAGE?
+
+A) MEDIAN is faster to calculate
+B) MEDIAN only works with financial data
+C) **MEDIAN is not pulled by extreme outliers the way AVERAGE is ✓**
+D) AVERAGE cannot handle large datasets
+
+*Instructor note: Classic statistical trap. If 9 employees earn ₦100K and 1 earns ₦10M, AVERAGE = ₦1.09M (misleading). MEDIAN = ₦100K (true typical). Always report both.*
+
+---
+
+**Q60C** [RECALL] ⏱ 20s | Standard Points
+
+What does =TRIM(A2) do to the text " Lagos " (with leading and trailing spaces)?
+
+A) Deletes the entire cell
+B) Returns "LAGOS" in uppercase
+C) Returns an error because spaces exist
+D) **Returns "Lagos" — removing leading, trailing, and extra internal spaces ✓**
+
+*Instructor note: TRIM is the first cleaning step for any text column. Always TRIM before comparing text values — "Lagos" and " Lagos" are NOT equal to Excel.*
+
+---
+
+**Q60D** [SCENARIO] ⏱ 60s | Standard Points
+
+Customer registration dates are in column A. You want to calculate how many complete years each customer has been registered (their tenure in years). Which formula gives this?
+
+A) =YEAR(TODAY())-YEAR(A2)
+B) =A2-TODAY()
+C) =NETWORKDAYS(A2, TODAY())
+D) **=DATEDIF(A2, TODAY(), "Y") ✓**
+
+*Instructor note: DATEDIF with "Y" returns complete years — accounting for whether the anniversary has passed this year. YEAR subtraction gives the wrong answer for customers registered later in the year.*
+
+---
+
+**Q60E** [RECALL] ⏱ 20s | Standard Points
+
+=CORREL(B2:B100, C2:C100) returns 0.85. What does this mean?
+
+A) Column B is 85% of column C in size
+B) 85% of rows have matching values in B and C
+C) **Strong positive relationship — as values in B increase, values in C tend to increase ✓**
+D) The data is 85% reliable
+
+*Instructor note: CORREL returns -1 to +1. Above +0.7 = strong positive. Below -0.7 = strong negative. Near 0 = no linear relationship. Caution: correlation ≠ causation.*
+
+---
+
+**Q60F** [SCENARIO] ⏱ 60s | Standard Points
+
+An analyst needs to calculate the standard deviation of a sample of 500 customer transaction amounts. Which function is correct?
+
+A) =STDEVP(A2:A501) — population standard deviation
+B) =STDEVA(A2:A501) — includes text as zero
+C) =STDEV.P(A2:A501) — same as STDEVP
+D) **=STDEV(A2:A501) — sample standard deviation (correct when data is a sample, not the whole population) ✓**
+
+*Instructor note: STDEV (or STDEV.S in newer Excel) = sample standard deviation — correct when you have a representative sample. STDEVP (or STDEV.P) = population deviation — only when you have ALL data. In analytics, we almost always work with samples, so STDEV is correct.*
 
 ---
 
