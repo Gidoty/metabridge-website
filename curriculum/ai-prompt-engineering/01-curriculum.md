@@ -203,7 +203,7 @@ Beyond the ANI/AGI/ASI classification (capability level), AI is also categorised
 
 **Multimodal AI**
 *Definition:* AI that processes and generates across multiple data types — text, images, audio, video — within a single integrated system.
-*Examples:* GPT-4o (text + vision + voice), Gemini 1.5 Pro (text + image + video + audio), Claude 3.5 Sonnet (text + images)
+*Examples:* GPT-4o (text + vision + voice), Gemini 2.0 Flash (text + image + video + audio), Claude Sonnet 4.6 (text + images + documents)
 *Relevance:* Mirrors how humans naturally communicate — multi-sensory and contextual. More natural, more powerful, and the direction all major AI systems are moving.
 
 **Agentic AI (AI Agents)**
@@ -214,7 +214,7 @@ Beyond the ANI/AGI/ASI classification (capability level), AI is also categorised
 
 **Foundation Models**
 *Definition:* Large AI models trained on broad general data, adaptable to many tasks through prompting, fine-tuning, or retrieval augmentation.
-*Examples:* GPT-4, Claude 3.5, Gemini 1.5 Pro, Llama 3 (405B)
+*Examples:* GPT-4o, Claude Sonnet 4.6, Gemini 2.5 Pro, Llama 3 (405B)
 *Relevance:* The entire AI application economy is built on top of foundation models. They are the "operating system" of the AI era.
 
 **Small Language Models (SLMs)**
@@ -514,7 +514,7 @@ This module established the complete foundation for your AI journey. We traced s
 - Explain the Transformer architecture and why it was revolutionary
 - Describe tokenisation, embeddings, and attention mechanisms
 - Understand pre-training, RLHF, and fine-tuning in practical terms
-- Compare GPT-4, Claude 3.5, Gemini 1.5 Pro, Llama 3, and Mistral
+- Compare GPT-4o, Claude Sonnet 4.6, Gemini 2.0 Flash, Llama 3, and Mistral
 - Identify LLM limitations: hallucinations, context windows, knowledge cutoffs
 - Apply hallucination awareness to professional use of AI tools
 
@@ -586,12 +586,12 @@ What does "it" refer to? Attention scores determine: **trophy** (high score) →
 
 | Model | Creator | Strengths | Best Used For |
 |-------|---------|-----------|--------------|
-| GPT-4o | OpenAI | Reasoning, code, multimodal | Professional tasks, coding, analysis |
-| Claude 3.5 Sonnet | Anthropic | Long context (200K), safety, writing | Research, analysis, document review |
-| Gemini 1.5 Pro | Google | 1M token context, Google integration | Research, productivity, long documents |
+| GPT-4o | OpenAI | Reasoning, code, multimodal, voice | Professional tasks, coding, analysis |
+| Claude Sonnet 4.6 | Anthropic | Long context (200K+), safety, writing | Research, analysis, document review |
+| Gemini 2.0 Flash | Google | Fast, Google Workspace integration, multimodal | Research, productivity, Google-ecosystem work |
 | Llama 3 (405B) | Meta | Open source, customisable, free to run | Developers, enterprise deployment |
 | Mistral Large | Mistral AI | Efficient, multilingual, GDPR-friendly | European enterprise, efficiency-focused |
-| Grok 2 | xAI | Real-time internet, unfiltered | Current events, creative exploration |
+| Grok 3 | xAI | Real-time internet access, reasoning | Current events, research, creative exploration |
 
 **2.2.5 Hallucinations — The Critical Risk**
 
@@ -615,8 +615,8 @@ The context window is the maximum text an LLM can process in one interaction.
 |-------|---------------|---------------------|
 | GPT-3.5 Turbo | 16,000 tokens | ~12,000 words |
 | GPT-4o | 128,000 tokens | ~96,000 words (~a short novel) |
-| Claude 3.5 Sonnet | 200,000 tokens | ~150,000 words (entire legal contracts) |
-| Gemini 1.5 Pro | 1,000,000 tokens | ~750,000 words (entire codebases) |
+| Claude Sonnet 4.6 | 200,000 tokens | ~150,000 words (entire legal contracts) |
+| Gemini 2.5 Pro | 1,000,000+ tokens | ~750,000 words+ (entire codebases) |
 
 Larger context = ability to process entire books, legal agreements, codebases, or research portfolios in one query.
 
@@ -674,7 +674,7 @@ Write 300-word comparative analysis.
 
 ### 2.7 Student Assignments
 
-1. **LLM Comparison Report (800 words):** Compare GPT-4, Claude 3.5, and Gemini 1.5 on architecture (what's public), strengths, weaknesses, pricing, and best use case for Nigerian professionals.
+1. **LLM Comparison Report (800 words):** Compare GPT-4o, Claude Sonnet 4.6, and Gemini 2.0 Flash on architecture (what's public), strengths, weaknesses, pricing, and best use case for Nigerian professionals. Note: model versions update quarterly — verify current versions at time of writing.
 2. **Hallucination Case Study:** Find 3 documented real-world AI hallucination incidents (news, research). For each: what was hallucinated, consequences, how caught. Conclude with 300-word "Hallucination Risk Management" brief.
 3. **LLM Explainer Script:** Write a 5-minute script explaining LLMs to a non-technical Nigerian business professional. No unexplained jargon. Must include one relatable Nigerian analogy.
 4. **Tokenisation Research:** Use tokencounter.org to tokenise 5 English, 5 Nigerian English/Pidgin, and 5 Yoruba/Igbo/Hausa sentences. Compare token counts. What does this reveal about LLM efficiency across languages?

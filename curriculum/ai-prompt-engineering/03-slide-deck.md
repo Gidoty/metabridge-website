@@ -339,7 +339,7 @@ Card 2 [Cyan — multi-layer icon]:
 **MULTIMODAL AI**
 Processes text + images +
 audio + video simultaneously
-*GPT-4o | Gemini 1.5 Pro*
+*GPT-4o | Gemini 2.0 Flash*
 
 Card 3 [Gold — robot/gear icon]:
 **AGENTIC AI**
@@ -351,7 +351,7 @@ Card 4 [Purple — foundation layer icon]:
 **FOUNDATION MODELS**
 Large base models powering
 the entire AI economy
-*GPT-4 | Claude 3.5 | Llama 3*
+*GPT-4o | Claude Sonnet 4.6 | Llama 3*
 
 Card 5 [Green — mobile/edge icon]:
 **SMALL LANGUAGE MODELS**
@@ -757,15 +757,16 @@ The Major LLMs — Your Professional Toolkit
 | Model | Creator | Context Window | Best For |
 |-------|---------|---------------|---------|
 | GPT-4o | OpenAI | 128K tokens | Code, reasoning, multimodal |
-| Claude 3.5 | Anthropic | 200K tokens | Analysis, writing, long docs |
-| Gemini 1.5 Pro | Google | 1M tokens | Research, Google integration |
+| Claude Sonnet 4.6 | Anthropic | 200K tokens | Analysis, writing, long docs |
+| Gemini 2.0 Flash | Google | 1M+ tokens | Research, Google integration |
 | Llama 3 405B | Meta | 128K tokens | Open source, customisation |
 | Mistral Large | Mistral | 128K tokens | European/GDPR, efficiency |
 | Meta AI | Meta | — | Free, embedded in WhatsApp |
 
 **Bottom callout (gold):**
-Professional rule: Use Claude for analysis + long documents.
-Use GPT-4o for versatile tasks + coding. Use Gemini for research.
+Professional rule: Use Claude Sonnet 4.6 for analysis + long documents.
+Use GPT-4o for versatile tasks + coding. Use Gemini 2.0 Flash for research.
+*Note: AI model versions update quarterly — verify current releases.*
 
 ---
 
@@ -1118,8 +1119,8 @@ Text & Language AI — The Foundation
 **Six tool cards (3×2 grid):**
 
 Card 1 [OpenAI blue]: **ChatGPT (GPT-4o)** — Versatile, code, reasoning, multimodal | $0/$20
-Card 2 [Anthropic]: **Claude 3.5 Sonnet** — Analysis, safety, 200K context | $0/$20
-Card 3 [Google]: **Gemini 1.5 Pro** — Google integration, 1M context | $0/$20
+Card 2 [Anthropic]: **Claude Sonnet 4.6** — Analysis, safety, 200K+ context | $0/$20
+Card 3 [Google]: **Gemini 2.0 Flash** — Google integration, fast, multimodal | $0/$20
 Card 4 [Purple]: **Perplexity AI** — Research + live citations | $0/$20
 Card 5 [Meta blue]: **Meta AI** — Free, in WhatsApp | Free
 Card 6 [French blue]: **Mistral** — GDPR-friendly, efficient | Free/paid

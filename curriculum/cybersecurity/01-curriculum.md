@@ -1086,7 +1086,7 @@ Duration: 60 minutes
 
 2. **OSINT Report:** Using only passive OSINT (WHOIS, Google Dorking, crt.sh, Shodan — no active scanning), produce a reconnaissance report on a public Nigerian government website (a .gov.ng domain). Document what information is publicly available that an attacker could exploit.
 
-3. **Vulnerability Report Writing:** Research CVE-2017-0144 (EternalBlue/WannaCry). Write a professional vulnerability finding report including: description, CVSS score, affected systems, technical impact, business impact, evidence, and remediation steps.
+3. **Vulnerability Report Writing (choose ONE):** Write a professional vulnerability finding report including: description, CVSS score, affected systems, technical impact, business impact, evidence (screenshots or proof-of-concept summary), and remediation steps. Choose from: **(A)** CVE-2017-0144 (EternalBlue/WannaCry — SMBv1 Remote Code Execution, CVSS 9.3) — the ransomware that shut down the UK NHS and Spanish telecoms in May 2017; or **(B)** CVE-2021-44228 (Log4Shell — Apache Log4j JNDI injection, CVSS 10.0) — the maximum-severity flaw that exposed virtually every enterprise Java application to unauthenticated remote code execution in December 2021. Both are landmark CVEs that every security professional must understand.
 
 4. **Red Team vs Blue Team:** Explain the concept of Red Team (attackers) and Blue Team (defenders) in organisational security. What is a Purple Team exercise? How would a Nigerian financial institution benefit from a purple team exercise?
 

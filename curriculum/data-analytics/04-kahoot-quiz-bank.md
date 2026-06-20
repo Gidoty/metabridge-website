@@ -2206,6 +2206,63 @@ D) **Proxy discrimination — the model may discriminate by ethnicity indirectly
 
 ---
 
+### MODULE 11 BONUS — Python for Data Analysis (Q165-B through Q168-B)
+*Use after Section 11.6 to reinforce Python/pandas fundamentals.*
+
+---
+
+**Q165-B** [RECALL] ⏱ 20s | Standard Points
+
+Which Python library is the primary tool for loading, cleaning, and manipulating tabular data?
+
+A) NumPy
+B) Matplotlib
+C) **pandas ✓**
+D) scikit-learn
+
+*Instructor note: pandas = data manipulation. numpy = numerical computation. matplotlib = visualisation. scikit-learn = machine learning. Every data analyst needs pandas fluency.*
+
+---
+
+**Q165-C** [RECALL] ⏱ 20s | Standard Points
+
+What does `df.describe()` return in pandas?
+
+A) The column names and their data types
+B) The first 5 rows of the DataFrame
+C) The number of missing values per column
+D) **Summary statistics (count, mean, std, min, max, quartiles) for all numerical columns ✓**
+
+*Instructor note: `df.info()` gives types and null counts. `df.head()` gives first rows. `df.describe()` gives statistical summary. Memorise all three — they are your first three steps with any dataset.*
+
+---
+
+**Q165-D** [CONCEPT] ⏱ 45s | Standard Points
+
+A data analyst needs to calculate the total sales amount grouped by state from a Nigerian e-commerce dataset in Python. Which pandas expression is correct?
+
+A) `df.filter('state')['amount'].total()`
+B) `df.sum(by='state', column='amount')`
+C) **`df.groupby('state')['amount'].sum()` ✓**
+D) `df.aggregate('state', 'amount', 'sum')`
+
+*Instructor note: groupby().sum() is one of the most-used pandas patterns. It is equivalent to SQL's `GROUP BY state` + `SUM(amount)`, and to a Pivot Table in Excel summing by State.*
+
+---
+
+**Q165-E** [SCENARIO] ⏱ 60s | Double Points ★
+
+A junior analyst runs `df = pd.read_csv('data.csv')` followed by `df.isnull().sum()` and sees that the `customer_id` column has 0 nulls but the `income` column has 847 nulls out of 2,000 rows (42%). Which approach is MOST appropriate?
+
+A) Delete all 847 rows — missing data cannot be used
+B) Fill all missing income values with 0 — zero is a safe default
+C) Delete the entire income column — 42% missing is too high to be useful
+D) **Investigate WHY income is missing (MCAR/MAR/MNAR?), then choose: impute with median if MAR, flag as indicator variable if MNAR, and document the decision — never delete 42% of data without investigation ✓**
+
+*Instructor note: Links Module 3 (missing data types) with Module 11 Python labs. The key insight: Python makes it easy to check `isnull().sum()` but the DECISION about what to do is still an analytical judgment call, not a code question.*
+
+---
+
 ## MODULE 12: ANALYTICS IN PRACTICE
 ### Questions Q166–Q180
 

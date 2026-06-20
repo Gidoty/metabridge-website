@@ -23,8 +23,8 @@ The AI tools ecosystem in 2025 spans six functional domains. A professional AI p
 | Tool | Creator | Key Strength | Pricing |
 |------|---------|-------------|---------|
 | ChatGPT (GPT-4o) | OpenAI | Versatile; code + reasoning + multimodal | Free / $20/mo Pro |
-| Claude 3.5 Sonnet | Anthropic | Long context; safe; exceptional writing | Free / $20/mo Pro |
-| Gemini 1.5 Pro | Google | Google Workspace integration; 1M context | Free / $20/mo |
+| Claude Sonnet 4.6 | Anthropic | Long context (200K+); safety; exceptional writing | Free / $20/mo Pro |
+| Gemini 2.0 Flash | Google | Google Workspace integration; fast; multimodal | Free / $20/mo |
 | Perplexity AI | Perplexity | Research with live citations | Free / $20/mo |
 | Mistral Le Chat | Mistral AI | European/GDPR-compliant; fast | Free tier available |
 | Meta AI (Llama) | Meta | Free; open source; embedded in WhatsApp | Free |

