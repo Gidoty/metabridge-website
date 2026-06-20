@@ -8,8 +8,10 @@
 
 ---
 
-# MODULE 1 LESSON NOTES
+# MODULE 1 LESSON NOTES [BEGINNER]
 ## INTRODUCTION, HISTORY & FOUNDATIONS OF ARTIFICIAL INTELLIGENCE
+
+> **Level: Beginner** | Estimated teaching time: 9 hours (3 sessions × 3 hours)
 
 ---
 
@@ -471,8 +473,10 @@ See you next week. Questions in the WhatsApp group. Study hard."
 
 ---
 
-# MODULE 2 LESSON NOTES
+# MODULE 2 LESSON NOTES [BEGINNER]
 ## LARGE LANGUAGE MODELS & GENERATIVE AI ARCHITECTURE
+
+> **Level: Beginner** | Estimated teaching time: 9 hours (3 sessions × 3 hours)
 
 ---
 
@@ -688,8 +692,10 @@ Next week we begin prompt engineering — where we take everything you've learne
 
 ---
 
-# MODULE 3 LESSON NOTES
+# MODULE 3 LESSON NOTES [INTERMEDIATE]
 ## PROMPT ENGINEERING FUNDAMENTALS
+
+> **Level: Intermediate** | Estimated teaching time: 9 hours (3 sessions × 3 hours)
 
 ---
 
@@ -893,8 +899,10 @@ Next week we go deeper — Chain-of-Thought, prompt chaining, RAG, and system pr
 
 ---
 
-# MODULE 4 LESSON NOTES
+# MODULE 4 LESSON NOTES [INTERMEDIATE]
 ## ADVANCED PROMPTING TECHNIQUES & FRAMEWORKS
+
+> **Level: Intermediate** | Estimated teaching time: 9 hours (3 sessions × 3 hours)
 
 ---
 
@@ -1132,7 +1140,9 @@ Next module: the tools. We go hands-on with every major AI platform across text,
 
 ---
 
-# MODULE 5 LESSON NOTES — KEY TEACHING MOMENTS
+# MODULE 5 LESSON NOTES [ADVANCED] — KEY TEACHING MOMENTS
+
+> **Level: Advanced** | Estimated teaching time: 9 hours (3 sessions × 3 hours)
 
 **Open:** Live tool comparison — same prompt across ChatGPT, Claude, Gemini, Meta AI simultaneously.
 **Core demonstration:** Midjourney live image generation session — build prompts incrementally, show how each parameter affects output. Use Nigerian business context (Lagos cityscape, Afrobeats concert poster, professional headshot of a fictional Nigerian tech CEO).
@@ -1143,7 +1153,9 @@ Next module: the tools. We go hands-on with every major AI platform across text,
 
 ---
 
-# MODULE 6 LESSON NOTES — KEY TEACHING MOMENTS
+# MODULE 6 LESSON NOTES [ADVANCED] — KEY TEACHING MOMENTS
+
+> **Level: Advanced** | Estimated teaching time: 9 hours (3 sessions × 3 hours)
 
 **Open:** ROI framing — show the calculation: 90 min/post × 60 posts/month = 90 hours/month. At ₦4,000/hour = ₦360,000/month in labour. AI reduces to 3 hours/month. The cost of ChatGPT Plus: ₦30,000/month. Net saving: ₦300,000/month.
 **Core demonstration:** Build a live Zapier automation in class. Trigger: Google Form submission. Action: ChatGPT generates personalised email. Action: Gmail sends it. Students watch it run live.
@@ -1154,7 +1166,9 @@ Next module: the tools. We go hands-on with every major AI platform across text,
 
 ---
 
-# MODULE 7 LESSON NOTES — KEY TEACHING MOMENTS
+# MODULE 7 LESSON NOTES [PROFESSIONAL] — KEY TEACHING MOMENTS
+
+> **Level: Professional** | Estimated teaching time: 9 hours (3 sessions × 3 hours)
 
 **Open:** Show the Dangote deepfake case — if students can find the video, watch it together. "Could you tell this was fake before I told you? What visual cues were there?"
 **Core teaching — bias:** The Gender Shades demonstration is essential. If the Face++ API is accessible, run the test live in class. If not, show the original MIT Media Lab results video.
@@ -1165,7 +1179,9 @@ Next module: the tools. We go hands-on with every major AI platform across text,
 
 ---
 
-# MODULE 8 LESSON NOTES — CAPSTONE GUIDANCE
+# MODULE 8 LESSON NOTES [PROFESSIONAL] — CAPSTONE GUIDANCE
+
+> **Level: Professional** | Estimated teaching time: 9 hours (3 sessions × 3 hours)
 
 **Module 8 is a project studio — not a lecture module.**
 

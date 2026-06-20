@@ -45,7 +45,20 @@ Upon completion, students will be able to:
 
 ---
 
-## MODULE 1: INTRODUCTION, HISTORY & FOUNDATIONS OF ARTIFICIAL INTELLIGENCE
+## DIFFICULTY LEVEL CLASSIFICATION
+
+| Level | Modules | Skills Developed |
+|-------|---------|-----------------|
+| **Beginner** | M1–M2 | AI history and foundations, understanding large language models and generative AI architecture |
+| **Intermediate** | M3–M4 | Prompt engineering fundamentals, advanced prompting frameworks and techniques |
+| **Advanced** | M5–M6 | AI tools ecosystem and platforms, AI for business productivity and workflow automation |
+| **Professional** | M7–M8 | AI ethics, safety and governance, capstone project and professional deployment |
+
+*Students should complete each level before progressing to the next. Prior knowledge of the Beginner level is assumed before the Intermediate level begins.*
+
+---
+
+## MODULE 1 [BEGINNER]: INTRODUCTION, HISTORY & FOUNDATIONS OF ARTIFICIAL INTELLIGENCE
 
 ### 1.1 Learning Objectives
 - Identify the seven major technology eras in human history and explain AI's position as the seventh and fastest era
@@ -508,7 +521,7 @@ This module established the complete foundation for your AI journey. We traced s
 
 ---
 
-## MODULE 2: LARGE LANGUAGE MODELS & GENERATIVE AI ARCHITECTURE
+## MODULE 2 [BEGINNER]: LARGE LANGUAGE MODELS & GENERATIVE AI ARCHITECTURE
 
 ### 2.1 Learning Objectives
 - Explain the Transformer architecture and why it was revolutionary
@@ -700,7 +713,7 @@ Large Language Models represent the single most significant architectural breakt
 
 ---
 
-## MODULE 3: PROMPT ENGINEERING FUNDAMENTALS
+## MODULE 3 [INTERMEDIATE]: PROMPT ENGINEERING FUNDAMENTALS
 
 ### 3.1 Learning Objectives
 - Define prompt engineering and explain its professional value
@@ -922,7 +935,7 @@ Prompt engineering is the bridge between AI capability and professional value. T
 
 ---
 
-## MODULE 4: ADVANCED PROMPTING TECHNIQUES & FRAMEWORKS
+## MODULE 4 [INTERMEDIATE]: ADVANCED PROMPTING TECHNIQUES & FRAMEWORKS
 
 ### 4.1 Learning Objectives
 - Apply Chain-of-Thought prompting to complex reasoning tasks

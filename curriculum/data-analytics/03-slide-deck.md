@@ -80,12 +80,34 @@ VISUALISATION (Modules 8–10)    ADVANCED (Modules 11–12)
 
 ---
 
+## SLIDE 3B — DIFFICULTY LEVEL OVERVIEW
+
+**Visual:** Four horizontal bands stacked vertically, each in a distinct colour: blue (Beginner), cyan (Intermediate), gold (Advanced), white/bright (Professional). Each band contains the module numbers and a one-line descriptor. A progress arrow on the right side points upward from Beginner to Professional.
+
+**Content:**
+```
+YOUR LEARNING JOURNEY — 4 LEVELS OF MASTERY
+
+BEGINNER        M1–M3    Analytics concepts · Data collection · Data cleaning
+INTERMEDIATE    M4–M6    Excel foundations & advanced · SQL basics
+ADVANCED        M7–M9    Advanced SQL · Visualisation · Power BI dashboards
+PROFESSIONAL   M10–M12   Power BI DAX · Statistics · Capstone project
+
+Complete each level before advancing to the next.
+```
+
+**Speaker notes:** This slide sets expectations. Students know exactly where they stand at each stage of the course. Beginners become capable practitioners. Intermediates become technical analysts. Advanced students become visualisation experts. Professionals are employment-ready.
+
+---
+
 ## SLIDE 4 — MODULE 1 OPENER: INTRODUCTION TO DATA ANALYTICS
 
 **Visual:** Large slide number "01" in electric blue, nearly transparent, behind the heading. Small Nigerian data ecosystem icons: NBS, CBN, NIBSS logos in a row.
 
 **Content:**
 ```
+LEVEL: BEGINNER
+
 MODULE 01
 
 INTRODUCTION TO
@@ -216,6 +238,8 @@ Blockchain-verified → instantly confirmedby any employer
 
 **Content:**
 ```
+LEVEL: BEGINNER
+
 MODULE 02
 
 DATA COLLECTION
@@ -323,6 +347,8 @@ This is not optional. This is professional responsibility.
 
 **Content:**
 ```
+LEVEL: BEGINNER
+
 MODULE 03
 
 DATA CLEANING
@@ -406,6 +432,8 @@ with mean/median
 
 **Content:**
 ```
+LEVEL: INTERMEDIATE
+
 MODULE 04
 
 EXCEL FUNDAMENTALS
@@ -486,6 +514,8 @@ All from the same pivot table. Just drag different fields.
 
 **Content:**
 ```
+LEVEL: INTERMEDIATE
+
 MODULE 05
 
 ADVANCED EXCEL
@@ -537,6 +567,8 @@ Get comfortable here. This is how professionals work.
 
 **Content:**
 ```
+LEVEL: INTERMEDIATE
+
 MODULE 06
 
 SQL FOUNDATIONS
@@ -624,6 +656,8 @@ ORDER BY SUM(balance) DESC;
 
 **Content:**
 ```
+LEVEL: ADVANCED
+
 MODULE 07
 
 ADVANCED SQL
@@ -704,6 +738,8 @@ Rule: If your subquery runs more than 2 levels deep, use a CTE.
 
 **Content:**
 ```
+LEVEL: ADVANCED
+
 MODULE 08
 
 DATA VISUALISATION
@@ -818,6 +854,8 @@ Answer first → Support with evidence → Don't make them wait
 
 **Content:**
 ```
+LEVEL: ADVANCED
+
 MODULE 09
 
 POWER BI PART I
@@ -934,6 +972,8 @@ Not twelve. One. What is the page answering?
 
 **Content:**
 ```
+LEVEL: PROFESSIONAL
+
 MODULE 10
 
 POWER BI PART II
@@ -1054,6 +1094,8 @@ Every board-level dashboard has at least one of these.
 
 **Content:**
 ```
+LEVEL: PROFESSIONAL
+
 MODULE 11
 
 STATISTICS &
@@ -1139,6 +1181,8 @@ p > 0.05 = Could be random → Don't launch yet → Get more data
 
 **Content:**
 ```
+LEVEL: PROFESSIONAL
+
 MODULE 12
 
 ANALYTICS IN PRACTICE

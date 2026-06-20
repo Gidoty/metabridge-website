@@ -383,7 +383,7 @@ The Nigeria Data Protection Act 2023 governs how personal data must be handled:
 
 ---
 
-## MODULE 3: DATA CLEANING & PREPARATION
+## MODULE 3 [BEGINNER]: DATA CLEANING & PREPARATION
 
 ### Module Learning Objectives
 By the end of this module, students will be able to:
@@ -534,7 +534,7 @@ Prevent bad data from entering your dataset with validation rules:
 
 ---
 
-## MODULE 4: EXCEL FOR DATA ANALYSIS I — FOUNDATIONS
+## MODULE 4 [INTERMEDIATE]: EXCEL FOR DATA ANALYSIS I — FOUNDATIONS
 
 ### Module Learning Objectives
 By the end of this module, students will be able to:
@@ -707,7 +707,7 @@ Add custom metrics to pivot tables:
 
 ---
 
-## MODULE 5: EXCEL FOR DATA ANALYSIS II — ADVANCED FUNCTIONS
+## MODULE 5 [INTERMEDIATE]: EXCEL FOR DATA ANALYSIS II — ADVANCED FUNCTIONS
 
 ### Module Learning Objectives
 By the end of this module, students will be able to:
@@ -852,7 +852,7 @@ Regression output interpretation:
 
 ---
 
-## MODULE 6: INTRODUCTION TO SQL & DATABASE QUERIES
+## MODULE 6 [INTERMEDIATE]: INTRODUCTION TO SQL & DATABASE QUERIES
 
 ### Module Learning Objectives
 By the end of this module, students will be able to:

@@ -8,8 +8,8 @@
 
 ---
 
-## MODULE 1: INTRODUCTION TO DATA ANALYTICS
-### Questions Q1–Q15
+## MODULE 1 [BEGINNER]: INTRODUCTION TO DATA ANALYTICS
+*Level: Beginner | Questions: Q1–Q15*
 
 ---
 
@@ -208,8 +208,8 @@ D) **Analytics exists to support decisions — the link to action was missing �
 
 ---
 
-## MODULE 2: DATA COLLECTION & SOURCES
-### Questions Q16–Q30
+## MODULE 2 [BEGINNER]: DATA COLLECTION & SOURCES
+*Level: Beginner | Questions: Q16–Q30*
 
 ---
 
@@ -408,8 +408,8 @@ D) **NDPA 2023 — sharing personal data without adequate data protection agreem
 
 ---
 
-## MODULE 3: DATA CLEANING & QUALITY
-### Questions Q31–Q45
+## MODULE 3 [BEGINNER]: DATA CLEANING & QUALITY
+*Level: Beginner | Questions: Q31–Q45*
 
 ---
 
@@ -608,8 +608,8 @@ D) **Investigate the missingness type first, acknowledge it may be a data collec
 
 ---
 
-## MODULE 4: EXCEL FUNDAMENTALS
-### Questions Q46–Q60
+## MODULE 4 [INTERMEDIATE]: EXCEL FUNDAMENTALS
+*Level: Intermediate | Questions: Q46–Q60*
 
 ---
 
@@ -808,8 +808,8 @@ D) When the data contains blank cells
 
 ---
 
-## MODULE 5: ADVANCED EXCEL
-### Questions Q61–Q75
+## MODULE 5 [INTERMEDIATE]: ADVANCED EXCEL
+*Level: Intermediate | Questions: Q61–Q75*
 
 ---
 
@@ -1008,8 +1008,8 @@ D) The savings depend on the analyst's salary
 
 ---
 
-## MODULE 6: SQL FOUNDATIONS
-### Questions Q76–Q90
+## MODULE 6 [INTERMEDIATE]: SQL FOUNDATIONS
+*Level: Intermediate | Questions: Q76–Q90*
 
 ---
 
@@ -1208,8 +1208,8 @@ D) **Databases support concurrent access, enforce data integrity, handle million
 
 ---
 
-## MODULE 7: ADVANCED SQL
-### Questions Q91–Q105
+## MODULE 7 [ADVANCED]: ADVANCED SQL
+*Level: Advanced | Questions: Q91–Q105*
 
 ---
 
@@ -1408,8 +1408,8 @@ D) **New or Returning Customer — recent, high spend, but low frequency ✓**
 
 ---
 
-## MODULE 8: DATA VISUALISATION PRINCIPLES
-### Questions Q106–Q120
+## MODULE 8 [ADVANCED]: DATA VISUALISATION PRINCIPLES
+*Level: Advanced | Questions: Q106–Q120*
 
 ---
 
@@ -1608,8 +1608,8 @@ D) This is acceptable because it makes the trend clearer
 
 ---
 
-## MODULE 9: POWER BI PART I
-### Questions Q121–Q135
+## MODULE 9 [ADVANCED]: POWER BI PART I
+*Level: Advanced | Questions: Q121–Q135*
 
 ---
 
@@ -1808,8 +1808,8 @@ D) Yes — but it needs a pie chart to show regional breakdown
 
 ---
 
-## MODULE 10: POWER BI PART II
-### Questions Q136–Q150
+## MODULE 10 [PROFESSIONAL]: POWER BI PART II
+*Level: Professional | Questions: Q136–Q150*
 
 ---
 
@@ -2008,8 +2008,8 @@ D) DAX measures are computationally expensive
 
 ---
 
-## MODULE 11: STATISTICS & PREDICTIVE ANALYTICS
-### Questions Q151–Q165
+## MODULE 11 [PROFESSIONAL]: STATISTICS & PREDICTIVE ANALYTICS
+*Level: Professional | Questions: Q151–Q165*
 
 ---
 
@@ -2206,8 +2206,8 @@ D) **Proxy discrimination — the model may discriminate by ethnicity indirectly
 
 ---
 
-## MODULE 12: ANALYTICS IN PRACTICE
-### Questions Q166–Q180
+## MODULE 12 [PROFESSIONAL]: ANALYTICS IN PRACTICE
+*Level: Professional | Questions: Q166–Q180*
 
 ---
 

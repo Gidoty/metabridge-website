@@ -14,11 +14,14 @@
 
 ---
 
-# MODULE 1 SLIDES: INTRODUCTION, HISTORY & FOUNDATIONS OF AI
+# MODULE 1 SLIDES [BEGINNER]: INTRODUCTION, HISTORY & FOUNDATIONS OF AI
 
 ---
 
 ## SLIDE 1 — TITLE SLIDE
+
+**Level Badge (Outfit 500, electric blue):**
+LEVEL: BEGINNER
 
 **Main Title (large, Syne 800, white):**
 ARTIFICIAL INTELLIGENCE
@@ -33,6 +36,27 @@ MetaBridge Academy | metabridgeacademy.com
 **Visual:** Full-bleed dark navy background. Glowing neural network node diagram (bright blue connecting lines, nodes pulsing softly). Bottom left: MetaBridge MB logo icon. Bottom right: "Blockchain Verified Education."
 
 **Speaker Note:** Welcome students warmly. Confirm everyone can see screen and hear audio. Run a quick chat check.
+
+---
+
+## SLIDE 1B — DIFFICULTY LEVEL OVERVIEW
+
+**Slide Header (Syne 700, white):**
+Your 8-Module Learning Journey — 4 Levels of Mastery
+
+**Four-level layout (horizontal bands, each with distinct accent colour):**
+
+BEGINNER        M1–M2    AI foundations & history · LLMs & generative AI architecture
+INTERMEDIATE    M3–M4    Prompt engineering fundamentals · Advanced prompting frameworks
+ADVANCED        M5–M6    AI tools ecosystem · AI for business & automation
+PROFESSIONAL    M7–M8    AI ethics, safety & governance · Capstone & professional deployment
+
+**Footer text (Outfit 300, muted):**
+Complete each level before advancing. Prior completion of the Beginner level is assumed before Intermediate begins.
+
+**Visual:** Stacked horizontal bands — blue (Beginner), cyan (Intermediate), gold (Advanced), white/bright (Professional). Progress arrow on right side pointing upward. Module number chips visible in each band.
+
+**Speaker Note:** Show students the full arc of the course before diving into Module 1. This gives them a map. Every module they complete moves them one step closer to Professional-level AI practitioner status.
 
 ---
 
@@ -575,11 +599,13 @@ metabridgeacademy.com
 
 ---
 
-# MODULE 2 SLIDES: LLMs & GENERATIVE AI ARCHITECTURE
+# MODULE 2 SLIDES [BEGINNER]: LLMs & GENERATIVE AI ARCHITECTURE
 
 ---
 
 ## SLIDE 11 — MODULE 2 TITLE
+
+**Level Badge:** LEVEL: BEGINNER
 
 **Title:** Inside the Machine: How AI Actually Works
 
@@ -793,11 +819,13 @@ Treat AI output as a **first draft**, not a **final answer**.
 
 ---
 
-# MODULE 3 SLIDES: PROMPT ENGINEERING FUNDAMENTALS
+# MODULE 3 SLIDES [INTERMEDIATE]: PROMPT ENGINEERING FUNDAMENTALS
 
 ---
 
 ## SLIDE 19 — MODULE 3 TITLE
+
+**Level Badge:** LEVEL: INTERMEDIATE
 
 **Title:** The Skill That Multiplies Your Intelligence
 
@@ -935,11 +963,13 @@ Check every prompt before you submit.
 
 ---
 
-# MODULE 4 SLIDES: ADVANCED PROMPTING TECHNIQUES
+# MODULE 4 SLIDES [INTERMEDIATE]: ADVANCED PROMPTING TECHNIQUES
 
 ---
 
 ## SLIDE 24 — MODULE 4 TITLE
+
+**Level Badge:** LEVEL: INTERMEDIATE
 
 **Title:** From Prompts to AI Systems
 
@@ -1097,11 +1127,13 @@ Sets:
 
 ---
 
-# MODULE 5 SLIDES: AI TOOLS ECOSYSTEM
+# MODULE 5 SLIDES [ADVANCED]: AI TOOLS ECOSYSTEM
 
 ---
 
 ## SLIDE 29 — MODULE 5 TITLE
+
+**Level Badge:** LEVEL: ADVANCED
 
 **Title:** The Complete AI Toolkit
 
@@ -1206,11 +1238,13 @@ Start with free tools. Upgrade as you generate income from AI skills.
 
 ---
 
-# MODULE 6 SLIDES: AI FOR BUSINESS & AUTOMATION
+# MODULE 6 SLIDES [ADVANCED]: AI FOR BUSINESS & AUTOMATION
 
 ---
 
 ## SLIDE 34 — THE ROI OF AI AUTOMATION
+
+**Level Badge:** LEVEL: ADVANCED
 
 **Slide Header:**
 The Business Case: Every Minute Counts
@@ -1295,11 +1329,13 @@ Human role: Final approval only
 
 ---
 
-# MODULE 7 SLIDES: AI ETHICS & THE FUTURE
+# MODULE 7 SLIDES [PROFESSIONAL]: AI ETHICS & THE FUTURE
 
 ---
 
 ## SLIDE 37 — AI BIAS: THE INVISIBLE DISCRIMINATION
+
+**Level Badge:** LEVEL: PROFESSIONAL
 
 **Slide Header:**
 When AI Inherits Human Prejudice
@@ -1408,11 +1444,13 @@ It is the question of whether AI serves you or controls you.
 
 ---
 
-# MODULE 8 SLIDES: CAPSTONE
+# MODULE 8 SLIDES [PROFESSIONAL]: CAPSTONE
 
 ---
 
 ## SLIDE 41 — CAPSTONE: YOUR PROFESSIONAL DEBUT
+
+**Level Badge:** LEVEL: PROFESSIONAL
 
 **Slide Header:**
 Module 8: Build Something That Matters

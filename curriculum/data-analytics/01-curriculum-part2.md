@@ -3,7 +3,7 @@
 
 ---
 
-## MODULE 7: ADVANCED SQL — JOINS, AGGREGATIONS & SUBQUERIES
+## MODULE 7 [ADVANCED]: ADVANCED SQL — JOINS, AGGREGATIONS & SUBQUERIES
 
 ### Module Learning Objectives
 By the end of this module, students will be able to:
@@ -206,7 +206,7 @@ WHERE customer_id = 100;
 
 ---
 
-## MODULE 8: DATA VISUALISATION PRINCIPLES
+## MODULE 8 [ADVANCED]: DATA VISUALISATION PRINCIPLES
 
 ### Module Learning Objectives
 By the end of this module, students will be able to:
@@ -329,7 +329,7 @@ Professional data presentations follow a narrative arc:
 
 ---
 
-## MODULE 9: POWER BI I — BUILDING DASHBOARDS
+## MODULE 9 [ADVANCED]: POWER BI I — BUILDING DASHBOARDS
 
 ### Module Learning Objectives
 By the end of this module, students will be able to:
@@ -498,7 +498,7 @@ Date Dimension ←─── Transactions (Fact) ───→ Product Dimension
 
 ---
 
-## MODULE 10: POWER BI II — DAX, MEASURES & ADVANCED ANALYTICS
+## MODULE 10 [PROFESSIONAL]: POWER BI II — DAX, MEASURES & ADVANCED ANALYTICS
 
 ### Module Learning Objectives
 By the end of this module, students will be able to:
@@ -675,7 +675,7 @@ DIVIDE(
 
 ---
 
-## MODULE 11: STATISTICAL ANALYSIS & PREDICTIVE ANALYTICS
+## MODULE 11 [PROFESSIONAL]: STATISTICAL ANALYSIS & PREDICTIVE ANALYTICS
 
 ### Module Learning Objectives
 By the end of this module, students will be able to:
@@ -837,7 +837,7 @@ Interpretation:
 
 ---
 
-## MODULE 12: ANALYTICS IN PRACTICE & CAPSTONE PROJECT
+## MODULE 12 [PROFESSIONAL]: ANALYTICS IN PRACTICE & CAPSTONE PROJECT
 
 ### Module Learning Objectives
 By the end of this module, students will be able to:

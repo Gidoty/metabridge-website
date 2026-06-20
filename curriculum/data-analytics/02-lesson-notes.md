@@ -22,8 +22,10 @@ By the end of 12 modules, every student can: collect data → clean it → analy
 
 ---
 
-# MODULE 1: INTRODUCTION TO DATA ANALYTICS
+# MODULE 1 [BEGINNER]: INTRODUCTION TO DATA ANALYTICS
 ## Full Teaching Script
+
+> **Level: Beginner** | Estimated teaching time: 6 hours (2 sessions × 3 hours)
 
 ---
 
@@ -157,8 +159,10 @@ Remote work: Many international companies hire Nigerian analysts at $2,000–$5,
 
 ---
 
-# MODULE 2: DATA COLLECTION & SOURCES
+# MODULE 2 [BEGINNER]: DATA COLLECTION & SOURCES
 ## Full Teaching Script
+
+> **Level: Beginner** | Estimated teaching time: 6 hours (2 sessions × 3 hours)
 
 ---
 
@@ -300,8 +304,10 @@ I am not trying to scare you. I am preparing you to be a professional. Companies
 
 ---
 
-# MODULE 3: DATA CLEANING & QUALITY
+# MODULE 3 [BEGINNER]: DATA CLEANING & QUALITY
 ## Full Teaching Script
+
+> **Level: Beginner** | Estimated teaching time: 6 hours (2 sessions × 3 hours)
 
 ---
 
@@ -424,8 +430,10 @@ Example: For an 'Age' column, set 'Whole number between 18 and 100.' Anyone ente
 
 ---
 
-# MODULE 4: EXCEL FUNDAMENTALS
+# MODULE 4 [INTERMEDIATE]: EXCEL FUNDAMENTALS
 ## Full Teaching Script
+
+> **Level: Intermediate** | Estimated teaching time: 6 hours (2 sessions × 3 hours)
 
 ---
 
@@ -607,8 +615,10 @@ Example: Profit Margin = Revenue / (Revenue + Cost)"
 
 ---
 
-# MODULE 5: ADVANCED EXCEL
+# MODULE 5 [INTERMEDIATE]: ADVANCED EXCEL
 ## Key Teaching Moments
+
+> **Level: Intermediate** | Estimated teaching time: 6 hours (2 sessions × 3 hours)
 
 ---
 
@@ -666,8 +676,10 @@ Data tab → What-If Analysis → Goal Seek. Set cell (the formula), to value (�
 
 ---
 
-# MODULE 6: SQL FOUNDATIONS
+# MODULE 6 [INTERMEDIATE]: SQL FOUNDATIONS
 ## Full Teaching Script
+
+> **Level: Intermediate** | Estimated teaching time: 6 hours (2 sessions × 3 hours)
 
 ---
 
@@ -858,8 +870,10 @@ This is RFM-style segmentation — before we even get to formal RFM analysis."
 
 ---
 
-# MODULE 7: ADVANCED SQL
+# MODULE 7 [ADVANCED]: ADVANCED SQL
 ## Key Teaching Moments
+
+> **Level: Advanced** | Estimated teaching time: 6 hours (2 sessions × 3 hours)
 
 ---
 
@@ -994,8 +1008,10 @@ This calculates month-over-month revenue change — critical for business analys
 
 ---
 
-# MODULE 8: DATA VISUALISATION PRINCIPLES
+# MODULE 8 [ADVANCED]: DATA VISUALISATION PRINCIPLES
 ## Full Teaching Script
+
+> **Level: Advanced** | Estimated teaching time: 6 hours (2 sessions × 3 hours)
 
 ---
 
@@ -1111,8 +1127,10 @@ This is what executives want to see. Not a table. A story with a recommendation.
 
 ---
 
-# MODULE 9: POWER BI PART I
+# MODULE 9 [ADVANCED]: POWER BI PART I
 ## Key Teaching Moments
+
+> **Level: Advanced** | Estimated teaching time: 6 hours (2 sessions × 3 hours)
 
 ---
 
@@ -1174,8 +1192,10 @@ Why does this matter?
 
 ---
 
-# MODULE 10: POWER BI PART II
+# MODULE 10 [PROFESSIONAL]: POWER BI PART II
 ## Key Teaching Moments
+
+> **Level: Professional** | Estimated teaching time: 6 hours (2 sessions × 3 hours)
 
 ---
 
@@ -1282,8 +1302,10 @@ Why this matters: In every single business dashboard, stakeholders want to compa
 
 ---
 
-# MODULE 11: STATISTICS & PREDICTIVE ANALYTICS
+# MODULE 11 [PROFESSIONAL]: STATISTICS & PREDICTIVE ANALYTICS
 ## Key Teaching Moments
+
+> **Level: Professional** | Estimated teaching time: 6 hours (2 sessions × 3 hours)
 
 ---
 
@@ -1365,8 +1387,10 @@ Practical target: R² > 0.7 is generally good for business prediction.
 
 ---
 
-# MODULE 12: ANALYTICS IN PRACTICE
+# MODULE 12 [PROFESSIONAL]: ANALYTICS IN PRACTICE
 ## Full Teaching Script
+
+> **Level: Professional** | Estimated teaching time: 6 hours (2 sessions × 3 hours)
 
 ---
 
