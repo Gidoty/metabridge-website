@@ -1,0 +1,21 @@
+# Dependencies
+node_modules/
+
+# Secrets — NEVER commit these
+.env
+
+# WhatsApp session credentials — this IS your login. If leaked,
+# someone else can control your WhatsApp account through it.
+data/auth/
+
+# Database (contains student phone numbers — personal data)
+data/*.db
+data/*.db-journal
+data/*.db-wal
+data/*.db-shm
+
+# PM2 logs — captured by PM2, not for version control
+logs/*.log
+
+# OS noise
+.DS_Store
