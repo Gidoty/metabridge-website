@@ -2,13 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --bg: #ffffff;
+  --fg: #1f2937;
+  --scrollbar-track: #f1f1f1;
+  --scrollbar-thumb: #2B8A9C;
+}
+
+html.dark {
+  --bg: #0A0E1A;
+  --fg: #f9fafb;
+  --scrollbar-track: #0F1E35;
+  --scrollbar-thumb: #22D3EE;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
   }
 
   body {
-    @apply font-sans text-gray-800 bg-white;
+    @apply font-sans;
+    color: var(--fg);
+    background-color: var(--bg);
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -85,11 +102,11 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: var(--scrollbar-track);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #2B8A9C;
+  background: var(--scrollbar-thumb);
   border-radius: 3px;
 }
 
