@@ -2,6 +2,7 @@ import { cookies } from 'next/headers'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { createClient } from '@/lib/supabase/server'
+import { ProgressBar } from '@/components/dashboard/ProgressBar'
 
 export const metadata: Metadata = {
   title: 'Free Cohort Dashboard',
@@ -51,6 +52,14 @@ export default async function FreeCohortPage() {
 
   return (
     <div>
+      {/* Progress tracker */}
+      <ProgressBar
+        type="guest"
+        totalModules={4}
+        modules={FREE_MODULES}
+        channel="free"
+      />
+
       {/* Header */}
       <div className="mb-10">
         <p className="font-mono text-cyber-cyan text-xs mb-2 tracking-widest uppercase">
