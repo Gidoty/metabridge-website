@@ -3,6 +3,9 @@ import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { ThemeToggle } from '@/components/ThemeToggle'
+import { FacilitatorPanel } from '@/components/facilitator/FacilitatorPanel'
+import { SlideController } from '@/components/facilitator/SlideController'
+import type { LectureSession } from '@/lib/types/lecture'
 
 export const metadata: Metadata = {
   title: 'Admin Panel',
@@ -16,6 +19,14 @@ export default async function AdminPage() {
 
   if (!user) redirect('/login')
   if (user?.app_metadata?.role !== 'admin') redirect('/paid-professional')
+
+  const { data: sessions } = await supabase
+    .from('lecture_sessions')
+    .select('*')
+    .order('channel')
+
+  const freeSession = (sessions ?? []).find((s: LectureSession) => s.channel === 'free') as LectureSession | undefined
+  const paidSession = (sessions ?? []).find((s: LectureSession) => s.channel === 'paid') as LectureSession | undefined
 
   return (
     <div className="min-h-screen bg-cyber-bg">
@@ -73,20 +84,22 @@ export default async function AdminPage() {
           ))}
         </div>
 
-        <div
-          className="rounded-2xl p-6 border"
-          style={{
-            background: '#0F1E35',
-            borderColor: 'rgba(244,137,31,0.18)',
-          }}
-        >
-          <p className="font-mono text-orange text-xs mb-3 tracking-widest uppercase">
-            {'// coming_in_phase_2'}
-          </p>
-          <p className="text-gray-400 text-sm">
-            Admin controls — student management, cohort scheduling, certificate generation,
-            and analytics — will be wired in Phase 2 (Live-Sync Video Hub).
-          </p>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          <FacilitatorPanel />
+          <div className="space-y-5">
+            {freeSession && (
+              <div>
+                <p className="text-gray-500 text-xs font-mono mb-2 uppercase tracking-wider">Free Cohort Slides</p>
+                <SlideController session={freeSession} />
+              </div>
+            )}
+            {paidSession && (
+              <div>
+                <p className="text-gray-500 text-xs font-mono mb-2 uppercase tracking-wider">Pro Session Slides</p>
+                <SlideController session={paidSession} />
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

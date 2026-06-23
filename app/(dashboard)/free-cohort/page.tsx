@@ -1,6 +1,7 @@
 import { cookies } from 'next/headers'
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import { createClient } from '@/lib/supabase/server'
 
 export const metadata: Metadata = {
   title: 'Free Cohort Dashboard',
@@ -29,7 +30,7 @@ const FREE_MODULES = [
   },
 ]
 
-export default function FreeCohortPage() {
+export default async function FreeCohortPage() {
   const cookieStore = cookies()
   const guestCookie = cookieStore.get('guest_user')
   let displayName = ''
@@ -39,6 +40,14 @@ export default function FreeCohortPage() {
   } catch {
     displayName = ''
   }
+
+  const supabase = createClient()
+  const { data: session } = await supabase
+    .from('lecture_sessions')
+    .select('is_live')
+    .eq('channel', 'free')
+    .single()
+  const isLive = session?.is_live ?? false
 
   return (
     <div>
@@ -50,9 +59,24 @@ export default function FreeCohortPage() {
         <h1 className="font-heading text-3xl md:text-4xl font-bold text-white mb-2">
           Welcome{displayName ? `, ${displayName}` : ' to Metabridge'}
         </h1>
-        <p className="text-gray-400">
-          You have free access to all foundation modules below.
-        </p>
+        <div className="flex items-center gap-4 mt-1">
+          <p className="text-gray-400">
+            You have free access to all foundation modules below.
+          </p>
+          {isLive && (
+            <Link
+              href="/free-cohort/live"
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-xl text-xs font-mono font-bold transition-all hover:-translate-y-0.5"
+              style={{ background: 'rgba(239,68,68,0.15)', color: '#EF4444', border: '1px solid rgba(239,68,68,0.3)' }}
+            >
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500" />
+              </span>
+              Join Live Session
+            </Link>
+          )}
+        </div>
       </div>
 
       {/* Module cards */}
