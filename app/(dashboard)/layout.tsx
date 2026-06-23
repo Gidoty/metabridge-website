@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { ThemeToggle } from '@/components/ThemeToggle'
+import { AskProf } from '@/components/chat/AskProf'
 
 export default function DashboardLayout({
   children,
@@ -37,6 +38,7 @@ export default function DashboardLayout({
         </div>
       </header>
       <main className="flex-1 container-custom py-10">{children}</main>
+      <AskProf />
     </div>
   )
 }

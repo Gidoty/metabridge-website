@@ -13,6 +13,31 @@ const withPWA = withPWAInit({
         urlPattern: /^\/api\//,
         handler: 'NetworkOnly',
       },
+      {
+        urlPattern: /^\/_next\/static\/.*/,
+        handler: 'CacheFirst',
+        options: {
+          cacheName: 'next-static',
+          expiration: { maxEntries: 200, maxAgeSeconds: 60 * 60 * 24 * 30 },
+        },
+      },
+      {
+        urlPattern: /^\/_next\/image.*/,
+        handler: 'CacheFirst',
+        options: {
+          cacheName: 'next-images',
+          expiration: { maxEntries: 50, maxAgeSeconds: 60 * 60 * 24 * 7 },
+        },
+      },
+      {
+        urlPattern: /^\/(free-cohort|paid-professional|labs)(\/.*)?$/,
+        handler: 'NetworkFirst',
+        options: {
+          cacheName: 'dashboard-pages',
+          networkTimeoutSeconds: 3,
+          expiration: { maxEntries: 30, maxAgeSeconds: 60 * 60 * 24 },
+        },
+      },
     ],
   },
 })

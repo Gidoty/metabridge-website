@@ -1,6 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import type { Metadata } from 'next'
+import { ProgressBar } from '@/components/dashboard/ProgressBar'
 
 export const metadata: Metadata = {
   title: 'Pro Dashboard',
@@ -54,8 +55,28 @@ export default async function PaidProfessionalPage() {
     .single()
   const isLive = session?.is_live ?? false
 
+  const { data: progressRow } = await supabase
+    .from('student_progress')
+    .select('completed_modules')
+    .eq('user_id', user.id)
+    .eq('channel', 'paid')
+    .single()
+  const initialCompleted: number[] = progressRow?.completed_modules ?? []
+
   return (
     <div>
+      {/* Progress tracker */}
+      <ProgressBar
+        type="user"
+        totalModules={4}
+        modules={PRO_COURSES}
+        channel="paid"
+        userId={user.id}
+        initialCompleted={initialCompleted}
+        studentName={user.email ?? ''}
+        studentEmail={user.email ?? ''}
+      />
+
       {/* Header */}
       <div className="mb-10">
         <p className="font-mono text-cyber-cyan text-xs mb-2 tracking-widest uppercase">

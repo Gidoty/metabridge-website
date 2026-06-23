@@ -6,8 +6,10 @@ import { ThemeToggle } from '@/components/ThemeToggle'
 import { FacilitatorPanel } from '@/components/facilitator/FacilitatorPanel'
 import { SlideController } from '@/components/facilitator/SlideController'
 import { QuizController } from '@/components/facilitator/QuizController'
+import { AdminTabs } from '@/components/admin/AdminTabs'
 import type { LectureSession } from '@/lib/types/lecture'
 import type { QuizSession } from '@/lib/types/quiz'
+import type { CapstoneSubmission } from '@/lib/types/progress'
 
 export const metadata: Metadata = {
   title: 'Admin Panel',
@@ -37,6 +39,54 @@ export default async function AdminPage() {
 
   const freeQuizSession = (quizSessions ?? []).find((s: QuizSession) => s.channel === 'free') as QuizSession | undefined
   const paidQuizSession = (quizSessions ?? []).find((s: QuizSession) => s.channel === 'paid') as QuizSession | undefined
+
+  const { count: studentCount } = await supabase
+    .from('attendance_logs')
+    .select('student_name', { count: 'exact', head: true })
+
+  const { count: certCount } = await supabase
+    .from('capstone_submissions')
+    .select('*', { count: 'exact', head: true })
+    .eq('approved', true)
+
+  const { data: capstoneSubmissions } = await supabase
+    .from('capstone_submissions')
+    .select('*')
+    .order('submitted_at', { ascending: false })
+
+  const pendingCount = (capstoneSubmissions ?? []).filter((s: CapstoneSubmission) => !s.approved).length
+  const isAnyLive = (sessions ?? []).some((s: LectureSession) => s.is_live)
+
+  const freeSlides = freeSession?.slides ?? []
+  const paidSlides = paidSession?.slides ?? []
+
+  const liveControls = (
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+      <FacilitatorPanel />
+      <div className="space-y-5">
+        {freeSession && (
+          <div>
+            <p className="text-gray-500 text-xs font-mono mb-2 uppercase tracking-wider">Free Cohort Slides</p>
+            <SlideController session={freeSession} />
+          </div>
+        )}
+        {paidSession && (
+          <div>
+            <p className="text-gray-500 text-xs font-mono mb-2 uppercase tracking-wider">Pro Session Slides</p>
+            <SlideController session={paidSession} />
+          </div>
+        )}
+      </div>
+      <div className="lg:col-span-2 grid grid-cols-1 lg:grid-cols-2 gap-5">
+        {freeQuizSession && (
+          <QuizController channel="free" quizSession={freeQuizSession} />
+        )}
+        {paidQuizSession && (
+          <QuizController channel="paid" quizSession={paidQuizSession} />
+        )}
+      </div>
+    </div>
+  )
 
   return (
     <div className="min-h-screen bg-cyber-bg">
@@ -75,9 +125,9 @@ export default async function AdminPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
           {[
-            { label: 'Total Students', value: '—', note: 'Phase 2' },
-            { label: 'Active Sessions', value: '—', note: 'Phase 2' },
-            { label: 'Certificates Issued', value: '—', note: 'Phase 2' },
+            { label: 'Total Attendances', value: studentCount ?? 0, note: 'from quiz attendance logs' },
+            { label: 'Live Sessions', value: isAnyLive ? 'ACTIVE' : 'OFFLINE', note: isAnyLive ? 'session in progress' : 'no active session' },
+            { label: 'Certificates Issued', value: certCount ?? 0, note: 'approved capstones' },
           ].map((stat) => (
             <div
               key={stat.label}
@@ -94,33 +144,13 @@ export default async function AdminPage() {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-          <FacilitatorPanel />
-          <div className="space-y-5">
-            {freeSession && (
-              <div>
-                <p className="text-gray-500 text-xs font-mono mb-2 uppercase tracking-wider">Free Cohort Slides</p>
-                <SlideController session={freeSession} />
-              </div>
-            )}
-            {paidSession && (
-              <div>
-                <p className="text-gray-500 text-xs font-mono mb-2 uppercase tracking-wider">Pro Session Slides</p>
-                <SlideController session={paidSession} />
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* Quiz Controllers */}
-        <div className="mt-5 grid grid-cols-1 lg:grid-cols-2 gap-5">
-          {freeQuizSession && (
-            <QuizController channel="free" quizSession={freeQuizSession} />
-          )}
-          {paidQuizSession && (
-            <QuizController channel="paid" quizSession={paidQuizSession} />
-          )}
-        </div>
+        <AdminTabs
+          pendingCount={pendingCount}
+          capstoneSubmissions={(capstoneSubmissions ?? []) as CapstoneSubmission[]}
+          freeSlides={freeSlides}
+          paidSlides={paidSlides}
+          liveControls={liveControls}
+        />
       </div>
     </div>
   )
