@@ -1,6 +1,7 @@
 import type { Config } from 'tailwindcss'
 
 const config: Config = {
+  darkMode: 'class',
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -14,6 +15,10 @@ const config: Config = {
         teal: '#2B8A9C',
         orange: '#F4891F',
         'light-bg': '#F8FAFC',
+        'cyber-bg': '#0A0E1A',
+        'cyber-card': '#0F1E35',
+        'cyber-cyan': '#22D3EE',
+        'cyber-blue': '#3B82F6',
       },
       fontFamily: {
         sans: ['var(--font-inter)', 'sans-serif'],

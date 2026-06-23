@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { HiMenu, HiX } from 'react-icons/hi'
+import { ThemeToggle } from '@/components/ThemeToggle'
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -66,6 +67,7 @@ export default function Navigation() {
                   {link.label}
                 </Link>
               ))}
+              <ThemeToggle />
               <a
                 href={WHATSAPP_ENROLL}
                 target="_blank"
