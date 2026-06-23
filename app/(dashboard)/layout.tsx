@@ -22,6 +22,12 @@ export default function DashboardLayout({
         </Link>
         <div className="flex items-center gap-3">
           <Link
+            href="/labs"
+            className="text-gray-400 hover:text-white text-sm font-mono transition-colors"
+          >
+            Labs
+          </Link>
+          <Link
             href="/"
             className="text-gray-400 hover:text-white text-sm font-mono transition-colors"
           >

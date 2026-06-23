@@ -5,7 +5,9 @@ import type { Metadata } from 'next'
 import { ThemeToggle } from '@/components/ThemeToggle'
 import { FacilitatorPanel } from '@/components/facilitator/FacilitatorPanel'
 import { SlideController } from '@/components/facilitator/SlideController'
+import { QuizController } from '@/components/facilitator/QuizController'
 import type { LectureSession } from '@/lib/types/lecture'
+import type { QuizSession } from '@/lib/types/quiz'
 
 export const metadata: Metadata = {
   title: 'Admin Panel',
@@ -27,6 +29,14 @@ export default async function AdminPage() {
 
   const freeSession = (sessions ?? []).find((s: LectureSession) => s.channel === 'free') as LectureSession | undefined
   const paidSession = (sessions ?? []).find((s: LectureSession) => s.channel === 'paid') as LectureSession | undefined
+
+  const { data: quizSessions } = await supabase
+    .from('quiz_sessions')
+    .select('*')
+    .order('channel')
+
+  const freeQuizSession = (quizSessions ?? []).find((s: QuizSession) => s.channel === 'free') as QuizSession | undefined
+  const paidQuizSession = (quizSessions ?? []).find((s: QuizSession) => s.channel === 'paid') as QuizSession | undefined
 
   return (
     <div className="min-h-screen bg-cyber-bg">
@@ -100,6 +110,16 @@ export default async function AdminPage() {
               </div>
             )}
           </div>
+        </div>
+
+        {/* Quiz Controllers */}
+        <div className="mt-5 grid grid-cols-1 lg:grid-cols-2 gap-5">
+          {freeQuizSession && (
+            <QuizController channel="free" quizSession={freeQuizSession} />
+          )}
+          {paidQuizSession && (
+            <QuizController channel="paid" quizSession={paidQuizSession} />
+          )}
         </div>
       </div>
     </div>

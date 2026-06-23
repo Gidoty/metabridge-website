@@ -4,6 +4,7 @@ import { getOrCreateRoom, createMeetingToken } from '@/lib/daily'
 import { VideoPlayer } from '@/components/live/VideoPlayer'
 import { SlideViewer } from '@/components/live/SlideViewer'
 import { LiveBadge } from '@/components/live/LiveBadge'
+import { QuizOverlay } from '@/components/quiz/QuizOverlay'
 import type { LectureSession } from '@/lib/types/lecture'
 import type { Metadata } from 'next'
 
@@ -90,6 +91,8 @@ export default async function PaidProfessionalLivePage() {
         </div>
         <SlideViewer initialSession={lectureSession} />
       </div>
+
+      <QuizOverlay channel="paid" studentName={user.email ?? 'Student'} />
     </div>
   )
 }

@@ -75,6 +75,14 @@ export async function middleware(request: NextRequest) {
     return response
   }
 
+  // --- /labs: requires guest cookie OR pro session ---
+  if (pathname.startsWith('/labs')) {
+    if (!isAuthenticated && !isGuest) {
+      return NextResponse.redirect(new URL('/login', request.url))
+    }
+    return response
+  }
+
   // --- /free-cohort: requires guest cookie; pro users get bumped up ---
   if (pathname.startsWith('/free-cohort')) {
     if (isAuthenticated) {

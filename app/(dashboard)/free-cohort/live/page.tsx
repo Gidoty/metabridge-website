@@ -5,6 +5,7 @@ import { getOrCreateRoom, createMeetingToken } from '@/lib/daily'
 import { VideoPlayer } from '@/components/live/VideoPlayer'
 import { SlideViewer } from '@/components/live/SlideViewer'
 import { LiveBadge } from '@/components/live/LiveBadge'
+import { QuizOverlay } from '@/components/quiz/QuizOverlay'
 import type { LectureSession } from '@/lib/types/lecture'
 import type { Metadata } from 'next'
 
@@ -14,6 +15,14 @@ export default async function FreeCohortLivePage() {
   const cookieStore = cookies()
   const guestCookie = cookieStore.get('guest_user')
   if (!guestCookie) redirect('/login')
+
+  let displayName = 'Guest'
+  try {
+    const parsed = JSON.parse(guestCookie.value)
+    if (parsed.displayName) displayName = parsed.displayName
+  } catch {
+    // use default
+  }
 
   const supabase = createClient()
   const { data: session } = await supabase
@@ -91,6 +100,8 @@ export default async function FreeCohortLivePage() {
         </div>
         <SlideViewer initialSession={lectureSession} />
       </div>
+
+      <QuizOverlay channel="free" studentName={displayName} />
     </div>
   )
 }
