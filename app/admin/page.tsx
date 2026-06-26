@@ -9,7 +9,7 @@ import { QuizController } from '@/components/facilitator/QuizController'
 import { AdminTabs } from '@/components/admin/AdminTabs'
 import type { LectureSession } from '@/lib/types/lecture'
 import type { QuizSession } from '@/lib/types/quiz'
-import type { CapstoneSubmission } from '@/lib/types/progress'
+import type { CapstoneSubmission, StudentRegistration } from '@/lib/types/progress'
 
 export const metadata: Metadata = {
   title: 'Admin Panel',
@@ -54,7 +54,13 @@ export default async function AdminPage() {
     .select('*')
     .order('submitted_at', { ascending: false })
 
+  const { data: registrations } = await supabase
+    .from('student_registrations')
+    .select('*')
+    .order('submitted_at', { ascending: false })
+
   const pendingCount = (capstoneSubmissions ?? []).filter((s: CapstoneSubmission) => !s.approved).length
+  const pendingRegistrations = (registrations ?? []).filter((r: StudentRegistration) => r.status === 'pending').length
   const isAnyLive = (sessions ?? []).some((s: LectureSession) => s.is_live)
 
   const freeSlides = freeSession?.slides ?? []
@@ -150,6 +156,8 @@ export default async function AdminPage() {
           freeSlides={freeSlides}
           paidSlides={paidSlides}
           liveControls={liveControls}
+          pendingRegistrations={pendingRegistrations}
+          registrations={(registrations ?? []) as StudentRegistration[]}
         />
       </div>
     </div>

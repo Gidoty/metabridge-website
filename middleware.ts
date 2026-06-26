@@ -10,6 +10,7 @@ const PUBLIC_ROUTES = [
   '/verify',
   '/privacy-policy',
   '/login',
+  '/register',
 ]
 
 function isPublicRoute(pathname: string): boolean {
