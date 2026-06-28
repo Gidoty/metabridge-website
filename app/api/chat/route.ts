@@ -52,11 +52,21 @@ export async function POST(request: NextRequest) {
       })),
     })
 
-    return new Response(stream.toReadableStream(), {
-      headers: {
-        'Content-Type': 'text/plain; charset=utf-8',
-        'X-Content-Type-Options': 'nosniff',
+    const encoder = new TextEncoder()
+    const readable = new ReadableStream({
+      async start(controller) {
+        try {
+          for await (const text of stream.textStream) {
+            controller.enqueue(encoder.encode(text))
+          }
+        } finally {
+          controller.close()
+        }
       },
+    })
+
+    return new Response(readable, {
+      headers: { 'Content-Type': 'text/plain; charset=utf-8' },
     })
   } catch (e) {
     const msg = e instanceof Error ? e.message : 'Unknown error'
