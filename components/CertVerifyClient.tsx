@@ -86,7 +86,15 @@ export default function CertVerifyClient({ initialCode }: CertVerifyClientProps)
   }
 
   const formatDate = (dateStr: string) => {
-    return new Date(dateStr).toLocaleDateString('en-NG', {
+    // Handle DD/MM/YYYY (common in Nigerian Google Sheets) by reordering to YYYY-MM-DD
+    let normalized = dateStr.trim()
+    const dmyMatch = normalized.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/)
+    if (dmyMatch) {
+      normalized = `${dmyMatch[3]}-${dmyMatch[2].padStart(2, '0')}-${dmyMatch[1].padStart(2, '0')}`
+    }
+    const d = new Date(normalized)
+    if (isNaN(d.getTime())) return dateStr // fall back to raw value if still unparseable
+    return d.toLocaleDateString('en-NG', {
       year: 'numeric',
       month: 'long',
       day: 'numeric',
