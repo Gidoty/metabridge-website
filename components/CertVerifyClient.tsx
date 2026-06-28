@@ -15,7 +15,7 @@ interface Certificate {
   candidate_name: string
   course_name: string
   cohort: string
-  serial_number: string
+  serial_number: number | string
   year_issued: string
   date_issued: string
 }
@@ -79,7 +79,9 @@ export default function CertVerifyClient({ initialCode }: CertVerifyClientProps)
     e.preventDefault()
     verify(code)
     if (typeof window !== 'undefined') {
-      window.history.pushState({}, '', `/verify/${encodeURIComponent(code.trim())}`)
+      // Encode each slash-separated segment individually so /verify/MA/C1/26/0001 routes correctly
+      const segments = code.trim().split('/').map(encodeURIComponent).join('/')
+      window.history.pushState({}, '', `/verify/${segments}`)
     }
   }
 
@@ -104,7 +106,7 @@ export default function CertVerifyClient({ initialCode }: CertVerifyClientProps)
             type="text"
             value={code}
             onChange={(e) => setCode(e.target.value.toUpperCase())}
-            placeholder="e.g. MBA-2026-CYB-00123"
+            placeholder="e.g. MA/C1/26/0001"
             className="flex-1 px-5 py-3 rounded-xl border-2 border-gray-200 focus:border-teal focus:outline-none text-navy font-mono text-lg placeholder-gray-300 transition-colors"
             required
           />

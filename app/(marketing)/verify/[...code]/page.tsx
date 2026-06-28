@@ -14,11 +14,12 @@ export const metadata: Metadata = {
 }
 
 interface PageProps {
-  params: { code: string }
+  params: { code: string[] }
 }
 
 export default function VerifyPage({ params }: PageProps) {
-  const code = decodeURIComponent(params.code)
+  // Catch-all segments are an array — rejoin with '/' to reconstruct codes like MA/C1/26/0001
+  const code = params.code.map(decodeURIComponent).join('/')
   const isLookupPage = code === 'lookup'
 
   return (
