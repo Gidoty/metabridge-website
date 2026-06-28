@@ -41,20 +41,25 @@ export async function POST(request: NextRequest) {
 
   const client = new Anthropic({ apiKey })
 
-  const stream = client.messages.stream({
-    model: 'claude-haiku-4-5-20251001',
-    max_tokens: 1024,
-    system: SYSTEM_PROMPT.replace('{{name}}', studentName ?? 'Student'),
-    messages: messages.slice(-10).map((m) => ({
-      role: m.role,
-      content: m.content,
-    })),
-  })
+  try {
+    const stream = client.messages.stream({
+      model: 'claude-haiku-4-5-20251001',
+      max_tokens: 1024,
+      system: SYSTEM_PROMPT.replace('{{name}}', studentName ?? 'Student'),
+      messages: messages.slice(-10).map((m) => ({
+        role: m.role,
+        content: m.content,
+      })),
+    })
 
-  return new Response(stream.toReadableStream(), {
-    headers: {
-      'Content-Type': 'text/plain; charset=utf-8',
-      'X-Content-Type-Options': 'nosniff',
-    },
-  })
+    return new Response(stream.toReadableStream(), {
+      headers: {
+        'Content-Type': 'text/plain; charset=utf-8',
+        'X-Content-Type-Options': 'nosniff',
+      },
+    })
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : 'Unknown error'
+    return NextResponse.json({ error: msg }, { status: 500 })
+  }
 }

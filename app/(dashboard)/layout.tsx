@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { ThemeToggle } from '@/components/ThemeToggle'
 import { AskProf } from '@/components/chat/AskProf'
+import { LogoutButton } from '@/components/auth/LogoutButton'
 
 export default function DashboardLayout({
   children,
@@ -34,6 +35,7 @@ export default function DashboardLayout({
           >
             ← Back to site
           </Link>
+          <LogoutButton />
           <ThemeToggle />
         </div>
       </header>
