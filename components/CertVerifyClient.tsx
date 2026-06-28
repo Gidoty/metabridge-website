@@ -10,12 +10,14 @@ const supabase = createClient(
 
 interface Certificate {
   id: string
-  code: string
-  graduate_name: string
-  programme: string
-  issue_date: string
-  grade?: string
-  status: 'valid' | 'revoked' | 'expired'
+  certificate_code: string
+  certificate_type: string
+  candidate_name: string
+  course_name: string
+  cohort: string
+  serial_number: string
+  year_issued: string
+  date_issued: string
 }
 
 interface CertVerifyClientProps {
@@ -42,7 +44,7 @@ export default function CertVerifyClient({ initialCode }: CertVerifyClientProps)
       const { data, error: dbError } = await supabase
         .from('certificates')
         .select('*')
-        .eq('code', trimmed.toUpperCase())
+        .eq('certificate_code', trimmed.toUpperCase())
         .single()
 
       if (dbError || !data) {
@@ -119,7 +121,7 @@ export default function CertVerifyClient({ initialCode }: CertVerifyClientProps)
       )}
 
       {/* Valid certificate */}
-      {!loading && result && result.status === 'valid' && (
+      {!loading && result && (
         <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
           <div className="bg-gradient-to-r from-teal to-navy p-6 flex items-center gap-4">
             <div className="w-14 h-14 bg-white rounded-full flex items-center justify-center text-3xl">
@@ -133,13 +135,16 @@ export default function CertVerifyClient({ initialCode }: CertVerifyClientProps)
           <div className="p-8">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               {[
-                { label: 'Graduate Name', value: result.graduate_name },
-                { label: 'Programme', value: result.programme },
-                { label: 'Certificate Code', value: result.code },
-                { label: 'Issue Date', value: formatDate(result.issue_date) },
-                ...(result.grade ? [{ label: 'Grade', value: result.grade }] : []),
+                { label: 'Candidate Name', value: result.candidate_name },
+                { label: 'Course', value: result.course_name },
+                { label: 'Certificate Type', value: result.certificate_type },
+                { label: 'Cohort', value: result.cohort },
+                { label: 'Certificate Code', value: result.certificate_code },
+                { label: 'Serial Number', value: result.serial_number },
+                { label: 'Year Issued', value: result.year_issued },
+                { label: 'Date Issued', value: result.date_issued ? formatDate(result.date_issued) : '' },
                 { label: 'Status', value: '✅ Valid & Authentic' },
-              ].map(({ label, value }) => (
+              ].filter(f => f.value).map(({ label, value }) => (
                 <div key={label} className="bg-light-bg rounded-xl p-4">
                   <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1">
                     {label}
@@ -156,21 +161,6 @@ export default function CertVerifyClient({ initialCode }: CertVerifyClientProps)
                   info@metabridgeacademy.com
                 </a>
                 .
-              </p>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Revoked / Expired */}
-      {!loading && result && result.status !== 'valid' && (
-        <div className="bg-white rounded-2xl shadow-md overflow-hidden">
-          <div className="bg-red-500 p-6 flex items-center gap-4">
-            <div className="text-3xl">⚠️</div>
-            <div>
-              <h3 className="font-bold text-white text-lg">Certificate {result.status === 'revoked' ? 'Revoked' : 'Expired'}</h3>
-              <p className="text-white/80 text-sm">
-                This certificate has been {result.status}. Contact us for details.
               </p>
             </div>
           </div>
