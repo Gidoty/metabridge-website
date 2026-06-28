@@ -47,14 +47,21 @@ export default function CertVerifyClient({ initialCode }: CertVerifyClientProps)
         .eq('certificate_code', trimmed.toUpperCase())
         .single()
 
-      if (dbError || !data) {
+      if (dbError) {
+        // Surface the real DB error in console for debugging
+        console.error('Supabase cert lookup error:', dbError)
+        setError(
+          `No certificate found with this code. (Debug: ${dbError.message}) Please check the code and try again.`
+        )
+      } else if (!data) {
         setError(
           'No certificate found with this code. Please check the code and try again. If you believe this is an error, contact our support team.'
         )
       } else {
         setResult(data as Certificate)
       }
-    } catch {
+    } catch (e) {
+      console.error('Cert verify exception:', e)
       setError('An error occurred while verifying the certificate. Please try again.')
     } finally {
       setLoading(false)
