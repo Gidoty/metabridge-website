@@ -42,7 +42,7 @@ const faqCategories = [
       {
         question: 'When does the next cohort start?',
         answer:
-          'Admissions at Metabridge Academy are rolling — we accept and onboard new students on a continuous basis throughout the year. Our next structured cohort begins in August 2026, with the following cohort starting January 2027. You can enrol at any point and begin learning immediately.',
+          'Metabridge Academy runs four cohorts per year — one every quarter. New intakes begin in January (Q1), April (Q2), July (Q3), and October (Q4). This means you never have to wait long before the next cohort opens. Contact us on WhatsApp and our admissions team will confirm the exact start date for your chosen programme.',
       },
     ],
   },
@@ -63,7 +63,7 @@ const faqCategories = [
       {
         question: 'How many hours per week does the training require?',
         answer:
-          'Our programmes are designed to fit around professional schedules. Expect to invest approximately 6–10 hours per week across live sessions, recorded content, and practical assignments. The exact commitment varies slightly by programme.',
+          'Our programmes are designed to fit around professional schedules. Expect to invest approximately 4–6 hours per week across live sessions, recorded content, and practical assignments. The exact commitment varies slightly by programme.',
       },
       {
         question: 'How many students are in each cohort?',
