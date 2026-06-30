@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import FadeInSection from '@/components/FadeInSection'
 import { WHATSAPP_ENROLL } from '@/lib/data'
 
@@ -269,14 +270,20 @@ export default function CoursesPage() {
                       ))}
                     </ul>
                   </div>
-                  <div className="p-7 pt-0">
+                  <div className="p-7 pt-0 space-y-2">
+                    <Link
+                      href={`/checkout?type=course&item=${prog.id}`}
+                      className="block w-full text-center bg-orange text-white font-bold py-3 rounded-xl hover:bg-orange/90 transition-colors"
+                    >
+                      Pay &amp; Enrol →
+                    </Link>
                     <a
                       href={WHATSAPP_ENROLL}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="block w-full text-center bg-navy text-white font-bold py-3 rounded-xl hover:bg-teal transition-colors"
+                      className="block w-full text-center bg-navy/5 text-navy font-semibold py-2.5 rounded-xl hover:bg-navy/10 transition-colors text-sm"
                     >
-                      Enroll Now
+                      💬 Chat with Us First
                     </a>
                   </div>
                 </div>

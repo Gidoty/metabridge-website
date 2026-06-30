@@ -1,7 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { books as BookType, WHATSAPP_BOOK } from '@/lib/data'
+import Link from 'next/link'
+import { books as BookType } from '@/lib/data'
 
 type Book = typeof BookType[0]
 
@@ -34,14 +35,12 @@ function BookCard({ book, onPreview }: { book: Book; onPreview: (id: string) => 
         <div className="inline-block bg-orange text-white text-sm font-bold px-3 py-1.5 rounded-full self-start">
           {book.price}
         </div>
-        <a
-          href={WHATSAPP_BOOK}
-          target="_blank"
-          rel="noopener noreferrer"
+        <Link
+          href={`/checkout?type=book&item=${book.id}`}
           className="block w-full text-center bg-navy text-white font-semibold py-2.5 rounded-lg hover:bg-teal transition-colors text-sm"
         >
-          Buy via WhatsApp
-        </a>
+          Buy &amp; Download
+        </Link>
         <button
           onClick={() => onPreview(book.id)}
           className="block w-full text-center border-2 border-navy text-navy font-semibold py-2.5 rounded-lg hover:bg-navy hover:text-white transition-colors text-sm"
@@ -157,14 +156,12 @@ function BookPreview({ book }: { book: Book }) {
             </ul>
           </div>
 
-          <a
-            href={WHATSAPP_BOOK}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href={`/checkout?type=book&item=${book.id}`}
             className="block w-full text-center bg-orange text-white font-bold py-3 rounded-xl hover:bg-orange/90 transition-colors"
           >
-            Buy via WhatsApp — {book.price}
-          </a>
+            Buy &amp; Download — {book.price}
+          </Link>
         </div>
       </div>
     </div>
