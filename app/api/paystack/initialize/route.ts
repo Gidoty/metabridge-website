@@ -7,6 +7,14 @@ type LineItem =
   | { id: BookId; type: 'book' }
 
 export async function POST(req: NextRequest) {
+  if (!process.env.PAYSTACK_SECRET_KEY) {
+    console.error('PAYSTACK_SECRET_KEY is not set in environment variables.')
+    return NextResponse.json(
+      { error: 'Payment is not configured. Please contact admissions@metabridgeacademy.com.' },
+      { status: 503 }
+    )
+  }
+
   try {
     const { name, email, phone, items } = await req.json() as {
       name: string
@@ -71,8 +79,12 @@ export async function POST(req: NextRequest) {
     const paystackData = await paystackRes.json()
 
     if (!paystackData.status || !paystackData.data?.authorization_url) {
-      console.error('Paystack init error:', paystackData)
-      return NextResponse.json({ error: 'Payment provider error. Please try again.' }, { status: 502 })
+      console.error('Paystack init error:', JSON.stringify(paystackData))
+      const paystackMessage: string = paystackData.message ?? 'Unknown error from payment provider.'
+      return NextResponse.json(
+        { error: `Payment provider error: ${paystackMessage}` },
+        { status: 502 }
+      )
     }
 
     return NextResponse.json({ authorization_url: paystackData.data.authorization_url })
