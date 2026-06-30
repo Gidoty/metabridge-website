@@ -45,24 +45,23 @@ export default function CertVerifyClient({ initialCode }: CertVerifyClientProps)
         .from('certificates')
         .select('*')
         .eq('certificate_code', trimmed.toUpperCase())
-        .single()
+        .maybeSingle()
 
       if (dbError) {
-        // Surface the real DB error in console for debugging
         console.error('Supabase cert lookup error:', dbError)
         setError(
-          `No certificate found with this code. (Debug: ${dbError.message}) Please check the code and try again.`
+          `Database error — please try again. If this persists, contact info@metabridgeacademy.com. (${dbError.code}: ${dbError.message})`
         )
       } else if (!data) {
         setError(
-          'No certificate found with this code. Please check the code and try again. If you believe this is an error, contact our support team.'
+          'No certificate found with this code. Please double-check the code exactly as printed on your certificate and try again.'
         )
       } else {
         setResult(data as Certificate)
       }
     } catch (e) {
       console.error('Cert verify exception:', e)
-      setError('An error occurred while verifying the certificate. Please try again.')
+      setError('A network error occurred. Please check your connection and try again.')
     } finally {
       setLoading(false)
     }
