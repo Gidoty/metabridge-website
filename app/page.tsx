@@ -328,43 +328,42 @@ export default function HomePage() {
           <FadeInSection>
             <div className="bg-white rounded-2xl shadow-md overflow-hidden">
               <div className="grid grid-cols-1 lg:grid-cols-2">
-                {/* Left — intake info */}
+                {/* Left — cohort cadence */}
                 <div className="p-8 lg:p-10 border-b lg:border-b-0 lg:border-r border-gray-100">
                   <span className="inline-block bg-orange/10 text-orange text-xs font-bold px-3 py-1 rounded-full mb-4">
                     ADMISSIONS OPEN
                   </span>
                   <h2 className="font-heading text-2xl font-bold text-navy mb-3">
-                    Rolling Admissions — Enrol Any Time
+                    Four Cohorts Per Year — Start Every Quarter
                   </h2>
                   <p className="text-gray-500 text-sm leading-relaxed mb-6">
-                    We accept new students on a continuous basis. No need to wait for a fixed start date
-                    — begin your learning journey whenever you are ready.
+                    Metabridge Academy runs four cohorts annually — one every quarter. No matter when
+                    you are ready, the next intake is never far away.
                   </p>
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-3 bg-light-bg rounded-xl px-4 py-3">
-                      <span className="text-xl">🗓️</span>
-                      <div>
-                        <p className="text-xs text-gray-400 font-medium uppercase tracking-wider">Next Cohort</p>
-                        <p className="font-semibold text-navy text-sm">August 2026</p>
+                  <div className="grid grid-cols-2 gap-3">
+                    {[
+                      { quarter: 'Q1', label: 'January Intake' },
+                      { quarter: 'Q2', label: 'April Intake' },
+                      { quarter: 'Q3', label: 'July Intake' },
+                      { quarter: 'Q4', label: 'October Intake' },
+                    ].map(({ quarter, label }) => (
+                      <div key={quarter} className="flex items-center gap-3 bg-light-bg rounded-xl px-4 py-3">
+                        <span className="w-9 h-9 rounded-lg bg-navy/10 flex items-center justify-center text-navy text-xs font-bold flex-shrink-0">
+                          {quarter}
+                        </span>
+                        <p className="font-semibold text-navy text-sm leading-tight">{label}</p>
                       </div>
-                    </div>
-                    <div className="flex items-center gap-3 bg-light-bg rounded-xl px-4 py-3">
-                      <span className="text-xl">🗓️</span>
-                      <div>
-                        <p className="text-xs text-gray-400 font-medium uppercase tracking-wider">Following Cohort</p>
-                        <p className="font-semibold text-navy text-sm">January 2027</p>
-                      </div>
-                    </div>
+                    ))}
                   </div>
                 </div>
                 {/* Right — notify me */}
                 <div className="p-8 lg:p-10 flex flex-col justify-center">
                   <h3 className="font-heading text-xl font-bold text-navy mb-2">
-                    Want to be notified when the next cohort opens?
+                    Secure Your Spot in the Next Cohort
                   </h3>
                   <p className="text-gray-500 text-sm mb-6 leading-relaxed">
-                    Send us a WhatsApp message and we will reach out as soon as enrolment opens for
-                    your chosen programme.
+                    Spaces in each cohort are limited. Send us a WhatsApp message today and our
+                    admissions team will guide you through enrolment for your chosen programme.
                   </p>
                   <a
                     href="https://wa.me/2348124228730?text=Hello%20Metabridge%20Academy%2C%20please%20notify%20me%20when%20the%20next%20cohort%20opens."
