@@ -330,6 +330,67 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* NEXT COHORT BANNER */}
+      <section className="py-14 bg-light-bg">
+        <div className="container-custom">
+          <FadeInSection>
+            <div className="bg-white rounded-2xl shadow-md overflow-hidden">
+              <div className="grid grid-cols-1 lg:grid-cols-2">
+                {/* Left — cohort cadence */}
+                <div className="p-8 lg:p-10 border-b lg:border-b-0 lg:border-r border-gray-100">
+                  <span className="inline-block bg-orange/10 text-orange text-xs font-bold px-3 py-1 rounded-full mb-4">
+                    ADMISSIONS OPEN
+                  </span>
+                  <h2 className="font-heading text-2xl font-bold text-navy mb-3">
+                    Four Cohorts Per Year — Start Every Quarter
+                  </h2>
+                  <p className="text-gray-500 text-sm leading-relaxed mb-6">
+                    Metabridge Academy runs four cohorts annually — one every quarter. No matter when
+                    you are ready, the next intake is never far away.
+                  </p>
+                  <div className="grid grid-cols-2 gap-3">
+                    {[
+                      { quarter: 'Q1', label: 'January Intake' },
+                      { quarter: 'Q2', label: 'April Intake' },
+                      { quarter: 'Q3', label: 'July Intake' },
+                      { quarter: 'Q4', label: 'October Intake' },
+                    ].map(({ quarter, label }) => (
+                      <div key={quarter} className="flex items-center gap-3 bg-light-bg rounded-xl px-4 py-3">
+                        <span className="w-9 h-9 rounded-lg bg-navy/10 flex items-center justify-center text-navy text-xs font-bold flex-shrink-0">
+                          {quarter}
+                        </span>
+                        <p className="font-semibold text-navy text-sm leading-tight">{label}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                {/* Right — notify me */}
+                <div className="p-8 lg:p-10 flex flex-col justify-center">
+                  <h3 className="font-heading text-xl font-bold text-navy mb-2">
+                    Secure Your Spot in the Next Cohort
+                  </h3>
+                  <p className="text-gray-500 text-sm mb-6 leading-relaxed">
+                    Spaces in each cohort are limited. Send us a WhatsApp message today and our
+                    admissions team will guide you through enrolment for your chosen programme.
+                  </p>
+                  <a
+                    href="https://wa.me/2348124228730?text=Hello%20Metabridge%20Academy%2C%20please%20notify%20me%20when%20the%20next%20cohort%20opens."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-green-500 text-white font-bold px-6 py-3.5 rounded-xl hover:bg-green-600 transition-colors self-start text-sm"
+                  >
+                    💬 Notify Me on WhatsApp
+                  </a>
+                  <p className="text-gray-400 text-xs mt-4">
+                    We typically respond within a few hours on business days.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </FadeInSection>
+        </div>
+      </section>
+
       {/* CERTIFICATE VERIFY CTA */}
       <section className="py-14 bg-gradient-to-r from-teal to-navy">
         <div className="container-custom text-center">

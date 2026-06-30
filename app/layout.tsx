@@ -2,8 +2,6 @@ import type { Metadata } from 'next'
 import { Inter, Playfair_Display } from 'next/font/google'
 import './globals.css'
 import { ThemeProvider } from '@/components/ThemeProvider'
-import Navigation from '@/components/Navigation'
-import Footer from '@/components/Footer'
 import WhatsAppFloat from '@/components/WhatsAppFloat'
 
 const inter = Inter({
@@ -53,9 +51,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen flex flex-col">
         <ThemeProvider>
-          <Navigation />
-          <main className="flex-1">{children}</main>
-          <Footer />
+          {children}
           <WhatsAppFloat />
         </ThemeProvider>
       </body>
