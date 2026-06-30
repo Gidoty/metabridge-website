@@ -11,7 +11,8 @@ const navLinks = [
   { href: '/about', label: 'About' },
   { href: '/courses', label: 'Courses' },
   { href: '/books', label: 'Books' },
-  { href: '/verify/lookup', label: 'Verify Certificate' },
+  { href: '/faq', label: 'FAQ' },
+  { href: '/verify/lookup', label: 'Verify' },
   { href: '/contact', label: 'Contact' },
 ]
 

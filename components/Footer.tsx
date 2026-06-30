@@ -61,6 +61,8 @@ export default function Footer() {
               {[
                 { href: '/', label: 'Home' },
                 { href: '/about', label: 'About Us' },
+                { href: '/faq', label: 'FAQ' },
+                { href: '/gallery', label: 'Gallery' },
                 { href: '/contact', label: 'Contact' },
                 { href: '/privacy-policy', label: 'Privacy Policy' },
                 { href: '/verify/lookup', label: 'Verify Certificate' },
