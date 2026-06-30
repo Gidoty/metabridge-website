@@ -17,15 +17,15 @@ export default function CheckoutClient() {
   const [tab, setTab] = useState<Tab>(initType)
   const [selectedCourses, setSelectedCourses] = useState<Set<CourseId>>(() => {
     if (initType === 'course' && initItem in COURSE_CATALOG) {
-      return new Set([initItem as CourseId])
+      return new Set<CourseId>([initItem as CourseId])
     }
-    return new Set()
+    return new Set<CourseId>()
   })
   const [selectedBooks, setSelectedBooks] = useState<Set<BookId>>(() => {
     if (initType === 'book' && initItem in BOOK_CATALOG) {
-      return new Set([initItem as BookId])
+      return new Set<BookId>([initItem as BookId])
     }
-    return new Set()
+    return new Set<BookId>()
   })
   const [name, setName] = useState('')
   const [phone, setPhone] = useState('')
@@ -35,7 +35,7 @@ export default function CheckoutClient() {
 
   const toggleCourse = (id: CourseId) => {
     setSelectedCourses(prev => {
-      const next = new Set(prev)
+      const next = new Set<CourseId>(prev)
       if (next.has(id)) next.delete(id)
       else next.add(id)
       return next
@@ -44,7 +44,7 @@ export default function CheckoutClient() {
 
   const toggleBook = (id: BookId) => {
     setSelectedBooks(prev => {
-      const next = new Set(prev)
+      const next = new Set<BookId>(prev)
       if (next.has(id)) next.delete(id)
       else next.add(id)
       return next
@@ -54,14 +54,17 @@ export default function CheckoutClient() {
   const courses = Object.values(COURSE_CATALOG)
   const booksArr = Object.values(BOOK_CATALOG)
 
-  const courseTotal = [...selectedCourses].reduce((sum, id) => sum + COURSE_CATALOG[id].price, 0)
-  const bookTotal = [...selectedBooks].reduce((sum, id) => sum + BOOK_CATALOG[id].price, 0)
+  const courseIds = Array.from(selectedCourses)
+  const bookIds = Array.from(selectedBooks)
+
+  const courseTotal = courseIds.reduce((sum, id) => sum + COURSE_CATALOG[id].price, 0)
+  const bookTotal = bookIds.reduce((sum, id) => sum + BOOK_CATALOG[id].price, 0)
   const total = tab === 'course' ? courseTotal : bookTotal
 
   const selectedItems =
     tab === 'course'
-      ? [...selectedCourses].map(id => ({ id, type: 'course' as const }))
-      : [...selectedBooks].map(id => ({ id, type: 'book' as const }))
+      ? courseIds.map(id => ({ id, type: 'course' as const }))
+      : bookIds.map(id => ({ id, type: 'book' as const }))
 
   const isReady = selectedItems.length > 0 && name.trim() && phone.trim() && email.trim()
 
@@ -139,11 +142,12 @@ export default function CheckoutClient() {
             <div className="space-y-3">
               {tab === 'course'
                 ? courses.map(course => {
-                    const selected = selectedCourses.has(course.id as CourseId)
+                    const id = course.id as CourseId
+                    const selected = selectedCourses.has(id)
                     return (
                       <button
-                        key={course.id}
-                        onClick={() => toggleCourse(course.id as CourseId)}
+                        key={id}
+                        onClick={() => toggleCourse(id)}
                         className={`w-full text-left p-4 rounded-xl border-2 transition-all ${
                           selected
                             ? 'border-navy bg-navy/5'
@@ -173,11 +177,12 @@ export default function CheckoutClient() {
                     )
                   })
                 : booksArr.map(book => {
-                    const selected = selectedBooks.has(book.id as BookId)
+                    const id = book.id as BookId
+                    const selected = selectedBooks.has(id)
                     return (
                       <button
-                        key={book.id}
-                        onClick={() => toggleBook(book.id as BookId)}
+                        key={id}
+                        onClick={() => toggleBook(id)}
                         className={`w-full text-left p-4 rounded-xl border-2 transition-all ${
                           selected
                             ? 'border-navy bg-navy/5'
@@ -219,7 +224,7 @@ export default function CheckoutClient() {
               ) : (
                 <div className="space-y-2 mb-5">
                   {tab === 'course'
-                    ? [...selectedCourses].map(id => (
+                    ? courseIds.map(id => (
                         <div key={id} className="flex justify-between text-sm">
                           <span className="text-gray-600">{COURSE_CATALOG[id].name}</span>
                           <span className="font-semibold text-navy">
@@ -227,7 +232,7 @@ export default function CheckoutClient() {
                           </span>
                         </div>
                       ))
-                    : [...selectedBooks].map(id => (
+                    : bookIds.map(id => (
                         <div key={id} className="flex justify-between text-sm">
                           <span className="text-gray-600">{BOOK_CATALOG[id].name}</span>
                           <span className="font-semibold text-navy">
