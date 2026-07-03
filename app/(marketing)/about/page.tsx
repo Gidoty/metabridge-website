@@ -20,14 +20,14 @@ const team = [
     initials: 'GO',
     photo: '/team/gideon-owhonda.jpg',
     color: '#1B2A4A',
-    bio: `Gideon Owhonda is a Chemical Engineer and Certified Environmental Specialist (NREP, USA), holding an MSc in Gas, Refining & Petrochemical Engineering from the University of Port Harcourt, where he is currently pursuing a PhD in Chemical Engineering.
+    bio: `Gideon Owhonda is a Chemical Engineer and Certified Environmental Specialist (NREP, USA), holding an MSc in Gas, Refining & Petrochemical Engineering from the University of Port Harcourt.
 
-With five years of experience spanning blockchain technology, cybersecurity, and cryptocurrency research — including serving as Head of Research at DefiLab — he brings an engineer's precision to the world of digital assets.
+With five years of experience spanning blockchain technology, cybersecurity, and cryptocurrency research, including serving as Head of Research at DefiLab, he brings an engineer's precision to the world of digital assets.
 
 As Founder and CEO of Metabridge Academy, Gideon is building Africa's next generation of digital-asset-literate professionals, equipping young people with the knowledge and tools to thrive in a digital-driven economy.
 
 A Tony Elumelu Foundation alumnus, Agip Oil Company Scholar, YALI alumnus, and delegate to the International Youth Diplomacy Conference at the University of Ghana, his work bridges energy innovation, environmental compliance, and Web3 education across Nigeria and beyond.`,
-    badges: ['Tony Elumelu Alumnus', 'YALI Alumnus', 'PhD Candidate (UNIPORT)', 'NREP Certified'],
+    badges: ['Tony Elumelu Alumnus', 'YALI Alumnus', 'NREP Certified'],
   },
   {
     name: 'Bright G. O',
@@ -39,7 +39,7 @@ A Tony Elumelu Foundation alumnus, Agip Oil Company Scholar, YALI alumnus, and d
 
 A skilled facilitator with a talent for translating complex data into clear, actionable insight, Bright brings both technical rigour and genuine passion for learning to every Metabridge Academy session.
 
-As Lead Instructor, she designs and delivers training programmes that equip students with globally applicable digital skills — from data fundamentals to business intelligence applications.`,
+As Lead Instructor, she designs and delivers training programmes that equip students with globally applicable digital skills, from data fundamentals to business intelligence applications.`,
     badges: ['Data Analytics Professional', 'MBA Candidate (Miva)', 'Business Intelligence Specialist', 'UNIPORT Graduate'],
   },
 ]
