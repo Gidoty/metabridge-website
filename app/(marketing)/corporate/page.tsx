@@ -28,7 +28,7 @@ const benefits = [
     icon: '💰',
     title: 'Team Discounts',
     detail:
-      '5% off for groups of 1 to 10 staff. 10% off for groups of 11 to 20. Custom pricing available for organisations enrolling 21 or more people.',
+      '5% off for groups of 5 to 10 staff. 10% off for groups of 11 to 20. Custom pricing available for organisations enrolling 21 or more people.',
   },
   {
     icon: '📋',
@@ -256,7 +256,7 @@ export default function CorporatePage() {
               </div>
               <div className="divide-y divide-gray-100">
                 {[
-                  { range: '1 to 10 Staff', discount: '5% off', note: 'Contact us to arrange a group invoice' },
+                  { range: '5 to 10 Staff', discount: '5% off', note: 'Contact us to arrange a group invoice' },
                   { range: '11 to 20 Staff', discount: '10% off', note: 'Dedicated cohort with flexible scheduling' },
                   { range: '21+ Staff', discount: 'Custom discount', note: 'Tailored programme, bespoke schedule and reporting' },
                 ].map(row => (
