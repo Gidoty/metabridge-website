@@ -62,8 +62,11 @@ export default function Footer() {
                 { href: '/', label: 'Home' },
                 { href: '/about', label: 'About Us' },
                 { href: '/faq', label: 'FAQ' },
+                { href: '/corporate', label: 'Corporate Training' },
+                { href: '/refer', label: 'Refer a Friend' },
                 { href: '/gallery', label: 'Gallery' },
                 { href: '/contact', label: 'Contact' },
+                { href: '/refund-policy', label: 'Refund Policy' },
                 { href: '/privacy-policy', label: 'Privacy Policy' },
                 { href: '/verify/lookup', label: 'Verify Certificate' },
               ].map(({ href, label }) => (
@@ -135,9 +138,14 @@ export default function Footer() {
           <p className="text-white/50 text-sm">
             © 2026 Metabridge Academy. All rights reserved. Gateway to Digital Literacy.
           </p>
-          <Link href="/privacy-policy" className="text-white/50 hover:text-orange text-sm transition-colors duration-200">
-            Privacy Policy
-          </Link>
+          <div className="flex items-center gap-4">
+            <Link href="/privacy-policy" className="text-white/50 hover:text-orange text-sm transition-colors duration-200">
+              Privacy Policy
+            </Link>
+            <Link href="/refund-policy" className="text-white/50 hover:text-orange text-sm transition-colors duration-200">
+              Refund Policy
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
