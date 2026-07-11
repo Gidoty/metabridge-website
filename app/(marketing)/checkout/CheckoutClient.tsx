@@ -3,8 +3,8 @@
 import { useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
-import { COURSE_CATALOG, BOOK_CATALOG, formatNGN } from '@/lib/products'
-import type { CourseId, BookId } from '@/lib/products'
+import { COURSE_CATALOG, BOOK_CATALOG, BELT_PRICING, BELT_LABEL, formatNGN } from '@/lib/products'
+import type { CourseId, BookId, BeltLevel } from '@/lib/products'
 
 type Tab = 'course' | 'book'
 
@@ -13,10 +13,19 @@ export default function CheckoutClient() {
 
   const initType = searchParams.get('type') === 'book' ? 'book' : ('course' as Tab)
   const initItem = searchParams.get('item') ?? ''
+  const initBelt = (searchParams.get('belt') ?? '') as BeltLevel | ''
+
+  // Belt mode: a specific course + belt was chosen from the courses page
+  const isBeltMode =
+    initType === 'course' &&
+    initItem in COURSE_CATALOG &&
+    (initBelt === 'green' || initBelt === 'blue' || initBelt === 'black')
+
+  const beltPrice = isBeltMode ? (BELT_PRICING[initItem]?.[initBelt as BeltLevel] ?? 0) : 0
 
   const [tab, setTab] = useState<Tab>(initType)
   const [selectedCourses, setSelectedCourses] = useState<Set<CourseId>>(() => {
-    if (initType === 'course' && initItem in COURSE_CATALOG) {
+    if (initType === 'course' && !isBeltMode && initItem in COURSE_CATALOG) {
       return new Set<CourseId>([initItem as CourseId])
     }
     return new Set<CourseId>()
@@ -59,12 +68,14 @@ export default function CheckoutClient() {
 
   const courseTotal = courseIds.reduce((sum, id) => sum + COURSE_CATALOG[id].price, 0)
   const bookTotal = bookIds.reduce((sum, id) => sum + BOOK_CATALOG[id].price, 0)
-  const total = tab === 'course' ? courseTotal : bookTotal
 
-  const selectedItems =
-    tab === 'course'
-      ? courseIds.map(id => ({ id, type: 'course' as const }))
-      : bookIds.map(id => ({ id, type: 'book' as const }))
+  const total = isBeltMode ? beltPrice : tab === 'course' ? courseTotal : bookTotal
+
+  const selectedItems = isBeltMode
+    ? [{ id: initItem, type: 'course' as const, belt: initBelt as BeltLevel }]
+    : tab === 'course'
+      ? courseIds.map(id => ({ id, type: 'course' as const, belt: undefined }))
+      : bookIds.map(id => ({ id, type: 'book' as const, belt: undefined }))
 
   const isReady = selectedItems.length > 0 && name.trim() && phone.trim() && email.trim()
 
@@ -100,6 +111,12 @@ export default function CheckoutClient() {
     }
   }
 
+  const beltColors: Record<BeltLevel, string> = {
+    green: '#15803d',
+    blue: '#1d4ed8',
+    black: '#111827',
+  }
+
   return (
     <div className="min-h-screen bg-light-bg py-12 px-4">
       <div className="container-custom max-w-5xl mx-auto">
@@ -108,7 +125,7 @@ export default function CheckoutClient() {
           href={tab === 'course' ? '/courses' : '/books'}
           className="inline-flex items-center gap-2 text-gray-500 hover:text-navy text-sm mb-8 transition-colors"
         >
-          ← Back to {tab === 'course' ? 'Courses' : 'Books'}
+          Back to {tab === 'course' ? 'Courses' : 'Books'}
         </Link>
 
         <h1 className="font-heading text-3xl font-bold text-navy mb-1">Complete Your Purchase</h1>
@@ -116,102 +133,144 @@ export default function CheckoutClient() {
           Secure payment via Paystack · Card, bank transfer, USSD &amp; more
         </p>
 
-        {/* Tab switcher */}
-        <div className="flex gap-2 mb-8 flex-wrap">
-          {(['course', 'book'] as Tab[]).map(t => (
-            <button
-              key={t}
-              onClick={() => setTab(t)}
-              className={`px-5 py-2.5 rounded-xl font-semibold text-sm transition-colors ${
-                tab === t
-                  ? 'bg-navy text-white'
-                  : 'bg-white text-navy border border-gray-200 hover:border-navy'
-              }`}
-            >
-              {t === 'course' ? '🎓 Course Enrolment' : '📚 Book Purchase'}
-            </button>
-          ))}
-        </div>
+        {/* Tab switcher — only show if not in belt mode */}
+        {!isBeltMode && (
+          <div className="flex gap-2 mb-8 flex-wrap">
+            {(['course', 'book'] as Tab[]).map(t => (
+              <button
+                key={t}
+                onClick={() => setTab(t)}
+                className={`px-5 py-2.5 rounded-xl font-semibold text-sm transition-colors ${
+                  tab === t
+                    ? 'bg-navy text-white'
+                    : 'bg-white text-navy border border-gray-200 hover:border-navy'
+                }`}
+              >
+                {t === 'course' ? '🎓 Course Enrolment' : '📚 Book Purchase'}
+              </button>
+            ))}
+          </div>
+        )}
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
           {/* Left: Item selection */}
           <div className="lg:col-span-3">
-            <h2 className="font-heading font-bold text-navy text-lg mb-4">
-              {tab === 'course' ? 'Select Course(s)' : 'Select Book(s)'}
-            </h2>
-            <div className="space-y-3">
-              {tab === 'course'
-                ? courses.map(course => {
-                    const id = course.id as CourseId
-                    const selected = selectedCourses.has(id)
-                    return (
-                      <button
-                        key={id}
-                        onClick={() => toggleCourse(id)}
-                        className={`w-full text-left p-4 rounded-xl border-2 transition-all ${
-                          selected
-                            ? 'border-navy bg-navy/5'
-                            : 'border-gray-200 bg-white hover:border-gray-300'
-                        }`}
-                      >
-                        <div className="flex items-center gap-3">
-                          <div
-                            className={`w-5 h-5 rounded border-2 flex items-center justify-center flex-shrink-0 transition-colors ${
-                              selected ? 'border-navy bg-navy' : 'border-gray-300'
+            {isBeltMode ? (
+              /* Belt mode: show the selected course + belt as a locked card */
+              <div>
+                <h2 className="font-heading font-bold text-navy text-lg mb-4">Your Selected Programme</h2>
+                <div
+                  className="rounded-2xl overflow-hidden border-2 border-navy/20"
+                >
+                  <div
+                    style={{ background: `linear-gradient(135deg, ${beltColors[initBelt as BeltLevel]} 0%, #0a0a0a 100%)` }}
+                    className="p-5"
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">
+                        {COURSE_CATALOG[initItem as CourseId]?.icon}
+                      </span>
+                      <div>
+                        <p className="font-bold text-white text-base">
+                          {COURSE_CATALOG[initItem as CourseId]?.name}
+                        </p>
+                        <p className="text-white/70 text-sm">
+                          {BELT_LABEL[initBelt as BeltLevel]}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="bg-white px-5 py-3 flex items-center justify-between">
+                    <span className="text-sm text-gray-500">Programme fee</span>
+                    <span className="font-bold text-orange text-lg">{formatNGN(beltPrice)}</span>
+                  </div>
+                </div>
+                <p className="text-xs text-gray-400 mt-3">
+                  Want a different level?{' '}
+                  <Link href="/courses" className="text-navy hover:text-teal underline">
+                    Return to courses
+                  </Link>{' '}
+                  and choose another belt.
+                </p>
+              </div>
+            ) : (
+              /* Normal multi-select mode */
+              <div>
+                <h2 className="font-heading font-bold text-navy text-lg mb-4">
+                  {tab === 'course' ? 'Select Course(s)' : 'Select Book(s)'}
+                </h2>
+                <div className="space-y-3">
+                  {tab === 'course'
+                    ? courses.map(course => {
+                        const id = course.id as CourseId
+                        const selected = selectedCourses.has(id)
+                        return (
+                          <button
+                            key={id}
+                            onClick={() => toggleCourse(id)}
+                            className={`w-full text-left p-4 rounded-xl border-2 transition-all ${
+                              selected
+                                ? 'border-navy bg-navy/5'
+                                : 'border-gray-200 bg-white hover:border-gray-300'
                             }`}
                           >
-                            {selected && (
-                              <span className="text-white text-xs leading-none">✓</span>
-                            )}
-                          </div>
-                          <span className="text-2xl">{course.icon}</span>
-                          <div className="flex-1 min-w-0">
-                            <p className="font-semibold text-navy">{course.name}</p>
-                            <p className="text-xs text-gray-500">{course.duration}</p>
-                          </div>
-                          <span className="font-bold text-orange flex-shrink-0">
-                            {formatNGN(course.price)}
-                          </span>
-                        </div>
-                      </button>
-                    )
-                  })
-                : booksArr.map(book => {
-                    const id = book.id as BookId
-                    const selected = selectedBooks.has(id)
-                    return (
-                      <button
-                        key={id}
-                        onClick={() => toggleBook(id)}
-                        className={`w-full text-left p-4 rounded-xl border-2 transition-all ${
-                          selected
-                            ? 'border-navy bg-navy/5'
-                            : 'border-gray-200 bg-white hover:border-gray-300'
-                        }`}
-                      >
-                        <div className="flex items-center gap-3">
-                          <div
-                            className={`w-5 h-5 rounded border-2 flex items-center justify-center flex-shrink-0 transition-colors ${
-                              selected ? 'border-navy bg-navy' : 'border-gray-300'
+                            <div className="flex items-center gap-3">
+                              <div
+                                className={`w-5 h-5 rounded border-2 flex items-center justify-center flex-shrink-0 transition-colors ${
+                                  selected ? 'border-navy bg-navy' : 'border-gray-300'
+                                }`}
+                              >
+                                {selected && (
+                                  <span className="text-white text-xs leading-none">✓</span>
+                                )}
+                              </div>
+                              <span className="text-2xl">{course.icon}</span>
+                              <div className="flex-1 min-w-0">
+                                <p className="font-semibold text-navy">{course.name}</p>
+                                <p className="text-xs text-gray-500">Starting from {formatNGN(course.price)}</p>
+                              </div>
+                            </div>
+                          </button>
+                        )
+                      })
+                    : booksArr.map(book => {
+                        const id = book.id as BookId
+                        const selected = selectedBooks.has(id)
+                        return (
+                          <button
+                            key={id}
+                            onClick={() => toggleBook(id)}
+                            className={`w-full text-left p-4 rounded-xl border-2 transition-all ${
+                              selected
+                                ? 'border-navy bg-navy/5'
+                                : 'border-gray-200 bg-white hover:border-gray-300'
                             }`}
                           >
-                            {selected && (
-                              <span className="text-white text-xs leading-none">✓</span>
-                            )}
-                          </div>
-                          <span className="text-2xl">📖</span>
-                          <div className="flex-1 min-w-0">
-                            <p className="font-semibold text-navy text-sm">{book.name}</p>
-                            <p className="text-xs text-gray-500 truncate">{book.subtitle}</p>
-                          </div>
-                          <span className="font-bold text-orange flex-shrink-0">
-                            {formatNGN(book.price)}
-                          </span>
-                        </div>
-                      </button>
-                    )
-                  })}
-            </div>
+                            <div className="flex items-center gap-3">
+                              <div
+                                className={`w-5 h-5 rounded border-2 flex items-center justify-center flex-shrink-0 transition-colors ${
+                                  selected ? 'border-navy bg-navy' : 'border-gray-300'
+                                }`}
+                              >
+                                {selected && (
+                                  <span className="text-white text-xs leading-none">✓</span>
+                                )}
+                              </div>
+                              <span className="text-2xl">📖</span>
+                              <div className="flex-1 min-w-0">
+                                <p className="font-semibold text-navy text-sm">{book.name}</p>
+                                <p className="text-xs text-gray-500 truncate">{book.subtitle}</p>
+                              </div>
+                              <span className="font-bold text-orange flex-shrink-0">
+                                {formatNGN(book.price)}
+                              </span>
+                            </div>
+                          </button>
+                        )
+                      })}
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Right: Order summary + form */}
@@ -223,23 +282,33 @@ export default function CheckoutClient() {
                 <p className="text-gray-400 text-sm mb-5">No items selected yet.</p>
               ) : (
                 <div className="space-y-2 mb-5">
-                  {tab === 'course'
-                    ? courseIds.map(id => (
-                        <div key={id} className="flex justify-between text-sm">
-                          <span className="text-gray-600">{COURSE_CATALOG[id].name}</span>
-                          <span className="font-semibold text-navy">
-                            {formatNGN(COURSE_CATALOG[id].price)}
-                          </span>
-                        </div>
-                      ))
-                    : bookIds.map(id => (
-                        <div key={id} className="flex justify-between text-sm">
-                          <span className="text-gray-600">{BOOK_CATALOG[id].name}</span>
-                          <span className="font-semibold text-navy">
-                            {formatNGN(BOOK_CATALOG[id].price)}
-                          </span>
-                        </div>
-                      ))}
+                  {isBeltMode ? (
+                    <div className="flex justify-between text-sm">
+                      <span className="text-gray-600">
+                        {COURSE_CATALOG[initItem as CourseId]?.name}{' '}
+                        <span className="text-gray-400">({BELT_LABEL[initBelt as BeltLevel]})</span>
+                      </span>
+                      <span className="font-semibold text-navy">{formatNGN(beltPrice)}</span>
+                    </div>
+                  ) : tab === 'course' ? (
+                    courseIds.map(id => (
+                      <div key={id} className="flex justify-between text-sm">
+                        <span className="text-gray-600">{COURSE_CATALOG[id].name}</span>
+                        <span className="font-semibold text-navy">
+                          {formatNGN(COURSE_CATALOG[id].price)}
+                        </span>
+                      </div>
+                    ))
+                  ) : (
+                    bookIds.map(id => (
+                      <div key={id} className="flex justify-between text-sm">
+                        <span className="text-gray-600">{BOOK_CATALOG[id].name}</span>
+                        <span className="font-semibold text-navy">
+                          {formatNGN(BOOK_CATALOG[id].price)}
+                        </span>
+                      </div>
+                    ))
+                  )}
                   <div className="border-t border-gray-100 pt-2 flex justify-between font-bold">
                     <span className="text-navy">Total</span>
                     <span className="text-orange text-lg">{formatNGN(total)}</span>

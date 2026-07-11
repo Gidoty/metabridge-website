@@ -1,33 +1,52 @@
+export type BeltLevel = 'green' | 'blue' | 'black'
+
+export const BELT_LABEL: Record<BeltLevel, string> = {
+  green: 'Green Belt',
+  blue: 'Blue Belt',
+  black: 'Black Belt',
+}
+
+export const BELT_PRICING: Record<string, Record<BeltLevel, number>> = {
+  cybersecurity: { green: 35000, blue: 55000, black: 300000 },
+  'data-analytics': { green: 30000, blue: 45000, black: 120000 },
+  'artificial-intelligence': { green: 7000, blue: 25000, black: 50000 },
+  blockchain: { green: 20000, blue: 30000, black: 50000 },
+}
+
+export function getBeltPrice(courseId: string, belt: BeltLevel): number {
+  return BELT_PRICING[courseId]?.[belt] ?? 0
+}
+
 export const COURSE_CATALOG = {
   cybersecurity: {
     id: 'cybersecurity',
     name: 'Cybersecurity',
-    duration: '14 Weeks Intensive',
-    price: 100000,
+    duration: 'Green Belt · Blue Belt · Black Belt',
+    price: 35000,
     icon: '🛡️',
     description: 'Penetration testing, incident response, SOC, and professional security frameworks.',
   },
   'data-analytics': {
     id: 'data-analytics',
     name: 'Data Analytics',
-    duration: '12 Weeks Intensive',
-    price: 75000,
+    duration: 'Green Belt · Blue Belt · Black Belt',
+    price: 30000,
     icon: '📊',
     description: 'SQL, Excel, dashboards, and data-driven decision making for professionals.',
   },
   'artificial-intelligence': {
     id: 'artificial-intelligence',
-    name: 'Artificial Intelligence',
-    duration: '5 Weeks Intensive',
-    price: 30000,
+    name: 'Artificial Intelligence & Prompt Engineering',
+    duration: 'Green Belt · Blue Belt · Black Belt',
+    price: 7000,
     icon: '🤖',
     description: 'Prompt engineering, AI workflow automation, and tools for modern professionals.',
   },
   blockchain: {
     id: 'blockchain',
     name: 'Blockchain & Cryptocurrency',
-    duration: '6 Weeks Intensive',
-    price: 50000,
+    duration: 'Green Belt · Blue Belt · Black Belt',
+    price: 20000,
     icon: '⛓️',
     description: 'DeFi, Web3, Nigerian regulatory context, and real-world blockchain careers.',
   },
