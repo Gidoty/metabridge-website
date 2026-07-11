@@ -22,8 +22,6 @@ interface BeltData {
   level: BeltLevel
   label: string
   weeks: number
-  hours: number
-  sessions: number
   price: number
   prerequisite: string
   topics: string[]
@@ -53,8 +51,6 @@ const COURSES: CourseData[] = [
         level: 'green',
         label: 'Foundation Level',
         weeks: 4,
-        hours: 16,
-        sessions: 8,
         price: 35000,
         prerequisite: 'None required',
         topics: [
@@ -75,8 +71,6 @@ const COURSES: CourseData[] = [
         level: 'blue',
         label: 'Professional Level',
         weeks: 8,
-        hours: 32,
-        sessions: 16,
         price: 55000,
         prerequisite: 'Green Belt or equivalent foundational knowledge',
         topics: [
@@ -97,8 +91,6 @@ const COURSES: CourseData[] = [
         level: 'black',
         label: 'Expert Mastery',
         weeks: 12,
-        hours: 48,
-        sessions: 24,
         price: 300000,
         prerequisite: 'Blue Belt plus one documented real-world security application',
         topics: [
@@ -128,8 +120,6 @@ const COURSES: CourseData[] = [
         level: 'green',
         label: 'Foundation Level',
         weeks: 4,
-        hours: 16,
-        sessions: 8,
         price: 30000,
         prerequisite: 'None required',
         topics: [
@@ -150,8 +140,6 @@ const COURSES: CourseData[] = [
         level: 'blue',
         label: 'Professional Level',
         weeks: 8,
-        hours: 32,
-        sessions: 16,
         price: 45000,
         prerequisite: 'Green Belt or solid intermediate Excel skills',
         topics: [
@@ -172,8 +160,6 @@ const COURSES: CourseData[] = [
         level: 'black',
         label: 'Expert Mastery',
         weeks: 12,
-        hours: 48,
-        sessions: 24,
         price: 120000,
         prerequisite: 'Blue Belt plus a documented analytics portfolio',
         topics: [
@@ -203,8 +189,6 @@ const COURSES: CourseData[] = [
         level: 'green',
         label: 'Foundation Level',
         weeks: 4,
-        hours: 16,
-        sessions: 8,
         price: 7000,
         prerequisite: 'None required',
         topics: [
@@ -225,8 +209,6 @@ const COURSES: CourseData[] = [
         level: 'blue',
         label: 'Professional Level',
         weeks: 8,
-        hours: 32,
-        sessions: 16,
         price: 25000,
         prerequisite: 'Green Belt or basic AI familiarity',
         topics: [
@@ -247,8 +229,6 @@ const COURSES: CourseData[] = [
         level: 'black',
         label: 'Expert Mastery',
         weeks: 12,
-        hours: 48,
-        sessions: 24,
         price: 50000,
         prerequisite: 'Blue Belt plus Python programming experience (minimum 6 months)',
         topics: [
@@ -278,8 +258,6 @@ const COURSES: CourseData[] = [
         level: 'green',
         label: 'Foundation Level',
         weeks: 4,
-        hours: 16,
-        sessions: 8,
         price: 20000,
         prerequisite: 'None required',
         topics: [
@@ -300,8 +278,6 @@ const COURSES: CourseData[] = [
         level: 'blue',
         label: 'Professional Level',
         weeks: 8,
-        hours: 32,
-        sessions: 16,
         price: 30000,
         prerequisite: 'Green Belt or proven blockchain knowledge via entry assessment',
         topics: [
@@ -322,8 +298,6 @@ const COURSES: CourseData[] = [
         level: 'black',
         label: 'Expert Mastery',
         weeks: 12,
-        hours: 48,
-        sessions: 24,
         price: 50000,
         prerequisite: 'Blue Belt plus a Solidity portfolio of at least 3 deployed contracts',
         topics: [
@@ -393,10 +367,10 @@ function BeltCard({ courseId, belt }: { courseId: string; belt: BeltData }) {
             {belt.weeks} Weeks
           </span>
           <span className="bg-white/10 text-white/80 text-xs px-2.5 py-1 rounded-full">
-            {belt.hours} Hours
+            📹 Live Classes
           </span>
           <span className="bg-white/10 text-white/80 text-xs px-2.5 py-1 rounded-full">
-            {belt.sessions} Sessions
+            🗓️ Flexible Timetable
           </span>
         </div>
         <div style={{ color: cfg.priceColor }} className="text-3xl font-bold font-heading">
@@ -576,7 +550,7 @@ export default function CoursesPage() {
                 </div>
                 <div className="flex flex-wrap items-center gap-3">
                   <span className="bg-navy/5 text-navy text-xs px-3 py-1.5 rounded-full font-medium">
-                    4 + 8 + 12 Weeks · Three Belt Levels
+                    4 + 8 + 12 Weeks · Live Classes · Flexible Timetable
                   </span>
                   <span className="bg-teal/10 text-teal text-xs px-3 py-1.5 rounded-full font-medium">
                     Global Alignment: {course.globalAlign}
