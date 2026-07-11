@@ -28,7 +28,7 @@ const benefits = [
     icon: '💰',
     title: 'Team Discounts',
     detail:
-      '10% off for groups of 5 to 9 staff. 20% off for groups of 10 to 19. Custom pricing available for organisations enrolling 20 or more people.',
+      '5% off for groups of 1 to 10 staff. 10% off for groups of 11 to 20. Custom pricing available for organisations enrolling 21 or more people.',
   },
   {
     icon: '📋',
@@ -256,10 +256,9 @@ export default function CorporatePage() {
               </div>
               <div className="divide-y divide-gray-100">
                 {[
-                  { range: '1 to 4 Staff', discount: 'Standard rate', note: 'Enrol individually via the courses page' },
-                  { range: '5 to 9 Staff', discount: '10% off', note: 'Contact us to arrange group invoice' },
-                  { range: '10 to 19 Staff', discount: '20% off', note: 'Dedicated cohort with flexible scheduling' },
-                  { range: '20+ Staff', discount: 'Custom pricing', note: 'Tailored programme, bespoke schedule and reporting' },
+                  { range: '1 to 10 Staff', discount: '5% off', note: 'Contact us to arrange a group invoice' },
+                  { range: '11 to 20 Staff', discount: '10% off', note: 'Dedicated cohort with flexible scheduling' },
+                  { range: '21+ Staff', discount: 'Custom discount', note: 'Tailored programme, bespoke schedule and reporting' },
                 ].map(row => (
                   <div key={row.range} className="px-8 py-4 flex items-center justify-between gap-4">
                     <div>
