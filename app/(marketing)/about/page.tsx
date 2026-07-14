@@ -122,8 +122,74 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* TEAM */}
+      {/* SDG ALIGNMENT */}
       <section className="section-padding bg-white">
+        <div className="container-custom">
+          <FadeInSection className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 bg-teal/10 text-teal text-xs font-bold px-3 py-1.5 rounded-full mb-5 uppercase tracking-wider">
+              Global Impact
+            </div>
+            <h2 className="section-heading">Aligned with the UN Sustainable Development Goals</h2>
+            <p className="section-subheading max-w-2xl mx-auto">
+              Metabridge Academy&apos;s work directly advances four of the United Nations&apos; 17 Sustainable Development Goals. Digital education is not just a career investment — it is a development imperative for Africa.
+            </p>
+          </FadeInSection>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            {[
+              {
+                number: 'SDG 4',
+                name: 'Quality Education',
+                color: '#E5243B',
+                desc: 'We deliver structured, affordable digital skills training through a three-belt curriculum, making high-quality education accessible to professionals across Africa and beyond.',
+              },
+              {
+                number: 'SDG 8',
+                name: 'Decent Work & Economic Growth',
+                color: '#A21942',
+                desc: 'With an 85% employment rate among graduates, we create direct pathways to dignified, well-paying careers in Cybersecurity, Data Analytics, Artificial Intelligence, and Blockchain.',
+              },
+              {
+                number: 'SDG 9',
+                name: 'Industry, Innovation & Infrastructure',
+                color: '#FD6925',
+                desc: 'We build the human capital driving Africa\'s digital transformation, training professionals in AI, Blockchain, and Cybersecurity across banking, oil and gas, healthcare, and telecoms.',
+              },
+              {
+                number: 'SDG 10',
+                name: 'Reduced Inequalities',
+                color: '#DD1367',
+                desc: 'By bringing world-class digital education to Nigeria and Africa, we close the gap between African professionals and their global counterparts, making opportunity more equal.',
+              },
+            ].map((sdg, i) => (
+              <FadeInSection key={sdg.number} delay={i * 100}>
+                <div
+                  className="bg-light-bg rounded-2xl p-7 h-full border-l-4"
+                  style={{ borderLeftColor: sdg.color }}
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <div
+                      className="w-12 h-12 rounded-xl flex items-center justify-center text-white text-xs font-bold flex-shrink-0"
+                      style={{ backgroundColor: sdg.color }}
+                    >
+                      {sdg.number}
+                    </div>
+                    <p className="font-heading font-bold text-navy">{sdg.name}</p>
+                  </div>
+                  <p className="text-gray-500 text-sm leading-relaxed">{sdg.desc}</p>
+                </div>
+              </FadeInSection>
+            ))}
+          </div>
+          <FadeInSection delay={400}>
+            <p className="text-center text-gray-400 text-xs mt-10 max-w-xl mx-auto">
+              Metabridge Academy is committed to contributing to the United Nations&apos; 2030 Agenda for Sustainable Development through practical digital skills education.
+            </p>
+          </FadeInSection>
+        </div>
+      </section>
+
+      {/* TEAM */}
+      <section className="section-padding bg-light-bg">
         <div className="container-custom">
           <FadeInSection className="text-center mb-14">
             <h2 className="section-heading">Meet the Team</h2>
