@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 }
 
 const stats = [
-  { value: '500+', label: 'Graduates Trained' },
+  { value: '5,000+', label: 'Graduates Trained' },
   { value: '4', label: 'Specialised Programmes' },
   { value: '15+', label: 'Countries Represented' },
   { value: '85%', label: 'Employment Rate' },
@@ -28,7 +28,7 @@ const courses = [
   {
     icon: '🛡️',
     title: 'Cybersecurity',
-    tag: 'Certificate of Achievement',
+    tag: 'Green · Blue · Black Belt',
     brief:
       'Master the principles, tools, and techniques that protect digital systems. Hands-on training from foundations to advanced practice.',
     href: '/courses#cybersecurity',
@@ -36,7 +36,7 @@ const courses = [
   {
     icon: '📊',
     title: 'Data Analytics',
-    tag: 'Certificate of Achievement',
+    tag: 'Green · Blue · Black Belt',
     brief:
       'Transform raw data into powerful business decisions. Learn tools used by analysts at the world\'s leading companies.',
     href: '/courses#data-analytics',
@@ -44,7 +44,7 @@ const courses = [
   {
     icon: '🤖',
     title: 'Artificial Intelligence',
-    tag: 'Certificate of Achievement',
+    tag: 'Green · Blue · Black Belt',
     brief:
       'Harness AI to automate work, generate content, and drive business growth. The skill every modern professional needs.',
     href: '/courses#artificial-intelligence',
@@ -52,7 +52,7 @@ const courses = [
   {
     icon: '⛓️',
     title: 'Blockchain & Cryptocurrency',
-    tag: 'Certificate of Achievement',
+    tag: 'Green · Blue · Black Belt',
     brief:
       'Understand blockchain from the ground up. Built specifically for the African market with global Web3 context.',
     href: '/courses#blockchain',
@@ -83,14 +83,12 @@ export default function HomePage() {
             </div>
 
             <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
-              Become the Tech Professional{' '}
-              <span className="text-orange">Every Employer Wants</span>
+              Africa Is Building Something Great.{' '}
+              <span className="text-orange">Be the One Who Builds It.</span>
             </h1>
 
             <p className="text-white/85 text-lg max-w-2xl mb-8 leading-relaxed">
-              At Metabridge Academy, we don&apos;t just teach technology — we transform careers. Join thousands
-              of professionals across Africa and beyond who have built real skills, landed real jobs, and
-              created real impact through our hands-on digital programmes.
+              Metabridge Academy is shaping Africa&apos;s next generation of digital leaders. Our three-belt curriculum takes you from foundation to global mastery across Cybersecurity, Data Analytics, Artificial Intelligence, and Blockchain. Over 5,000 graduates. Blockchain-verified certificates. Real careers.
             </p>
 
             {/* CTAs */}
@@ -105,7 +103,7 @@ export default function HomePage() {
 
             {/* Trust bar */}
             <div className="flex flex-wrap gap-x-6 gap-y-2 text-white/70 text-sm">
-              <span>🎓 500+ Graduates</span>
+              <span>🎓 5,000+ Graduates</span>
               <span className="hidden sm:inline text-white/30">|</span>
               <span>🌍 15+ Countries</span>
               <span className="hidden sm:inline text-white/30">|</span>
@@ -151,9 +149,9 @@ export default function HomePage() {
                 desc: 'We are the only academy that teaches digital skills through the lens of African markets, regulations, and real-world scenarios.',
               },
               {
-                icon: '🏆',
-                title: 'Certified. Verified. Recognised.',
-                desc: 'Every graduate receives a digitally-verified certificate with QR authentication — trusted by employers worldwide.',
+                icon: '⛓️',
+                title: 'Blockchain-Verified on Polygon',
+                desc: 'Every graduate receives a certificate permanently recorded on the Polygon blockchain. Employers worldwide can verify authenticity instantly by scanning a QR code.',
               },
             ].map((item, i) => (
               <FadeInSection key={item.title} delay={i * 150} className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow">
@@ -173,7 +171,7 @@ export default function HomePage() {
             <h2 className="section-heading">Our Programmes</h2>
           </FadeInSection>
           <FadeInSection className="text-center mb-12">
-            <p className="section-subheading">From foundations to professional mastery</p>
+            <p className="section-subheading">Green Belt to Black Belt. Foundation to mastery.</p>
           </FadeInSection>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
@@ -293,7 +291,7 @@ export default function HomePage() {
                 {[
                   { icon: '🇳🇬', label: 'Nigeria-first curriculum' },
                   { icon: '🌍', label: 'Globally recognised' },
-                  { icon: '📜', label: 'QR-verified certificates' },
+                  { icon: '⛓️', label: 'Blockchain-verified on Polygon' },
                   { icon: '💼', label: '85% employment rate' },
                 ].map((item) => (
                   <div key={item.label} className="flex items-center gap-3">
@@ -396,9 +394,9 @@ export default function HomePage() {
         <div className="container-custom text-center">
           <FadeInSection>
             <h2 className="font-heading text-2xl md:text-3xl font-bold text-white mb-2">
-              Is your certificate authentic?
+              Every Certificate Is Blockchain-Verified on Polygon
             </h2>
-            <p className="text-white/70 mb-8">Verify it instantly.</p>
+            <p className="text-white/70 mb-8">Scan the QR code or enter the certificate code below. Tamper-proof. Globally trusted.</p>
             <CertVerifyBar />
           </FadeInSection>
         </div>
