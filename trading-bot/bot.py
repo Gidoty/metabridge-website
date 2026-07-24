@@ -12,7 +12,10 @@ Three safety tiers, controlled entirely by .env:
 Only ever run this against a strategy you have already validated with
 backtest.py and then observed for a while on testnet.
 """
+import json
+import os
 import time
+from datetime import datetime, timezone
 
 import config
 from src.exchange_client import ExchangeClient
@@ -25,6 +28,31 @@ from src import notifier
 log = get_logger("bot")
 
 PAPER_STARTING_EQUITY = 10_000.0
+
+
+def write_position_state(mode: str, equity: float, last_price: float, position) -> None:
+    """Persists a snapshot the dashboard can read from a separate process.
+    Best-effort: a write failure here should never take down the trading loop."""
+    try:
+        state_dir = os.path.dirname(config.POSITION_FILE)
+        if state_dir:
+            os.makedirs(state_dir, exist_ok=True)
+        with open(config.POSITION_FILE, "w") as f:
+            json.dump(
+                {
+                    "mode": mode,
+                    "symbol": config.SYMBOL,
+                    "timeframe": config.TIMEFRAME,
+                    "equity": equity,
+                    "last_price": last_price,
+                    "position": position,
+                    "updated_at": datetime.now(timezone.utc).isoformat(),
+                },
+                f,
+                indent=2,
+            )
+    except OSError as exc:
+        log.warning("Could not write position state file: %s", exc)
 
 
 def describe_mode() -> str:
@@ -57,6 +85,7 @@ def run():
     position = None  # {direction, entry, stop, target, qty}
 
     notifier.send(f"Trading bot started | mode={describe_mode()} | {config.SYMBOL} {config.TIMEFRAME}")
+    write_position_state(describe_mode(), paper_equity, 0.0, None)
 
     while True:
         try:
@@ -122,6 +151,8 @@ def run():
                                 f"entry={signal.entry_price:.2f} stop={signal.stop_loss:.2f} "
                                 f"target={signal.take_profit:.2f}"
                             )
+
+            write_position_state(describe_mode(), equity, last_price, position)
 
         except Exception as exc:  # keep the loop alive; log and notify, don't crash-loop silently
             log.exception("Error in main loop: %s", exc)

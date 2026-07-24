@@ -1,0 +1,19 @@
+[Unit]
+Description=Trading bot phone/web dashboard
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=<DEPLOY_USER>
+WorkingDirectory=/home/<DEPLOY_USER>/metabridge-website/trading-bot
+EnvironmentFile=/home/<DEPLOY_USER>/metabridge-website/trading-bot/.env
+# Bind host:port here must match DASHBOARD_HOST/DASHBOARD_PORT in .env (defaults shown)
+ExecStart=/home/<DEPLOY_USER>/metabridge-website/trading-bot/venv/bin/gunicorn --workers 2 --bind 127.0.0.1:8080 dashboard:app
+Restart=always
+RestartSec=10
+StandardOutput=append:/home/<DEPLOY_USER>/metabridge-website/trading-bot/logs/dashboard-systemd.log
+StandardError=append:/home/<DEPLOY_USER>/metabridge-website/trading-bot/logs/dashboard-systemd.log
+
+[Install]
+WantedBy=multi-user.target

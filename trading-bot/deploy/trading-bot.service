@@ -1,0 +1,18 @@
+[Unit]
+Description=Crypto futures trading bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=<DEPLOY_USER>
+WorkingDirectory=/home/<DEPLOY_USER>/metabridge-website/trading-bot
+EnvironmentFile=/home/<DEPLOY_USER>/metabridge-website/trading-bot/.env
+ExecStart=/home/<DEPLOY_USER>/metabridge-website/trading-bot/venv/bin/python bot.py
+Restart=always
+RestartSec=10
+StandardOutput=append:/home/<DEPLOY_USER>/metabridge-website/trading-bot/logs/bot-systemd.log
+StandardError=append:/home/<DEPLOY_USER>/metabridge-website/trading-bot/logs/bot-systemd.log
+
+[Install]
+WantedBy=multi-user.target

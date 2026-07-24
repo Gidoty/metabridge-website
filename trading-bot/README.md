@@ -19,6 +19,10 @@ trading-bot/
   config.py            # all tunables, loaded from .env
   bot.py                # live/testnet/paper polling loop
   backtest.py           # historical simulation + stats
+  dashboard.py           # read-only phone/web dashboard (Flask)
+  templates/dashboard.html
+  static/                # PWA icons
+  deploy/                # systemd units + DEPLOY.md (run it 24/7 on a VPS)
   src/
     exchange_client.py  # ccxt wrapper around Binance USDM futures
     indicators.py        # EMA / RSI / ADX / ATR
@@ -121,6 +125,23 @@ counter.
 
 Set `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` in `.env` (create a bot
 via @BotFather) to get a message on every trade open/close and on errors.
+
+## Running 24/7 and checking it from your phone
+
+`bot.py` needs to run continuously on a machine that's always on — a
+phone alone can't reliably do this (background-process limits, battery
+optimization). See **`deploy/DEPLOY.md`** for putting the bot on a small
+always-on VPS with systemd (auto-restart on crash/reboot).
+
+That same guide covers `dashboard.py` — a read-only, password-protected
+web page (status, open position, risk state, recent log) built to be
+added to your phone's home screen like an app. It never places orders
+itself; it only reads the state files `bot.py` writes.
+
+```bash
+# quick local test (not for real use — binds to localhost only)
+DASHBOARD_USERNAME=you DASHBOARD_PASSWORD=choose_one python dashboard.py
+```
 
 ## Running tests
 

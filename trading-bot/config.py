@@ -58,8 +58,15 @@ MAX_OPEN_POSITIONS = _int("MAX_OPEN_POSITIONS", 1)
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "")
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID", "")
 
+# --- Dashboard ---
+DASHBOARD_HOST = os.getenv("DASHBOARD_HOST", "127.0.0.1")
+DASHBOARD_PORT = _int("DASHBOARD_PORT", 8080)
+DASHBOARD_USERNAME = os.getenv("DASHBOARD_USERNAME", "")
+DASHBOARD_PASSWORD = os.getenv("DASHBOARD_PASSWORD", "")
+
 # --- Paths ---
 STATE_FILE = os.path.join(os.path.dirname(__file__), "state.json")
+POSITION_FILE = os.path.join(os.path.dirname(__file__), "position.json")
 LOG_FILE = os.path.join(os.path.dirname(__file__), "logs", "bot.log")
 
 
