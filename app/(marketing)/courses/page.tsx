@@ -7,7 +7,7 @@ import { WHATSAPP_ENROLL } from '@/lib/data'
 export const metadata: Metadata = {
   title: 'Courses & Programmes',
   description:
-    'Explore Metabridge Academy belt-based programmes in Cybersecurity, Data Analytics, AI and Prompt Engineering, and Blockchain. Green Belt, Blue Belt, and Black Belt certifications for every level.',
+    'Explore Metabridge Academy belt-based programmes in Cybersecurity, Data Analytics, Artificial Intelligence, and Blockchain. Green Belt, Blue Belt, and Black Belt certifications for every level.',
   openGraph: {
     title: 'Courses & Programmes | Metabridge Academy',
     description:
@@ -181,7 +181,7 @@ const COURSES: CourseData[] = [
   {
     id: 'artificial-intelligence',
     icon: '🤖',
-    name: 'Artificial Intelligence & Prompt Engineering',
+    name: 'Artificial Intelligence',
     tagline: 'From AI Novice to AI Solutions Architect',
     globalAlign: 'Google AI Essentials · DeepLearning.AI · AWS ML Specialty',
     belts: [

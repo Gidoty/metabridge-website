@@ -36,7 +36,7 @@ export const COURSE_CATALOG = {
   },
   'artificial-intelligence': {
     id: 'artificial-intelligence',
-    name: 'Artificial Intelligence & Prompt Engineering',
+    name: 'Artificial Intelligence',
     duration: 'Green Belt · Blue Belt · Black Belt',
     price: 7000,
     icon: '🤖',

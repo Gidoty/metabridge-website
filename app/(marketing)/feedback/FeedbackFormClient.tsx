@@ -5,7 +5,7 @@ import { useState, FormEvent } from 'react'
 const COURSES = [
   'Cybersecurity',
   'Data Analytics',
-  'Artificial Intelligence & Prompt Engineering',
+  'Artificial Intelligence',
   'Blockchain & Cryptocurrency',
 ]
 
