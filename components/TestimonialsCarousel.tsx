@@ -1,18 +1,33 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
-import { testimonials } from '@/lib/data'
+import { testimonials as staticTestimonials } from '@/lib/data'
 
-export default function TestimonialsCarousel() {
+export interface TestimonialItem {
+  name: string
+  role: string
+  location: string
+  quote: string
+  rating?: number
+}
+
+interface Props {
+  items?: TestimonialItem[]
+}
+
+export default function TestimonialsCarousel({ items }: Props) {
+  const list: TestimonialItem[] =
+    items && items.length >= 3 ? items : staticTestimonials
+
   const [current, setCurrent] = useState(0)
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
 
   const next = useCallback(() => {
-    setCurrent((prev) => (prev + 1) % testimonials.length)
-  }, [])
+    setCurrent((prev) => (prev + 1) % list.length)
+  }, [list.length])
 
   const prev = () => {
-    setCurrent((prev) => (prev - 1 + testimonials.length) % testimonials.length)
+    setCurrent((prev) => (prev - 1 + list.length) % list.length)
   }
 
   useEffect(() => {
@@ -21,14 +36,12 @@ export default function TestimonialsCarousel() {
     return () => clearInterval(interval)
   }, [isAutoPlaying, next])
 
-  const visibleCount = typeof window !== 'undefined' && window.innerWidth >= 1024 ? 3 : typeof window !== 'undefined' && window.innerWidth >= 768 ? 2 : 1
-
   const getVisible = () => {
-    const items = []
+    const visible = []
     for (let i = 0; i < 3; i++) {
-      items.push(testimonials[(current + i) % testimonials.length])
+      visible.push(list[(current + i) % list.length])
     }
-    return items
+    return visible
   }
 
   return (
@@ -42,9 +55,14 @@ export default function TestimonialsCarousel() {
             key={`${t.name}-${i}`}
             className="bg-white rounded-2xl p-6 shadow-md border-l-4 border-teal hover:shadow-lg transition-shadow duration-300 flex flex-col"
           >
-            <div className="flex text-orange mb-3">
-              {'★★★★★'.split('').map((star, si) => (
-                <span key={si} className="text-lg">{star}</span>
+            <div className="flex mb-3">
+              {Array.from({ length: 5 }).map((_, si) => (
+                <span
+                  key={si}
+                  className={`text-lg ${si < (t.rating ?? 5) ? 'text-orange' : 'text-gray-200'}`}
+                >
+                  ★
+                </span>
               ))}
             </div>
             <p className="text-gray-600 italic leading-relaxed mb-4 flex-1">&ldquo;{t.quote}&rdquo;</p>
@@ -67,7 +85,7 @@ export default function TestimonialsCarousel() {
           ‹
         </button>
         <div className="flex gap-2">
-          {Array.from({ length: Math.ceil(testimonials.length / 3) }).map((_, i) => (
+          {Array.from({ length: Math.ceil(list.length / 3) }).map((_, i) => (
             <button
               key={i}
               onClick={() => setCurrent(i * 3)}

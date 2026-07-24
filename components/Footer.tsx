@@ -64,6 +64,7 @@ export default function Footer() {
                 { href: '/faq', label: 'FAQ' },
                 { href: '/corporate', label: 'Corporate Training' },
                 { href: '/refer', label: 'Refer a Friend' },
+                { href: '/feedback', label: 'Share Your Experience' },
                 { href: '/gallery', label: 'Gallery' },
                 { href: '/contact', label: 'Contact' },
                 { href: '/refund-policy', label: 'Refund Policy' },

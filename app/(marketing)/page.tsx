@@ -1,7 +1,9 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { createClient } from '@supabase/supabase-js'
 import FadeInSection from '@/components/FadeInSection'
 import TestimonialsCarousel from '@/components/TestimonialsCarousel'
+import type { TestimonialItem } from '@/components/TestimonialsCarousel'
 import CertVerifyBar from '@/components/CertVerifyBar'
 import { books, WHATSAPP_BOOK, WHATSAPP_ENROLL } from '@/lib/data'
 
@@ -66,7 +68,35 @@ const bookGradients: Record<string, string> = {
   blockchain: 'linear-gradient(135deg, #1B2A4A 0%, #5C3D00 100%)',
 }
 
-export default function HomePage() {
+async function getLiveTestimonials(): Promise<TestimonialItem[]> {
+  try {
+    const supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+    )
+    const { data } = await supabase
+      .from('testimonials')
+      .select('display_name, candidate_name, location, course_name, belt_level, message_for_future, rating_overall')
+      .eq('approved', true)
+      .order('created_at', { ascending: false })
+      .limit(18)
+
+    if (!data || data.length < 3) return []
+
+    return data.map((t) => ({
+      name: t.display_name || t.candidate_name.split(' ')[0],
+      role: `${t.belt_level} Graduate, ${t.course_name}`,
+      location: t.location || 'Nigeria',
+      quote: t.message_for_future,
+      rating: t.rating_overall,
+    }))
+  } catch {
+    return []
+  }
+}
+
+export default async function HomePage() {
+  const liveTestimonials = await getLiveTestimonials()
   return (
     <>
       {/* HERO SECTION */}
@@ -83,12 +113,12 @@ export default function HomePage() {
             </div>
 
             <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
-              Africa Is Building Something Great.{' '}
-              <span className="text-orange">Be the One Who Builds It.</span>
+              Where Africa&apos;s Next Digital Leaders{' '}
+              <span className="text-orange">Are Made.</span>
             </h1>
 
             <p className="text-white/85 text-lg max-w-2xl mb-8 leading-relaxed">
-              Metabridge Academy is shaping Africa&apos;s next generation of digital leaders. Our three-belt curriculum takes you from foundation to global mastery across Cybersecurity, Data Analytics, Artificial Intelligence, and Blockchain. Over 5,000 graduates. Blockchain-verified certificates. Real careers.
+              Over 5,000 professionals have built in-demand skills, earned blockchain-verified certificates, and launched new careers through Metabridge Academy. Our three-belt curriculum takes you from foundation to global mastery in Cybersecurity, Data Analytics, Artificial Intelligence, and Blockchain. You are next.
             </p>
 
             {/* CTAs */}
@@ -267,7 +297,7 @@ export default function HomePage() {
           <FadeInSection className="text-center mb-12">
             <p className="section-subheading">Real people. Real results. Real careers.</p>
           </FadeInSection>
-          <TestimonialsCarousel />
+          <TestimonialsCarousel items={liveTestimonials.length >= 3 ? liveTestimonials : undefined} />
         </div>
       </section>
 
