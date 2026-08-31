@@ -101,10 +101,10 @@ export default async function HomePage() {
     <>
       {/* HERO SECTION */}
       <section
-        className="relative min-h-[88vh] flex items-center circuit-bg"
+        className="relative circuit-bg"
         style={{ background: 'linear-gradient(135deg, #1B2A4A 0%, #0F1E35 100%)' }}
       >
-        <div className="container-custom relative z-10 py-20">
+        <div className="container-custom relative z-10 pt-28 pb-20 lg:pt-32 lg:pb-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
 
             {/* Left: Text */}
