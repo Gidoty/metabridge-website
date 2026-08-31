@@ -20,10 +20,10 @@ export const metadata: Metadata = {
 }
 
 const stats = [
-  { value: '5,000+', label: 'Graduates Trained' },
-  { value: '4', label: 'Specialised Programmes' },
-  { value: '15+', label: 'Countries Represented' },
-  { value: '85%', label: 'Employment Rate' },
+  { value: '5,000+', label: 'Graduates Trained',      icon: '🎓', accent: '#2B8A9C' },
+  { value: '4',      label: 'Specialised Programmes', icon: '📚', accent: '#E87722' },
+  { value: '15+',    label: 'Countries Represented',  icon: '🌍', accent: '#15803d' },
+  { value: '85%',    label: 'Employment Rate',        icon: '💼', accent: '#7C3AED' },
 ]
 
 const courses = [
@@ -31,33 +31,33 @@ const courses = [
     icon: '🛡️',
     title: 'Cybersecurity',
     tag: 'Green · Blue · Black Belt',
-    brief:
-      'Master the principles, tools, and techniques that protect digital systems. Hands-on training from foundations to advanced practice.',
+    brief: 'Master the principles, tools, and techniques that protect digital systems. Hands-on training from foundations to advanced practice.',
     href: '/courses#cybersecurity',
+    headerBg: 'linear-gradient(135deg, #6B0000 0%, #1B2A4A 100%)',
   },
   {
     icon: '📊',
     title: 'Data Analytics',
     tag: 'Green · Blue · Black Belt',
-    brief:
-      'Transform raw data into powerful business decisions. Learn tools used by analysts at the world\'s leading companies.',
+    brief: "Transform raw data into powerful business decisions. Learn tools used by analysts at the world's leading companies.",
     href: '/courses#data-analytics',
+    headerBg: 'linear-gradient(135deg, #0D4F5C 0%, #1E3A6E 100%)',
   },
   {
     icon: '🤖',
     title: 'Artificial Intelligence',
     tag: 'Green · Blue · Black Belt',
-    brief:
-      'Harness AI to automate work, generate content, and drive business growth. The skill every modern professional needs.',
+    brief: 'Harness AI to automate work, generate content, and drive business growth. The skill every modern professional needs.',
     href: '/courses#artificial-intelligence',
+    headerBg: 'linear-gradient(135deg, #3B1060 0%, #1A1A6E 100%)',
   },
   {
     icon: '⛓️',
     title: 'Blockchain & Cryptocurrency',
     tag: 'Green · Blue · Black Belt',
-    brief:
-      'Understand blockchain from the ground up. Built specifically for the African market with global Web3 context.',
+    brief: 'Understand blockchain from the ground up. Built specifically for the African market with global Web3 context.',
     href: '/courses#blockchain',
+    headerBg: 'linear-gradient(135deg, #5C3D00 0%, #1B2A4A 100%)',
   },
 ]
 
@@ -105,45 +105,131 @@ export default async function HomePage() {
         style={{ background: 'linear-gradient(135deg, #1B2A4A 0%, #0F1E35 100%)' }}
       >
         <div className="container-custom relative z-10 py-20">
-          <div className="max-w-3xl">
-            {/* Animated badge */}
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-1.5 mb-6 animate-fade-in">
-              <span className="text-base">🌍</span>
-              <span className="text-white/90 text-sm font-medium">Africa&apos;s Digital Skills Academy</span>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+
+            {/* Left: Text */}
+            <div>
+              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-1.5 mb-6">
+                <span className="text-base">🌍</span>
+                <span className="text-white/90 text-sm font-medium">Africa&apos;s Digital Skills Academy</span>
+              </div>
+
+              <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+                Where Africa&apos;s Next Digital Leaders{' '}
+                <span className="text-orange">Are Made.</span>
+              </h1>
+
+              <p className="text-white/80 text-lg mb-8 leading-relaxed">
+                Over 5,000 professionals have built in-demand skills, earned blockchain-verified certificates, and launched new careers through Metabridge Academy. Our three-belt curriculum takes you from foundation to global mastery. You are next.
+              </p>
+
+              <div className="flex flex-wrap gap-4 mb-10">
+                <Link href="/courses" className="btn-primary text-base px-7 py-3.5">
+                  Start Learning Today
+                </Link>
+                <Link href="/books" className="btn-secondary text-base px-7 py-3.5">
+                  Explore Our Books
+                </Link>
+              </div>
+
+              <div className="flex flex-wrap gap-x-6 gap-y-2 text-white/60 text-sm">
+                <span>🎓 5,000+ Graduates</span>
+                <span className="hidden sm:inline text-white/30">|</span>
+                <span>🌍 15+ Countries</span>
+                <span className="hidden sm:inline text-white/30">|</span>
+                <span>💼 85% Job Placement Rate</span>
+              </div>
             </div>
 
-            <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
-              Where Africa&apos;s Next Digital Leaders{' '}
-              <span className="text-orange">Are Made.</span>
-            </h1>
+            {/* Right: Certificate mockup card (desktop only) */}
+            <div className="hidden lg:flex items-center justify-center relative">
+              {/* 5000+ graduates badge */}
+              <div className="absolute -top-4 -right-4 z-20 bg-orange text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg">
+                5,000+ Graduates
+              </div>
 
-            <p className="text-white/85 text-lg max-w-2xl mb-8 leading-relaxed">
-              Over 5,000 professionals have built in-demand skills, earned blockchain-verified certificates, and launched new careers through Metabridge Academy. Our three-belt curriculum takes you from foundation to global mastery in Cybersecurity, Data Analytics, Artificial Intelligence, and Blockchain. You are next.
-            </p>
+              {/* Certificate preview card */}
+              <div className="relative w-full max-w-sm bg-white/5 backdrop-blur-md border border-white/15 rounded-3xl p-7 shadow-2xl">
+                {/* Card header */}
+                <div className="flex items-center gap-3 mb-6 pb-5 border-b border-white/10">
+                  <div className="w-10 h-10 bg-orange rounded-xl flex items-center justify-center font-heading font-bold text-white text-sm flex-shrink-0">
+                    MA
+                  </div>
+                  <div>
+                    <p className="font-heading font-bold text-white text-sm">Metabridge Academy</p>
+                    <p className="text-white/50 text-xs">Certificate of Completion</p>
+                  </div>
+                </div>
 
-            {/* CTAs */}
-            <div className="flex flex-wrap gap-4 mb-10">
-              <Link href="/courses" className="btn-primary text-base px-7 py-3.5">
-                Start Learning Today
-              </Link>
-              <Link href="/books" className="btn-secondary text-base px-7 py-3.5">
-                Explore Our Books
-              </Link>
+                {/* Certificate body */}
+                <div className="space-y-3 mb-6">
+                  <div>
+                    <p className="text-white/40 text-xs mb-1">Graduate</p>
+                    <p className="text-white font-semibold text-sm">Chukwuma Obi</p>
+                  </div>
+                  <div>
+                    <p className="text-white/40 text-xs mb-1">Programme</p>
+                    <p className="text-white font-semibold text-sm">Cybersecurity</p>
+                  </div>
+                  <div>
+                    <p className="text-white/40 text-xs mb-1">Belt Level</p>
+                    <span className="inline-flex items-center gap-1.5 bg-[#1d4ed8]/30 border border-[#1d4ed8]/40 text-blue-200 text-xs font-semibold px-3 py-1 rounded-full">
+                      <span className="w-2 h-2 rounded-full bg-[#1d4ed8]" />
+                      Blue Belt
+                    </span>
+                  </div>
+                </div>
+
+                {/* Blockchain verification badge */}
+                <div className="flex items-center gap-2 bg-purple-950/60 border border-purple-500/25 rounded-full px-3 py-1.5">
+                  <span className="text-xs">⛓️</span>
+                  <span className="text-purple-200 text-xs font-medium">Verified on Polygon Blockchain</span>
+                </div>
+              </div>
+
+              {/* Belt level badges floating below */}
+              <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 flex gap-2">
+                {[
+                  { bg: '#15803d', label: 'Green Belt' },
+                  { bg: '#1d4ed8', label: 'Blue Belt' },
+                  { bg: '#111827', label: 'Black Belt' },
+                ].map((belt) => (
+                  <div
+                    key={belt.label}
+                    className="bg-white/10 border border-white/20 backdrop-blur-sm rounded-full px-3 py-1 flex items-center gap-1.5 text-white text-xs"
+                  >
+                    <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: belt.bg }} />
+                    {belt.label}
+                  </div>
+                ))}
+              </div>
             </div>
 
-            {/* Trust bar */}
-            <div className="flex flex-wrap gap-x-6 gap-y-2 text-white/70 text-sm">
-              <span>🎓 5,000+ Graduates</span>
-              <span className="hidden sm:inline text-white/30">|</span>
-              <span>🌍 15+ Countries</span>
-              <span className="hidden sm:inline text-white/30">|</span>
-              <span>💼 85% Job Placement Rate</span>
-            </div>
           </div>
         </div>
+      </section>
 
-        {/* Decorative gradient blob */}
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1/2 h-4/5 bg-teal/5 rounded-full blur-3xl pointer-events-none" />
+      {/* TRUST STRIP */}
+      <section className="bg-white py-5 border-b border-gray-100">
+        <div className="container-custom">
+          <p className="text-center text-gray-400 text-xs uppercase tracking-widest mb-4 font-medium">Our graduates work in</p>
+          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
+            {[
+              { icon: '🏦', label: 'Banking & Fintech' },
+              { icon: '🛢️', label: 'Oil & Gas' },
+              { icon: '🏥', label: 'Healthcare' },
+              { icon: '📡', label: 'Telecoms' },
+              { icon: '🌐', label: 'UK & US (Remote)' },
+              { icon: '⛓️', label: 'Web3 & Crypto' },
+              { icon: '🏗️', label: 'Engineering' },
+            ].map(({ icon, label }) => (
+              <div key={label} className="flex items-center gap-2 text-gray-500 font-medium text-sm">
+                <span>{icon}</span>
+                <span>{label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* STATS SECTION */}
@@ -152,6 +238,12 @@ export default async function HomePage() {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {stats.map((stat) => (
               <FadeInSection key={stat.label} className="text-center">
+                <div
+                  className="w-14 h-14 rounded-2xl mx-auto mb-4 flex items-center justify-center text-2xl"
+                  style={{ background: `${stat.accent}18` }}
+                >
+                  {stat.icon}
+                </div>
                 <p className="font-heading text-4xl md:text-5xl font-bold text-navy mb-1">{stat.value}</p>
                 <p className="text-gray-500 text-sm font-medium">{stat.label}</p>
               </FadeInSection>
@@ -207,19 +299,26 @@ export default async function HomePage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
             {courses.map((course, i) => (
               <FadeInSection key={course.title} delay={i * 100}>
-                <div className="card h-full flex flex-col p-6 border border-gray-100 hover:-translate-y-1 transition-transform duration-300">
-                  <div className="text-4xl mb-4">{course.icon}</div>
-                  <span className="text-xs font-semibold text-teal bg-teal/10 px-3 py-1 rounded-full w-fit mb-3">
-                    {course.tag}
-                  </span>
-                  <h3 className="font-heading text-lg font-bold text-navy mb-3">{course.title}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed flex-1 mb-5">{course.brief}</p>
-                  <Link
-                    href={course.href}
-                    className="text-teal font-semibold text-sm hover:text-navy transition-colors inline-flex items-center gap-1"
+                <div className="card h-full flex flex-col overflow-hidden hover:-translate-y-1 transition-transform duration-300">
+                  {/* Gradient header */}
+                  <div
+                    className="px-6 py-7 flex flex-col items-start"
+                    style={{ background: course.headerBg }}
                   >
-                    Learn More →
-                  </Link>
+                    <div className="text-4xl mb-3">{course.icon}</div>
+                    <h3 className="font-heading text-lg font-bold text-white leading-snug">{course.title}</h3>
+                    <span className="text-xs font-medium text-white/65 mt-1.5">{course.tag}</span>
+                  </div>
+                  {/* Body */}
+                  <div className="p-6 flex flex-col flex-1">
+                    <p className="text-gray-500 text-sm leading-relaxed flex-1 mb-5">{course.brief}</p>
+                    <Link
+                      href={course.href}
+                      className="text-teal font-semibold text-sm hover:text-navy transition-colors inline-flex items-center gap-1"
+                    >
+                      Learn More →
+                    </Link>
+                  </div>
                 </div>
               </FadeInSection>
             ))}
