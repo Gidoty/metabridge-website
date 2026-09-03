@@ -11,6 +11,7 @@ export const BELT_PRICING: Record<string, Record<BeltLevel, number>> = {
   'data-analytics': { green: 30000, blue: 45000, black: 120000 },
   'artificial-intelligence': { green: 7000, blue: 25000, black: 50000 },
   blockchain: { green: 20000, blue: 30000, black: 50000 },
+  'web-development': { green: 25000, blue: 50000, black: 150000 },
 }
 
 export function getBeltPrice(courseId: string, belt: BeltLevel): number {
@@ -49,6 +50,14 @@ export const COURSE_CATALOG = {
     price: 20000,
     icon: '⛓️',
     description: 'DeFi, Web3, Nigerian regulatory context, and real-world blockchain careers.',
+  },
+  'web-development': {
+    id: 'web-development',
+    name: 'Web Development',
+    duration: 'Green Belt · Blue Belt · Black Belt',
+    price: 25000,
+    icon: '💻',
+    description: 'HTML, CSS, JavaScript, React and full-stack development from beginner to production-ready engineer.',
   },
 } as const
 

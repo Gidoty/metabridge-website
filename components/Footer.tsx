@@ -89,6 +89,8 @@ export default function Footer() {
                 { href: '/courses#data-analytics', label: 'Data Analytics' },
                 { href: '/courses#artificial-intelligence', label: 'Artificial Intelligence' },
                 { href: '/courses#blockchain', label: 'Blockchain & Crypto' },
+                { href: '/courses#web-development', label: 'Web Development' },
+                { href: '/courses#special-domains', label: 'Special Domains' },
               ].map(({ href, label }) => (
                 <li key={href}>
                   <Link href={href} className="text-white/60 hover:text-orange text-sm transition-colors duration-200">

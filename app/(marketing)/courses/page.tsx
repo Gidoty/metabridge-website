@@ -7,11 +7,11 @@ import { WHATSAPP_ENROLL } from '@/lib/data'
 export const metadata: Metadata = {
   title: 'Courses & Programmes',
   description:
-    'Explore Metabridge Academy belt-based programmes in Cybersecurity, Data Analytics, Artificial Intelligence, and Blockchain. Green Belt, Blue Belt, and Black Belt certifications for every level.',
+    'Explore Metabridge Academy belt-based programmes in Cybersecurity, Data Analytics, Artificial Intelligence, Blockchain, and Web Development. Green Belt, Blue Belt, and Black Belt certifications for every level.',
   openGraph: {
     title: 'Courses & Programmes | Metabridge Academy',
     description:
-      'Three belt levels. Four courses. One career transformation. Choose your path at Metabridge Academy.',
+      'Three belt levels. Five courses. One career transformation. Choose your path at Metabridge Academy.',
     url: 'https://metabridgeacademy.com/courses',
   },
 }
@@ -316,6 +316,75 @@ const COURSES: CourseData[] = [
       },
     ],
   },
+  {
+    id: 'web-development',
+    icon: '💻',
+    name: 'Web Development',
+    tagline: 'From Your First HTML Page to Full-Stack Engineer',
+    globalAlign: 'Meta Front-End Developer · AWS Developer · freeCodeCamp Certifications',
+    belts: [
+      {
+        level: 'green',
+        label: 'Foundation Level',
+        weeks: 4,
+        price: 25000,
+        prerequisite: 'None required — a smartphone or basic computer is sufficient',
+        topics: [
+          'How the Web Works: Browsers, Servers, HTTP and DNS',
+          'HTML5: Structure, Semantics, Forms and Accessibility',
+          'CSS3: Selectors, Box Model, Flexbox and Grid Layouts',
+          'Responsive Design: Mobile-First Approach and Media Queries',
+          'JavaScript Basics: Variables, Functions and DOM Manipulation',
+          'Git and GitHub: Version Control and Collaboration Workflow',
+          'Deploying Websites with Netlify and Vercel',
+          'Capstone: Build and Deploy a Personal Portfolio Website',
+        ],
+        tools: ['VS Code', 'Chrome DevTools', 'GitHub', 'Netlify', 'Figma (Wireframes)'],
+        careers: ['Junior Web Developer', 'Freelance Web Designer', 'Front-End Intern'],
+        certAlign: 'freeCodeCamp Responsive Web Design · HTML & CSS Foundations',
+      },
+      {
+        level: 'blue',
+        label: 'Professional Level',
+        weeks: 8,
+        price: 50000,
+        prerequisite: 'Green Belt or demonstrated proficiency in HTML, CSS and basic JavaScript',
+        topics: [
+          'Advanced JavaScript: ES6+, Promises, Async/Await and the Fetch API',
+          'React.js: Components, Props, State Management and Hooks',
+          'Tailwind CSS and Modern UI Component Libraries',
+          'Single-Page Applications with React Router and Dynamic Routing',
+          'REST API Integration: Authentication, Error Handling and Loading States',
+          'Supabase and Firebase: Real-Time Database and User Authentication',
+          'Progressive Web Apps (PWA) and Mobile-Optimised Experiences',
+          'Blue Belt Capstone: Full-Featured React Web Application',
+        ],
+        tools: ['React', 'Tailwind CSS', 'Supabase', 'Firebase', 'Vercel', 'VS Code', 'Postman'],
+        careers: ['Front-End Developer', 'React Developer', 'Full-Stack Intern', 'Freelance Developer'],
+        certAlign: 'Meta Front-End Developer (Coursera) · React Developer Certification',
+      },
+      {
+        level: 'black',
+        label: 'Expert Mastery',
+        weeks: 12,
+        price: 150000,
+        prerequisite: 'Blue Belt plus a portfolio of at least 2 deployed React projects',
+        topics: [
+          'Node.js and Express: Building RESTful APIs, Middleware and Auth Systems',
+          'Database Design: PostgreSQL and MongoDB with ORM and Query Optimisation',
+          'Authentication: JWT, OAuth 2.0 and Role-Based Access Control',
+          'Next.js: Server-Side Rendering, Static Generation and the App Router',
+          'TypeScript: Type Safety, Interfaces, Generics and Advanced Patterns',
+          'DevOps Fundamentals: Docker, CI/CD Pipelines and Cloud Deployment',
+          'Web Security: OWASP Top 10, Rate Limiting, CORS and Input Validation',
+          'Black Belt Capstone: Production SaaS Application with Panel Defence',
+        ],
+        tools: ['Node.js', 'Express', 'PostgreSQL', 'MongoDB', 'Next.js', 'TypeScript', 'Docker', 'AWS/GCP'],
+        careers: ['Full-Stack Developer', 'Back-End Engineer', 'SaaS Founder', 'Web Architect'],
+        certAlign: 'AWS Developer Associate · Meta Full-Stack Developer · W3Schools Certification',
+      },
+    ],
+  },
 ]
 
 const beltConfig = {
@@ -467,6 +536,7 @@ const courseBgColors: Record<string, string> = {
   'data-analytics': 'bg-light-bg',
   'artificial-intelligence': 'bg-white',
   blockchain: 'bg-light-bg',
+  'web-development': 'bg-white',
 }
 
 export default function CoursesPage() {
@@ -480,7 +550,7 @@ export default function CoursesPage() {
         <div className="container-custom text-center relative z-10">
           <FadeInSection>
             <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 mb-6">
-              <span className="text-white/80 text-sm font-medium">3 Levels of Mastery · 4 Courses</span>
+              <span className="text-white/80 text-sm font-medium">3 Levels of Mastery · 5 Courses · Special Domains</span>
             </div>
             <h1 className="font-heading text-4xl md:text-5xl font-bold text-white mb-5 max-w-3xl mx-auto leading-tight">
               Choose Your Belt.{' '}
@@ -526,6 +596,13 @@ export default function CoursesPage() {
                 <span>{course.name}</span>
               </a>
             ))}
+            <a
+              href="#special-domains"
+              className="flex items-center gap-2 px-4 py-3.5 text-sm font-semibold text-orange hover:text-navy hover:border-b-2 hover:border-orange whitespace-nowrap transition-colors flex-shrink-0"
+            >
+              <span>⭐</span>
+              <span>Special Domains</span>
+            </a>
           </nav>
         </div>
       </div>
@@ -574,6 +651,213 @@ export default function CoursesPage() {
           </div>
         </section>
       ))}
+
+      {/* SPECIAL DOMAINS */}
+      <section id="special-domains" className="section-padding bg-navy">
+        <div className="container-custom">
+          <FadeInSection className="text-center mb-3">
+            <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 mb-4">
+              <span className="text-orange text-sm font-bold">⭐ Special Domains</span>
+            </div>
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-white">Focused Skill Programmes</h2>
+          </FadeInSection>
+          <FadeInSection className="text-center mb-12">
+            <p className="text-white/65 text-lg max-w-2xl mx-auto">
+              Want to master a specific skill fast? Special Domains are intensive, focused programmes for professionals who know exactly what they need — no belt progression, just deep expertise.
+            </p>
+          </FadeInSection>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                icon: '📱', title: 'Digital Marketing & Growth', price: 20000, duration: '3 Weeks',
+                color: '#E87722',
+                desc: 'Social media strategy, SEO, Google Ads, Meta Ads, email campaigns, and content marketing for Nigerian businesses.',
+                curriculum: [
+                  'Social Media Strategy and Content Calendar Planning',
+                  'SEO Fundamentals: Keywords, On-Page and Off-Page Optimisation',
+                  'Google Ads: Search, Display and Performance Max Campaigns',
+                  'Meta Ads: Facebook and Instagram Campaign Management',
+                  'Email Marketing: Mailchimp Sequences and Automation',
+                  'Analytics: Google Analytics 4 and Meta Business Insights',
+                  'Content Creation: Canva, Copy and Brand Voice',
+                  'Capstone: Full 90-Day Digital Marketing Plan',
+                ],
+                tools: ['Meta Ads Manager', 'Google Ads', 'Mailchimp', 'Canva', 'Google Analytics 4'],
+                careers: ['Digital Marketing Executive', 'Social Media Manager', 'Growth Marketer', 'Marketing Analyst'],
+              },
+              {
+                icon: '🎨', title: 'UI/UX Design', price: 30000, duration: '4 Weeks',
+                color: '#7C3AED',
+                desc: 'User research, wireframing, prototyping in Figma, design systems, and usability testing for digital products.',
+                curriculum: [
+                  'Design Thinking and the Human-Centred Design Process',
+                  'User Research: Interviews, Surveys and Persona Development',
+                  'Information Architecture and User Journey Mapping',
+                  'Wireframing: Low-Fidelity and High-Fidelity Prototypes in Figma',
+                  'Visual Design: Colour, Typography, Spacing and Hierarchy',
+                  'Design Systems: Component Libraries and Style Guides',
+                  'Usability Testing: Maze.io and Iterative Design',
+                  'Capstone: End-to-End UX Case Study for a Mobile App',
+                ],
+                tools: ['Figma', 'FigJam', 'Maze', 'Miro', 'Lottie Files'],
+                careers: ['UI/UX Designer', 'Product Designer', 'UX Researcher', 'Design Lead'],
+              },
+              {
+                icon: '🐍', title: 'Python Programming', price: 25000, duration: '4 Weeks',
+                color: '#2563EB',
+                desc: 'Python syntax, data structures, automation scripts, web scraping, file handling, and an introduction to data science libraries.',
+                curriculum: [
+                  'Python Setup: Installing Python, VS Code and Virtual Environments',
+                  'Syntax, Variables, Data Types and Operators',
+                  'Control Flow: If-Else, For and While Loops',
+                  'Functions, Modules and Python Standard Library',
+                  'File Handling: Reading and Writing CSV, JSON and Text Files',
+                  'Web Scraping with BeautifulSoup and Requests',
+                  'Introduction to Pandas: DataFrames and Basic Data Analysis',
+                  'Capstone: Build a Python Automation Tool for a Real Business Problem',
+                ],
+                tools: ['Python 3', 'VS Code', 'Jupyter Notebook', 'Pandas', 'Requests', 'BeautifulSoup'],
+                careers: ['Python Developer', 'Automation Specialist', 'Junior Data Scientist', 'Backend Intern'],
+              },
+              {
+                icon: '☁️', title: 'Cloud Computing Fundamentals', price: 35000, duration: '4 Weeks',
+                color: '#0891B2',
+                desc: 'AWS, Azure and GCP basics, cloud storage, virtual machines, serverless functions, and cloud cost management.',
+                curriculum: [
+                  'Cloud Computing Concepts: IaaS, PaaS, SaaS and Deployment Models',
+                  'AWS Core Services: EC2, S3, RDS, Lambda and IAM',
+                  'Azure Fundamentals: Virtual Machines, Blob Storage and Azure AD',
+                  'GCP Essentials: Compute Engine, Cloud Storage and BigQuery',
+                  'Networking in the Cloud: VPCs, Subnets, Security Groups',
+                  'Serverless Computing: AWS Lambda and Azure Functions',
+                  'Cloud Cost Management and the Well-Architected Framework',
+                  'Capstone: Deploy a Three-Tier Application on AWS or Azure',
+                ],
+                tools: ['AWS Console', 'Azure Portal', 'Google Cloud Console', 'Terraform (Intro)', 'Docker Basics'],
+                careers: ['Cloud Support Engineer', 'Cloud Administrator', 'DevOps Intern', 'IT Infrastructure Analyst'],
+              },
+              {
+                icon: '📑', title: 'Microsoft Office Mastery', price: 15000, duration: '2 Weeks',
+                color: '#15803d',
+                desc: 'Advanced Word, Excel formulas, PowerPoint for executive presentations, and Outlook productivity workflows.',
+                curriculum: [
+                  'Microsoft Word: Styles, Table of Contents and Mail Merge',
+                  'Excel Advanced Functions: XLOOKUP, IFS, SUMIFS and Dynamic Arrays',
+                  'Excel PivotTables and Charts for Business Reporting',
+                  'PowerPoint: Slide Design, Animations and Executive Decks',
+                  'Outlook: Calendar Management, Rules and Professional Email Etiquette',
+                  'OneDrive and SharePoint: Cloud Collaboration and File Management',
+                  'Microsoft Forms and Teams: Surveys and Virtual Meetings',
+                  'Capstone: Build a Professional Business Report and Presentation',
+                ],
+                tools: ['Microsoft Word', 'Excel', 'PowerPoint', 'Outlook', 'Teams', 'OneDrive'],
+                careers: ['Executive Assistant', 'Office Manager', 'Administrative Officer', 'Business Analyst'],
+              },
+              {
+                icon: '📲', title: 'Mobile App Development', price: 45000, duration: '5 Weeks',
+                color: '#BE123C',
+                desc: 'Flutter basics, UI components, navigation, state management, and publishing to the Google Play Store and Apple App Store.',
+                curriculum: [
+                  'Dart Programming Language: Syntax, Types and OOP Concepts',
+                  'Flutter Setup: SDK, Android Studio and Device Emulators',
+                  'Widgets: Stateless, Stateful, and the Flutter Widget Tree',
+                  'Navigation: Routes, Named Routes and Bottom Navigation Bar',
+                  'State Management: Provider and Riverpod',
+                  'Firebase Integration: Authentication, Firestore and Push Notifications',
+                  'REST API Integration and JSON Data Handling in Flutter',
+                  'Capstone: Build and Publish a Mobile App to the Play Store',
+                ],
+                tools: ['Flutter', 'Dart', 'Firebase', 'Android Studio', 'VS Code', 'Google Play Console'],
+                careers: ['Mobile App Developer', 'Flutter Developer', 'App Entrepreneur', 'Junior iOS/Android Developer'],
+              },
+            ].map((domain, i) => (
+              <FadeInSection key={domain.title} delay={i * 100}>
+                <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col h-full">
+                  {/* Header */}
+                  <div
+                    className="px-6 py-6"
+                    style={{ background: `linear-gradient(135deg, ${domain.color}25 0%, ${domain.color}08 100%)`, borderBottom: `1px solid ${domain.color}35` }}
+                  >
+                    <div className="flex items-center gap-4 mb-4">
+                      <div
+                        className="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl flex-shrink-0"
+                        style={{ background: `${domain.color}20`, border: `1px solid ${domain.color}40` }}
+                      >
+                        {domain.icon}
+                      </div>
+                      <div>
+                        <h3 className="font-heading text-lg font-bold text-white leading-snug">{domain.title}</h3>
+                        <div className="flex items-center gap-2 mt-1">
+                          <span className="text-sm font-bold" style={{ color: domain.color }}>
+                            {formatNGN(domain.price)}
+                          </span>
+                          <span className="text-white/30 text-xs">·</span>
+                          <span className="text-white/50 text-sm">{domain.duration}</span>
+                        </div>
+                      </div>
+                    </div>
+                    <p className="text-white/60 text-sm leading-relaxed">{domain.desc}</p>
+                  </div>
+
+                  {/* Body */}
+                  <div className="p-6 flex flex-col flex-1">
+                    <h4 className="text-white/50 text-xs font-bold uppercase tracking-wider mb-3">Curriculum</h4>
+                    <ul className="space-y-2 mb-5 flex-1">
+                      {domain.curriculum.map(item => (
+                        <li key={item} className="flex items-start gap-2 text-sm text-white/65">
+                          <span className="flex-shrink-0 mt-0.5" style={{ color: domain.color }}>✓</span>
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+
+                    <div className="mb-4">
+                      <h4 className="text-white/50 text-xs font-bold uppercase tracking-wider mb-2">Tools</h4>
+                      <div className="flex flex-wrap gap-1.5">
+                        {domain.tools.map(tool => (
+                          <span
+                            key={tool}
+                            className="text-xs px-2.5 py-1 rounded-full font-medium"
+                            style={{ background: `${domain.color}15`, color: domain.color }}
+                          >
+                            {tool}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="mb-5">
+                      <h4 className="text-white/50 text-xs font-bold uppercase tracking-wider mb-2">Career Outcomes</h4>
+                      <div className="flex flex-wrap gap-1.5">
+                        {domain.careers.map(c => (
+                          <span key={c} className="text-xs px-2.5 py-1 rounded-full font-medium bg-white/10 text-white/70">
+                            {c}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="bg-white/5 rounded-xl px-4 py-3 mb-4 text-xs text-white/50">
+                      🏆 Certificate of Completion verified on Polygon blockchain
+                    </div>
+
+                    <a
+                      href={WHATSAPP_ENROLL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block w-full text-center text-sm font-bold py-3 rounded-xl transition-colors"
+                      style={{ background: `${domain.color}22`, color: domain.color, border: `1px solid ${domain.color}40` }}
+                    >
+                      Enrol in This Domain →
+                    </a>
+                  </div>
+                </div>
+              </FadeInSection>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* BOTTOM CTA */}
       <section
