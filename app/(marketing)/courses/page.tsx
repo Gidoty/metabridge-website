@@ -3,6 +3,8 @@ import Link from 'next/link'
 import FadeInSection from '@/components/FadeInSection'
 import { formatNGN } from '@/lib/products'
 import { WHATSAPP_ENROLL } from '@/lib/data'
+import SpecialDomainAccordion from '@/components/SpecialDomainAccordion'
+import { SPECIAL_DOMAINS } from '@/lib/specialDomains'
 
 export const metadata: Metadata = {
   title: 'Courses & Programmes',
@@ -661,201 +663,21 @@ export default function CoursesPage() {
             </div>
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-white">Focused Skill Programmes</h2>
           </FadeInSection>
-          <FadeInSection className="text-center mb-12">
+          <FadeInSection className="text-center mb-10">
             <p className="text-white/65 text-lg max-w-2xl mx-auto">
-              Want to master a specific skill fast? Special Domains are intensive, focused programmes for professionals who know exactly what they need — no belt progression, just deep expertise.
+              Special Domains are intensive, focused programmes for professionals who want to master one specific skill area — no belt progression, just deep expertise fast. Click any domain to explore the full programme.
             </p>
           </FadeInSection>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                icon: '📱', title: 'Digital Marketing & Growth', price: 20000, duration: '3 Weeks',
-                color: '#E87722',
-                desc: 'Social media strategy, SEO, Google Ads, Meta Ads, email campaigns, and content marketing for Nigerian businesses.',
-                curriculum: [
-                  'Social Media Strategy and Content Calendar Planning',
-                  'SEO Fundamentals: Keywords, On-Page and Off-Page Optimisation',
-                  'Google Ads: Search, Display and Performance Max Campaigns',
-                  'Meta Ads: Facebook and Instagram Campaign Management',
-                  'Email Marketing: Mailchimp Sequences and Automation',
-                  'Analytics: Google Analytics 4 and Meta Business Insights',
-                  'Content Creation: Canva, Copy and Brand Voice',
-                  'Capstone: Full 90-Day Digital Marketing Plan',
-                ],
-                tools: ['Meta Ads Manager', 'Google Ads', 'Mailchimp', 'Canva', 'Google Analytics 4'],
-                careers: ['Digital Marketing Executive', 'Social Media Manager', 'Growth Marketer', 'Marketing Analyst'],
-              },
-              {
-                icon: '🎨', title: 'UI/UX Design', price: 30000, duration: '4 Weeks',
-                color: '#7C3AED',
-                desc: 'User research, wireframing, prototyping in Figma, design systems, and usability testing for digital products.',
-                curriculum: [
-                  'Design Thinking and the Human-Centred Design Process',
-                  'User Research: Interviews, Surveys and Persona Development',
-                  'Information Architecture and User Journey Mapping',
-                  'Wireframing: Low-Fidelity and High-Fidelity Prototypes in Figma',
-                  'Visual Design: Colour, Typography, Spacing and Hierarchy',
-                  'Design Systems: Component Libraries and Style Guides',
-                  'Usability Testing: Maze.io and Iterative Design',
-                  'Capstone: End-to-End UX Case Study for a Mobile App',
-                ],
-                tools: ['Figma', 'FigJam', 'Maze', 'Miro', 'Lottie Files'],
-                careers: ['UI/UX Designer', 'Product Designer', 'UX Researcher', 'Design Lead'],
-              },
-              {
-                icon: '🐍', title: 'Python Programming', price: 25000, duration: '4 Weeks',
-                color: '#2563EB',
-                desc: 'Python syntax, data structures, automation scripts, web scraping, file handling, and an introduction to data science libraries.',
-                curriculum: [
-                  'Python Setup: Installing Python, VS Code and Virtual Environments',
-                  'Syntax, Variables, Data Types and Operators',
-                  'Control Flow: If-Else, For and While Loops',
-                  'Functions, Modules and Python Standard Library',
-                  'File Handling: Reading and Writing CSV, JSON and Text Files',
-                  'Web Scraping with BeautifulSoup and Requests',
-                  'Introduction to Pandas: DataFrames and Basic Data Analysis',
-                  'Capstone: Build a Python Automation Tool for a Real Business Problem',
-                ],
-                tools: ['Python 3', 'VS Code', 'Jupyter Notebook', 'Pandas', 'Requests', 'BeautifulSoup'],
-                careers: ['Python Developer', 'Automation Specialist', 'Junior Data Scientist', 'Backend Intern'],
-              },
-              {
-                icon: '☁️', title: 'Cloud Computing Fundamentals', price: 35000, duration: '4 Weeks',
-                color: '#0891B2',
-                desc: 'AWS, Azure and GCP basics, cloud storage, virtual machines, serverless functions, and cloud cost management.',
-                curriculum: [
-                  'Cloud Computing Concepts: IaaS, PaaS, SaaS and Deployment Models',
-                  'AWS Core Services: EC2, S3, RDS, Lambda and IAM',
-                  'Azure Fundamentals: Virtual Machines, Blob Storage and Azure AD',
-                  'GCP Essentials: Compute Engine, Cloud Storage and BigQuery',
-                  'Networking in the Cloud: VPCs, Subnets, Security Groups',
-                  'Serverless Computing: AWS Lambda and Azure Functions',
-                  'Cloud Cost Management and the Well-Architected Framework',
-                  'Capstone: Deploy a Three-Tier Application on AWS or Azure',
-                ],
-                tools: ['AWS Console', 'Azure Portal', 'Google Cloud Console', 'Terraform (Intro)', 'Docker Basics'],
-                careers: ['Cloud Support Engineer', 'Cloud Administrator', 'DevOps Intern', 'IT Infrastructure Analyst'],
-              },
-              {
-                icon: '📑', title: 'Microsoft Office Mastery', price: 15000, duration: '2 Weeks',
-                color: '#15803d',
-                desc: 'Advanced Word, Excel formulas, PowerPoint for executive presentations, and Outlook productivity workflows.',
-                curriculum: [
-                  'Microsoft Word: Styles, Table of Contents and Mail Merge',
-                  'Excel Advanced Functions: XLOOKUP, IFS, SUMIFS and Dynamic Arrays',
-                  'Excel PivotTables and Charts for Business Reporting',
-                  'PowerPoint: Slide Design, Animations and Executive Decks',
-                  'Outlook: Calendar Management, Rules and Professional Email Etiquette',
-                  'OneDrive and SharePoint: Cloud Collaboration and File Management',
-                  'Microsoft Forms and Teams: Surveys and Virtual Meetings',
-                  'Capstone: Build a Professional Business Report and Presentation',
-                ],
-                tools: ['Microsoft Word', 'Excel', 'PowerPoint', 'Outlook', 'Teams', 'OneDrive'],
-                careers: ['Executive Assistant', 'Office Manager', 'Administrative Officer', 'Business Analyst'],
-              },
-              {
-                icon: '📲', title: 'Mobile App Development', price: 45000, duration: '5 Weeks',
-                color: '#BE123C',
-                desc: 'Flutter basics, UI components, navigation, state management, and publishing to the Google Play Store and Apple App Store.',
-                curriculum: [
-                  'Dart Programming Language: Syntax, Types and OOP Concepts',
-                  'Flutter Setup: SDK, Android Studio and Device Emulators',
-                  'Widgets: Stateless, Stateful, and the Flutter Widget Tree',
-                  'Navigation: Routes, Named Routes and Bottom Navigation Bar',
-                  'State Management: Provider and Riverpod',
-                  'Firebase Integration: Authentication, Firestore and Push Notifications',
-                  'REST API Integration and JSON Data Handling in Flutter',
-                  'Capstone: Build and Publish a Mobile App to the Play Store',
-                ],
-                tools: ['Flutter', 'Dart', 'Firebase', 'Android Studio', 'VS Code', 'Google Play Console'],
-                careers: ['Mobile App Developer', 'Flutter Developer', 'App Entrepreneur', 'Junior iOS/Android Developer'],
-              },
-            ].map((domain, i) => (
-              <FadeInSection key={domain.title} delay={i * 100}>
-                <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col h-full">
-                  {/* Header */}
-                  <div
-                    className="px-6 py-6"
-                    style={{ background: `linear-gradient(135deg, ${domain.color}25 0%, ${domain.color}08 100%)`, borderBottom: `1px solid ${domain.color}35` }}
-                  >
-                    <div className="flex items-center gap-4 mb-4">
-                      <div
-                        className="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl flex-shrink-0"
-                        style={{ background: `${domain.color}20`, border: `1px solid ${domain.color}40` }}
-                      >
-                        {domain.icon}
-                      </div>
-                      <div>
-                        <h3 className="font-heading text-lg font-bold text-white leading-snug">{domain.title}</h3>
-                        <div className="flex items-center gap-2 mt-1">
-                          <span className="text-sm font-bold" style={{ color: domain.color }}>
-                            {formatNGN(domain.price)}
-                          </span>
-                          <span className="text-white/30 text-xs">·</span>
-                          <span className="text-white/50 text-sm">{domain.duration}</span>
-                        </div>
-                      </div>
-                    </div>
-                    <p className="text-white/60 text-sm leading-relaxed">{domain.desc}</p>
-                  </div>
+          <FadeInSection>
+            <SpecialDomainAccordion domains={SPECIAL_DOMAINS} enrollHref={WHATSAPP_ENROLL} variant="dark" />
+          </FadeInSection>
 
-                  {/* Body */}
-                  <div className="p-6 flex flex-col flex-1">
-                    <h4 className="text-white/50 text-xs font-bold uppercase tracking-wider mb-3">Curriculum</h4>
-                    <ul className="space-y-2 mb-5 flex-1">
-                      {domain.curriculum.map(item => (
-                        <li key={item} className="flex items-start gap-2 text-sm text-white/65">
-                          <span className="flex-shrink-0 mt-0.5" style={{ color: domain.color }}>✓</span>
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-
-                    <div className="mb-4">
-                      <h4 className="text-white/50 text-xs font-bold uppercase tracking-wider mb-2">Tools</h4>
-                      <div className="flex flex-wrap gap-1.5">
-                        {domain.tools.map(tool => (
-                          <span
-                            key={tool}
-                            className="text-xs px-2.5 py-1 rounded-full font-medium"
-                            style={{ background: `${domain.color}15`, color: domain.color }}
-                          >
-                            {tool}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="mb-5">
-                      <h4 className="text-white/50 text-xs font-bold uppercase tracking-wider mb-2">Career Outcomes</h4>
-                      <div className="flex flex-wrap gap-1.5">
-                        {domain.careers.map(c => (
-                          <span key={c} className="text-xs px-2.5 py-1 rounded-full font-medium bg-white/10 text-white/70">
-                            {c}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="bg-white/5 rounded-xl px-4 py-3 mb-4 text-xs text-white/50">
-                      🏆 Certificate of Completion verified on Polygon blockchain
-                    </div>
-
-                    <a
-                      href={WHATSAPP_ENROLL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block w-full text-center text-sm font-bold py-3 rounded-xl transition-colors"
-                      style={{ background: `${domain.color}22`, color: domain.color, border: `1px solid ${domain.color}40` }}
-                    >
-                      Enrol in This Domain →
-                    </a>
-                  </div>
-                </div>
-              </FadeInSection>
-            ))}
-          </div>
+          <FadeInSection className="text-center mt-10">
+            <p className="text-white/40 text-sm">
+              All Special Domains include a blockchain-verified Certificate of Completion on Polygon.
+            </p>
+          </FadeInSection>
         </div>
       </section>
 

@@ -5,6 +5,8 @@ import FadeInSection from '@/components/FadeInSection'
 import TestimonialsCarousel from '@/components/TestimonialsCarousel'
 import type { TestimonialItem } from '@/components/TestimonialsCarousel'
 import CertVerifyBar from '@/components/CertVerifyBar'
+import SpecialDomainAccordion from '@/components/SpecialDomainAccordion'
+import { SPECIAL_DOMAINS } from '@/lib/specialDomains'
 import { books, WHATSAPP_BOOK, WHATSAPP_ENROLL } from '@/lib/data'
 
 export const metadata: Metadata = {
@@ -66,69 +68,6 @@ const courses = [
     brief: 'Build professional websites and full-stack applications. From your first HTML page to deploying production-grade software.',
     href: '/courses#web-development',
     headerBg: 'linear-gradient(135deg, #064e3b 0%, #065f46 100%)',
-  },
-]
-
-const specialDomains = [
-  {
-    icon: '📱',
-    title: 'Digital Marketing & Growth',
-    price: '₦20,000',
-    duration: '3 Weeks',
-    desc: 'Social media strategy, SEO, Google Ads, Meta Ads, email campaigns, and content marketing for Nigerian businesses.',
-    tools: ['Meta Ads Manager', 'Google Ads', 'Mailchimp', 'Canva', 'Google Analytics'],
-    color: '#E87722',
-    illust: 'marketing',
-  },
-  {
-    icon: '🎨',
-    title: 'UI/UX Design',
-    price: '₦30,000',
-    duration: '4 Weeks',
-    desc: 'User research, wireframing, prototyping in Figma, design systems, and usability testing for digital products.',
-    tools: ['Figma', 'FigJam', 'Maze', 'Miro', 'Lottie'],
-    color: '#7C3AED',
-    illust: 'design',
-  },
-  {
-    icon: '🐍',
-    title: 'Python Programming',
-    price: '₦25,000',
-    duration: '4 Weeks',
-    desc: 'Python syntax, data structures, automation scripts, web scraping, file handling, and an introduction to data science libraries.',
-    tools: ['Python', 'VS Code', 'Jupyter', 'Pandas', 'Requests'],
-    color: '#2563EB',
-    illust: 'python',
-  },
-  {
-    icon: '☁️',
-    title: 'Cloud Computing Fundamentals',
-    price: '₦35,000',
-    duration: '4 Weeks',
-    desc: 'AWS, Azure and GCP basics, cloud storage, virtual machines, serverless functions, and cloud cost management.',
-    tools: ['AWS Console', 'Azure Portal', 'GCP', 'Terraform (Intro)', 'Docker Basics'],
-    color: '#0891B2',
-    illust: 'cloud',
-  },
-  {
-    icon: '📑',
-    title: 'Microsoft Office Mastery',
-    price: '₦15,000',
-    duration: '2 Weeks',
-    desc: 'Advanced Word, Excel formulas, PowerPoint for executive presentations, and Outlook productivity workflows.',
-    tools: ['Microsoft Word', 'Excel Advanced', 'PowerPoint', 'Outlook', 'OneDrive'],
-    color: '#15803d',
-    illust: 'office',
-  },
-  {
-    icon: '📲',
-    title: 'Mobile App Development',
-    price: '₦45,000',
-    duration: '5 Weeks',
-    desc: 'Flutter basics, UI components, navigation, state management, and publishing to the Google Play Store and Apple App Store.',
-    tools: ['Flutter', 'Dart', 'Firebase', 'Android Studio', 'VS Code'],
-    color: '#BE123C',
-    illust: 'mobile',
   },
 ]
 
@@ -413,72 +352,23 @@ export default async function HomePage() {
         <div className="container-custom">
           <FadeInSection className="text-center mb-3">
             <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 mb-4">
-              <span className="text-white/80 text-sm font-medium">Focused Skill Programmes</span>
+              <span className="text-orange text-sm font-bold">⭐ Special Domains</span>
             </div>
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-white">Special Domains</h2>
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-white">Go Deep in One Skill</h2>
           </FadeInSection>
-          <FadeInSection className="text-center mb-12">
+          <FadeInSection className="text-center mb-10">
             <p className="text-white/65 text-lg max-w-2xl mx-auto">
-              Want to master a specific skill fast? Our Special Domains are focused programmes for professionals who know exactly what they need.
+              Special Domains are focused programmes for professionals who want to master a specific skill area fast. Click any domain below to explore the full programme.
             </p>
           </FadeInSection>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
-            {specialDomains.map((domain, i) => (
-              <FadeInSection key={domain.title} delay={i * 80}>
-                <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:bg-white/10 hover:-translate-y-1 transition-all duration-300 flex flex-col h-full">
-                  {/* Illustration header */}
-                  <div
-                    className="px-6 py-6 flex items-center gap-4"
-                    style={{ background: `linear-gradient(135deg, ${domain.color}22 0%, ${domain.color}08 100%)`, borderBottom: `1px solid ${domain.color}30` }}
-                  >
-                    <div
-                      className="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl flex-shrink-0"
-                      style={{ background: `${domain.color}25`, border: `1px solid ${domain.color}40` }}
-                    >
-                      {domain.icon}
-                    </div>
-                    <div>
-                      <h3 className="font-heading text-base font-bold text-white leading-snug">{domain.title}</h3>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-xs font-bold" style={{ color: domain.color }}>{domain.price}</span>
-                        <span className="text-white/30 text-xs">·</span>
-                        <span className="text-white/50 text-xs">{domain.duration}</span>
-                      </div>
-                    </div>
-                  </div>
-                  {/* Body */}
-                  <div className="p-6 flex flex-col flex-1">
-                    <p className="text-white/65 text-sm leading-relaxed mb-5 flex-1">{domain.desc}</p>
-                    <div className="flex flex-wrap gap-1.5 mb-5">
-                      {domain.tools.map((tool) => (
-                        <span
-                          key={tool}
-                          className="text-xs px-2.5 py-1 rounded-full font-medium"
-                          style={{ background: `${domain.color}15`, color: domain.color }}
-                        >
-                          {tool}
-                        </span>
-                      ))}
-                    </div>
-                    <a
-                      href={WHATSAPP_ENROLL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block w-full text-center text-sm font-bold py-2.5 rounded-xl transition-colors"
-                      style={{ background: `${domain.color}20`, color: domain.color, border: `1px solid ${domain.color}40` }}
-                    >
-                      Enrol in This Domain →
-                    </a>
-                  </div>
-                </div>
-              </FadeInSection>
-            ))}
-          </div>
+          <FadeInSection>
+            <SpecialDomainAccordion domains={SPECIAL_DOMAINS} enrollHref={WHATSAPP_ENROLL} variant="dark" />
+          </FadeInSection>
 
-          <FadeInSection className="text-center">
-            <p className="text-white/50 text-sm">
-              All Special Domains include a Certificate of Completion verified on the Polygon blockchain.
+          <FadeInSection className="text-center mt-10">
+            <p className="text-white/40 text-sm">
+              All Special Domains include a blockchain-verified Certificate of Completion on Polygon.
             </p>
           </FadeInSection>
         </div>
