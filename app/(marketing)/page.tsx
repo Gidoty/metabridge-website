@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 
 const stats = [
   { value: '5,000+', label: 'Graduates Trained',      icon: '🎓', accent: '#2B8A9C' },
-  { value: '4',      label: 'Specialised Programmes', icon: '📚', accent: '#E87722' },
+  { value: '15+',    label: 'Programmes Offered',     icon: '📚', accent: '#E87722' },
   { value: '15+',    label: 'Countries Represented',  icon: '🌍', accent: '#15803d' },
   { value: '85%',    label: 'Employment Rate',        icon: '💼', accent: '#7C3AED' },
 ]
@@ -135,7 +135,7 @@ export default async function HomePage() {
 
               <div className="flex flex-wrap gap-4 mb-10">
                 <Link href="/courses" className="btn-primary text-base px-7 py-3.5">
-                  Start Learning Today
+                  Explore Our Courses
                 </Link>
                 <Link href="/books" className="btn-secondary text-base px-7 py-3.5">
                   Explore Our Books
