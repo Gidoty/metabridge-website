@@ -368,7 +368,7 @@ const COURSES: CourseData[] = [
       {
         level: 'black',
         label: 'Expert Mastery',
-        weeks: 12,
+        weeks: 16,
         price: 150000,
         prerequisite: 'Blue Belt plus a portfolio of at least 2 deployed React projects',
         topics: [
