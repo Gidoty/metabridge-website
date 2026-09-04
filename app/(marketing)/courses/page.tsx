@@ -5,6 +5,7 @@ import { formatNGN } from '@/lib/products'
 import { WHATSAPP_ENROLL } from '@/lib/data'
 import SpecialDomainAccordion from '@/components/SpecialDomainAccordion'
 import { SPECIAL_DOMAINS } from '@/lib/specialDomains'
+import PortfolioProjectsTabs from '@/components/PortfolioProjectsTabs'
 
 export const metadata: Metadata = {
   title: 'Courses & Programmes',
@@ -646,6 +647,11 @@ export default function CoursesPage() {
                 </FadeInSection>
               ))}
             </div>
+
+            {/* Portfolio projects */}
+            <FadeInSection>
+              <PortfolioProjectsTabs courseId={course.id} />
+            </FadeInSection>
 
             {idx < COURSES.length - 1 && (
               <div className="mt-16 border-b border-gray-200" />
