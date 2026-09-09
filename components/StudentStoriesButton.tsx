@@ -104,11 +104,6 @@ const QUOTE_TESTIMONIALS = [
   },
 ]
 
-const WA_SCREENSHOTS = [
-  { src: '/testimonials/wa-screenshot-1.jpg', alt: 'Community testimonials screenshot 1' },
-  { src: '/testimonials/wa-screenshot-2.jpg', alt: 'Community testimonials screenshot 2' },
-  { src: '/testimonials/wa-screenshot-3.jpg', alt: 'Community testimonials screenshot 3' },
-]
 
 interface Props {
   variant?: 'hero' | 'section'
@@ -172,37 +167,7 @@ export default function StudentStoriesButton({ variant = 'hero' }: Props) {
             {/* Scrollable content */}
             <div className="overflow-y-auto flex-1 p-5 sm:p-7 space-y-10">
 
-              {/* ── Section 1: WhatsApp community screenshots ── */}
-              <div>
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-lg">📱</span>
-                  <h3 className="font-heading font-bold text-navy text-base sm:text-lg">
-                    From the Community
-                  </h3>
-                </div>
-                <p className="text-gray-500 text-sm mb-5">
-                  What members of Gideon&apos;s crypto community say about MetaBridge Academy and its founder.
-                </p>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                  {WA_SCREENSHOTS.map((shot, i) => (
-                    <div
-                      key={i}
-                      className="rounded-xl border border-gray-200 shadow-sm"
-                      style={{ overflow: 'hidden', height: 340 }}
-                    >
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={shot.src}
-                        alt={shot.alt}
-                        className="w-full block"
-                        style={{ marginTop: '-72px' }}
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* ── Section 2: Quote cards ── */}
+              {/* ── Quote cards ── */}
               <div>
                 <div className="flex items-center gap-2 mb-2">
                   <span className="text-lg">⭐</span>
