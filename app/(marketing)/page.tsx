@@ -6,6 +6,7 @@ import SpecialDomainAccordion from '@/components/SpecialDomainAccordion'
 import { SPECIAL_DOMAINS } from '@/lib/specialDomains'
 import { books, WHATSAPP_BOOK, WHATSAPP_ENROLL } from '@/lib/data'
 import StudentStoriesButton from '@/components/StudentStoriesButton'
+import PortfolioExplorerCard from '@/components/PortfolioExplorerCard'
 
 export const metadata: Metadata = {
   title: 'Metabridge Academy | Gateway to Digital Literacy | Port Harcourt',
@@ -273,7 +274,7 @@ export default function HomePage() {
           <FadeInSection className="text-center mb-14">
             <h2 className="section-heading">Why Metabridge Academy?</h2>
           </FadeInSection>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
               {
                 icon: '🎯',
@@ -297,6 +298,9 @@ export default function HomePage() {
                 <p className="text-gray-500 leading-relaxed">{item.desc}</p>
               </FadeInSection>
             ))}
+            <FadeInSection delay={450}>
+              <PortfolioExplorerCard />
+            </FadeInSection>
           </div>
         </div>
       </section>
