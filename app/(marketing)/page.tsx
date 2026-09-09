@@ -1,13 +1,11 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { createClient } from '@supabase/supabase-js'
 import FadeInSection from '@/components/FadeInSection'
-import TestimonialsCarousel from '@/components/TestimonialsCarousel'
-import type { TestimonialItem } from '@/components/TestimonialsCarousel'
 import CertVerifyBar from '@/components/CertVerifyBar'
 import SpecialDomainAccordion from '@/components/SpecialDomainAccordion'
 import { SPECIAL_DOMAINS } from '@/lib/specialDomains'
 import { books, WHATSAPP_BOOK, WHATSAPP_ENROLL } from '@/lib/data'
+import StudentStoriesButton from '@/components/StudentStoriesButton'
 
 export const metadata: Metadata = {
   title: 'Metabridge Academy | Gateway to Digital Literacy | Port Harcourt',
@@ -78,35 +76,7 @@ const bookGradients: Record<string, string> = {
   blockchain: 'linear-gradient(135deg, #1B2A4A 0%, #5C3D00 100%)',
 }
 
-async function getLiveTestimonials(): Promise<TestimonialItem[]> {
-  try {
-    const supabase = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-    )
-    const { data } = await supabase
-      .from('testimonials')
-      .select('display_name, candidate_name, location, course_name, belt_level, message_for_future, rating_overall')
-      .eq('approved', true)
-      .order('created_at', { ascending: false })
-      .limit(18)
-
-    if (!data || data.length < 3) return []
-
-    return data.map((t) => ({
-      name: t.display_name || t.candidate_name.split(' ')[0],
-      role: `${t.belt_level} Graduate, ${t.course_name}`,
-      location: t.location || 'Nigeria',
-      quote: t.message_for_future,
-      rating: t.rating_overall,
-    }))
-  } catch {
-    return []
-  }
-}
-
-export default async function HomePage() {
-  const liveTestimonials = await getLiveTestimonials()
+export default function HomePage() {
   return (
     <>
       {/* HERO SECTION */}
@@ -140,6 +110,7 @@ export default async function HomePage() {
                 <Link href="/books" className="btn-secondary text-base px-7 py-3.5">
                   Explore Our Books
                 </Link>
+                <StudentStoriesButton variant="hero" />
               </div>
 
               <div className="flex flex-wrap gap-x-6 gap-y-2 text-white/60 text-sm">
@@ -433,7 +404,49 @@ export default async function HomePage() {
           <FadeInSection className="text-center mb-12">
             <p className="section-subheading">Real people. Real results. Real careers.</p>
           </FadeInSection>
-          <TestimonialsCarousel items={liveTestimonials.length >= 3 ? liveTestimonials : undefined} />
+
+          {/* 2-card preview */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10 max-w-3xl mx-auto">
+            {[
+              {
+                name: 'Chukwuma Obi',
+                role: 'Cybersecurity Analyst (Remote, UK Contract)',
+                location: 'Port Harcourt, Nigeria',
+                quote:
+                  "Four months after enrolling, I was negotiating a remote contract with a cybersecurity firm in the United Kingdom, from Port Harcourt. The first month's pay arrived in pounds sterling. Metabridge Academy did not just give me a skill. It gave me a life I had stopped believing I could have.",
+              },
+              {
+                name: 'Blessing Okafor',
+                role: 'Data Analyst, Oil and Gas Services',
+                location: 'Port Harcourt, Nigeria',
+                quote:
+                  'I am a single mother. Every investment has to be justified. Within six months, I moved from an administrative position into a junior data analyst role at an oil and gas services company. My children now watch their mother build something.',
+              },
+            ].map((t, i) => (
+              <FadeInSection key={t.name} delay={i * 150}>
+                <div className="bg-white rounded-2xl p-6 shadow-md border-l-4 border-teal hover:shadow-lg transition-shadow flex flex-col h-full">
+                  <div className="flex mb-3">
+                    {Array.from({ length: 5 }).map((_, si) => (
+                      <span key={si} className="text-lg text-orange">★</span>
+                    ))}
+                  </div>
+                  <p className="text-gray-600 italic leading-relaxed mb-4 flex-1">&ldquo;{t.quote}&rdquo;</p>
+                  <div>
+                    <p className="font-semibold text-navy">{t.name}</p>
+                    <p className="text-sm text-gray-500">{t.role}</p>
+                    <p className="text-sm text-teal">{t.location}</p>
+                  </div>
+                </div>
+              </FadeInSection>
+            ))}
+          </div>
+
+          <FadeInSection className="text-center">
+            <p className="text-gray-500 text-sm mb-5">
+              Join 5,000+ graduates who have transformed their careers through Metabridge Academy.
+            </p>
+            <StudentStoriesButton variant="section" />
+          </FadeInSection>
         </div>
       </section>
 
