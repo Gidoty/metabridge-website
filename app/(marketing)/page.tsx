@@ -103,14 +103,48 @@ export default function HomePage() {
                 Over 5,000 professionals have built in-demand skills, earned blockchain-verified certificates, and launched new careers through Metabridge Academy. Our three-belt curriculum takes you from foundation to global mastery. You are next.
               </p>
 
-              <div className="flex flex-wrap gap-4 mb-10">
-                <Link href="/courses" className="btn-primary text-base px-7 py-3.5">
-                  Explore Our Courses
-                </Link>
-                <Link href="/books" className="btn-secondary text-base px-7 py-3.5">
-                  Explore Our Books
-                </Link>
-                <StudentStoriesButton variant="hero" />
+              {/* CTA group */}
+              <div className="space-y-3 mb-10">
+
+                {/* Primary: Register Now */}
+                <a
+                  href="https://chat.whatsapp.com/IhywlnrJdMpFxrW0Sl5NZ7"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 w-full rounded-xl px-6 py-4 font-bold text-white text-base sm:text-lg transition-all shadow-xl group"
+                  style={{
+                    background: 'linear-gradient(135deg, #25D366 0%, #1DA851 100%)',
+                    boxShadow: '0 8px 32px rgba(37, 211, 102, 0.30)',
+                  }}
+                >
+                  <span className="text-xl shrink-0">📱</span>
+                  <span className="flex-1">Register Now</span>
+                  <span className="hidden sm:inline text-white/70 text-sm font-normal">
+                    Join our WhatsApp community
+                  </span>
+                  <span className="shrink-0 text-white/60 group-hover:translate-x-1 transition-transform">
+                    →
+                  </span>
+                </a>
+
+                {/* Secondary: 3 navigation buttons */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  <Link
+                    href="/courses"
+                    className="flex items-center justify-center gap-2 rounded-xl px-5 py-3 font-semibold text-white text-sm transition-all text-center"
+                    style={{ background: '#E87722' }}
+                  >
+                    🎓 Explore Courses
+                  </Link>
+                  <Link
+                    href="/books"
+                    className="flex items-center justify-center gap-2 rounded-xl px-5 py-3 font-semibold text-white text-sm border border-white/25 hover:bg-white/10 transition-colors backdrop-blur-sm text-center"
+                  >
+                    📚 Explore Books
+                  </Link>
+                  <StudentStoriesButton variant="hero" />
+                </div>
+
               </div>
 
               <div className="flex flex-wrap gap-x-6 gap-y-2 text-white/60 text-sm">

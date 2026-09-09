@@ -140,7 +140,7 @@ export default function StudentStoriesButton({ variant = 'hero' }: Props) {
 
   const triggerClass =
     variant === 'hero'
-      ? 'inline-flex items-center gap-2 bg-white/10 border border-white/30 text-white font-semibold px-7 py-3.5 rounded-xl hover:bg-white/20 transition-colors text-base backdrop-blur-sm'
+      ? 'flex items-center justify-center gap-2 rounded-xl px-5 py-3 font-semibold text-white text-sm border border-white/25 hover:bg-white/10 transition-colors backdrop-blur-sm w-full text-center'
       : 'inline-flex items-center gap-2 border-2 border-navy text-navy font-bold px-8 py-3 rounded-xl hover:bg-navy hover:text-white transition-colors text-base'
 
   return (
