@@ -109,7 +109,7 @@ export default function PortfolioExplorerCard() {
             </div>
 
             {/* Scrollable body */}
-            <div className="overflow-y-auto flex-1 p-5 sm:p-7 space-y-7">
+            <div className="overflow-y-auto flex-1 p-5 pb-12 sm:p-7 sm:pb-16 space-y-7">
 
               {/* Step 1 — Course */}
               <div>
