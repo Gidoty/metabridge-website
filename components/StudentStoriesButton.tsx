@@ -2,54 +2,15 @@
 
 import { useState, useEffect } from 'react'
 
-const CHAT_TESTIMONIALS = [
-  {
-    name: 'Obudu Precious',
-    initial: 'O',
-    color: '#E87722',
-    course: 'Graduate',
-    time: '10:42',
-    message:
-      'Abeg, this training came at the right time for me. I was tired of doing the same thing and wanted to learn something different. The projects made me take the training seriously because omo, I was tired of bagging certificates. I needed to build something and add to my portfolio, and Metabridge Academy gave me exactly that. I am grateful.',
-  },
-  {
-    name: 'Anonymous',
-    initial: 'A',
-    color: '#2B8A9C',
-    course: 'Cybersecurity Student',
-    time: '11:15',
-    message:
-      'Make I talk true, I no expect say I go understand this Cybersecurity stuff this much. At first I dey lost small small. But as classes dey go, I start getting it. The project part sweet me because you go actually build something wey you fit show person.',
-  },
-  {
-    name: 'Anonymous',
-    initial: 'A',
-    color: '#7C3AED',
-    course: 'AI Student',
-    time: '13:28',
-    message:
-      'Make ona help me thank Metabridge Academy. For me na that project aspect sweet me pass. I build agent wey dey manage WhatsApp group, omo I no believe am 😂. The instructors are good and their curriculum is very rich.',
-  },
-]
-
 const QUOTE_TESTIMONIALS = [
   {
-    name: 'Chukwuma Obi',
-    role: 'Cybersecurity Analyst (Remote, UK Contract)',
-    location: 'Port Harcourt, Nigeria',
-    course: 'Cybersecurity',
+    name: 'Obudu Precious',
+    role: 'Graduate',
+    location: 'Nigeria',
+    course: 'Metabridge Academy',
     rating: 5,
     quote:
-      "When I enrolled in the Metabridge Cybersecurity training, I genuinely did not know if anything would come of it. Four months later, I was negotiating a remote contract with a cybersecurity firm in the United Kingdom, from Port Harcourt. The first month's pay arrived in pounds sterling. I sat there and cried. My family cried. Metabridge Academy did not just give me a skill. It gave me a life I had stopped believing I could have.",
-  },
-  {
-    name: 'Blessing Okafor',
-    role: 'Data Analyst, Oil and Gas Services',
-    location: 'Port Harcourt, Nigeria',
-    course: 'Data Analytics',
-    rating: 5,
-    quote:
-      'I am a single mother. Every investment I make has to be justified. Within six months of the Metabridge Data Analytics training, I moved from an administrative position into a junior data analyst role at an oil and gas services company, with a salary increase that covered the full cost of the training within my first week. My children now watch their mother build something.',
+      'Abeg, this training came at the right time for me. I was tired of doing the same thing and wanted to learn something different. The projects made me take the training seriously because omo, I was tired of bagging certificates. I needed to build something and add to my portfolio, and Metabridge Academy gave me exactly that. I am grateful.',
   },
   {
     name: 'Damilola Israel',
@@ -114,6 +75,33 @@ const QUOTE_TESTIMONIALS = [
     quote:
       'I attended their training and also referred someone to register with Metabridge. The one thing I always mention is their consistency with excellence and practicals. You genuinely get what you paid for.',
   },
+  {
+    name: 'Anonymous',
+    role: 'Cybersecurity Student',
+    location: 'Nigeria',
+    course: 'Cybersecurity',
+    rating: 5,
+    quote:
+      'Make I talk true, I no expect say I go understand this Cybersecurity stuff this much. At first I dey lost small small. But as classes dey go, I start getting it. The project part sweet me because you go actually build something wey you fit show person.',
+  },
+  {
+    name: 'Anonymous',
+    role: 'AI Student',
+    location: 'Nigeria',
+    course: 'Artificial Intelligence',
+    rating: 5,
+    quote:
+      'Make ona help me thank Metabridge Academy. For me na that project aspect sweet me pass. I build agent wey dey manage WhatsApp group, omo I no believe am 😂. The instructors are good and their curriculum is very rich.',
+  },
+  {
+    name: 'Chukwuma Obi',
+    role: 'Cybersecurity Analyst (Remote, UK Contract)',
+    location: 'Port Harcourt, Nigeria',
+    course: 'Cybersecurity',
+    rating: 5,
+    quote:
+      "When I enrolled in the Metabridge Cybersecurity training, I genuinely did not know if anything would come of it. Four months later, I was negotiating a remote contract with a cybersecurity firm in the United Kingdom, from Port Harcourt. The first month's pay arrived in pounds sterling. I sat there and cried. My family cried. Metabridge Academy did not just give me a skill. It gave me a life I had stopped believing I could have.",
+  },
 ]
 
 const WA_SCREENSHOTS = [
@@ -158,9 +146,10 @@ export default function StudentStoriesButton({ variant = 'hero' }: Props) {
           />
 
           {/* Modal panel */}
-          <div className="relative z-10 bg-white w-full max-w-4xl rounded-2xl shadow-2xl flex flex-col overflow-hidden"
-               style={{ maxHeight: 'calc(100vh - 80px)' }}>
-
+          <div
+            className="relative z-10 bg-white w-full max-w-4xl rounded-2xl shadow-2xl flex flex-col overflow-hidden"
+            style={{ maxHeight: 'calc(100vh - 80px)' }}
+          >
             {/* Sticky header */}
             <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100 bg-white">
               <div>
@@ -168,7 +157,7 @@ export default function StudentStoriesButton({ variant = 'hero' }: Props) {
                   Testimonials from Our Students
                 </h2>
                 <p className="text-gray-500 text-xs sm:text-sm mt-0.5">
-                  Real feedback from real graduates and students
+                  Real feedback from real graduates and students, in their own words
                 </p>
               </div>
               <button
@@ -198,61 +187,22 @@ export default function StudentStoriesButton({ variant = 'hero' }: Props) {
                   {WA_SCREENSHOTS.map((shot, i) => (
                     <div
                       key={i}
-                      className="rounded-xl border border-gray-200 shadow-sm overflow-hidden"
-                      style={{ maxHeight: 420 }}
+                      className="rounded-xl border border-gray-200 shadow-sm"
+                      style={{ overflow: 'hidden', height: 340 }}
                     >
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={shot.src}
                         alt={shot.alt}
                         className="w-full block"
-                        style={{ marginTop: '-78px' }}
+                        style={{ marginTop: '-72px' }}
                       />
                     </div>
                   ))}
                 </div>
               </div>
 
-              {/* ── Section 2: WhatsApp chat bubbles ── */}
-              <div>
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-lg">💬</span>
-                  <h3 className="font-heading font-bold text-navy text-base sm:text-lg">
-                    In Their Own Words
-                  </h3>
-                </div>
-                <p className="text-gray-500 text-sm mb-5">
-                  Unedited feedback sent directly by students and graduates.
-                </p>
-                <div
-                  className="rounded-2xl p-4 space-y-5"
-                  style={{ background: '#ECE5DD' }}
-                >
-                  {CHAT_TESTIMONIALS.map((t, i) => (
-                    <div key={i} className="flex justify-end">
-                      <div className="max-w-[90%] sm:max-w-[75%]">
-                        <p
-                          className="text-xs font-semibold mb-1 text-right pr-1"
-                          style={{ color: t.color }}
-                        >
-                          {t.name} &middot; {t.course}
-                        </p>
-                        <div
-                          className="rounded-tl-2xl rounded-bl-2xl rounded-br-2xl px-4 py-3 shadow-sm"
-                          style={{ background: '#DCF8C6' }}
-                        >
-                          <p className="text-gray-800 text-sm leading-relaxed">{t.message}</p>
-                          <p className="text-right text-xs mt-2" style={{ color: '#8B9EA8' }}>
-                            {t.time} ✓✓
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* ── Section 3: Quote cards ── */}
+              {/* ── Section 2: Quote cards ── */}
               <div>
                 <div className="flex items-center gap-2 mb-2">
                   <span className="text-lg">⭐</span>
@@ -261,7 +211,7 @@ export default function StudentStoriesButton({ variant = 'hero' }: Props) {
                   </h3>
                 </div>
                 <p className="text-gray-500 text-sm mb-5">
-                  Graduates sharing the impact of their Metabridge Academy training.
+                  Graduates and students sharing the impact of their Metabridge Academy training.
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {QUOTE_TESTIMONIALS.map((t, i) => (
