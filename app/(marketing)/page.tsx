@@ -275,6 +275,9 @@ export default function HomePage() {
             <h2 className="section-heading">Why Metabridge Academy?</h2>
           </FadeInSection>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <FadeInSection delay={0} className="h-full">
+              <PortfolioExplorerCard />
+            </FadeInSection>
             {[
               {
                 icon: '🎯',
@@ -292,15 +295,12 @@ export default function HomePage() {
                 desc: 'Every graduate receives a certificate permanently recorded on the Polygon blockchain. Employers worldwide can verify authenticity instantly by scanning a QR code.',
               },
             ].map((item, i) => (
-              <FadeInSection key={item.title} delay={i * 150} className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow">
+              <FadeInSection key={item.title} delay={(i + 1) * 150} className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow">
                 <div className="text-4xl mb-4">{item.icon}</div>
                 <h3 className="font-heading text-xl font-semibold text-navy mb-3">{item.title}</h3>
                 <p className="text-gray-500 leading-relaxed">{item.desc}</p>
               </FadeInSection>
             ))}
-            <FadeInSection delay={450}>
-              <PortfolioExplorerCard />
-            </FadeInSection>
           </div>
         </div>
       </section>
