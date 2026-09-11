@@ -107,9 +107,10 @@ const QUOTE_TESTIMONIALS = [
 
 interface Props {
   variant?: 'hero' | 'section'
+  onOpen?: () => void
 }
 
-export default function StudentStoriesButton({ variant = 'hero' }: Props) {
+export default function StudentStoriesButton({ variant = 'hero', onOpen }: Props) {
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
@@ -128,7 +129,7 @@ export default function StudentStoriesButton({ variant = 'hero' }: Props) {
 
   return (
     <>
-      <button onClick={() => setOpen(true)} className={triggerClass}>
+      <button onClick={() => { onOpen?.(); setOpen(true) }} className={triggerClass}>
         💬 Student Testimonials
       </button>
 

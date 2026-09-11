@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { HiMenu, HiX } from 'react-icons/hi'
 import { ThemeToggle } from '@/components/ThemeToggle'
+import StudentStoriesButton from '@/components/StudentStoriesButton'
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -125,7 +126,8 @@ export default function Navigation() {
                   {link.label}
                 </Link>
               ))}
-              <div className="pt-4 border-t border-white/10 mt-2">
+              <div className="pt-4 border-t border-white/10 mt-2 flex flex-col gap-2">
+                <StudentStoriesButton variant="hero" onOpen={() => setIsOpen(false)} />
                 <a
                   href={WHATSAPP_ENROLL}
                   target="_blank"

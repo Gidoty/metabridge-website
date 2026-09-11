@@ -105,47 +105,20 @@ export default function HomePage() {
               </p>
 
               {/* CTA group */}
-              <div className="space-y-3 mb-10">
-
-                {/* Primary: Register Now */}
-                <a
-                  href="https://chat.whatsapp.com/IhywlnrJdMpFxrW0Sl5NZ7"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 w-full rounded-xl px-6 py-4 font-bold text-white text-base sm:text-lg transition-all shadow-xl group"
-                  style={{
-                    background: 'linear-gradient(135deg, #25D366 0%, #1DA851 100%)',
-                    boxShadow: '0 8px 32px rgba(37, 211, 102, 0.30)',
-                  }}
+              <div className="flex flex-col sm:flex-row gap-3 mb-10">
+                <Link
+                  href="/courses"
+                  className="flex items-center justify-center gap-2 rounded-xl px-7 py-4 font-bold text-white text-base transition-all text-center flex-1"
+                  style={{ background: '#E87722' }}
                 >
-                  <span className="text-xl shrink-0">📱</span>
-                  <span className="flex-1">Register Now</span>
-                  <span className="hidden sm:inline text-white/70 text-sm font-normal">
-                    Join our WhatsApp community
-                  </span>
-                  <span className="shrink-0 text-white/60 group-hover:translate-x-1 transition-transform">
-                    →
-                  </span>
-                </a>
-
-                {/* Secondary: 3 navigation buttons */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                  <Link
-                    href="/courses"
-                    className="flex items-center justify-center gap-2 rounded-xl px-5 py-3 font-semibold text-white text-sm transition-all text-center"
-                    style={{ background: '#E87722' }}
-                  >
-                    🎓 Explore Courses
-                  </Link>
-                  <Link
-                    href="/books"
-                    className="flex items-center justify-center gap-2 rounded-xl px-5 py-3 font-semibold text-white text-sm border border-white/25 hover:bg-white/10 transition-colors backdrop-blur-sm text-center"
-                  >
-                    📚 Explore Books
-                  </Link>
-                  <StudentStoriesButton variant="hero" />
-                </div>
-
+                  🎓 Explore Our Courses
+                </Link>
+                <Link
+                  href="/books"
+                  className="flex items-center justify-center gap-2 rounded-xl px-7 py-4 font-bold text-white text-base border border-white/25 hover:bg-white/10 transition-colors backdrop-blur-sm text-center flex-1"
+                >
+                  📚 Explore Our Books
+                </Link>
               </div>
 
               <div className="flex flex-wrap gap-x-6 gap-y-2 text-white/60 text-sm">
