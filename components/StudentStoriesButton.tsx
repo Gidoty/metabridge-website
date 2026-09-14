@@ -1,8 +1,9 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 
-const QUOTE_TESTIMONIALS = [
+export const QUOTE_TESTIMONIALS = [
   {
     name: 'Obudu Precious',
     role: 'Graduate',
@@ -133,7 +134,7 @@ export default function StudentStoriesButton({ variant = 'hero', onOpen }: Props
         💬 Student Testimonials
       </button>
 
-      {open && (
+      {open && createPortal(
         <div className="fixed inset-0 z-[200] flex items-start justify-center p-3 pt-12 sm:pt-16">
           {/* Backdrop */}
           <div
@@ -212,7 +213,8 @@ export default function StudentStoriesButton({ variant = 'hero', onOpen }: Props
 
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   )

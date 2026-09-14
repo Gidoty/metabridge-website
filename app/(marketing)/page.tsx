@@ -5,7 +5,7 @@ import CertVerifyBar from '@/components/CertVerifyBar'
 import SpecialDomainAccordion from '@/components/SpecialDomainAccordion'
 import { SPECIAL_DOMAINS } from '@/lib/specialDomains'
 import { books, WHATSAPP_BOOK, WHATSAPP_ENROLL } from '@/lib/data'
-import StudentStoriesButton from '@/components/StudentStoriesButton'
+import StudentStoriesButton, { QUOTE_TESTIMONIALS } from '@/components/StudentStoriesButton'
 import PortfolioExplorerCard from '@/components/PortfolioExplorerCard'
 
 export const metadata: Metadata = {
@@ -416,29 +416,13 @@ export default function HomePage() {
             <p className="section-subheading">Real people. Real results. Real careers.</p>
           </FadeInSection>
 
-          {/* 2-card preview */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10 max-w-3xl mx-auto">
-            {[
-              {
-                name: 'Chukwuma Obi',
-                role: 'Cybersecurity Analyst (Remote, UK Contract)',
-                location: 'Port Harcourt, Nigeria',
-                quote:
-                  "Four months after enrolling, I was negotiating a remote contract with a cybersecurity firm in the United Kingdom, from Port Harcourt. The first month's pay arrived in pounds sterling. Metabridge Academy did not just give me a skill. It gave me a life I had stopped believing I could have.",
-              },
-              {
-                name: 'Blessing Okafor',
-                role: 'Data Analyst, Oil and Gas Services',
-                location: 'Port Harcourt, Nigeria',
-                quote:
-                  'I am a single mother. Every investment has to be justified. Within six months, I moved from an administrative position into a junior data analyst role at an oil and gas services company. My children now watch their mother build something.',
-              },
-            ].map((t, i) => (
-              <FadeInSection key={t.name} delay={i * 150}>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+            {QUOTE_TESTIMONIALS.map((t, i) => (
+              <FadeInSection key={t.name + i} delay={(i % 3) * 120}>
                 <div className="bg-white rounded-2xl p-6 shadow-md border-l-4 border-teal hover:shadow-lg transition-shadow flex flex-col h-full">
                   <div className="flex mb-3">
                     {Array.from({ length: 5 }).map((_, si) => (
-                      <span key={si} className="text-lg text-orange">★</span>
+                      <span key={si} className={`text-lg ${si < t.rating ? 'text-orange' : 'text-gray-200'}`}>★</span>
                     ))}
                   </div>
                   <p className="text-gray-600 italic leading-relaxed mb-4 flex-1">&ldquo;{t.quote}&rdquo;</p>
@@ -453,10 +437,9 @@ export default function HomePage() {
           </div>
 
           <FadeInSection className="text-center">
-            <p className="text-gray-500 text-sm mb-5">
+            <p className="text-gray-500 text-sm">
               Join 5,000+ graduates who have transformed their careers through Metabridge Academy.
             </p>
-            <StudentStoriesButton variant="section" />
           </FadeInSection>
         </div>
       </section>
