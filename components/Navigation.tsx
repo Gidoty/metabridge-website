@@ -8,13 +8,15 @@ import { ThemeToggle } from '@/components/ThemeToggle'
 import StudentStoriesButton from '@/components/StudentStoriesButton'
 
 const navLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/about', label: 'About' },
-  { href: '/courses', label: 'Courses' },
-  { href: '/books', label: 'Books' },
-  { href: '/faq', label: 'FAQ' },
-  { href: '/verify/lookup', label: 'Verify' },
-  { href: '/contact', label: 'Contact' },
+  { href: '/', label: 'Home', desktopOnly: false },
+  { href: '/about', label: 'About', desktopOnly: false },
+  { href: '/courses', label: 'Courses', desktopOnly: false },
+  { href: '/projects', label: 'Projects', desktopOnly: false },
+  { href: '/books', label: 'Books', desktopOnly: false },
+  { href: '/gallery', label: 'Gallery', desktopOnly: true },
+  { href: '/faq', label: 'FAQ', desktopOnly: false },
+  { href: '/verify/lookup', label: 'Verify', desktopOnly: true },
+  { href: '/contact', label: 'Contact', desktopOnly: false },
 ]
 
 const WHATSAPP_ENROLL = 'https://wa.me/2348124228730?text=I%20want%20to%20enroll%20in%20a%20Metabridge%20Academy%20course.'
@@ -55,8 +57,8 @@ export default function Navigation() {
             </Link>
 
             {/* Desktop nav */}
-            <div className="hidden lg:flex items-center gap-6">
-              {navLinks.map((link) => (
+            <div className="hidden lg:flex items-center gap-5">
+              {navLinks.filter(l => !l.desktopOnly).map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
@@ -118,7 +120,7 @@ export default function Navigation() {
                   key={link.href}
                   href={link.href}
                   className={`px-4 py-3 rounded-lg text-base font-medium transition-colors duration-200 ${
-                    pathname === link.href
+                    pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href))
                       ? 'bg-orange/20 text-orange'
                       : 'text-white/80 hover:bg-white/10 hover:text-white'
                   }`}

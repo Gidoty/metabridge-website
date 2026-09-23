@@ -4,7 +4,7 @@ import FadeInSection from '@/components/FadeInSection'
 export const metadata: Metadata = {
   title: 'Gallery & Credentials',
   description:
-    'View Metabridge Academy training sessions, cohort photos, and official accreditation credentials including CAC and SCUML certification.',
+    'View Metabridge Academy training sessions, cohort photos, and official registration credentials including CAC and SCUML compliance documents.',
   openGraph: {
     title: 'Gallery & Credentials | Metabridge Academy',
     description: 'Official credentials and training gallery of Metabridge Academy, Port Harcourt.',
@@ -15,17 +15,17 @@ export const metadata: Metadata = {
 const credentials = [
   {
     id: 'cac',
-    label: 'CAC Certificate',
-    description: 'Corporate Affairs Commission — Registered Business in Nigeria',
-    imagePath: null,
+    label: 'CAC Business Registration',
+    description: 'Certificate of Incorporation — Metabridge Academy Ltd, registered as a Private Company Limited by Shares under the Companies and Allied Matters Act 2020. Company Reg. No. 9621598.',
+    imagePath: '/gallery/cac-certificate.jpg',
     icon: '🏗️',
     color: 'border-teal',
     badge: 'bg-teal/10 text-teal',
   },
   {
     id: 'scuml',
-    label: 'SCUML Certificate',
-    description: 'Special Control Unit Against Money Laundering — Federal Compliance',
+    label: 'SCUML Compliance Registration',
+    description: 'Special Control Unit Against Money Laundering — Federal compliance registration confirming our commitment to financial integrity.',
     imagePath: null,
     icon: '🔏',
     color: 'border-navy',
@@ -57,9 +57,9 @@ export default function GalleryPage() {
       <section className="section-padding bg-light-bg">
         <div className="container-custom">
           <FadeInSection className="text-center mb-12">
-            <h2 className="section-heading">Official Accreditations</h2>
+            <h2 className="section-heading">Legal Registrations &amp; Compliance</h2>
             <p className="section-subheading">
-              Metabridge Academy is a fully registered and compliant institution in Nigeria.
+              Metabridge Academy is a fully registered and legally compliant business in Nigeria.
             </p>
           </FadeInSection>
 
@@ -86,7 +86,7 @@ export default function GalleryPage() {
                   )}
                   <div className="p-6">
                     <span className={`text-xs font-bold px-3 py-1 rounded-full ${cred.badge} inline-block mb-3`}>
-                      Official Document
+                      Official Registration
                     </span>
                     <h3 className="font-heading text-lg font-bold text-navy mb-1">{cred.label}</h3>
                     <p className="text-gray-500 text-sm leading-relaxed">{cred.description}</p>
@@ -157,8 +157,8 @@ export default function GalleryPage() {
         <div className="container-custom">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             {[
-              { value: '500+', label: 'Graduates Trained' },
-              { value: '4', label: 'Programmes' },
+              { value: '5,000+', label: 'Graduates Trained' },
+              { value: '15+', label: 'Programmes' },
               { value: '15+', label: 'Countries' },
               { value: '85%', label: 'Employment Rate' },
             ].map((stat) => (

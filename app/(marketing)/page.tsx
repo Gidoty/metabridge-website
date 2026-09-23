@@ -11,11 +11,11 @@ import PortfolioExplorerCard from '@/components/PortfolioExplorerCard'
 export const metadata: Metadata = {
   title: 'Metabridge Academy | Gateway to Digital Literacy | Port Harcourt',
   description:
-    "Africa's leading digital skills academy. Cybersecurity, Data Analytics, AI, and Blockchain training with globally-verified certificates. Based in Port Harcourt, Nigeria.",
+    "Nigeria's digital skills academy. Cybersecurity, Data Analytics, AI, and Blockchain training with blockchain-verified certificates. Based in Port Harcourt.",
   openGraph: {
     title: 'Metabridge Academy | Gateway to Digital Literacy',
     description:
-      "Africa's leading digital skills academy. Globally-verified certificates in Cybersecurity, Data Analytics, AI & Blockchain.",
+      "Cybersecurity, Data Analytics, AI & Blockchain training with blockchain-verified certificates. Based in Port Harcourt, Nigeria.",
     url: 'https://metabridgeacademy.com',
   },
 }
@@ -40,7 +40,7 @@ const courses = [
     icon: '📊',
     title: 'Data Analytics',
     tag: 'Green · Blue · Black Belt',
-    brief: "Transform raw data into powerful business decisions. Learn tools used by analysts at the world's leading companies.",
+    brief: "Transform raw data into powerful business decisions. Learn the tools and techniques used by professional data analysts globally.",
     href: '/courses#data-analytics',
     headerBg: 'linear-gradient(135deg, #0D4F5C 0%, #1E3A6E 100%)',
   },
@@ -126,7 +126,7 @@ export default function HomePage() {
                 <span className="hidden sm:inline text-white/30">|</span>
                 <span>🌍 15+ Countries</span>
                 <span className="hidden sm:inline text-white/30">|</span>
-                <span>💼 85% Job Placement Rate</span>
+                <span>💼 85% Employment Rate</span>
               </div>
             </div>
 
@@ -260,7 +260,7 @@ export default function HomePage() {
               {
                 icon: '🌍',
                 title: 'African Context, Global Standards',
-                desc: 'We are the only academy that teaches digital skills through the lens of African markets, regulations, and real-world scenarios.',
+                desc: 'We build every programme around African markets, regulations, and real-world scenarios — so what you learn works where you live.',
               },
               {
                 icon: '⛓️',

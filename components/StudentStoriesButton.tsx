@@ -113,6 +113,9 @@ interface Props {
 
 export default function StudentStoriesButton({ variant = 'hero', onOpen }: Props) {
   const [open, setOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => { setMounted(true) }, [])
 
   useEffect(() => {
     if (open) {
@@ -123,6 +126,16 @@ export default function StudentStoriesButton({ variant = 'hero', onOpen }: Props
     return () => { document.body.style.overflow = '' }
   }, [open])
 
+  function handleOpen() {
+    onOpen?.()
+    if (onOpen) {
+      // Wait for drawer close animation before opening modal
+      setTimeout(() => setOpen(true), 320)
+    } else {
+      setOpen(true)
+    }
+  }
+
   const triggerClass =
     variant === 'hero'
       ? 'flex items-center justify-center gap-2 rounded-xl px-5 py-3 font-semibold text-white text-sm border border-white/25 hover:bg-white/10 transition-colors backdrop-blur-sm w-full text-center'
@@ -130,36 +143,43 @@ export default function StudentStoriesButton({ variant = 'hero', onOpen }: Props
 
   return (
     <>
-      <button onClick={() => { onOpen?.(); setOpen(true) }} className={triggerClass}>
+      <button onClick={handleOpen} className={triggerClass}>
         💬 Student Testimonials
       </button>
 
-      {open && createPortal(
-        <div className="fixed inset-0 z-[200] flex items-start justify-center p-3 pt-12 sm:pt-16">
+      {mounted && open && createPortal(
+        <div className="fixed inset-0 z-[200] flex flex-col" style={{ paddingTop: 'env(safe-area-inset-top)' }}>
           {/* Backdrop */}
           <div
             className="absolute inset-0 bg-black/80 backdrop-blur-sm"
             onClick={() => setOpen(false)}
           />
 
-          {/* Modal panel */}
+          {/* Modal panel — fills most of the screen, starts below the nav */}
           <div
-            className="relative z-10 bg-white w-full max-w-4xl rounded-2xl shadow-2xl flex flex-col overflow-hidden"
-            style={{ maxHeight: 'calc(100vh - 80px)' }}
+            className="relative z-10 bg-white w-full mx-auto flex flex-col overflow-hidden shadow-2xl"
+            style={{
+              maxWidth: '900px',
+              marginTop: '64px',
+              marginLeft: 'auto',
+              marginRight: 'auto',
+              height: 'calc(100vh - 80px)',
+              borderRadius: '1rem 1rem 0 0',
+            }}
           >
             {/* Sticky header */}
-            <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100 bg-white">
+            <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100 bg-white shrink-0">
               <div>
-                <h2 className="font-heading text-lg sm:text-xl font-bold text-navy">
-                  Testimonials from Our Students
+                <h2 className="font-heading text-base sm:text-xl font-bold text-navy">
+                  Student Testimonials
                 </h2>
-                <p className="text-gray-500 text-xs sm:text-sm mt-0.5">
-                  Real feedback from real graduates and students, in their own words
+                <p className="text-gray-500 text-xs mt-0.5">
+                  Real words from graduates and students — unedited
                 </p>
               </div>
               <button
                 onClick={() => setOpen(false)}
-                className="w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors flex items-center justify-center text-gray-600 font-bold text-base shrink-0 ml-4"
+                className="w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors flex items-center justify-center text-gray-600 font-bold text-lg shrink-0 ml-3"
                 aria-label="Close"
               >
                 ✕
@@ -167,50 +187,36 @@ export default function StudentStoriesButton({ variant = 'hero', onOpen }: Props
             </div>
 
             {/* Scrollable content */}
-            <div className="overflow-y-auto flex-1 p-5 sm:p-7 space-y-10">
-
-              {/* ── Quote cards ── */}
-              <div>
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-lg">⭐</span>
-                  <h3 className="font-heading font-bold text-navy text-base sm:text-lg">
-                    Student Stories
-                  </h3>
-                </div>
-                <p className="text-gray-500 text-sm mb-5">
-                  Graduates and students sharing the impact of their Metabridge Academy training.
-                </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {QUOTE_TESTIMONIALS.map((t, i) => (
-                    <div
-                      key={i}
-                      className="rounded-xl p-5 border border-gray-200 bg-gray-50 flex flex-col"
-                    >
-                      <div className="flex mb-3">
-                        {Array.from({ length: 5 }).map((_, si) => (
-                          <span
-                            key={si}
-                            className={`text-base ${si < t.rating ? 'text-orange' : 'text-gray-200'}`}
-                          >
-                            ★
-                          </span>
-                        ))}
-                      </div>
-                      <p className="text-gray-600 italic text-sm leading-relaxed flex-1 mb-4">
-                        &ldquo;{t.quote}&rdquo;
-                      </p>
-                      <div className="border-t border-gray-200 pt-3">
-                        <p className="font-semibold text-navy text-sm">{t.name}</p>
-                        <p className="text-xs text-gray-500 mt-0.5">{t.role}</p>
-                        <span className="inline-block mt-1.5 text-xs font-medium text-teal bg-teal/10 px-2.5 py-0.5 rounded-full">
-                          {t.course}
+            <div className="overflow-y-auto flex-1 p-4 sm:p-6" style={{ WebkitOverflowScrolling: 'touch' }}>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pb-8">
+                {QUOTE_TESTIMONIALS.map((t, i) => (
+                  <div
+                    key={i}
+                    className="rounded-xl p-4 border border-gray-200 bg-gray-50 flex flex-col"
+                  >
+                    <div className="flex mb-2">
+                      {Array.from({ length: 5 }).map((_, si) => (
+                        <span
+                          key={si}
+                          className={`text-sm ${si < t.rating ? 'text-orange' : 'text-gray-200'}`}
+                        >
+                          ★
                         </span>
-                      </div>
+                      ))}
                     </div>
-                  ))}
-                </div>
+                    <p className="text-gray-600 italic text-sm leading-relaxed flex-1 mb-3">
+                      &ldquo;{t.quote}&rdquo;
+                    </p>
+                    <div className="border-t border-gray-200 pt-3">
+                      <p className="font-semibold text-navy text-sm">{t.name}</p>
+                      <p className="text-xs text-gray-500 mt-0.5">{t.role}</p>
+                      <span className="inline-block mt-1.5 text-xs font-medium text-teal bg-teal/10 px-2.5 py-0.5 rounded-full">
+                        {t.course}
+                      </span>
+                    </div>
+                  </div>
+                ))}
               </div>
-
             </div>
           </div>
         </div>,

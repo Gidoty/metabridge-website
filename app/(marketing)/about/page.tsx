@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     'Learn about Metabridge Academy — founded in Port Harcourt to equip African professionals with world-class digital skills in Cybersecurity, Data Analytics, AI, and Blockchain.',
   openGraph: {
     title: 'About Metabridge Academy',
-    description: 'Founded in Port Harcourt. Built for Africa. Recognised worldwide.',
+    description: 'Founded in Port Harcourt. Built for Africa. Globally-verified certificates.',
     url: 'https://metabridgeacademy.com/about',
   },
 }
@@ -146,7 +146,7 @@ export default function AboutPage() {
                 number: 'SDG 8',
                 name: 'Decent Work & Economic Growth',
                 color: '#A21942',
-                desc: 'With an 85% employment rate among graduates, we create direct pathways to dignified, well-paying careers in Cybersecurity, Data Analytics, Artificial Intelligence, and Blockchain.',
+                desc: '85% of surveyed graduates report securing employment or consulting opportunities after completing their programme, reflecting our commitment to career-ready, practical training.',
               },
               {
                 number: 'SDG 9',
