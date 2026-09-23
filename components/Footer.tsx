@@ -6,6 +6,7 @@ import {
   FaInstagram,
   FaWhatsapp,
   FaLocationDot,
+  FaTiktok,
 } from 'react-icons/fa6'
 import { FiMail } from 'react-icons/fi'
 
@@ -13,7 +14,8 @@ const socialLinks = [
   { icon: FaFacebook, href: 'https://www.facebook.com/share/1BLRau146A/', label: 'Facebook' },
   { icon: FaXTwitter, href: 'https://x.com/MetabridgeA', label: 'X (Twitter)' },
   { icon: FaLinkedinIn, href: 'https://www.linkedin.com/company/metabridge-academy/', label: 'LinkedIn' },
-  { icon: FaInstagram, href: 'https://www.instagram.com/metabridgea?igsh=NXMyemIzbml2cXk0', label: 'Instagram' },
+  { icon: FaInstagram, href: 'https://www.instagram.com/metabridgea', label: 'Instagram' },
+  { icon: FaTiktok, href: 'https://www.tiktok.com/@metabridgea', label: 'TikTok' },
 ]
 
 export default function Footer() {

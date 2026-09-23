@@ -16,8 +16,8 @@ const credentials = [
   {
     id: 'cac',
     label: 'CAC Business Registration',
-    description: 'Corporate Affairs Commission — Officially registered business entity in Nigeria.',
-    imagePath: null,
+    description: 'Certificate of Incorporation — Metabridge Academy Ltd, registered as a Private Company Limited by Shares under the Companies and Allied Matters Act 2020. Company Reg. No. 9621598.',
+    imagePath: '/gallery/cac-certificate.jpg',
     icon: '🏗️',
     color: 'border-teal',
     badge: 'bg-teal/10 text-teal',
