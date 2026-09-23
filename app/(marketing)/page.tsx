@@ -5,7 +5,8 @@ import CertVerifyBar from '@/components/CertVerifyBar'
 import SpecialDomainAccordion from '@/components/SpecialDomainAccordion'
 import { SPECIAL_DOMAINS } from '@/lib/specialDomains'
 import { books, WHATSAPP_BOOK, WHATSAPP_ENROLL } from '@/lib/data'
-import StudentStoriesButton, { QUOTE_TESTIMONIALS } from '@/components/StudentStoriesButton'
+import StudentStoriesButton from '@/components/StudentStoriesButton'
+import { QUOTE_TESTIMONIALS } from '@/lib/testimonials'
 import PortfolioExplorerCard from '@/components/PortfolioExplorerCard'
 
 export const metadata: Metadata = {
