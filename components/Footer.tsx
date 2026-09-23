@@ -32,7 +32,7 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-white/60 text-sm mb-3 max-w-xs leading-relaxed">
-              Gateway to Digital Literacy. Africa&apos;s premier EdTech platform equipping professionals with globally-recognised digital skills.
+              Gateway to Digital Literacy. An African EdTech platform equipping professionals with globally-verified digital skills.
             </p>
             <div className="flex items-center gap-1.5 text-white/60 text-sm mb-6">
               <FaLocationDot size={14} className="text-orange flex-shrink-0" />
@@ -69,6 +69,7 @@ export default function Footer() {
                 { href: '/contact', label: 'Contact' },
                 { href: '/refund-policy', label: 'Refund Policy' },
                 { href: '/privacy-policy', label: 'Privacy Policy' },
+                { href: '/terms', label: 'Terms of Service' },
                 { href: '/verify/lookup', label: 'Verify Certificate' },
               ].map(({ href, label }) => (
                 <li key={href}>
@@ -147,6 +148,9 @@ export default function Footer() {
             </Link>
             <Link href="/refund-policy" className="text-white/50 hover:text-orange text-sm transition-colors duration-200">
               Refund Policy
+            </Link>
+            <Link href="/terms" className="text-white/50 hover:text-orange text-sm transition-colors duration-200">
+              Terms
             </Link>
           </div>
         </div>

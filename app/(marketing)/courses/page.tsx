@@ -630,7 +630,7 @@ export default function CoursesPage() {
                 </div>
                 <div className="flex flex-wrap items-center gap-3">
                   <span className="bg-navy/5 text-navy text-xs px-3 py-1.5 rounded-full font-medium">
-                    4 + 8 + 12 Weeks · Live Classes · Flexible Timetable
+                    {course.belts.map(b => `${b.weeks} Wks`).join(' + ')} · Live Classes · Flexible Timetable
                   </span>
                   <span className="bg-teal/10 text-teal text-xs px-3 py-1.5 rounded-full font-medium">
                     Global Alignment: {course.globalAlign}
@@ -638,6 +638,21 @@ export default function CoursesPage() {
                 </div>
               </div>
             </FadeInSection>
+
+            {/* Cybersecurity ethical-use notice */}
+            {course.id === 'cybersecurity' && (
+              <div className="mb-8 bg-amber-50 border border-amber-200 rounded-2xl p-5 flex items-start gap-4">
+                <span className="text-2xl flex-shrink-0">⚖️</span>
+                <div>
+                  <p className="font-semibold text-amber-900 text-sm mb-1">Responsible Use Statement</p>
+                  <p className="text-amber-800 text-sm leading-relaxed">
+                    All cybersecurity skills taught at Metabridge Academy are for <strong>defensive and authorised testing purposes only</strong>.
+                    Students are trained in the legal and ethical use of security tools under the Nigerian Cybercrimes (Prohibition, Prevention, etc.) Act 2015.
+                    Applying these skills against systems you do not own or have explicit written permission to test is illegal and will result in immediate removal from the programme.
+                  </p>
+                </div>
+              </div>
+            )}
 
             {/* Belt cards */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
