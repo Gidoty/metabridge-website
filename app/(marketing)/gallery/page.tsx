@@ -98,6 +98,29 @@ export default function GalleryPage() {
         </div>
       </section>
 
+      {/* PAYMENT DETAILS */}
+      <section className="section-padding bg-white">
+        <div className="container-custom">
+          <FadeInSection className="text-center mb-10">
+            <h2 className="section-heading">Payment Details</h2>
+            <p className="section-subheading">
+              Use the bank details below to make a direct transfer for any Metabridge Academy programme.
+            </p>
+          </FadeInSection>
+
+          <FadeInSection>
+            <div className="max-w-sm mx-auto rounded-2xl overflow-hidden shadow-lg">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/gallery/bank-details.jpg"
+                alt="Metabridge Academy bank account details — Zenith Bank, Account Number 1312469950"
+                className="w-full h-auto"
+              />
+            </div>
+          </FadeInSection>
+        </div>
+      </section>
+
       {/* TRAINING GALLERY */}
       <section className="section-padding bg-white">
         <div className="container-custom">
