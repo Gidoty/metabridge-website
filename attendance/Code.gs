@@ -5,6 +5,15 @@
 
 const ADMIN_PASSWORD = 'Admin2026';
 
+// ----------------------------------------------------------------
+// LIVE REGISTRATION SHEET
+// ID of the Google Sheet that collects enrolment form responses.
+// The attendance system reads this sheet to pick up new students
+// automatically. The sheet's header row must contain columns whose
+// names include the words "name", "cohort" and (optionally) "email".
+// ----------------------------------------------------------------
+const REG_SHEET_ID = '1n49CjCnNxWX9sEaUUb0Vpjz14i6m4j-3cFwOk2ClEx4';
+
 const COURSES = [
   'Artificial Intelligence',
   'Blockchain & Cryptocurrency',
@@ -19,6 +28,10 @@ const COURSES = [
 
 const BELTS = ['Blue Belt', 'Green Belt', 'Black Belt'];
 
+// Hardcoded register — authoritative list with verified IDs.
+// Any new student found in the live registration sheet who is NOT
+// already listed here will be merged in automatically with a
+// generated ID (MA/Cn/NNN/YY), starting from S/N 16.
 const STUDENT_REGISTER = {
   C1: [
     { sn: 1,  id: 'MA/C1/001/26', name: 'Promise Ogechi Okafor',       email: 'Promiseokafor43@gmail.com'      },
@@ -72,7 +85,15 @@ function doGet(e) {
 // ----------------------------------------------------------------
 
 function getStudentsForCohort(cohort) {
-  return STUDENT_REGISTER[(cohort || '').toUpperCase()] || [];
+  cohort = (cohort || '').toUpperCase();
+  const hardcoded = STUDENT_REGISTER[cohort] || [];
+
+  try {
+    const extras = _getLiveNewStudents(cohort);
+    return [...hardcoded, ...extras];
+  } catch (e) {
+    return hardcoded;
+  }
 }
 
 function getCourses() { return COURSES; }
@@ -163,7 +184,13 @@ function getAdminData(password) {
       }
     }
 
-    return { success: true, data, students: STUDENT_REGISTER };
+    // Merged student list (hardcoded + live registrations)
+    const allStudents = {};
+    for (const c of ['C1', 'C2', 'C3']) {
+      allStudents[c] = getStudentsForCohort(c);
+    }
+
+    return { success: true, data, students: allStudents };
 
   } catch (err) {
     return { success: false, message: err.toString() };
@@ -238,7 +265,13 @@ function getAttendanceReport(password) {
       report[c] = byStudent;
     }
 
-    return { success: true, report, totals, students: STUDENT_REGISTER };
+    // Merged student list for report
+    const allStudents = {};
+    for (const c of ['C1', 'C2', 'C3']) {
+      allStudents[c] = getStudentsForCohort(c);
+    }
+
+    return { success: true, report, totals, students: allStudents };
 
   } catch (err) {
     return { success: false, message: err.toString() };
@@ -253,19 +286,25 @@ function initializeSheets() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   ss.setName('MetaBridge Academy — Attendance System');
 
-  // Master Register
+  // Master Register — built from merged data (hardcoded + live)
   const mr = _getOrCreateSheet(ss, 'MASTER_REGISTER');
   mr.clearContents();
   mr.getRange(1, 1, 1, 5).setValues([['S/N', 'Student ID', 'Full Name', 'Cohort', 'Email']]);
   _styleHeader(mr, 5);
 
-  const allStudents = Object.entries(STUDENT_REGISTER)
-    .flatMap(([c, arr]) => arr.map(s => [s.sn, s.id, s.name, c, s.email]));
+  const allStudents = [];
+  for (const c of ['C1', 'C2', 'C3']) {
+    getStudentsForCohort(c).forEach(s => {
+      allStudents.push([s.sn || '', s.id || '', s.name, c, s.email || '']);
+    });
+  }
 
-  mr.getRange(2, 1, allStudents.length, 5).setValues(allStudents);
-  allStudents.forEach((_, i) => {
-    mr.getRange(i + 2, 1, 1, 5).setBackground(i % 2 === 0 ? '#FFFFFF' : '#EBF5FB');
-  });
+  if (allStudents.length > 0) {
+    mr.getRange(2, 1, allStudents.length, 5).setValues(allStudents);
+    allStudents.forEach((_, i) => {
+      mr.getRange(i + 2, 1, 1, 5).setBackground(i % 2 === 0 ? '#FFFFFF' : '#EBF5FB');
+    });
+  }
   mr.autoResizeColumns(1, 5);
 
   // Attendance sheets — one per cohort
@@ -278,6 +317,84 @@ function initializeSheets() {
   if (def && def.getLastRow() === 0) ss.deleteSheet(def);
 
   return '✓ MetaBridge Academy Attendance System initialized successfully!';
+}
+
+// ----------------------------------------------------------------
+// LIVE REGISTRATION SHEET — PRIVATE HELPER
+// ----------------------------------------------------------------
+
+// Reads the enrolment registration sheet and returns any students
+// NOT already in STUDENT_REGISTER who belong to targetCohort.
+// IDs are assigned sequentially (continuing from the last hardcoded S/N)
+// in the order they appear in the registration sheet.
+// Returns [] if the sheet is unreachable or columns cannot be detected.
+function _getLiveNewStudents(targetCohort) {
+  let regSheet;
+  try {
+    regSheet = SpreadsheetApp.openById(REG_SHEET_ID).getSheets()[0];
+  } catch (e) {
+    return []; // Sheet not accessible — fall back to hardcoded list only
+  }
+
+  const data = regSheet.getDataRange().getValues();
+  if (data.length < 2) return [];
+
+  // Locate columns by header keywords (case-insensitive)
+  const headers   = data[0].map(h => String(h).toLowerCase().trim());
+  const nameIdx   = headers.findIndex(h => h.includes('name'));
+  const cohortIdx = headers.findIndex(h => h.includes('cohort'));
+  const emailIdx  = headers.findIndex(h => h.includes('email'));
+
+  if (nameIdx === -1 || cohortIdx === -1) return []; // Columns not detectable
+
+  // Serial numbers continue after the last hardcoded student
+  const allHardcoded = Object.values(STUDENT_REGISTER).flat();
+  let nextSn = allHardcoded.reduce((m, s) => Math.max(m, s.sn || 0), 0);
+
+  // Seen set prevents hardcoded duplicates AND duplicate rows in the live sheet
+  const seen = new Set(allHardcoded.map(s => _normalizeName(s.name)));
+
+  const year   = new Date().getFullYear().toString().slice(-2);
+  const result = [];
+
+  for (let i = 1; i < data.length; i++) {
+    const row     = data[i];
+    const rowName = String(row[nameIdx] || '').trim();
+    if (!rowName) continue;
+
+    const key = _normalizeName(rowName);
+    if (seen.has(key)) continue;
+    seen.add(key); // mark seen even if wrong cohort, to maintain consistent numbering
+
+    const rowCohort = _normalizeCohort(String(row[cohortIdx] || '').trim().toUpperCase());
+    if (!rowCohort) continue;
+
+    nextSn++;
+    const paddedSn = String(nextSn).padStart(3, '0');
+    const newId    = `MA/${rowCohort}/${paddedSn}/${year}`;
+
+    if (rowCohort === targetCohort) {
+      result.push({
+        sn:    nextSn,
+        id:    newId,
+        name:  rowName,
+        email: emailIdx !== -1 ? String(row[emailIdx] || '').trim() : ''
+      });
+    }
+  }
+
+  return result;
+}
+
+function _normalizeName(name) {
+  return String(name || '').toLowerCase().replace(/\s+/g, ' ').trim();
+}
+
+// Accepts: "C1", "COHORT 1", "COHORT1", "C 1", "1" → "C1"
+// Returns '' if the value contains no digit.
+function _normalizeCohort(raw) {
+  const m = raw.match(/(\d+)/);
+  return m ? 'C' + m[1] : '';
 }
 
 // ----------------------------------------------------------------

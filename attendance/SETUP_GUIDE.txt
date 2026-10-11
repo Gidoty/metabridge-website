@@ -106,7 +106,7 @@ This creates all the sheets automatically.
    - Click: Allow
 6. Run initializeSheets again — it should complete successfully
 7. Go back to your Google Sheet — you will now see these tabs at the bottom:
-   - MASTER_REGISTER (all 15 students)
+   - MASTER_REGISTER (all students, including any from the live form)
    - C1_ATTENDANCE
    - C2_ATTENDANCE
    - C3_ATTENDANCE
@@ -122,11 +122,17 @@ STEP 7 — DEPLOY AS A WEB APP
 4. Fill in the settings:
    - Description: MetaBridge Academy Attendance System
    - Execute as: Me (gideono1991@gmail.com)
-   - Who has access: Anyone
+   - Who has access: Anyone          ← THIS MUST BE "Anyone"
 5. Click: Deploy
 6. COPY the Web app URL that appears — it looks like:
    https://script.google.com/macros/s/AKfycbX.../exec
 7. Click: Done
+
+⚠️  IMPORTANT — "Who has access" MUST be set to "Anyone"
+    If it is set to anything else (e.g. "Only myself" or
+    "Anyone within [organization]"), the cohort links will
+    fail with a "Sorry, unable to open the file" error.
+    If this happened to you, see the FIX section below.
 
 
 ================================================================
@@ -151,13 +157,65 @@ Admin password: Admin2026
 
 
 ================================================================
-HOW TO ADD MORE STUDENTS IN FUTURE
+FIX — "SORRY, UNABLE TO OPEN THE FILE" ERROR
+================================================================
+
+This error appears when the Web App access is not set to "Anyone".
+Follow these steps to fix it:
+
+1. Go to Apps Script
+2. Click the blue "Deploy" button (top right)
+3. Click: Manage deployments
+4. Click the pencil (edit) icon on your existing deployment
+5. Change "Who has access" to: Anyone
+6. Change "Version" to: New version
+7. Click: Deploy
+8. The URL remains the same — your cohort links will now work
+
+After this change, test by opening the URL with ?c=C1 in a
+PRIVATE / INCOGNITO browser window (this simulates a student
+who is not signed in to Google).
+
+
+================================================================
+HOW NEW STUDENTS AUTO-APPEAR IN THE ATTENDANCE FORM
+================================================================
+
+The attendance system reads the enrolment registration sheet
+(Google Sheet ID: 1n49CjCnNxWX9sEaUUb0Vpjz14i6m4j-3cFwOk2ClEx4)
+automatically. Any student who fills the registration form will
+appear in the attendance dropdown the next time the attendance
+form is opened — no code changes needed.
+
+REQUIREMENTS FOR THIS TO WORK:
+The registration form's response sheet must have a header row
+where the column names contain these keywords:
+  - "name"   → e.g. column header: "Full Name"
+  - "cohort" → e.g. column header: "Cohort"
+  - "email"  → e.g. column header: "Email Address" (optional)
+
+The cohort column in the form must clearly indicate C1, C2, or C3.
+Any of these formats are understood automatically:
+  C1 / C2 / C3
+  Cohort 1 / Cohort 2 / Cohort 3
+  1 / 2 / 3
+
+New students receive IDs continuing from the last existing student.
+Student 16 onwards: MA/Cn/016/26, MA/Cn/017/26, and so on.
+
+PERMISSIONS: Both the attendance sheet and the registration sheet
+must be owned by the same Google account (gideono1991@gmail.com).
+Since both are in your Google Drive, this works automatically.
+
+
+================================================================
+HOW TO ADD MORE STUDENTS MANUALLY (IF NEEDED)
 ================================================================
 
 1. Open Apps Script → Code.gs
-2. Find the STUDENT_REGISTER section (around line 20)
+2. Find the STUDENT_REGISTER section (around line 30)
 3. Add the new student to the correct cohort using this format:
-   { sn: 16, id: 'MA/C3/016/26', name: 'Student Full Name', email: 'email@gmail.com' }
+   { sn: 16, id: 'MA/C1/016/26', name: 'Student Full Name', email: 'email@gmail.com' }
    (Use the next available sn number)
 4. Save (Ctrl+S)
 5. Click Deploy → Manage deployments
@@ -172,7 +230,7 @@ HOW TO ADD MORE COURSES
 ================================================================
 
 1. Open Apps Script → Code.gs
-2. Find the COURSES array (around line 7)
+2. Find the COURSES array (around line 15)
 3. Add your new course inside the array:
    'New Course Name',
 4. Save, then re-deploy (same steps as adding students above)
@@ -213,5 +271,8 @@ Cohort 3:
   Umeano Justina Chikodili   →  MA/C3/013/26
   Omaraye Vincent Osakpolor  →  MA/C3/014/26
   Abidoye Temitayo           →  MA/C3/015/26
+
+New students from the registration form:
+  Assigned automatically from MA/Cn/016/26 onwards.
 
 ================================================================
