@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MetaBridge Academy — Admin Panel</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+
+:root {
+  --navy:   #0D2137;
+  --dark:   #0A1929;
+  --card:   #122236;
+  --card2:  #172D45;
+  --cyan:   #00C2D4;
+  --green:  #00B894;
+  --gold:   #F5A623;
+  --red:    #E74C3C;
+  --purple: #9B59B6;
+  --white:  #F0F4F8;
+  --muted:  #8BA5BE;
+  --border: rgba(0,194,212,0.2);
+  --brdr2:  rgba(255,255,255,0.06);
+}
+
+body {
+  background: var(--dark);
+  color: var(--white);
+  font-family: 'Segoe UI', Arial, sans-serif;
+  min-height: 100vh;
+}
+
+/* ── LOGIN ─────────────────────────────────────── */
+#loginScreen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 24px;
+  background-image:
+    radial-gradient(ellipse at 20% 20%, rgba(0,194,212,0.06) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 80%, rgba(155,89,182,0.05) 0%, transparent 55%);
+}
+
+.login-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 36px 32px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 16px 56px rgba(0,0,0,0.5);
+}
+
+.login-logo { text-align:center; margin-bottom: 28px; }
+.login-logo .icon {
+  width: 52px; height: 52px;
+  background: linear-gradient(135deg, var(--cyan), var(--green));
+  border-radius: 14px;
+  display: inline-flex; align-items:center; justify-content:center;
+  font-size: 24px; font-weight:900; color: var(--dark);
+  margin-bottom: 12px;
+}
+.login-logo h2 { font-size:20px; font-weight:800; }
+.login-logo h2 span { color:var(--cyan); }
+.login-logo p { color:var(--muted); font-size:12px; letter-spacing:2px; text-transform:uppercase; margin-top:4px; }
+.admin-badge {
+  display:inline-block; margin-top:10px;
+  padding:4px 14px;
+  background:rgba(155,89,182,0.15);
+  border:1px solid rgba(155,89,182,0.4);
+  border-radius:12px;
+  color:#C39BD3; font-size:11px; font-weight:700; letter-spacing:2px;
+  text-transform:uppercase;
+}
+
+.field-label {
+  display:block; font-size:11px; font-weight:700;
+  color:var(--muted); letter-spacing:1.8px;
+  text-transform:uppercase; margin-bottom:8px;
+}
+
+.login-input {
+  width:100%; padding:13px 14px;
+  background:var(--navy);
+  border:1.5px solid var(--border);
+  border-radius:10px;
+  color:var(--white); font-size:15px; font-family:inherit;
+  outline:none; transition:border-color 0.2s;
+  margin-bottom:20px;
+}
+.login-input:focus { border-color:var(--cyan); }
+
+.btn-login {
+  width:100%; padding:15px;
+  background:linear-gradient(135deg, var(--cyan), #0099A8);
+  border:none; border-radius:10px;
+  color:#fff; font-size:15px; font-weight:700;
+  cursor:pointer; letter-spacing:1px;
+  font-family:inherit;
+  transition:transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 4px 20px rgba(0,194,212,0.35);
+}
+.btn-login:hover { transform:translateY(-2px); box-shadow:0 6px 28px rgba(0,194,212,0.5); }
+
+.login-error {
+  background:rgba(231,76,60,0.1);
+  border:1px solid rgba(231,76,60,0.35);
+  border-radius:8px; padding:10px 14px;
+  color:#FF8080; font-size:13px;
+  margin-bottom:16px; display:none;
+}
+
+/* ── DASHBOARD ────────────────────────────────── */
+#dashboard { display:none; }
+
+/* Top bar */
+.topbar {
+  background:var(--navy);
+  border-bottom:1px solid var(--brdr2);
+  padding:14px 24px;
+  display:flex; align-items:center; justify-content:space-between;
+  position:sticky; top:0; z-index:100;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+}
+
+.topbar-brand {
+  display:flex; align-items:center; gap:10px;
+}
+.topbar-icon {
+  width:34px; height:34px;
+  background:linear-gradient(135deg, var(--cyan), var(--green));
+  border-radius:8px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:15px; font-weight:900; color:var(--dark);
+}
+.topbar-title { font-size:15px; font-weight:700; }
+.topbar-title span { color:var(--cyan); }
+.topbar-sub { font-size:10px; color:var(--muted); letter-spacing:1.5px; text-transform:uppercase; }
+
+.btn-logout {
+  padding:7px 16px;
+  background:transparent;
+  border:1px solid rgba(231,76,60,0.4);
+  border-radius:8px;
+  color:#FF8080; font-size:12px; font-weight:600;
+  cursor:pointer; transition:background 0.2s;
+  font-family:inherit;
+}
+.btn-logout:hover { background:rgba(231,76,60,0.1); }
+
+/* Main layout */
+.main { padding:24px; max-width:1200px; margin:0 auto; }
+
+/* Section heading */
+.section-title {
+  font-size:14px; font-weight:700;
+  color:var(--muted); letter-spacing:2px;
+  text-transform:uppercase;
+  margin-bottom:16px;
+  display:flex; align-items:center; gap:8px;
+}
+.section-title::before {
+  content:''; width:3px; height:14px;
+  background:var(--cyan); border-radius:2px;
+}
+
+/* ── STAT CARDS ───────────────────────────────── */
+.stats-grid {
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap:14px;
+  margin-bottom:28px;
+}
+
+.stat-card {
+  background:var(--card);
+  border:1px solid var(--brdr2);
+  border-radius:14px;
+  padding:20px;
+  position:relative;
+  overflow:hidden;
+}
+
+.stat-card::after {
+  content:''; position:absolute;
+  bottom:0; left:0; right:0; height:2px;
+}
+.stat-c1::after  { background:var(--cyan); }
+.stat-c2::after  { background:var(--gold); }
+.stat-c3::after  { background:var(--green); }
+.stat-tot::after { background:var(--purple); }
+
+.stat-label { font-size:10px; color:var(--muted); letter-spacing:1.5px; text-transform:uppercase; margin-bottom:8px; }
+.stat-num   { font-size:32px; font-weight:800; color:var(--white); line-height:1; margin-bottom:4px; }
+.stat-sub   { font-size:11px; color:var(--muted); }
+
+/* ── TABS ─────────────────────────────────────── */
+.tabs {
+  display:flex; gap:4px;
+  background:var(--navy);
+  border:1px solid var(--brdr2);
+  border-radius:12px;
+  padding:5px;
+  margin-bottom:20px;
+  width:fit-content;
+}
+
+.tab {
+  padding:8px 20px;
+  border-radius:8px;
+  border:none; background:transparent;
+  color:var(--muted); font-size:13px; font-weight:600;
+  cursor:pointer; transition:all 0.2s;
+  font-family:inherit; letter-spacing:0.5px;
+}
+.tab.active { background:var(--card2); color:var(--cyan); }
+.tab:hover:not(.active) { color:var(--white); }
+
+/* ── CONTROLS ─────────────────────────────────── */
+.controls {
+  display:flex; gap:10px; flex-wrap:wrap;
+  margin-bottom:16px; align-items:center;
+}
+
+.ctrl-input, .ctrl-select {
+  padding:9px 12px;
+  background:var(--card);
+  border:1px solid var(--brdr2);
+  border-radius:8px;
+  color:var(--white); font-size:13px; font-family:inherit;
+  outline:none; cursor:pointer;
+  transition:border-color 0.2s;
+}
+.ctrl-input:focus, .ctrl-select:focus { border-color:var(--cyan); }
+.ctrl-select option { background:#0D2137; }
+
+.ctrl-select { appearance:none; padding-right:28px; }
+
+.btn-csv {
+  padding:9px 16px;
+  background:rgba(0,194,212,0.1);
+  border:1px solid rgba(0,194,212,0.3);
+  border-radius:8px;
+  color:var(--cyan); font-size:13px; font-weight:600;
+  cursor:pointer; font-family:inherit;
+  transition:background 0.2s;
+}
+.btn-csv:hover { background:rgba(0,194,212,0.2); }
+
+.record-count {
+  margin-left:auto;
+  color:var(--muted); font-size:12px;
+}
+
+/* ── TABLE ────────────────────────────────────── */
+.table-wrap {
+  background:var(--card);
+  border:1px solid var(--brdr2);
+  border-radius:14px;
+  overflow:hidden;
+  margin-bottom:28px;
+}
+
+table { width:100%; border-collapse:collapse; }
+
+thead th {
+  background:#0A1929;
+  padding:12px 14px;
+  text-align:left;
+  font-size:11px; font-weight:700;
+  color:var(--muted); letter-spacing:1.5px;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+
+tbody tr { border-top:1px solid var(--brdr2); transition:background 0.15s; }
+tbody tr:hover { background:rgba(255,255,255,0.03); }
+
+tbody td {
+  padding:11px 14px;
+  font-size:13px;
+  color:var(--white);
+  vertical-align:middle;
+}
+
+.badge-present {
+  display:inline-flex; align-items:center; gap:5px;
+  padding:3px 10px;
+  background:rgba(0,184,148,0.15);
+  border:1px solid rgba(0,184,148,0.35);
+  border-radius:10px;
+  color:var(--green); font-size:11px; font-weight:700;
+}
+
+.badge-id {
+  color:var(--cyan); font-weight:600; font-size:12px;
+  font-family:'Courier New', monospace; letter-spacing:0.5px;
+}
+
+.cohort-pill {
+  display:inline-block; padding:2px 9px;
+  border-radius:8px; font-size:11px; font-weight:700;
+}
+.cohort-pill.C1 { background:rgba(0,194,212,0.15); color:var(--cyan); }
+.cohort-pill.C2 { background:rgba(245,166,35,0.15); color:var(--gold); }
+.cohort-pill.C3 { background:rgba(0,184,148,0.15);  color:var(--green); }
+
+.btn-del {
+  padding:4px 10px;
+  background:rgba(231,76,60,0.1);
+  border:1px solid rgba(231,76,60,0.3);
+  border-radius:6px;
+  color:#FF8080; font-size:11px; font-weight:600;
+  cursor:pointer; font-family:inherit;
+  transition:background 0.2s;
+}
+.btn-del:hover { background:rgba(231,76,60,0.2); }
+
+.empty-state {
+  text-align:center; padding:40px 20px;
+  color:var(--muted); font-size:14px;
+}
+
+/* ── BACKDATE ─────────────────────────────────── */
+.backdate-card {
+  background:var(--card);
+  border:1px solid var(--brdr2);
+  border-left:3px solid var(--gold);
+  border-radius:14px;
+  padding:24px;
+  margin-bottom:28px;
+}
+
+.backdate-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(170px, 1fr));
+  gap:14px;
+  margin-top:16px;
+}
+
+.bd-field label {
+  display:block; font-size:11px; font-weight:700;
+  color:var(--muted); letter-spacing:1.5px;
+  text-transform:uppercase; margin-bottom:7px;
+}
+
+.bd-field select,
+.bd-field input {
+  width:100%; padding:11px 12px;
+  background:var(--navy);
+  border:1.5px solid var(--brdr2);
+  border-radius:9px;
+  color:var(--white); font-size:13px; font-family:inherit;
+  outline:none; appearance:none;
+  transition:border-color 0.2s;
+  cursor:pointer;
+}
+.bd-field select:focus,
+.bd-field input:focus { border-color:var(--gold); }
+.bd-field select option { background:#0D2137; }
+.bd-field input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1) opacity(0.5);
+}
+
+.btn-backdate {
+  padding:11px 24px;
+  background:rgba(245,166,35,0.15);
+  border:1.5px solid rgba(245,166,35,0.4);
+  border-radius:9px;
+  color:var(--gold); font-size:13px; font-weight:700;
+  cursor:pointer; font-family:inherit;
+  transition:background 0.2s;
+  margin-top:24px;
+  width:100%;
+}
+.btn-backdate:hover { background:rgba(245,166,35,0.25); }
+
+.bd-msg {
+  margin-top:10px; padding:10px 14px;
+  border-radius:8px; font-size:13px; display:none;
+}
+.bd-msg.ok  { background:rgba(0,184,148,0.1); border:1px solid rgba(0,184,148,0.3); color:var(--green); }
+.bd-msg.err { background:rgba(231,76,60,0.1);  border:1px solid rgba(231,76,60,0.3);  color:#FF8080; }
+
+/* ── REPORT ───────────────────────────────────── */
+.report-card {
+  background:var(--card);
+  border:1px solid var(--brdr2);
+  border-left:3px solid var(--purple);
+  border-radius:14px;
+  padding:24px;
+  margin-bottom:28px;
+}
+
+.report-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(280px, 1fr));
+  gap:12px;
+  margin-top:16px;
+}
+
+.report-item {
+  background:var(--navy);
+  border:1px solid var(--brdr2);
+  border-radius:12px;
+  padding:16px;
+}
+
+.rep-name { font-size:14px; font-weight:700; color:var(--white); margin-bottom:4px; }
+.rep-id   { font-size:11px; color:var(--cyan); font-family:monospace; margin-bottom:10px; }
+
+.rep-bar-wrap { margin-bottom:4px; }
+.rep-bar-bg {
+  background:rgba(255,255,255,0.07);
+  border-radius:4px; height:6px; overflow:hidden;
+}
+.rep-bar-fill { height:100%; border-radius:4px; transition:width 0.6s ease; }
+
+.rep-counts { font-size:12px; color:var(--muted); margin-top:8px; }
+.rep-course { display:inline-block; margin:2px 4px 2px 0; }
+
+/* ── TOAST ────────────────────────────────────── */
+#toast {
+  position:fixed; bottom:24px; right:24px;
+  padding:12px 20px;
+  border-radius:10px;
+  font-size:13px; font-weight:600;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  z-index:9999;
+  opacity:0; transform:translateY(10px);
+  transition:opacity 0.3s, transform 0.3s;
+  pointer-events:none;
+}
+#toast.show { opacity:1; transform:translateY(0); }
+#toast.ok  { background:#00B894; color:#fff; }
+#toast.err { background:var(--red); color:#fff; }
+
+@media(max-width:768px) {
+  .stats-grid { grid-template-columns:repeat(2,1fr); }
+  .topbar-sub { display:none; }
+  .main { padding:16px; }
+  .backdate-grid { grid-template-columns:1fr; }
+}
+@media(max-width:480px) {
+  .stats-grid { grid-template-columns:1fr 1fr; }
+  thead th:nth-child(5),
+  tbody td:nth-child(5) { display:none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── LOGIN ────────────────────────────────────── -->
+<div id="loginScreen">
+  <div class="login-card">
+    <div class="login-logo">
+      <div class="icon">MB</div>
+      <h2>Meta<span>Bridge</span> Academy</h2>
+      <p>Attendance System</p>
+      <span class="admin-badge">🔐 Admin Panel</span>
+    </div>
+
+    <div class="login-error" id="loginError">Incorrect password. Please try again.</div>
+
+    <label class="field-label">Admin Password</label>
+    <input type="password" class="login-input" id="passwordInput"
+           placeholder="Enter admin password"
+           onkeydown="if(event.key==='Enter') login()">
+
+    <button class="btn-login" onclick="login()">Login to Admin Panel</button>
+  </div>
+</div>
+
+<!-- ── DASHBOARD ────────────────────────────────── -->
+<div id="dashboard">
+
+  <!-- Top bar -->
+  <div class="topbar">
+    <div class="topbar-brand">
+      <div class="topbar-icon">MB</div>
+      <div>
+        <div class="topbar-title">Meta<span>Bridge</span> Academy</div>
+        <div class="topbar-sub">Attendance Admin Panel</div>
+      </div>
+    </div>
+    <button class="btn-logout" onclick="logout()">✕ Logout</button>
+  </div>
+
+  <div class="main">
+
+    <!-- STATS -->
+    <div class="section-title" style="margin-bottom:12px">Overview</div>
+    <div class="stats-grid">
+      <div class="stat-card stat-c1">
+        <div class="stat-label">Cohort 1 Records</div>
+        <div class="stat-num" id="stat-c1">—</div>
+        <div class="stat-sub">6 students</div>
+      </div>
+      <div class="stat-card stat-c2">
+        <div class="stat-label">Cohort 2 Records</div>
+        <div class="stat-num" id="stat-c2">—</div>
+        <div class="stat-sub">2 students</div>
+      </div>
+      <div class="stat-card stat-c3">
+        <div class="stat-label">Cohort 3 Records</div>
+        <div class="stat-num" id="stat-c3">—</div>
+        <div class="stat-sub">7 students</div>
+      </div>
+      <div class="stat-card stat-tot">
+        <div class="stat-label">Total Records</div>
+        <div class="stat-num" id="stat-tot">—</div>
+        <div class="stat-sub">15 students total</div>
+      </div>
+    </div>
+
+    <!-- ATTENDANCE TABLE -->
+    <div class="section-title">Attendance Records</div>
+
+    <div class="tabs">
+      <button class="tab active" onclick="setTab('ALL')">All Cohorts</button>
+      <button class="tab" onclick="setTab('C1')">Cohort 1</button>
+      <button class="tab" onclick="setTab('C2')">Cohort 2</button>
+      <button class="tab" onclick="setTab('C3')">Cohort 3</button>
+    </div>
+
+    <div class="controls">
+      <input type="text" class="ctrl-input" id="searchInput"
+             placeholder="🔍  Search name or ID…"
+             oninput="renderTable()" style="min-width:200px">
+
+      <select class="ctrl-select" id="courseFilter" onchange="renderTable()"
+              style="min-width:180px">
+        <option value="">All Courses</option>
+      </select>
+
+      <select class="ctrl-select" id="dateFilter" onchange="renderTable()"
+              style="min-width:220px">
+        <option value="">All Dates</option>
+      </select>
+
+      <button class="btn-csv" onclick="exportCSV()">⬇ Export CSV</button>
+      <span class="record-count" id="recordCount"></span>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>S/N</th>
+            <th>Student ID</th>
+            <th>Name</th>
+            <th>Cohort</th>
+            <th>Course</th>
+            <th>Belt</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+
+    <!-- BACKDATE -->
+    <div class="section-title">Backdate Attendance</div>
+    <div class="backdate-card">
+      <p style="color:var(--muted);font-size:13px">
+        Use this to add past attendance records — for students who didn't mark on the day, or for Cohort 1 &amp; 2 historical entries.
+      </p>
+      <div class="backdate-grid">
+        <div class="bd-field">
+          <label>Cohort</label>
+          <select id="bd-cohort" onchange="updateBdNames()">
+            <option value="">Select cohort</option>
+            <option value="C1">Cohort 1</option>
+            <option value="C2">Cohort 2</option>
+            <option value="C3">Cohort 3</option>
+          </select>
+        </div>
+        <div class="bd-field">
+          <label>Student Name</label>
+          <select id="bd-name">
+            <option value="">Select cohort first</option>
+          </select>
+        </div>
+        <div class="bd-field">
+          <label>Course</label>
+          <select id="bd-course">
+            <option value="">Select course</option>
+          </select>
+        </div>
+        <div class="bd-field">
+          <label>Belt Level</label>
+          <select id="bd-belt">
+            <option value="">Select belt</option>
+            <option>Blue Belt</option>
+            <option>Green Belt</option>
+            <option>Black Belt</option>
+          </select>
+        </div>
+        <div class="bd-field">
+          <label>Date</label>
+          <input type="date" id="bd-date">
+        </div>
+      </div>
+      <button class="btn-backdate" onclick="submitBackdate()">📅 Add Backdated Record</button>
+      <div class="bd-msg" id="bdMsg"></div>
+    </div>
+
+    <!-- REPORT -->
+    <div class="section-title">Attendance Report</div>
+    <div class="report-card">
+      <p style="color:var(--muted);font-size:13px;margin-bottom:6px">
+        Summary of total attendance sessions per student across all courses.
+      </p>
+      <button class="btn-csv" onclick="loadReport()" style="margin-top:8px">🔄 Load Report</button>
+      <div class="report-grid" id="reportGrid" style="margin-top:20px"></div>
+    </div>
+
+  </div><!-- /main -->
+</div><!-- /dashboard -->
+
+<div id="toast"></div>
+
+<script>
+let adminPass    = '';
+let allData      = {};
+let allStudents  = {};
+let activeTab    = 'ALL';
+const COURSES = [
+  'Artificial Intelligence','Blockchain & Cryptocurrency','Cybersecurity',
+  'Data Analytics','Web Development','UI/UX Design',
+  'Virtual Assistance','Social Media Marketing','App Development'
+];
+
+// ── LOGIN ──────────────────────────────────────
+function login() {
+  const pw = document.getElementById('passwordInput').value.trim();
+  if (!pw) return;
+
+  google.script.run
+    .withSuccessHandler(res => {
+      if (res.success) {
+        adminPass = pw;
+        document.getElementById('loginScreen').style.display = 'none';
+        document.getElementById('dashboard').style.display   = 'block';
+        document.getElementById('loginError').style.display  = 'none';
+        loadDashboard();
+        populateBdCourses();
+      } else {
+        document.getElementById('loginError').style.display = 'block';
+        document.getElementById('passwordInput').value = '';
+      }
+    })
+    .verifyAdmin(pw);
+}
+
+function logout() {
+  adminPass = '';
+  allData   = {};
+  document.getElementById('dashboard').style.display    = 'none';
+  document.getElementById('loginScreen').style.display  = 'flex';
+  document.getElementById('passwordInput').value = '';
+}
+
+// ── LOAD DATA ──────────────────────────────────
+function loadDashboard() {
+  google.script.run
+    .withSuccessHandler(res => {
+      if (!res.success) { showToast('Failed to load data', 'err'); return; }
+      allData     = res.data;
+      allStudents = res.students;
+
+      // Stats
+      document.getElementById('stat-c1').textContent  = allData.C1.length;
+      document.getElementById('stat-c2').textContent  = allData.C2.length;
+      document.getElementById('stat-c3').textContent  = allData.C3.length;
+      document.getElementById('stat-tot').textContent = allData.C1.length + allData.C2.length + allData.C3.length;
+
+      populateFilters();
+      renderTable();
+    })
+    .getAdminData(adminPass);
+}
+
+// ── FILTERS ────────────────────────────────────
+function populateFilters() {
+  const combined = [...(allData.C1||[]), ...(allData.C2||[]), ...(allData.C3||[])];
+
+  // Unique dates
+  const dates = [...new Set(combined.map(r => r.date))].sort();
+  const ds = document.getElementById('dateFilter');
+  ds.innerHTML = '<option value="">All Dates</option>';
+  dates.forEach(d => { const o = document.createElement('option'); o.value=d; o.textContent=d; ds.appendChild(o); });
+
+  // Unique courses from COURSES list
+  const cs = document.getElementById('courseFilter');
+  cs.innerHTML = '<option value="">All Courses</option>';
+  COURSES.forEach(c => { const o = document.createElement('option'); o.value=c; o.textContent=c; cs.appendChild(o); });
+}
+
+// ── TABLE ──────────────────────────────────────
+function setTab(t) {
+  activeTab = t;
+  document.querySelectorAll('.tab').forEach((el, i) => {
+    el.classList.toggle('active', ['ALL','C1','C2','C3'][i] === t);
+  });
+  renderTable();
+}
+
+function getRows() {
+  if (activeTab === 'ALL') {
+    return [
+      ...(allData.C1||[]).map(r => ({...r, cohort:'C1'})),
+      ...(allData.C2||[]).map(r => ({...r, cohort:'C2'})),
+      ...(allData.C3||[]).map(r => ({...r, cohort:'C3'}))
+    ];
+  }
+  return (allData[activeTab]||[]).map(r => ({...r, cohort:activeTab}));
+}
+
+function renderTable() {
+  const search  = document.getElementById('searchInput').value.toLowerCase();
+  const course  = document.getElementById('courseFilter').value;
+  const date    = document.getElementById('dateFilter').value;
+  const tbody   = document.getElementById('tableBody');
+
+  let rows = getRows().filter(r => {
+    if (search && !r.name.toLowerCase().includes(search) && !r.studentId.toLowerCase().includes(search)) return false;
+    if (course && r.course !== course) return false;
+    if (date   && r.date   !== date)   return false;
+    return true;
+  });
+
+  document.getElementById('recordCount').textContent = rows.length + ' record' + (rows.length !== 1 ? 's' : '');
+
+  if (rows.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="9"><div class="empty-state">No records found</div></td></tr>';
+    return;
+  }
+
+  tbody.innerHTML = rows.map((r, i) => `
+    <tr>
+      <td style="color:var(--muted);font-size:12px">${i+1}</td>
+      <td><span class="badge-id">${r.studentId}</span></td>
+      <td style="font-weight:600">${r.name}</td>
+      <td><span class="cohort-pill ${r.cohort}">${r.cohort}</span></td>
+      <td style="font-size:12px">${r.course}</td>
+      <td style="font-size:12px;color:var(--muted)">${r.belt}</td>
+      <td style="font-size:12px;color:var(--muted)">${r.date}</td>
+      <td><span class="badge-present">✓ Present</span></td>
+      <td>
+        <button class="btn-del" onclick="deleteRec('${r.cohort}',${r.sn})">Delete</button>
+      </td>
+    </tr>
+  `).join('');
+}
+
+function deleteRec(cohort, sn) {
+  if (!confirm('Delete this record? This cannot be undone.')) return;
+  google.script.run
+    .withSuccessHandler(res => {
+      if (res.success) { showToast('Record deleted', 'ok'); loadDashboard(); }
+      else showToast(res.message || 'Error', 'err');
+    })
+    .deleteRecord(adminPass, cohort, sn);
+}
+
+// ── EXPORT CSV ─────────────────────────────────
+function exportCSV() {
+  const rows = getRows();
+  const header = 'S/N,Student ID,Name,Cohort,Course,Belt,Date,Status\n';
+  const body   = rows.map((r, i) =>
+    `${i+1},"${r.studentId}","${r.name}","${r.cohort}","${r.course}","${r.belt}","${r.date}","Present"`
+  ).join('\n');
+  const blob = new Blob([header + body], { type: 'text/csv' });
+  const a    = document.createElement('a');
+  a.href     = URL.createObjectURL(blob);
+  a.download = 'MBA_Attendance_' + (activeTab === 'ALL' ? 'All' : activeTab) + '_' + new Date().toISOString().slice(0,10) + '.csv';
+  a.click();
+}
+
+// ── BACKDATE ───────────────────────────────────
+function populateBdCourses() {
+  const sel = document.getElementById('bd-course');
+  sel.innerHTML = '<option value="">Select course</option>';
+  COURSES.forEach(c => { const o = document.createElement('option'); o.value=c; o.textContent=c; sel.appendChild(o); });
+}
+
+function updateBdNames() {
+  const cohort = document.getElementById('bd-cohort').value;
+  const sel    = document.getElementById('bd-name');
+  sel.innerHTML = '<option value="">Select student</option>';
+  if (!cohort || !allStudents[cohort]) return;
+  allStudents[cohort].forEach(s => {
+    const o = document.createElement('option');
+    o.value = JSON.stringify(s);
+    o.textContent = s.name;
+    sel.appendChild(o);
+  });
+}
+
+function submitBackdate() {
+  const cohort  = document.getElementById('bd-cohort').value;
+  const nameRaw = document.getElementById('bd-name').value;
+  const course  = document.getElementById('bd-course').value;
+  const belt    = document.getElementById('bd-belt').value;
+  const date    = document.getElementById('bd-date').value;
+  const msgEl   = document.getElementById('bdMsg');
+
+  if (!cohort || !nameRaw || !course || !belt || !date) {
+    msgEl.className = 'bd-msg err';
+    msgEl.textContent = 'Please fill in all fields.';
+    msgEl.style.display = 'block';
+    return;
+  }
+
+  const student = JSON.parse(nameRaw);
+  msgEl.style.display = 'none';
+
+  google.script.run
+    .withSuccessHandler(res => {
+      if (res.success) {
+        msgEl.className = 'bd-msg ok';
+        msgEl.textContent = '✓ Backdated record added successfully.';
+        msgEl.style.display = 'block';
+        loadDashboard();
+        document.getElementById('bd-cohort').value = '';
+        document.getElementById('bd-name').innerHTML = '<option value="">Select cohort first</option>';
+        document.getElementById('bd-course').value = '';
+        document.getElementById('bd-belt').value = '';
+        document.getElementById('bd-date').value = '';
+      } else {
+        msgEl.className = 'bd-msg err';
+        msgEl.textContent = res.message || 'Error adding record.';
+        msgEl.style.display = 'block';
+      }
+    })
+    .backdateAttendance(adminPass, {
+      cohort, studentId: student.id, name: student.name, course, belt, date
+    });
+}
+
+// ── REPORT ─────────────────────────────────────
+function loadReport() {
+  const grid = document.getElementById('reportGrid');
+  grid.innerHTML = '<p style="color:var(--muted);font-size:13px">Loading…</p>';
+
+  google.script.run
+    .withSuccessHandler(res => {
+      if (!res.success) { grid.innerHTML = '<p style="color:#FF8080">Failed to load report.</p>'; return; }
+
+      const { report, totals, students } = res;
+      const allS = Object.values(students).flat();
+      const maxSessions = Math.max(...allS.map(s => {
+        for (const c of ['C1','C2','C3']) {
+          if (report[c] && report[c][s.id]) return report[c][s.id].total;
+        }
+        return 0;
+      }), 1);
+
+      grid.innerHTML = allS.map(s => {
+        let info = null;
+        for (const c of ['C1','C2','C3']) {
+          if (report[c] && report[c][s.id]) { info = { ...report[c][s.id], cohort:c }; break; }
+        }
+        const total  = info ? info.total : 0;
+        const pct    = Math.round((total / maxSessions) * 100);
+        const colour = total >= maxSessions * 0.75 ? '#00B894' : total >= maxSessions * 0.5 ? '#F5A623' : '#E74C3C';
+        const courses = info ? Object.entries(info.byCourse).map(([c,n]) =>
+          `<span class="rep-course" style="color:var(--muted)">${c}: <b style="color:var(--white)">${n}</b></span>`
+        ).join('') : '<span style="color:var(--muted);font-size:12px">No records yet</span>';
+
+        return `
+          <div class="report-item">
+            <div class="rep-name">${s.name}</div>
+            <div class="rep-id">${s.id}</div>
+            <div class="rep-bar-wrap">
+              <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-bottom:5px">
+                <span>Sessions attended</span><span style="color:${colour};font-weight:700">${total}</span>
+              </div>
+              <div class="rep-bar-bg">
+                <div class="rep-bar-fill" style="width:${pct}%;background:${colour}"></div>
+              </div>
+            </div>
+            <div class="rep-counts">${courses}</div>
+          </div>`;
+      }).join('');
+    })
+    .getAttendanceReport(adminPass);
+}
+
+// ── TOAST ──────────────────────────────────────
+function showToast(msg, type) {
+  const t = document.getElementById('toast');
+  t.textContent   = msg;
+  t.className     = 'show ' + type;
+  setTimeout(() => { t.className = type; }, 3000);
+}
+
+window.onload = () => {
+  document.getElementById('passwordInput').focus();
+};
+</script>
+
+</body>
+</html>
