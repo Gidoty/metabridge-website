@@ -69,6 +69,7 @@ function doGet(e) {
     const tmpl = HtmlService.createTemplateFromFile('AdminPanel');
     return tmpl.evaluate()
       .setTitle('MetaBridge Academy — Admin Panel')
+      .setSandboxMode(HtmlService.SandboxMode.IFRAME)
       .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
   }
 
@@ -77,6 +78,7 @@ function doGet(e) {
   tmpl.cohortLabel = cohort ? 'COHORT ' + cohort.replace('C', '') : '';
   return tmpl.evaluate()
     .setTitle('MetaBridge Academy — Attendance')
+    .setSandboxMode(HtmlService.SandboxMode.IFRAME)
     .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
 }
 

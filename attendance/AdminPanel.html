@@ -28,15 +28,17 @@ body {
   color: var(--white);
   font-family: 'Segoe UI', Arial, sans-serif;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 /* ── LOGIN ─────────────────────────────────────── */
 #loginScreen {
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
   padding: 24px;
   background-image:
     radial-gradient(ellipse at 20% 20%, rgba(0,194,212,0.06) 0%, transparent 55%),
@@ -113,7 +115,7 @@ body {
 }
 
 /* ── DASHBOARD ────────────────────────────────── */
-#dashboard { display:none; }
+#dashboard { display:none; flex-direction:column; flex:1; }
 
 /* Top bar */
 .topbar {
@@ -645,7 +647,7 @@ function login() {
       if (res.success) {
         adminPass = pw;
         document.getElementById('loginScreen').style.display = 'none';
-        document.getElementById('dashboard').style.display   = 'block';
+        document.getElementById('dashboard').style.display   = 'flex';
         document.getElementById('loginError').style.display  = 'none';
         loadDashboard();
         populateBdCourses();
