@@ -487,11 +487,88 @@ tbody td {
 }
 .btn-move:hover { background: rgba(155,89,182,0.25); }
 
+/* ── LOCK CONTROL ─────────────────────────────── */
+.lock-grid {
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:14px;
+  margin-bottom:28px;
+}
+
+.lock-card {
+  background:var(--card);
+  border:1px solid var(--brdr2);
+  border-left:3px solid var(--brdr2);
+  border-radius:14px;
+  padding:20px;
+}
+.lock-card.open   { border-color:rgba(0,184,148,0.35); border-left-color:var(--green); }
+.lock-card.locked { border-color:rgba(231,76,60,0.3);  border-left-color:var(--red);   }
+
+.lock-card-top {
+  display:flex; align-items:center; justify-content:space-between;
+  margin-bottom:10px;
+}
+.lock-cohort-name { font-size:15px; font-weight:800; color:var(--white); }
+
+.lock-status-badge {
+  display:inline-flex; align-items:center; gap:5px;
+  padding:3px 10px; border-radius:10px;
+  font-size:11px; font-weight:700; letter-spacing:0.5px;
+}
+.lock-status-badge.open   { background:rgba(0,184,148,0.15); color:var(--green); border:1px solid rgba(0,184,148,0.35); }
+.lock-status-badge.locked { background:rgba(231,76,60,0.12);  color:#FF8080;     border:1px solid rgba(231,76,60,0.3);  }
+
+.lock-timer {
+  font-size:12px; color:var(--muted);
+  margin-bottom:14px; min-height:18px;
+}
+
+.lock-dur-row {
+  display:flex; gap:8px; align-items:center; margin-bottom:8px;
+}
+
+.lock-dur-select {
+  flex:1; padding:8px 10px;
+  background:var(--navy);
+  border:1px solid var(--brdr2);
+  border-radius:8px;
+  color:var(--white); font-size:12px; font-family:inherit;
+  outline:none; appearance:none; cursor:pointer;
+}
+.lock-dur-select:focus { border-color:var(--green); }
+.lock-dur-select option { background:#0D2137; }
+
+.btn-unlock {
+  flex:1; padding:9px 10px;
+  background:rgba(0,184,148,0.12);
+  border:1.5px solid rgba(0,184,148,0.35);
+  border-radius:8px;
+  color:var(--green); font-size:12px; font-weight:700;
+  cursor:pointer; font-family:inherit;
+  transition:background 0.2s; white-space:nowrap;
+}
+.btn-unlock:hover:not(:disabled) { background:rgba(0,184,148,0.22); }
+.btn-unlock:disabled { opacity:0.45; cursor:default; }
+
+.btn-lock-now {
+  width:100%; padding:9px 10px;
+  background:rgba(231,76,60,0.1);
+  border:1.5px solid rgba(231,76,60,0.3);
+  border-radius:8px;
+  color:#FF8080; font-size:12px; font-weight:700;
+  cursor:pointer; font-family:inherit;
+  transition:background 0.2s;
+}
+.btn-lock-now:hover:not(:disabled) { background:rgba(231,76,60,0.2); }
+.btn-lock-now:disabled { opacity:0.45; cursor:default; }
+
 @media(max-width:768px) {
   .stats-grid { grid-template-columns:repeat(2,1fr); }
   .topbar-sub { display:none; }
   .main { padding:16px; }
   .backdate-grid { grid-template-columns:1fr; }
+  .lock-grid { grid-template-columns:1fr; }
 }
 @media(max-width:480px) {
   .stats-grid { grid-template-columns:1fr 1fr; }
@@ -563,6 +640,12 @@ tbody td {
         <div class="stat-num" id="stat-tot">—</div>
         <div class="stat-sub">15 students total</div>
       </div>
+    </div>
+
+    <!-- LOCK CONTROL -->
+    <div class="section-title">Attendance Lock Control</div>
+    <div class="lock-grid" id="lockGrid">
+      <div style="color:var(--muted);font-size:13px;grid-column:1/-1">Loading lock state…</div>
     </div>
 
     <!-- ATTENDANCE TABLE -->
@@ -750,6 +833,7 @@ function login() {
         document.getElementById('loginError').style.display  = 'none';
         loadDashboard();
         populateBdCourses();
+        loadLockStates();
       } else {
         document.getElementById('loginError').style.display = 'block';
         document.getElementById('passwordInput').value = '';
@@ -1141,6 +1225,81 @@ function moveStudent() {
       toCohort:    toCohort
     });
 }
+
+// ── LOCK CONTROL ───────────────────────────────
+function loadLockStates() {
+  google.script.run
+    .withSuccessHandler(function(res) {
+      if (res.success) renderLockGrid(res.states);
+    })
+    .getLockState(adminPass);
+}
+
+function renderLockGrid(states) {
+  const grid = document.getElementById('lockGrid');
+  grid.innerHTML = states.map(function(s) {
+    const cohortNum = s.cohort.replace('C', '');
+    const isOpen    = s.open;
+    const timerText = isOpen
+      ? '⏱ Closes in ' + s.minutesLeft + ' min'
+      : 'Students cannot access attendance right now';
+    const badge = isOpen
+      ? '<span class="lock-status-badge open">● OPEN</span>'
+      : '<span class="lock-status-badge locked">🔒 LOCKED</span>';
+    return `<div class="lock-card ${isOpen ? 'open' : 'locked'}">
+      <div class="lock-card-top">
+        <div class="lock-cohort-name">Cohort ${cohortNum}</div>
+        ${badge}
+      </div>
+      <div class="lock-timer">${timerText}</div>
+      <div class="lock-dur-row">
+        <select class="lock-dur-select" id="dur-${s.cohort}">
+          <option value="30">30 min</option>
+          <option value="45">45 min</option>
+          <option value="60">60 min</option>
+        </select>
+        <button class="btn-unlock" onclick="unlockCohort('${s.cohort}')" ${isOpen ? 'disabled' : ''}>
+          🔓 ${isOpen ? 'Open' : 'Unlock'}
+        </button>
+      </div>
+      <button class="btn-lock-now" onclick="lockCohort('${s.cohort}')" ${!isOpen ? 'disabled' : ''}>
+        🔒 ${isOpen ? 'Lock Now' : 'Already Locked'}
+      </button>
+    </div>`;
+  }).join('');
+}
+
+function unlockCohort(cohort) {
+  const durEl = document.getElementById('dur-' + cohort);
+  const mins  = parseInt(durEl.value, 10);
+  google.script.run
+    .withSuccessHandler(function(res) {
+      if (res.success) {
+        showToast('Cohort ' + cohort.replace('C','') + ' unlocked for ' + mins + ' min', 'ok');
+        loadLockStates();
+      } else {
+        showToast(res.message || 'Error unlocking', 'err');
+      }
+    })
+    .setLockState(adminPass, cohort, 'unlock', mins);
+}
+
+function lockCohort(cohort) {
+  if (!confirm('Lock attendance for Cohort ' + cohort.replace('C','') + ' now?\nStudents will see the "Attendance Not Open" page.')) return;
+  google.script.run
+    .withSuccessHandler(function(res) {
+      if (res.success) {
+        showToast('Cohort ' + cohort.replace('C','') + ' locked', 'ok');
+        loadLockStates();
+      } else {
+        showToast(res.message || 'Error locking', 'err');
+      }
+    })
+    .setLockState(adminPass, cohort, 'lock', 0);
+}
+
+// Auto-refresh lock states every 60 seconds while logged in
+setInterval(function() { if (adminPass) loadLockStates(); }, 60000);
 
 // ── TOAST ──────────────────────────────────────
 function showToast(msg, type) {

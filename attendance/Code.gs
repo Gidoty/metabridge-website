@@ -77,6 +77,14 @@ function doGet(e) {
       .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
   }
 
+  // Lock check — if cohort attendance is not open, show the locked page
+  if (cohort && _isCohortLocked(cohort)) {
+    return HtmlService.createHtmlOutput(_lockedPageHtml(cohort))
+      .setTitle('MetaBridge Academy — Attendance')
+      .setSandboxMode(HtmlService.SandboxMode.IFRAME)
+      .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
+  }
+
   const tmpl = HtmlService.createTemplateFromFile('StudentForm');
   tmpl.cohort      = cohort;
   tmpl.cohortLabel = cohort ? 'COHORT ' + cohort.replace('C', '') : '';
@@ -330,6 +338,69 @@ function moveStudentCohort(password, payload) {
   }
 }
 
+// Returns the lock state for every cohort. Used by the admin panel.
+function getLockState(password) {
+  if (password !== ADMIN_PASSWORD) return { success: false };
+  try {
+    const ss    = SpreadsheetApp.getActiveSpreadsheet();
+    let sheet   = ss.getSheetByName('SETTINGS');
+    if (!sheet) sheet = _initSettingsSheet(ss);
+
+    const now  = new Date();
+    const rows = sheet.getLastRow() > 1
+      ? sheet.getRange(2, 1, sheet.getLastRow() - 1, 2).getValues()
+      : [];
+
+    const stateMap = {};
+    rows.filter(r => r[0]).forEach(r => {
+      const cohort = String(r[0]).trim();
+      const until  = r[1] ? new Date(r[1]) : null;
+      const open   = !!(until && until > now);
+      stateMap[cohort] = {
+        cohort,
+        open,
+        minutesLeft: open ? Math.ceil((until - now) / 60000) : 0,
+        until: until ? until.toISOString() : null
+      };
+    });
+
+    const states = COHORTS.map(c => stateMap[c] || { cohort: c, open: false, minutesLeft: 0, until: null });
+    return { success: true, states };
+  } catch (err) {
+    return { success: false, message: err.toString() };
+  }
+}
+
+// Locks or unlocks a cohort. action = 'lock' | 'unlock'. durationMinutes used when unlocking.
+function setLockState(password, cohort, action, durationMinutes) {
+  if (password !== ADMIN_PASSWORD) return { success: false, message: 'Invalid password' };
+  try {
+    const ss    = SpreadsheetApp.getActiveSpreadsheet();
+    let sheet   = ss.getSheetByName('SETTINGS');
+    if (!sheet) sheet = _initSettingsSheet(ss);
+
+    const rows = sheet.getLastRow() > 1
+      ? sheet.getRange(2, 1, sheet.getLastRow() - 1, 1).getValues()
+      : [];
+
+    let rowIdx = -1;
+    for (let i = 0; i < rows.length; i++) {
+      if (String(rows[i][0]).trim() === cohort) { rowIdx = i + 2; break; }
+    }
+    if (rowIdx === -1) return { success: false, message: 'Cohort not found in settings.' };
+
+    if (action === 'lock') {
+      sheet.getRange(rowIdx, 2).setValue('');
+    } else {
+      const until = new Date(new Date().getTime() + durationMinutes * 60 * 1000);
+      sheet.getRange(rowIdx, 2).setValue(until.toISOString());
+    }
+    return { success: true };
+  } catch (err) {
+    return { success: false, message: err.toString() };
+  }
+}
+
 function getAttendanceReport(password) {
   if (password !== ADMIN_PASSWORD) return { success: false };
 
@@ -412,6 +483,9 @@ function initializeSheets() {
     ovr.autoResizeColumns(1, 7);
   }
 
+  // Settings sheet — lock state per cohort (locked by default)
+  _initSettingsSheet(ss);
+
   // Delete default Sheet1 if empty
   const def = ss.getSheetByName('Sheet1');
   if (def && def.getLastRow() === 0) ss.deleteSheet(def);
@@ -488,6 +562,109 @@ function _getLiveNewStudents(targetCohort) {
 
 // Reads the COHORT_OVERRIDES sheet and returns an array of move records.
 // Returns [] if the sheet doesn't exist or is empty.
+// Returns true if the cohort's attendance window is closed.
+// Locked by default; unlocked only when a future timestamp is set in SETTINGS.
+function _isCohortLocked(cohort) {
+  try {
+    const ss    = SpreadsheetApp.getActiveSpreadsheet();
+    let sheet   = ss.getSheetByName('SETTINGS');
+    if (!sheet) sheet = _initSettingsSheet(ss);
+    if (sheet.getLastRow() < 2) return true;
+    const rows = sheet.getRange(2, 1, sheet.getLastRow() - 1, 2).getValues();
+    for (const r of rows) {
+      if (String(r[0]).trim() === cohort) {
+        if (!r[1]) return true;             // blank = locked
+        return new Date(r[1]) <= new Date(); // expired = locked
+      }
+    }
+    return true; // cohort not in settings = locked
+  } catch (e) { return true; } // fail safe — locked on error
+}
+
+// Creates (or ensures) the SETTINGS sheet with all cohorts locked by default.
+function _initSettingsSheet(ss) {
+  const sheet = _getOrCreateSheet(ss, 'SETTINGS');
+  if (sheet.getLastRow() === 0) {
+    sheet.getRange(1, 1, 1, 2).setValues([['Cohort', 'Unlocked Until']]);
+    _styleHeader(sheet, 2);
+    COHORTS.forEach(function(c, i) {
+      sheet.getRange(i + 2, 1).setValue(c); // Unlocked Until left blank = locked
+    });
+    sheet.setColumnWidth(1, 80);
+    sheet.setColumnWidth(2, 240);
+  }
+  return sheet;
+}
+
+// Returns the HTML shown to a student when their cohort attendance is locked.
+function _lockedPageHtml(cohort) {
+  const cohortNum  = cohort ? cohort.replace('C', '') : '';
+  const cohortPill = cohortNum
+    ? `<div class="cohort-pill">Cohort ${cohortNum}</div>`
+    : '';
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MetaBridge Academy — Attendance</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background:#0A1929; color:#F0F4F8;
+  font-family:'Segoe UI',Arial,sans-serif;
+  min-height:100vh; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; padding:24px;
+  background-image:
+    radial-gradient(ellipse at 20% 30%, rgba(0,194,212,0.06) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 70%, rgba(155,89,182,0.05) 0%, transparent 55%);
+}
+.card {
+  background:#122236;
+  border:1px solid rgba(231,76,60,0.25);
+  border-radius:18px; padding:40px 32px;
+  max-width:420px; width:100%; text-align:center;
+  box-shadow:0 16px 48px rgba(0,0,0,0.5);
+}
+.lock-icon {
+  width:64px; height:64px;
+  background:rgba(231,76,60,0.12);
+  border:1.5px solid rgba(231,76,60,0.3);
+  border-radius:16px;
+  display:inline-flex; align-items:center; justify-content:center;
+  font-size:30px; margin-bottom:20px;
+}
+.cohort-pill {
+  display:inline-block; padding:3px 12px;
+  background:rgba(0,194,212,0.1); border:1px solid rgba(0,194,212,0.25);
+  border-radius:10px; color:#00C2D4;
+  font-size:11px; font-weight:700; letter-spacing:1.5px;
+  text-transform:uppercase; margin-bottom:16px;
+}
+h2 { font-size:20px; font-weight:800; margin-bottom:10px; }
+p  { color:#8BA5BE; font-size:14px; line-height:1.65; }
+.note { font-size:12px; color:#6B8FAE; margin-top:12px; }
+.brand {
+  font-size:11px; color:#8BA5BE; letter-spacing:2px;
+  text-transform:uppercase; margin-top:28px; padding-top:20px;
+  border-top:1px solid rgba(255,255,255,0.06);
+}
+.brand b { color:#00C2D4; font-weight:800; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="lock-icon">🔒</div>
+  ${cohortPill}
+  <h2>Attendance Not Open</h2>
+  <p>Class attendance is not currently open. Your instructor will open it once class has begun.</p>
+  <p class="note">Close this page and try again when your instructor announces attendance is open.</p>
+  <div class="brand">Meta<b>Bridge</b> Academy</div>
+</div>
+</body>
+</html>`;
+}
+
 function _getCohortOverrides() {
   try {
     const ss    = SpreadsheetApp.getActiveSpreadsheet();
