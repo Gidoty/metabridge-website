@@ -117,13 +117,15 @@ function markAttendance(payload) {
       const rows = sheet.getRange(2, 1, last - 1, 7).getValues();
       for (const r of rows) {
         if (r[1] === payload.studentId && r[3] === payload.course && r[5] === payload.date) {
-          return { success: false, message: 'You have already marked attendance for ' + payload.course + ' today.' };
+          return { success: false, message: 'A record already exists for ' + payload.course + ' on this date.' };
         }
       }
     }
 
-    const nextRow = sheet.getLastRow() + 1;
-    const sn      = nextRow - 1;
+    const nextRow  = sheet.getLastRow() + 1;
+    const sn       = nextRow - 1;
+    const status   = payload.status || 'Present ✓';
+    const isPresent = status.toLowerCase().includes('present');
 
     sheet.getRange(nextRow, 1, 1, 7).setValues([[
       sn,
@@ -132,7 +134,7 @@ function markAttendance(payload) {
       payload.course,
       payload.belt,
       payload.date,
-      'Present ✓'
+      status
     ]]);
 
     // Row styling
@@ -140,9 +142,9 @@ function markAttendance(payload) {
     rowRange.setBackground(sn % 2 === 0 ? '#EBF5FB' : '#FFFFFF');
     rowRange.setVerticalAlignment('middle');
 
-    // Status cell — green
+    // Status cell — green for present, red for absent
     sheet.getRange(nextRow, 7)
-         .setBackground('#00B894')
+         .setBackground(isPresent ? '#00B894' : '#E74C3C')
          .setFontColor('#FFFFFF')
          .setFontWeight('bold')
          .setHorizontalAlignment('center');

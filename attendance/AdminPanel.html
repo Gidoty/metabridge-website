@@ -296,6 +296,15 @@ tbody td {
   color:var(--green); font-size:11px; font-weight:700;
 }
 
+.badge-absent {
+  display:inline-flex; align-items:center; gap:5px;
+  padding:3px 10px;
+  background:rgba(231,76,60,0.15);
+  border:1px solid rgba(231,76,60,0.35);
+  border-radius:10px;
+  color:#FF8080; font-size:11px; font-weight:700;
+}
+
 .badge-id {
   color:var(--cyan); font-weight:600; font-size:12px;
   font-family:'Courier New', monospace; letter-spacing:0.5px;
@@ -606,6 +615,13 @@ tbody td {
           <label>Date</label>
           <input type="date" id="bd-date">
         </div>
+        <div class="bd-field">
+          <label>Status</label>
+          <select id="bd-status">
+            <option value="Present ✓">Present ✓</option>
+            <option value="Absent ✗">Absent ✗</option>
+          </select>
+        </div>
       </div>
       <button class="btn-backdate" onclick="submitBackdate()">📅 Add Backdated Record</button>
       <div class="bd-msg" id="bdMsg"></div>
@@ -743,7 +759,12 @@ function renderTable() {
     return;
   }
 
-  tbody.innerHTML = rows.map((r, i) => `
+  tbody.innerHTML = rows.map((r, i) => {
+    const isPresent = !r.status || r.status.toLowerCase().includes('present');
+    const badge = isPresent
+      ? `<span class="badge-present">✓ Present</span>`
+      : `<span class="badge-absent">✗ Absent</span>`;
+    return `
     <tr>
       <td style="color:var(--muted);font-size:12px">${i+1}</td>
       <td><span class="badge-id">${r.studentId}</span></td>
@@ -752,12 +773,12 @@ function renderTable() {
       <td style="font-size:12px">${r.course}</td>
       <td style="font-size:12px;color:var(--muted)">${r.belt}</td>
       <td style="font-size:12px;color:var(--muted)">${r.date}</td>
-      <td><span class="badge-present">✓ Present</span></td>
+      <td>${badge}</td>
       <td>
         <button class="btn-del" onclick="deleteRec('${r.cohort}',${r.sn})">Delete</button>
       </td>
-    </tr>
-  `).join('');
+    </tr>`;
+  }).join('');
 }
 
 function deleteRec(cohort, sn) {
@@ -810,6 +831,7 @@ function submitBackdate() {
   const course  = document.getElementById('bd-course').value;
   const belt    = document.getElementById('bd-belt').value;
   const date    = document.getElementById('bd-date').value;
+  const status  = document.getElementById('bd-status').value;
   const msgEl   = document.getElementById('bdMsg');
 
   if (!cohort || !nameRaw || !course || !belt || !date) {
@@ -834,6 +856,7 @@ function submitBackdate() {
         document.getElementById('bd-course').value = '';
         document.getElementById('bd-belt').value = '';
         document.getElementById('bd-date').value = '';
+        document.getElementById('bd-status').value = 'Present ✓';
       } else {
         msgEl.className = 'bd-msg err';
         msgEl.textContent = res.message || 'Error adding record.';
@@ -841,7 +864,7 @@ function submitBackdate() {
       }
     })
     .backdateAttendance(adminPass, {
-      cohort, studentId: student.id, name: student.name, course, belt, date
+      cohort, studentId: student.id, name: student.name, course, belt, date, status
     });
 }
 
