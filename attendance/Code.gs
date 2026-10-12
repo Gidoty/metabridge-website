@@ -14,6 +14,10 @@ const ADMIN_PASSWORD = 'Admin2026';
 // ----------------------------------------------------------------
 const REG_SHEET_ID = '1n49CjCnNxWX9sEaUUb0Vpjz14i6m4j-3cFwOk2ClEx4';
 
+// Active cohorts — add 'C4', 'C5', etc. here when a new cohort starts.
+// Also add an empty entry to STUDENT_REGISTER and run initializeSheets once.
+const COHORTS = ['C1', 'C2', 'C3'];
+
 const COURSES = [
   'Artificial Intelligence',
   'Blockchain & Cryptocurrency',
@@ -88,14 +92,26 @@ function doGet(e) {
 
 function getStudentsForCohort(cohort) {
   cohort = (cohort || '').toUpperCase();
-  const hardcoded = STUDENT_REGISTER[cohort] || [];
+  const overrides = _getCohortOverrides();
 
+  // Students explicitly moved OUT of this cohort
+  const movedOut = new Set(
+    overrides.filter(o => o.fromCohort === cohort).map(o => o.studentId)
+  );
+
+  // Students moved INTO this cohort (full record stored in overrides)
+  const movedIn = overrides
+    .filter(o => o.toCohort === cohort)
+    .map(o => ({ sn: o.sn, id: o.studentId, name: o.studentName, email: o.email }));
+
+  const hardcoded = (STUDENT_REGISTER[cohort] || []).filter(s => !movedOut.has(s.id));
+
+  let extras = [];
   try {
-    const extras = _getLiveNewStudents(cohort);
-    return [...hardcoded, ...extras];
-  } catch (e) {
-    return hardcoded;
-  }
+    extras = _getLiveNewStudents(cohort).filter(s => !movedOut.has(s.id));
+  } catch (e) {}
+
+  return [...hardcoded, ...extras, ...movedIn];
 }
 
 function getCourses() { return COURSES; }
@@ -172,7 +188,7 @@ function getAdminData(password) {
     const ss   = SpreadsheetApp.getActiveSpreadsheet();
     const data = {};
 
-    for (const c of ['C1', 'C2', 'C3']) {
+    for (const c of COHORTS) {
       const sheet = ss.getSheetByName(c + '_ATTENDANCE');
       if (sheet && sheet.getLastRow() > 1) {
         data[c] = sheet
@@ -188,13 +204,13 @@ function getAdminData(password) {
       }
     }
 
-    // Merged student list (hardcoded + live registrations)
+    // Merged student list (hardcoded + live registrations + cohort moves)
     const allStudents = {};
-    for (const c of ['C1', 'C2', 'C3']) {
+    for (const c of COHORTS) {
       allStudents[c] = getStudentsForCohort(c);
     }
 
-    return { success: true, data, students: allStudents };
+    return { success: true, data, students: allStudents, cohorts: COHORTS };
 
   } catch (err) {
     return { success: false, message: err.toString() };
@@ -242,6 +258,78 @@ function deleteRecord(password, cohort, rowSN) {
   }
 }
 
+// Returns the registered course and belt for a student by name.
+// Looks them up in the live registration sheet.
+// Returns null if not found or sheet unreachable.
+function getStudentProfile(studentName) {
+  let regSheet;
+  try {
+    regSheet = SpreadsheetApp.openById(REG_SHEET_ID).getSheets()[0];
+  } catch (e) { return null; }
+
+  const data = regSheet.getDataRange().getValues();
+  if (data.length < 2) return null;
+
+  const headers   = data[0].map(h => String(h).toLowerCase().trim());
+  const nameIdx   = headers.findIndex(h => h.includes('name'));
+  const courseIdx = headers.findIndex(h => h.includes('course'));
+  const beltIdx   = headers.findIndex(h => h.includes('level') || h.includes('belt'));
+
+  if (nameIdx === -1) return null;
+
+  const target = _normalizeName(studentName);
+  for (let i = 1; i < data.length; i++) {
+    const rowName = String(data[i][nameIdx] || '').trim();
+    if (_normalizeName(rowName) === target) {
+      return {
+        course: courseIdx !== -1 ? String(data[i][courseIdx] || '').trim() : '',
+        belt:   beltIdx   !== -1 ? String(data[i][beltIdx]   || '').trim() : ''
+      };
+    }
+  }
+  return null;
+}
+
+// Moves a student from one cohort to another by writing to COHORT_OVERRIDES.
+// Past attendance records are never touched.
+function moveStudentCohort(password, payload) {
+  if (password !== ADMIN_PASSWORD) return { success: false, message: 'Invalid password' };
+
+  const { studentId, studentName, email, sn, fromCohort, toCohort } = payload;
+  if (!studentId || !fromCohort || !toCohort || fromCohort === toCohort) {
+    return { success: false, message: 'Invalid parameters.' };
+  }
+
+  try {
+    const ss  = SpreadsheetApp.getActiveSpreadsheet();
+    let sheet = ss.getSheetByName('COHORT_OVERRIDES');
+    if (!sheet) {
+      sheet = ss.insertSheet('COHORT_OVERRIDES');
+      sheet.getRange(1, 1, 1, 7).setValues([['Student ID','Student Name','Email','S/N','From Cohort','To Cohort','Moved Date']]);
+      _styleHeader(sheet, 7);
+      sheet.autoResizeColumns(1, 7);
+    }
+
+    // Prevent duplicate entry for same student
+    if (sheet.getLastRow() > 1) {
+      const ids = sheet.getRange(2, 1, sheet.getLastRow() - 1, 1).getValues().flat().map(String);
+      if (ids.includes(String(studentId))) {
+        return { success: false, message: studentName + ' is already registered as moved. Remove the existing record first to move them again.' };
+      }
+    }
+
+    const nextRow = sheet.getLastRow() + 1;
+    sheet.getRange(nextRow, 1, 1, 7).setValues([[
+      studentId, studentName, email || '', sn || '', fromCohort, toCohort, _fmtDate(new Date())
+    ]]);
+    sheet.autoResizeColumns(1, 7);
+    return { success: true };
+
+  } catch (err) {
+    return { success: false, message: err.toString() };
+  }
+}
+
 function getAttendanceReport(password) {
   if (password !== ADMIN_PASSWORD) return { success: false };
 
@@ -251,7 +339,7 @@ function getAttendanceReport(password) {
     const totals  = { records: 0, today: 0 };
     const todayStr = _fmtDate(new Date());
 
-    for (const c of ['C1', 'C2', 'C3']) {
+    for (const c of COHORTS) {
       const sheet = ss.getSheetByName(c + '_ATTENDANCE');
       if (!sheet || sheet.getLastRow() < 2) { report[c] = {}; continue; }
 
@@ -271,7 +359,7 @@ function getAttendanceReport(password) {
 
     // Merged student list for report
     const allStudents = {};
-    for (const c of ['C1', 'C2', 'C3']) {
+    for (const c of COHORTS) {
       allStudents[c] = getStudentsForCohort(c);
     }
 
@@ -312,8 +400,16 @@ function initializeSheets() {
   mr.autoResizeColumns(1, 5);
 
   // Attendance sheets — one per cohort
-  for (const c of ['C1', 'C2', 'C3']) {
+  for (const c of COHORTS) {
     _getOrCreateAttendanceSheet(ss, c + '_ATTENDANCE');
+  }
+
+  // Cohort overrides sheet (created empty; used by moveStudentCohort)
+  const ovr = _getOrCreateSheet(ss, 'COHORT_OVERRIDES');
+  if (ovr.getLastRow() === 0) {
+    ovr.getRange(1, 1, 1, 7).setValues([['Student ID','Student Name','Email','S/N','From Cohort','To Cohort','Moved Date']]);
+    _styleHeader(ovr, 7);
+    ovr.autoResizeColumns(1, 7);
   }
 
   // Delete default Sheet1 if empty
@@ -388,6 +484,26 @@ function _getLiveNewStudents(targetCohort) {
   }
 
   return result;
+}
+
+// Reads the COHORT_OVERRIDES sheet and returns an array of move records.
+// Returns [] if the sheet doesn't exist or is empty.
+function _getCohortOverrides() {
+  try {
+    const ss    = SpreadsheetApp.getActiveSpreadsheet();
+    const sheet = ss.getSheetByName('COHORT_OVERRIDES');
+    if (!sheet || sheet.getLastRow() < 2) return [];
+    return sheet.getRange(2, 1, sheet.getLastRow() - 1, 6).getValues()
+      .filter(r => r[0])
+      .map(r => ({
+        studentId:   String(r[0]).trim(),
+        studentName: String(r[1]).trim(),
+        email:       String(r[2]).trim(),
+        sn:          r[3],
+        fromCohort:  String(r[4]).trim(),
+        toCohort:    String(r[5]).trim()
+      }));
+  } catch (e) { return []; }
 }
 
 function _normalizeName(name) {

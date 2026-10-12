@@ -448,6 +448,45 @@ tbody td {
 #toast.ok  { background:#00B894; color:#fff; }
 #toast.err { background:var(--red); color:#fff; }
 
+/* ── STUDENT PROFILE CARD ─────────────────────── */
+.student-card {
+  background: rgba(0,194,212,0.05);
+  border: 1px solid rgba(0,194,212,0.2);
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 20px;
+}
+.sc-item { font-size: 12px; color: var(--muted); white-space: nowrap; }
+.sc-item strong { color: var(--white); font-size: 13px; }
+.sc-divider { color: var(--brdr2); font-size: 16px; }
+.sc-loading { color: var(--muted); font-size: 12px; font-style: italic; }
+
+/* ── MOVE STUDENT ─────────────────────────────── */
+.move-card {
+  background: var(--card);
+  border: 1px solid var(--brdr2);
+  border-left: 3px solid var(--purple);
+  border-radius: 14px;
+  padding: 24px;
+  margin-bottom: 28px;
+}
+
+.btn-move {
+  padding: 11px 24px;
+  background: rgba(155,89,182,0.15);
+  border: 1.5px solid rgba(155,89,182,0.4);
+  border-radius: 9px;
+  color: var(--purple); font-size: 13px; font-weight: 700;
+  cursor: pointer; font-family: inherit;
+  transition: background 0.2s;
+  margin-top: 24px;
+  width: 100%;
+}
+.btn-move:hover { background: rgba(155,89,182,0.25); }
+
 @media(max-width:768px) {
   .stats-grid { grid-template-columns:repeat(2,1fr); }
   .topbar-sub { display:none; }
@@ -592,7 +631,7 @@ tbody td {
         </div>
         <div class="bd-field">
           <label>Student Name</label>
-          <select id="bd-name">
+          <select id="bd-name" onchange="onStudentSelected()">
             <option value="">Select cohort first</option>
           </select>
         </div>
@@ -623,8 +662,52 @@ tbody td {
           </select>
         </div>
       </div>
+      <!-- Student profile card — appears after name is selected -->
+      <div id="studentCard" class="student-card" style="display:none">
+        <div class="sc-item">ID: <strong id="sc-id">—</strong></div>
+        <div class="sc-divider">|</div>
+        <div class="sc-item">Cohort: <strong id="sc-cohort">—</strong></div>
+        <div class="sc-divider">|</div>
+        <div class="sc-item">Registered Course: <strong id="sc-course"><span class="sc-loading">loading…</span></strong></div>
+        <div class="sc-divider">|</div>
+        <div class="sc-item">Belt: <strong id="sc-belt"><span class="sc-loading">loading…</span></strong></div>
+      </div>
+
       <button class="btn-backdate" onclick="submitBackdate()">📅 Add Backdated Record</button>
       <div class="bd-msg" id="bdMsg"></div>
+    </div>
+
+    <!-- MOVE STUDENT -->
+    <div class="section-title">Move Student Between Cohorts</div>
+    <div class="move-card">
+      <p style="color:var(--muted);font-size:13px">
+        Use this when a student switches cohorts. Their past attendance records stay exactly where they are — only their future cohort assignment changes.
+      </p>
+      <div class="backdate-grid" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr))">
+        <div class="bd-field">
+          <label>Current Cohort</label>
+          <select id="mv-from" onchange="populateMoveStudents()">
+            <option value="">Select current cohort</option>
+            <option value="C1">Cohort 1</option>
+            <option value="C2">Cohort 2</option>
+            <option value="C3">Cohort 3</option>
+          </select>
+        </div>
+        <div class="bd-field">
+          <label>Student Name</label>
+          <select id="mv-student">
+            <option value="">Select cohort first</option>
+          </select>
+        </div>
+        <div class="bd-field">
+          <label>Move To Cohort</label>
+          <select id="mv-to">
+            <option value="">Select cohort first</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn-move" onclick="moveStudent()">↪ Move Student to New Cohort</button>
+      <div class="bd-msg" id="mvMsg"></div>
     </div>
 
     <!-- REPORT -->
@@ -816,6 +899,10 @@ function updateBdNames() {
   const cohort = document.getElementById('bd-cohort').value;
   const sel    = document.getElementById('bd-name');
   sel.innerHTML = '<option value="">Select student</option>';
+  // Reset card and dependent fields when cohort changes
+  document.getElementById('studentCard').style.display = 'none';
+  document.getElementById('bd-course').selectedIndex = 0;
+  document.getElementById('bd-belt').selectedIndex   = 0;
   if (!cohort || !allStudents[cohort]) return;
   allStudents[cohort].forEach(s => {
     const o = document.createElement('option');
@@ -823,6 +910,64 @@ function updateBdNames() {
     o.textContent = s.name;
     sel.appendChild(o);
   });
+}
+
+// Auto-fill course + belt from registration sheet when a student is selected.
+function onStudentSelected() {
+  const nameRaw = document.getElementById('bd-name').value;
+  const cohort  = document.getElementById('bd-cohort').value;
+  const card    = document.getElementById('studentCard');
+
+  if (!nameRaw) {
+    card.style.display = 'none';
+    document.getElementById('bd-course').selectedIndex = 0;
+    document.getElementById('bd-belt').selectedIndex   = 0;
+    return;
+  }
+
+  const student = JSON.parse(nameRaw);
+
+  // Show card immediately with loading state
+  document.getElementById('sc-id').textContent     = student.id   || '—';
+  document.getElementById('sc-cohort').textContent = cohort       || '—';
+  document.getElementById('sc-course').innerHTML   = '<span class="sc-loading">loading…</span>';
+  document.getElementById('sc-belt').innerHTML     = '<span class="sc-loading">loading…</span>';
+  card.style.display = 'flex';
+
+  // Fetch registered course + belt from the registration sheet
+  google.script.run
+    .withSuccessHandler(function(profile) {
+      if (profile && profile.course) {
+        document.getElementById('sc-course').textContent = profile.course;
+        // Pre-select matching course in dropdown
+        const courseEl = document.getElementById('bd-course');
+        for (let i = 0; i < courseEl.options.length; i++) {
+          if (courseEl.options[i].value === profile.course) {
+            courseEl.selectedIndex = i; break;
+          }
+        }
+      } else {
+        document.getElementById('sc-course').textContent = 'Not in register';
+      }
+
+      if (profile && profile.belt) {
+        document.getElementById('sc-belt').textContent = profile.belt;
+        // Pre-select matching belt in dropdown
+        const beltEl = document.getElementById('bd-belt');
+        for (let i = 0; i < beltEl.options.length; i++) {
+          if (beltEl.options[i].value === profile.belt) {
+            beltEl.selectedIndex = i; break;
+          }
+        }
+      } else {
+        document.getElementById('sc-belt').textContent = 'Not set';
+      }
+    })
+    .withFailureHandler(function() {
+      document.getElementById('sc-course').textContent = 'Unavailable';
+      document.getElementById('sc-belt').textContent   = 'Unavailable';
+    })
+    .getStudentProfile(student.name);
 }
 
 function submitBackdate() {
@@ -857,6 +1002,7 @@ function submitBackdate() {
         document.getElementById('bd-belt').value = '';
         document.getElementById('bd-date').value = '';
         document.getElementById('bd-status').value = 'Present ✓';
+        document.getElementById('studentCard').style.display = 'none';
       } else {
         msgEl.className = 'bd-msg err';
         msgEl.textContent = res.message || 'Error adding record.';
@@ -915,6 +1061,85 @@ function loadReport() {
       }).join('');
     })
     .getAttendanceReport(adminPass);
+}
+
+// ── MOVE STUDENT ───────────────────────────────
+function populateMoveStudents() {
+  const fromCohort = document.getElementById('mv-from').value;
+  const studentSel = document.getElementById('mv-student');
+  const toSel      = document.getElementById('mv-to');
+
+  studentSel.innerHTML = '<option value="">Select student</option>';
+  toSel.innerHTML      = '<option value="">Select cohort first</option>';
+  document.getElementById('mvMsg').style.display = 'none';
+
+  if (!fromCohort) return;
+
+  // Populate "Move To" with other cohorts only
+  toSel.innerHTML = '<option value="">Select new cohort</option>';
+  ['C1','C2','C3'].forEach(function(c) {
+    if (c !== fromCohort) {
+      const o = document.createElement('option');
+      o.value = c;
+      o.textContent = 'Cohort ' + c.replace('C','');
+      toSel.appendChild(o);
+    }
+  });
+
+  if (!allStudents[fromCohort]) return;
+  allStudents[fromCohort].forEach(function(s) {
+    const o = document.createElement('option');
+    o.value = JSON.stringify(s);
+    o.textContent = s.name;
+    studentSel.appendChild(o);
+  });
+}
+
+function moveStudent() {
+  const fromCohort  = document.getElementById('mv-from').value;
+  const studentRaw  = document.getElementById('mv-student').value;
+  const toCohort    = document.getElementById('mv-to').value;
+  const msgEl       = document.getElementById('mvMsg');
+
+  if (!fromCohort || !studentRaw || !toCohort) {
+    msgEl.className = 'bd-msg err';
+    msgEl.textContent = 'Please fill in all three fields.';
+    msgEl.style.display = 'block';
+    return;
+  }
+
+  const student  = JSON.parse(studentRaw);
+  const fromNum  = fromCohort.replace('C','');
+  const toNum    = toCohort.replace('C','');
+
+  if (!confirm('Move ' + student.name + ' from Cohort ' + fromNum + ' to Cohort ' + toNum + '?\n\nPast attendance records will NOT be affected.')) return;
+
+  msgEl.style.display = 'none';
+
+  google.script.run
+    .withSuccessHandler(function(res) {
+      if (res.success) {
+        msgEl.className = 'bd-msg ok';
+        msgEl.textContent = '✓ ' + student.name + ' moved to Cohort ' + toNum + ' successfully.';
+        msgEl.style.display = 'block';
+        loadDashboard();
+        document.getElementById('mv-from').value      = '';
+        document.getElementById('mv-student').innerHTML = '<option value="">Select cohort first</option>';
+        document.getElementById('mv-to').innerHTML     = '<option value="">Select cohort first</option>';
+      } else {
+        msgEl.className = 'bd-msg err';
+        msgEl.textContent = res.message || 'Error moving student.';
+        msgEl.style.display = 'block';
+      }
+    })
+    .moveStudentCohort(adminPass, {
+      studentId:   student.id,
+      studentName: student.name,
+      email:       student.email  || '',
+      sn:          student.sn     || '',
+      fromCohort:  fromCohort,
+      toCohort:    toCohort
+    });
 }
 
 // ── TOAST ──────────────────────────────────────
