@@ -41,12 +41,9 @@ const STUDENT_REGISTER = {
     { sn: 1,  id: 'MA/C1/001/26', name: 'Promise Ogechi Okafor',       email: 'Promiseokafor43@gmail.com'      },
     { sn: 2,  id: 'MA/C1/002/26', name: 'Sarouk Danjuma Ahmed',         email: 'danjumasarouk@gmail.com'        },
     { sn: 3,  id: 'MA/C1/003/26', name: 'Kehinde Adenike Matthew',      email: 'ariyo.kehinde2017@gmail.com'    },
-    { sn: 4,  id: 'MA/C1/004/26', name: 'Amir Nuru Yakubu',             email: 'anuryakubu@gmail.com'           },
-    { sn: 5,  id: 'MA/C1/005/26', name: 'Akwu Victoria Izichi',         email: 'izichiakwu@gmail.com'           },
-    { sn: 6,  id: 'MA/C1/006/26', name: 'Nwosu Chisom',                 email: 'nwosuchisom822@gmail.com'       }
+    { sn: 4,  id: 'MA/C1/004/26', name: 'Amir Nuru Yakubu',             email: 'anuryakubu@gmail.com'           }
   ],
   C2: [
-    { sn: 7,  id: 'MA/C2/007/26', name: 'Matthew Blessing Abasiama',    email: 'matthewblessing333@gmail.com'   },
     { sn: 8,  id: 'MA/C2/008/26', name: 'Chinenyenwa Edith Ezurike',    email: 'wanaxynwa@gmail.com'            }
   ],
   C3: [
@@ -56,7 +53,10 @@ const STUDENT_REGISTER = {
     { sn: 12, id: 'MA/C3/012/26', name: 'Omolade Agbotoba',             email: 'oagbotoba@gmail.com'            },
     { sn: 13, id: 'MA/C3/013/26', name: 'Umeano Justina Chikodili',     email: 'happinessj2016@gmail.com'       },
     { sn: 14, id: 'MA/C3/014/26', name: 'Omaraye Vincent Osakpolor',    email: 'o.vosakpolor@gmail.com'         },
-    { sn: 15, id: 'MA/C3/015/26', name: 'Abidoye Temitayo',             email: 'temitayoabidoye83@gmail.com'    }
+    { sn: 15, id: 'MA/C3/015/26', name: 'Abidoye Temitayo',             email: 'temitayoabidoye83@gmail.com'    },
+    { sn: 5,  id: 'MA/C1/005/26', name: 'Akwu Victoria Izichi',         email: 'izichiakwu@gmail.com'           },
+    { sn: 6,  id: 'MA/C1/006/26', name: 'Nwosu Chisom',                 email: 'nwosuchisom822@gmail.com'       },
+    { sn: 7,  id: 'MA/C2/007/26', name: 'Matthew Blessing Abasiama',    email: 'matthewblessing333@gmail.com'   }
   ]
 };
 
@@ -119,7 +119,15 @@ function getStudentsForCohort(cohort) {
     extras = _getLiveNewStudents(cohort).filter(s => !movedOut.has(s.id));
   } catch (e) {}
 
-  return [...hardcoded, ...extras, ...movedIn];
+  // Deduplicate by student ID — STUDENT_REGISTER takes precedence over movedIn
+  const seen = new Set();
+  const result = [];
+  for (const s of [...hardcoded, ...extras, ...movedIn]) {
+    if (s.id && seen.has(s.id)) continue;
+    if (s.id) seen.add(s.id);
+    result.push(s);
+  }
+  return result;
 }
 
 function getCourses() { return COURSES; }
