@@ -562,7 +562,7 @@ export default function CourseExplorer() {
           </div>
         </div>
 
-        <SpecialDomainAccordion domains={SPECIAL_DOMAINS} enrollHref={WHATSAPP_ENROLL} />
+        <SpecialDomainAccordion domains={SPECIAL_DOMAINS} enrollHref={WHATSAPP_ENROLL} variant="light" />
       </div>
     )
   }
