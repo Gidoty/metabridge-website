@@ -2,7 +2,7 @@
 
 import { useState, FormEvent, useEffect } from 'react'
 
-const CERT_API = 'https://cert-ashen.vercel.app/api/verify'
+const CERT_API = '/api/verify'
 
 interface Certificate {
   certificate_code: string
