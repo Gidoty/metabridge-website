@@ -1,22 +1,17 @@
 'use client'
 
 import { useState, FormEvent, useEffect } from 'react'
-import { createClient } from '@supabase/supabase-js'
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-)
+const CERT_API = 'https://cert-ashen.vercel.app/api/verify'
 
 interface Certificate {
-  id: string
   certificate_code: string
   certificate_type: string
   candidate_name: string
   course_name: string
   cohort: string
-  serial_number: number | string
-  year_issued: string
+  serial_number?: number | string
+  year_issued?: string
   date_issued: string
   tx_hash?: string
   blockchain_timestamp?: string
@@ -43,23 +38,15 @@ export default function CertVerifyClient({ initialCode }: CertVerifyClientProps)
     setSearched(true)
 
     try {
-      const { data, error: dbError } = await supabase
-        .from('certificates')
-        .select('*')
-        .eq('certificate_code', trimmed.toUpperCase())
-        .maybeSingle()
+      const res = await fetch(`${CERT_API}?code=${encodeURIComponent(trimmed.toUpperCase())}`)
+      const json = await res.json()
 
-      if (dbError) {
-        console.error('Supabase cert lookup error:', dbError)
-        setError(
-          `Database error — please try again. If this persists, contact info@metabridgeacademy.com. (${dbError.code}: ${dbError.message})`
-        )
-      } else if (!data) {
+      if (!res.ok || !json.found) {
         setError(
           'No certificate found with this code. Please double-check the code exactly as printed on your certificate and try again.'
         )
       } else {
-        setResult(data as Certificate)
+        setResult(json.certificate as Certificate)
       }
     } catch (e) {
       console.error('Cert verify exception:', e)
@@ -115,7 +102,7 @@ export default function CertVerifyClient({ initialCode }: CertVerifyClientProps)
             type="text"
             value={code}
             onChange={(e) => setCode(e.target.value.toUpperCase())}
-            placeholder="e.g. MA/C1/26/0001"
+            placeholder="e.g. MB/C1/001/26"
             className="flex-1 px-5 py-3 rounded-xl border-2 border-gray-200 focus:border-teal focus:outline-none text-navy font-mono text-lg placeholder-gray-300 transition-colors"
             required
           />
