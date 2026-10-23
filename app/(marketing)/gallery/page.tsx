@@ -25,8 +25,8 @@ const credentials = [
   {
     id: 'scuml',
     label: 'SCUML Compliance Registration',
-    description: 'Special Control Unit Against Money Laundering — Federal compliance registration confirming our commitment to financial integrity.',
-    imagePath: null,
+    description: 'Certificate of Registration — Metabridge Academy Ltd, registered under Section 17(2)(a) of the Money Laundering (Prevention and Prohibition) Act 2022. RN: SC 331504058. Issued 21st October 2026.',
+    imagePath: '/gallery/scuml-certificate.jpg',
     icon: '🔏',
     color: 'border-navy',
     badge: 'bg-navy/10 text-navy',
