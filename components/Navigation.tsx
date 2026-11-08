@@ -13,6 +13,7 @@ const navLinks = [
   { href: '/courses', label: 'Courses', desktopOnly: false },
   { href: '/projects', label: 'Projects', desktopOnly: false },
   { href: '/books', label: 'Books', desktopOnly: false },
+  { href: '/blog', label: 'Blog', desktopOnly: false },
   { href: '/gallery', label: 'Gallery', desktopOnly: true },
   { href: '/faq', label: 'FAQ', desktopOnly: false },
   { href: '/verify/lookup', label: 'Verify', desktopOnly: true },
