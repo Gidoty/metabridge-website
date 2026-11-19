@@ -22,14 +22,14 @@ export interface BlogPost {
 export const BLOG_POSTS: BlogPost[] = [
   {
     slug: 'how-to-start-cybersecurity-career-nigeria',
-    title: 'How to Start a Career in Cybersecurity in Nigeria (2025 Guide)',
+    title: 'How to Start a Career in Cybersecurity in Nigeria (2026 Guide)',
     description:
       'Everything you need to know about starting a cybersecurity career in Nigeria — job roles, salaries, required skills, and a step-by-step path to your first job.',
     category: 'Cybersecurity',
     categorySlug: 'cybersecurity',
     categoryColor: 'bg-red-100 text-red-700',
     readTime: 7,
-    publishedAt: '2025-10-15',
+    publishedAt: '2026-10-15',
     tags: ['cybersecurity', 'career', 'Nigeria', 'tech jobs'],
     heroEmoji: '🔐',
     sections: [
@@ -121,7 +121,7 @@ export const BLOG_POSTS: BlogPost[] = [
     categorySlug: 'blockchain',
     categoryColor: 'bg-yellow-100 text-yellow-700',
     readTime: 6,
-    publishedAt: '2025-10-20',
+    publishedAt: '2026-10-20',
     tags: ['blockchain', 'Web3', 'cryptocurrency', 'DeFi', 'Nigeria'],
     heroEmoji: '⛓️',
     sections: [
@@ -204,7 +204,7 @@ export const BLOG_POSTS: BlogPost[] = [
     categorySlug: 'data-analytics',
     categoryColor: 'bg-teal-100 text-teal-700',
     readTime: 7,
-    publishedAt: '2025-10-28',
+    publishedAt: '2026-10-28',
     tags: ['data analytics', 'Power BI', 'SQL', 'Excel', 'Nigeria', 'career'],
     heroEmoji: '📊',
     sections: [
@@ -282,15 +282,15 @@ export const BLOG_POSTS: BlogPost[] = [
   },
 
   {
-    slug: 'ai-tools-nigerians-earn-more-2025',
-    title: 'How AI Tools Are Helping Nigerians Earn More in 2025',
+    slug: 'ai-tools-nigerians-earn-more-2026',
+    title: 'How AI Tools Are Helping Nigerians Earn More in 2026',
     description:
       'Practical ways Nigerians are using AI tools to work faster, deliver better results, and earn more — whether freelancing, running a business, or in employment.',
     category: 'Artificial Intelligence',
     categorySlug: 'ai',
     categoryColor: 'bg-purple-100 text-purple-700',
     readTime: 6,
-    publishedAt: '2025-11-01',
+    publishedAt: '2026-11-01',
     tags: ['AI tools', 'ChatGPT', 'freelancing', 'Nigeria', 'make money'],
     heroEmoji: '🤖',
     sections: [
@@ -365,7 +365,7 @@ export const BLOG_POSTS: BlogPost[] = [
     categorySlug: 'career',
     categoryColor: 'bg-green-100 text-green-700',
     readTime: 6,
-    publishedAt: '2025-11-05',
+    publishedAt: '2026-11-05',
     tags: ['remote work', 'freelancing', 'dollar income', 'Nigeria', 'tech skills'],
     heroEmoji: '💵',
     sections: [
@@ -441,21 +441,21 @@ export const BLOG_POSTS: BlogPost[] = [
   },
 
   {
-    slug: 'web-development-nigeria-2025',
-    title: 'Is Web Development Still Worth Learning in Nigeria in 2025?',
+    slug: 'web-development-nigeria-2026',
+    title: 'Is Web Development Still Worth Learning in Nigeria in 2026?',
     description:
-      'Is the web development market too crowded? We look honestly at job demand, freelance opportunities, salaries, and how to stand out in Nigeria in 2025.',
+      'Is the web development market too crowded? We look honestly at job demand, freelance opportunities, salaries, and how to stand out in Nigeria in 2026.',
     category: 'Web Development',
     categorySlug: 'web-development',
     categoryColor: 'bg-emerald-100 text-emerald-700',
     readTime: 7,
-    publishedAt: '2025-11-08',
+    publishedAt: '2026-11-08',
     tags: ['web development', 'programming', 'Nigeria', 'career', 'JavaScript'],
     heroEmoji: '💻',
     sections: [
       {
         paragraphs: [
-          '"Is web development too saturated?" is one of the most common questions from Nigerians considering a career in tech. It is a fair question. Web development courses are everywhere, and many people have learned to code. So is it still worth it?',
+          '"Is web development too saturated?" is one of the most common questions from Nigerians considering a career in tech. It is a fair question — especially in 2026, when courses are everywhere and many people have learned to code. So is it still worth it?',
           'The honest answer: yes — but with important nuances. The floor of web development has become crowded, but the ceiling remains very high. This guide explains what that means and how to position yourself on the right side of that divide.',
         ],
       },
@@ -469,7 +469,7 @@ export const BLOG_POSTS: BlogPost[] = [
       {
         heading: 'What Technologies Should You Learn?',
         paragraphs: [
-          'The core of modern web development is JavaScript. Everything else builds on it. Here is a practical learning path for 2025:',
+          'The core of modern web development is JavaScript. Everything else builds on it. Here is a practical learning path for 2026:',
         ],
         list: [
           'HTML and CSS fundamentals — still essential for every web developer',
@@ -497,7 +497,7 @@ export const BLOG_POSTS: BlogPost[] = [
         ],
       },
       {
-        heading: 'What Makes a Developer Stand Out in 2025?',
+        heading: 'What Makes a Developer Stand Out in 2026?',
         paragraphs: [
           'The developers who struggle are those who learned the basics and stopped. The developers who thrive are those who kept going — mastering TypeScript, learning to work with APIs and databases, understanding performance and security, and building projects that solve real problems.',
         ],
@@ -514,7 +514,7 @@ export const BLOG_POSTS: BlogPost[] = [
       {
         heading: 'Should You Learn Web Development?',
         paragraphs: [
-          'If you enjoy building things, solving problems, and you are willing to invest 6–12 months in serious learning, web development is still one of the best career decisions you can make in Nigeria in 2025.',
+          'If you enjoy building things, solving problems, and you are willing to invest 6–12 months in serious learning, web development is still one of the best career decisions you can make in Nigeria in 2026.',
           'The key is to not stop at "I can build a website." Aim for "I can build a production-quality application that businesses trust with their data and customers." That level of skill is in high demand and is very well compensated.',
         ],
       },

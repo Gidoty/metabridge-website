@@ -185,7 +185,7 @@ const COURSES: CourseData[] = [
         level: 'green',
         label: 'Foundation Level',
         weeks: 4,
-        price: 7000,
+        price: 10000,
         prerequisite: 'None required',
         topics: [
           'What AI, Machine Learning and Deep Learning Are',
