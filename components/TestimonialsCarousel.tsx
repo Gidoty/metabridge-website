@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
-import { testimonials as staticTestimonials } from '@/lib/data'
+import { QUOTE_TESTIMONIALS as staticTestimonials } from '@/lib/testimonials'
 
 export interface TestimonialItem {
   name: string
