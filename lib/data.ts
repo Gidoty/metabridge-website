@@ -1,22 +1,3 @@
-export const testimonials = [
-  {
-    name: 'Chukwuma Obi',
-    role: 'Cybersecurity Analyst (Remote, UK Contract)',
-    location: 'Port Harcourt, Nigeria',
-    programme: 'Cybersecurity',
-    quote:
-      "When I enrolled in the Metabridge Cybersecurity training, I genuinely did not know if anything would come of it. Four months later, I was negotiating a remote contract with a cybersecurity firm in the United Kingdom, from Port Harcourt. The first month's pay arrived in pounds sterling. I sat there and cried. My family cried. Metabridge Academy did not just give me a skill. It gave me a life I had stopped believing I could have.",
-  },
-  {
-    name: 'Blessing Okafor',
-    role: 'Data Analyst, Oil and Gas Services',
-    location: 'Port Harcourt, Nigeria',
-    programme: 'Data Analytics',
-    quote:
-      'I am a single mother. Every investment I make has to be justified. Within six months of the Metabridge Data Analytics training, I moved from an administrative position into a junior data analyst role at an oil and gas services company, with a salary increase that covered the full cost of the training within my first week. My children now watch their mother build something.',
-  },
-]
-
 export const WHATSAPP_BOOK =
   'https://wa.me/2348124228730?text=Hello%20Metabridge%20Academy%2C%20I%20am%20interested%20in%20purchasing%20a%20textbook.'
 

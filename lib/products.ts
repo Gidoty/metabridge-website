@@ -9,7 +9,7 @@ export const BELT_LABEL: Record<BeltLevel, string> = {
 export const BELT_PRICING: Record<string, Record<BeltLevel, number>> = {
   cybersecurity: { green: 35000, blue: 55000, black: 300000 },
   'data-analytics': { green: 30000, blue: 45000, black: 120000 },
-  'artificial-intelligence': { green: 7000, blue: 25000, black: 50000 },
+  'artificial-intelligence': { green: 10000, blue: 25000, black: 50000 },
   blockchain: { green: 20000, blue: 30000, black: 50000 },
   'web-development': { green: 25000, blue: 50000, black: 150000 },
 }
@@ -39,7 +39,7 @@ export const COURSE_CATALOG = {
     id: 'artificial-intelligence',
     name: 'Artificial Intelligence',
     duration: 'Green Belt · Blue Belt · Black Belt',
-    price: 7000,
+    price: 10000,
     icon: '🤖',
     description: 'Prompt engineering, AI workflow automation, and tools for modern professionals.',
   },
